@@ -1,0 +1,28 @@
+name: Google Java Format
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  formatting:
+    runs-on: ubuntu-latest
+    name: Google Java Format Job
+
+    # GitHub token permissions
+    permissions:
+      contents: write
+    
+    steps:
+      - uses: actions/checkout@v6.0.2
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5.2.0
+        with:
+          distribution: 'temurin'
+          java-version: 21
+      - uses: axel-op/googlejavaformat-action@v4
+        with:
+          files-excluded: "**/module-info.java"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
