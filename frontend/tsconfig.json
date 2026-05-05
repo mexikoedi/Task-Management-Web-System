@@ -17,6 +17,7 @@
     "lib": ["ES2022", "dom"],
     "types": ["jest"]
   },
+  "files": ["src/test.ts"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
