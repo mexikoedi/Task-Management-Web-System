@@ -1,0 +1,41 @@
+# Editor configuration for the project
+# https://editorconfig.org
+
+root = true
+
+# All files
+[*]
+charset = utf-8
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Java files
+[*.java]
+indent_style = space
+indent_size = 4
+
+# TypeScript files
+[*.ts]
+indent_style = space
+indent_size = 2
+
+# JavaScript files
+[*.js]
+indent_style = space
+indent_size = 2
+
+# JSON files
+[*.json]
+indent_style = space
+indent_size = 2
+
+# HTML files
+[*.html]
+indent_style = space
+indent_size = 2
+
+# CSS files
+[*.css]
+indent_style = space
+indent_size = 2
+

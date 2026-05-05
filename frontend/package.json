@@ -1,0 +1,36 @@
+{
+  "name": "tmws-frontend",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve --open",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
+  "dependencies": {
+    "@angular/animations": "21.2.11",
+    "@angular/common": "21.2.11",
+    "@angular/compiler": "21.2.11",
+    "@angular/core": "21.2.11",
+    "@angular/forms": "21.2.11",
+    "@angular/platform-browser": "21.2.11",
+    "@angular/platform-browser-dynamic": "21.2.11",
+    "@angular/router": "21.2.11",
+    "rxjs": "7.8.2",
+    "zone.js": "0.16.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "21.2.9",
+    "@angular/cli": "21.2.9",
+    "@angular/compiler-cli": "21.2.11",
+    "@types/jest": "30.0.0",
+    "typescript": "6.0.3",
+    "karma-chrome-launcher": "3.2.0",
+    "karma-coverage": "2.2.1",
+    "karma-jasmine": "5.1.0",
+    "karma-jasmine-html-reporter": "2.2.0"
+  }
+}

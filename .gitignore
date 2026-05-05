@@ -36,13 +36,23 @@
 *.tar.gz
 *.rar
 
-# Idea
+# Idea & IDE specific
 *.iml
 .idea/
 out/
 bin/
 .project
 .classpath
+.vscode/
+*.swp
+*.swo
+*~
+
+# Gradle specific
+/.gradle/
+/build/
+gradle-app.setting
+!gradle-wrapper.jar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
