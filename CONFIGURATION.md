@@ -37,7 +37,7 @@ Dieses Dokument fasst alle Konfigurationen zusammen, die für das Task Managemen
 
 ```properties
 server.port = 8080
-spring.datasource.url = jdbc:h2:mem:tmws
+spring.datasource.url = jdbc:h2:mem:tmws;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
 spring.datasource.driverClassName = org.h2.Driver
 spring.datasource.username = sa
 spring.datasource.password = (empty)
@@ -45,6 +45,8 @@ spring.jpa.database-platform = org.hibernate.dialect.H2Dialect
 spring.jpa.hibernate.ddl-auto = update
 spring.h2.console.enabled = true
 spring.h2.console.path = /h2-console
+spring.h2.console.settings.web-allow-others=true
+logging.level.org.springframework=INFO
 ```
 
 ### REST Endpoints (Beispiele implementiert)
@@ -123,7 +125,7 @@ src/
 │   ├── shared/       → Shared Module/Components
 │   ├── directive/    → Custom Directives
 │   └── core/         → Core Module (Singletons)
-└── assets/          → Statische Assets (Bilder, etc.)
+└── assets/           → Statische Assets (Bilder, etc.)
 ```
 
 ### npm Scripts
@@ -182,7 +184,7 @@ Task-Management-Web-System/
 │   ├── build.gradle.kts
 │   ├── settings.gradle.kts
 │   ├── gradlew / gradlew.bat
-│   └── gradle/
+│   └── gradle/wrapper/
 │
 ├── frontend/             # Angular Frontend (npm/ng)
 │   ├── src/
@@ -190,6 +192,7 @@ Task-Management-Web-System/
 │   │   ├── index.html
 │   │   └── assets/
 │   ├── package.json
+│   ├── package-lock.json
 │   ├── angular.json
 │   └── tsconfig.json
 │
@@ -206,7 +209,7 @@ Task-Management-Web-System/
 
 ```
 Gradle: build/, .gradle/, gradle-app.setting
-Node: node_modules/, package-lock.json, yarn.lock
+Node: node_modules/, yarn.lock
 IDE: .idea/, .vscode/, *.iml, *.swp, *~
 Java: *.class, *.war, bin/, out/
 Angular: /dist/, /out-tsc/, /.angular/, /coverage/
@@ -233,7 +236,7 @@ gradlew.bat bootRun  # Windows
  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
   '  |____| .__|_| |_|_| |_|\__, | / / / /
  =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::                (v3.1.4)
+ :: Spring Boot ::                (v4.0.6)
 
 2025-05-03 12:00:00.000  INFO 12345 --- [main] i.g.m.t.TmwsApplication : Started TmwsApplication in 2.345 seconds (JVM running for 3.456)
 ```
@@ -255,7 +258,7 @@ npm start      # or: ng serve --open
 ✔ Compiled successfully.
 Application bundle generated successfully. X.XX MB
 
-Initial Chunk Files | Names         | Size
+Initial Chunk Files| Names         | Size
 bundle.js          | main          | X.XX MB
 styles.css         | styles        | XX.XX kB
 
@@ -324,8 +327,8 @@ Geplante Implementierung: Spring Security + JWT Tokens
 |-----------|---------|-------|
 | Spring Boot | 4.0.6   | Framework |
 | Spring Data JPA | 4.0.5   | ORM |
-| H2 Database | Runtime | Dev Database |
-| JUnit Platform | Latest  | Test Framework |
+| H2 Database | 2.4.240 | Dev Database |
+| JUnit Platform | 5       | Test Framework |
 
 ### Frontend
 

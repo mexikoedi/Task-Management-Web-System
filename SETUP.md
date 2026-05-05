@@ -42,7 +42,7 @@ chmod +x setup.sh
 cd backend
 
 # Projekt bauen
-./gradlew build      # Linux/Mac
+./gradlew build     # Linux/Mac
 gradlew.bat build   # Windows
 
 # Oder direkt starten (Build automatisch)
@@ -85,10 +85,17 @@ Das Frontend läuft dann auf: **http://localhost:4200**
 
 #### `application.properties` - Runtime-Konfiguration
 ```properties
-server.port=8080                               # Server-Port
-spring.datasource.url=jdbc:h2:mem:tmws         # H2 In-Memory DB
-spring.jpa.hibernate.ddl-auto=update           # Auto-DDL
-spring.h2.console.enabled=true                 # H2-Console aktivieren
+server.port = 8080                                                                 # Server-Port
+spring.datasource.url = jdbc:h2:mem:tmws;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE  # H2 In-Memory DB
+spring.datasource.driverClassName = org.h2.Driver                                  # H2 JDBC Driver
+spring.datasource.username = sa                                                    # Standard-Username für H2
+spring.datasource.password = (empty)                                               # Standard-Passwort für H2
+spring.jpa.database-platform = org.hibernate.dialect.H2Dialect                     # Hibernate Dialect für H2
+spring.jpa.hibernate.ddl-auto = update                                             # Auto-DDL
+spring.h2.console.enabled = true                                                   # H2-Console aktivieren
+spring.h2.console.path = /h2-console                                               # Pfad für H2-Console
+spring.h2.console.settings.web-allow-others=true                                   # Zugriff von anderen Hosts erlauben
+logging.level.org.springframework=INFO                                             # Logging-Level für Spring Framework
 ```
 
 #### Gradle Wrapper
@@ -155,7 +162,7 @@ npm run lint             # Code Linting
 
 ```
 io.github.mexikoedi.tmws/
-├── controller/        # REST Endpoints (@RestController)
+├── controller/       # REST Endpoints (@RestController)
 ├── service/          # Business Logic
 ├── model/            # JPA Entities (@Entity)
 ├── repository/       # Data Access (@Repository)

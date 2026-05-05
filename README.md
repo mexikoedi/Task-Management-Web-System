@@ -53,6 +53,7 @@ Task-Management-Web-System/
 │   │   └── assets/
 │   ├── angular.json            # Angular CLI Configuration
 │   ├── package.json
+│   ├── package-lock.json
 │   ├── tsconfig.json
 │   ├── karma.conf.js           # Test Runner Configuration
 │   └── .browserlistrc
@@ -66,7 +67,7 @@ Task-Management-Web-System/
 
 ### Voraussetzungen
 
-- **Java 26.0.1** oder höher
+- **Java** 26.0.1 oder höher
 - **Node.js** 26.0.0 oder höher
 - **npm** 11.12.1 oder höher
 
