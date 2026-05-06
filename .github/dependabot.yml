@@ -8,3 +8,13 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+  # Maintain dependencies for Gradle
+  - package-ecosystem: "gradle"
+    directory: "/backend"
+    schedule:
+      interval: "daily"
+  # Maintain dependencies for npm
+  - package-ecosystem: "npm"
+    directory: "/frontend"
+    schedule:
+      interval: "daily"
