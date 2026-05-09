@@ -9,8 +9,9 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = ValidEmailValidator.class)
 @Documented
 public @interface ValidEmail {
-    String message() default "E-Mail-Adresse muss gültig sein (z.B. benutzer@beispiel.de)";
-    Class<?>[] groups() default {};
-    Class<? extends Payload>[] payload() default {};
-}
+  String message() default "E-Mail-Adresse muss gültig sein (z.B. benutzer@beispiel.de)";
 
+  Class<?>[] groups() default {};
+
+  Class<? extends Payload>[] payload() default {};
+}
