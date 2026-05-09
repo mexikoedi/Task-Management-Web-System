@@ -172,7 +172,7 @@ Hier werden später die REST API Endpunkte dokumentiert.
 ### Code Style Richtlinien
 
 - Alle Dateien verwenden UTF-8 Encoding
-- Java: 4 Spaces Indentation
+- Java: 2 Spaces Indentation
 - TypeScript/JavaScript: 2 Spaces Indentation
 - HTML/CSS: 2 Spaces Indentation
 
