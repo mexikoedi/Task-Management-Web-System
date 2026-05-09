@@ -48,9 +48,9 @@ public class EmailService {
 
   private String buildRegistrationEmailBody(String verificationLink) {
     return "Hallo,\n\n"
-               + "vielen Dank für die Registrierung bei dem Task Management Web System (TMWS)!\n\n"
-               + "Bitte klicken Sie auf den folgenden Link, um Ihre Registrierung abzuschließen und"
-               + " sich anzumelden:\n\n"
+        + "vielen Dank für die Registrierung bei dem Task Management Web System (TMWS)!\n\n"
+        + "Bitte klicken Sie auf den folgenden Link, um Ihre Registrierung abzuschließen und"
+        + " sich anzumelden:\n\n"
         + verificationLink
         + "\n\n"
         + "Dieser Link ist 24 Stunden gültig.\n\n"

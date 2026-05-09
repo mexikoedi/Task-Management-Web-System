@@ -108,7 +108,7 @@ public class AuthenticationService {
 
     System.out.println("User " + request.getEmail() + " registered successfully");
     return "Registrierung erfolgreich. Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu"
-               + " verifizieren.";
+        + " verifizieren.";
   }
 
   /** Passwort zurücksetzen (via Email) */

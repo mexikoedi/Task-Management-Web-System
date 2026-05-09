@@ -22,6 +22,6 @@ public class PasswordValidator {
 
   public static String getPasswordRequirements() {
     return "Passwort muss mindestens 8 Zeichen, einen Großbuchstaben, einen Kleinbuchstaben, eine"
-               + " Ziffer und ein Sonderzeichen (!@#$%^&*) enthalten";
+        + " Ziffer und ein Sonderzeichen (!@#$%^&*) enthalten";
   }
 }
