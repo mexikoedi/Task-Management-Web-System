@@ -5,7 +5,7 @@ Ein Aufgabenmanagementsystem als Single Page Application mit Java Spring Boot Ba
 ## Stack
 
 - **Backend**: Java 26.0.1, Spring Boot 4.0.6, Spring Data JPA 4.0.5, Gradle 9.5.0
-- **Frontend**: Angular 21.2.11, TypeScript 6.0.3
+- **Frontend**: Angular 21.2.12, TypeScript 6.0.3
 - **Datenbank**: H2 (In-Memory)
 - **Architecture**: Client-Server REST API
 
@@ -68,8 +68,8 @@ Task-Management-Web-System/
 ### Voraussetzungen
 
 - **Java** 26.0.1 oder höher
-- **Node.js** 26.0.0 oder höher
-- **npm** 11.12.1 oder höher
+- **Node.js** 26.1.0 oder höher
+- **npm** 11.13.0 oder höher
 
 ### Backend Setup
 
@@ -180,4 +180,4 @@ Siehe `.editorconfig` für Editor-Konfiguration.
 
 ---
 
-**Letzte Aktualisierung:** 2025-05-05
+**Letzte Aktualisierung:** 2025-05-09

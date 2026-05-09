@@ -1,0 +1,287 @@
+<div class="login-container">
+  <!-- Blurred Background -->
+  <div class="blurred-background"></div>
+
+  <!-- Login Card -->
+  <div class="login-card" @slideIn>
+    <!-- Header -->
+    <div class="login-header">
+      <h1>{{ mode === 'login' ? 'TMWS' : (mode === 'register' ? 'Konto erstellen' : 'Passwort zurücksetzen') }}</h1>
+      <p class="subtitle">{{ mode === 'login' ? 'Willkommen zurück!' : (mode === 'register' ? 'Treten Sie unserer Community bei' : 'Stellen Sie Ihr Konto wieder her') }}</p>
+    </div>
+
+    <!-- Success Message -->
+    <div *ngIf="successMessage" class="success-message">
+      <span class="icon">✓</span>
+      {{ successMessage }}
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+      <span class="icon">✕</span>
+      {{ errorMessage }}
+    </div>
+
+    <!-- Login Form -->
+    <form *ngIf="mode === 'login'" [formGroup]="loginForm" (ngSubmit)="onLogin()" class="form">
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="login-email" class="form-label">
+          E-Mail-Adresse
+          <span class="tooltip" title="Geben Sie die E-Mail-Adresse ein, die mit Ihrem Konto verbunden ist">
+            ℹ️
+          </span>
+        </label>
+        <input
+          id="login-email"
+          type="email"
+          formControlName="email"
+          placeholder="Geben Sie Ihre E-Mail ein"
+          class="form-input"
+          [class.error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+          (blur)="updateFieldErrors(loginForm, 'email')"
+        />
+        <div *ngIf="fieldErrors['email']" class="error-text">
+          <div *ngFor="let error of fieldErrors['email']">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="login-password" class="form-label">
+          Passwort
+          <span class="tooltip" title="Geben Sie Ihr Passwort ein, um sich anzumelden">
+            ℹ️
+          </span>
+        </label>
+        <div class="password-input-wrapper">
+          <input
+            id="login-password"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Geben Sie Ihr Passwort ein"
+            class="form-input"
+            [class.error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+            (blur)="updateFieldErrors(loginForm, 'password')"
+          />
+          <button
+            type="button"
+            class="password-toggle"
+            (click)="togglePasswordVisibility()"
+            title="Passwort anzeigen/verbergen"
+            tabindex="-1"
+          >
+            {{ showPassword ? '👁️‍🗨️' : '👁️' }}
+          </button>
+        </div>
+        <div *ngIf="fieldErrors['password']" class="error-text">
+          <div *ngFor="let error of fieldErrors['password']">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn" [disabled]="!isLoginFormValid || isLoading">
+        {{ isLoading ? 'Wird angemeldet...' : 'Anmelden' }}
+      </button>
+
+      <!-- Links -->
+      <div class="form-links">
+        <button type="button" class="link-button" (click)="switchToReset()">
+          Passwort vergessen?
+        </button>
+        <span class="divider">|</span>
+        <button type="button" class="link-button" (click)="switchToRegister()">
+          Neues Konto erstellen
+        </button>
+      </div>
+    </form>
+
+    <!-- Register Form -->
+    <form *ngIf="mode === 'register'" [formGroup]="registerForm" (ngSubmit)="onRegister()" class="form">
+      <!-- Name Field -->
+      <div class="form-group">
+        <label for="register-name" class="form-label">
+          Vollständiger Name
+          <span class="tooltip" title="Geben Sie Ihren vollständigen Namen ein">
+            ℹ️
+          </span>
+        </label>
+        <input
+          id="register-name"
+          type="text"
+          formControlName="name"
+          placeholder="Geben Sie Ihren vollständigen Namen ein"
+          class="form-input"
+          [class.error]="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
+          (blur)="updateFieldErrors(registerForm, 'name')"
+        />
+        <div *ngIf="fieldErrors['name']" class="error-text">
+          <div *ngFor="let error of fieldErrors['name']">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="register-email" class="form-label">
+          E-Mail-Adresse
+          <span class="tooltip" title="Verwenden Sie eine gültige E-Mail-Adresse, um Verifikationslinks zu erhalten">
+            ℹ️
+          </span>
+        </label>
+        <input
+          id="register-email"
+          type="email"
+          formControlName="email"
+          placeholder="Geben Sie Ihre E-Mail ein"
+          class="form-input"
+          [class.error]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+          (blur)="updateFieldErrors(registerForm, 'email')"
+        />
+        <div *ngIf="fieldErrors['email']" class="error-text">
+          <div *ngFor="let error of fieldErrors['email']">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="register-password" class="form-label">
+          Passwort
+          <span class="tooltip" title="Passwort muss mindestens 8 Zeichen enthalten, Groß- und Kleinbuchstaben, Ziffer und Sonderzeichen">
+            ℹ️
+          </span>
+        </label>
+        <div class="password-input-wrapper">
+          <input
+            id="register-password"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Erstellen Sie ein starkes Passwort"
+            class="form-input"
+            [class.error]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+            (blur)="updateFieldErrors(registerForm, 'password')"
+          />
+          <button
+            type="button"
+            class="password-toggle"
+            (click)="togglePasswordVisibility()"
+            title="Passwort anzeigen/verbergen"
+            tabindex="-1"
+          >
+            {{ showPassword ? '👁️‍🗨️' : '👁️' }}
+          </button>
+        </div>
+        <div *ngIf="fieldErrors['password']" class="error-text">
+          <div *ngFor="let error of fieldErrors['password']">
+            {{ error }}
+          </div>
+        </div>
+        <div class="password-requirements">
+          <small *ngFor="let req of getPasswordRequirements()" [class.met]="req.met">
+            {{ req.met ? '✓' : '✗' }} {{ req.text }}
+          </small>
+        </div>
+      </div>
+
+      <!-- Confirm Password Field -->
+      <div class="form-group">
+        <label for="register-password-confirm" class="form-label">
+          Passwort bestätigen
+          <span class="tooltip" title="Bestätigen Sie Ihr Passwort">
+            ℹ️
+          </span>
+        </label>
+        <div class="password-input-wrapper">
+          <input
+            id="register-password-confirm"
+            [type]="showPasswordConfirm ? 'text' : 'password'"
+            formControlName="passwordConfirm"
+            placeholder="Bestätigen Sie Ihr Passwort"
+            class="form-input"
+            [class.error]="registerForm.get('passwordConfirm')?.invalid && registerForm.get('passwordConfirm')?.touched"
+            (blur)="updateFieldErrors(registerForm, 'passwordConfirm')"
+          />
+          <button
+            type="button"
+            class="password-toggle"
+            (click)="togglePasswordConfirmVisibility()"
+            title="Passwort anzeigen/verbergen"
+            tabindex="-1"
+          >
+            {{ showPasswordConfirm ? '👁️‍🗨️' : '👁️' }}
+          </button>
+        </div>
+        <div *ngIf="fieldErrors['passwordConfirm']" class="error-text">
+          <div *ngFor="let error of fieldErrors['passwordConfirm']">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn" [disabled]="!isRegisterFormValid || isLoading">
+        {{ isLoading ? 'Konto wird erstellt...' : 'Registrieren' }}
+      </button>
+
+      <!-- Link to Login -->
+      <div class="form-links">
+        <span>Haben Sie bereits ein Konto?</span>
+        <button type="button" class="link-button" (click)="switchToLogin()">
+          Hier anmelden
+        </button>
+      </div>
+    </form>
+
+    <!-- Password Reset Form -->
+    <form *ngIf="mode === 'reset'" [formGroup]="resetForm" (ngSubmit)="onPasswordReset()" class="form">
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="reset-email" class="form-label">
+          E-Mail-Adresse
+          <span class="tooltip" title="Geben Sie die E-Mail-Adresse ein, die mit Ihrem Konto verbunden ist">
+            ℹ️
+          </span>
+        </label>
+        <input
+          id="reset-email"
+          type="email"
+          formControlName="email"
+          placeholder="Geben Sie Ihre E-Mail ein"
+          class="form-input"
+          [class.error]="resetForm.get('email')?.invalid && resetForm.get('email')?.touched"
+          (blur)="updateFieldErrors(resetForm, 'email')"
+        />
+        <div *ngIf="fieldErrors['email']" class="error-text">
+          <div *ngFor="let error of fieldErrors['email']">
+            {{ error }}
+          </div>
+        </div>
+        <small class="reset-info">
+          Wir senden Ihnen eine E-Mail mit einem Link zum Zurücksetzen Ihres Passworts.
+        </small>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn" [disabled]="isLoading">
+        {{ isLoading ? 'Wird gesendet...' : 'Reset-Link senden' }}
+      </button>
+
+      <!-- Link to Login -->
+      <div class="form-links">
+        <button type="button" class="link-button" (click)="switchToLogin()">
+          Zurück zur Anmeldung
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+

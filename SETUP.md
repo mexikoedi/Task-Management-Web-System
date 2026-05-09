@@ -7,7 +7,7 @@
 Stelle sicher, dass du folgende Software installiert hast:
 
 - **Java 26.0.1** oder höher ([Download](https://adoptium.net/))
-- **Node.js 26.0.0** oder höher ([Download](https://nodejs.org/))
+- **Node.js 26.1.0** oder höher ([Download](https://nodejs.org/))
 - **Git** ([Download](https://git-scm.com/))
 
 Überprüfe die Installationen:
@@ -105,10 +105,10 @@ logging.level.org.springframework=INFO                                          
 ### Frontend Konfiguration
 
 #### `package.json` - Abhängigkeiten
-- Angular Core 21.2.11 & CLI 21.2.9
+- Angular Core 21.2.12 & CLI 21.2.10
 - TypeScript 6.0.3
 - RxJS 7.8.2
-- Zone.js 0.16.1 für Async Operations
+- Zone.js 0.16.2 für Async Operations
 
 #### `angular.json` - Angular CLI Konfiguration
 - Build-Targets (Production/Development)
@@ -249,4 +249,4 @@ lsof -i :4200                          # macOS/Linux
 
 ---
 
-**Letzte Aktualisierung:** 2025-05-05
+**Letzte Aktualisierung:** 2025-05-09

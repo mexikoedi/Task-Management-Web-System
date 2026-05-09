@@ -89,10 +89,10 @@ Max Age: 3600 Sekunden
 ## 🎨 Frontend Konfiguration
 
 ### Build-Tool & Framework
-- **Framework**: Angular 21.2.11
+- **Framework**: Angular 21.2.12
 - **Language**: TypeScript 6.0.3
-- **Package Manager**: npm 11.12.1
-- **Node.js**: 26.0.0
+- **Package Manager**: npm 11.13.0
+- **Node.js**: 26.1.0
 
 ### Wichtige Dateien
 
@@ -146,12 +146,12 @@ src/
 ### Dependencies
 
 **Produktiv:**
-- `@angular/core`, `@angular/common`, `@angular/forms`, etc. (v21.2.11)
+- `@angular/core`, `@angular/common`, `@angular/forms`, etc. (v21.2.12)
 - `rxjs` (v7.8.2) → Reactive Programming
-- `zone.js` (v0.16.1) → Async Operations
+- `zone.js` (v0.16.2) → Async Operations
 
 **Entwicklung:**
-- `@angular/cli` (v21.2.9) → CLI Tools
+- `@angular/cli` (v21.2.10) → CLI Tools
 - `typescript` (v6.0.3) → Typsystem
 - `karma` → Test-Runner
 - `jasmine` → Unit-Test Framework
@@ -334,10 +334,10 @@ Geplante Implementierung: Spring Security + JWT Tokens
 
 | Dependency | Version | Zweck |
 |-----------|---------|-------|
-| Angular | 21.2.11 | Framework |
-| TypeScript | 6.0.3 | Language |
-| RxJS | 7.8.2 | Reactive |
-| Zone.js | 0.16.1 | Async |
+| Angular | 21.2.12 | Framework |
+| TypeScript | 6.0.3   | Language |
+| RxJS | 7.8.2   | Reactive |
+| Zone.js | 0.16.2  | Async |
 
 ---
 
@@ -371,7 +371,7 @@ npm run build -- --configuration production
 ## 🐛 Troubleshooting-Checkliste
 
 - [ ] Java 26.0.1 installiert? `java -version`
-- [ ] Node.js 26.0.0 installiert? `node --version`
+- [ ] Node.js 26.1.0 installiert? `node --version`
 - [ ] Gradle Wrapper lädt herunter?
 - [ ] npm install zonder errors?
 - [ ] Backend läuft auf :8080?
@@ -390,4 +390,4 @@ npm run build -- --configuration production
 
 ---
 
-**Letzte Aktualisierung:** 2025-05-05
+**Letzte Aktualisierung:** 2025-05-09
