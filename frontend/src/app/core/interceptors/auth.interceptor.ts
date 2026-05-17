@@ -40,9 +40,6 @@ export class AuthInterceptor implements HttpInterceptor {
         if (error.status === 401) {
           this.authService.logout();   // Token löschen
           this.router.navigate(['/login']); // Weiterleitung
-
-          // Optional: Toast anzeigen
-          alert('Du wurdest abgemeldet, weil du dich in einem anderen Tab angemeldet hast.');
         }
 
         return throwError(() => error);

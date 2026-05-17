@@ -253,7 +253,7 @@
          (dragover)="onDragOver($event)"
          (drop)="onDrop($event, col.id)">
          <div class="column-header"
-              draggable="true"
+              [draggable]="editingColumnId !== col.id"
               (dragstart)="onColumnDragStart($event, i)"
               (dragover)="onColumnDragOver($event)"
               (drop)="onColumnDrop($event, i)">
