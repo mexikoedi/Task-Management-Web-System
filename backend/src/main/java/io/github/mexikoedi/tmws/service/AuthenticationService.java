@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,15 +34,15 @@ public class AuthenticationService {
   private final SimpMessagingTemplate messagingTemplate;
 
   public AuthenticationService(
-    UserRepository userRepository,
-    BoardRepository boardRepository,
-    TaskRepository taskRepository,
-    VerificationTokenRepository verificationTokenRepository,
-    PasswordResetTokenRepository passwordResetTokenRepository,
-    PasswordEncoder passwordEncoder,
-    JwtTokenProvider jwtTokenProvider,
-    EmailService emailService,
-    SimpMessagingTemplate messagingTemplate) {
+      UserRepository userRepository,
+      BoardRepository boardRepository,
+      TaskRepository taskRepository,
+      VerificationTokenRepository verificationTokenRepository,
+      PasswordResetTokenRepository passwordResetTokenRepository,
+      PasswordEncoder passwordEncoder,
+      JwtTokenProvider jwtTokenProvider,
+      EmailService emailService,
+      SimpMessagingTemplate messagingTemplate) {
     this.userRepository = userRepository;
     this.boardRepository = boardRepository;
     this.taskRepository = taskRepository;
@@ -304,8 +303,9 @@ public class AuthenticationService {
 
     User saved = userRepository.save(user);
 
-    // Alle Mitglieder inklusive Owner benachrichtigen (damit Profilbild/Name Änderung bei jedem ankommt)
-    for (User u: userRepository.findAll()) {
+    // Alle Mitglieder inklusive Owner benachrichtigen (damit Profilbild/Name Änderung bei jedem
+    // ankommt)
+    for (User u : userRepository.findAll()) {
       notifyUser(u.getId());
     }
 

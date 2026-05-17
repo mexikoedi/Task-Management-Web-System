@@ -19,9 +19,13 @@ public class BoardResponse {
     this.id = id;
   }
 
-  public UserSummaryResponse getOwner() { return owner; }
+  public UserSummaryResponse getOwner() {
+    return owner;
+  }
 
-  public void setOwner(UserSummaryResponse owner) { this.owner = owner; }
+  public void setOwner(UserSummaryResponse owner) {
+    this.owner = owner;
+  }
 
   public String getTitle() {
     return title;

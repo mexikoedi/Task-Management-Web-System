@@ -213,7 +213,8 @@ public class EmailService {
         + " wurde zum folgenden Projektboard eingeladen:\n\n"
         + projectBoard
         + "\n\n"
-        + "Sie können diesem Projektboard beitreten, indem Sie sich bei TMWS anmelden und das Projektboard in Ihrer Übersicht auswählen.\n\n"
+        + "Sie können diesem Projektboard beitreten, indem Sie sich bei TMWS anmelden und das"
+        + " Projektboard in Ihrer Übersicht auswählen.\n\n"
         + "Kontaktieren Sie uns, falls Sie denken, dass hier ein Fehler vorliegt.\n\n"
         + "Mit freundlichen Grüßen,\n"
         + "Das TMWS-Team";

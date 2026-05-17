@@ -33,27 +33,27 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
       // Extract JWT token from Authorization header
       String token = extractTokenFromRequest(request);
 
-        if (token != null) {
-          if (!jwtTokenProvider.validateToken(token)) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            return;
-          }
-
-          Claims claims = jwtTokenProvider.getClaims(token);
-          String email = claims.getSubject();
-          Integer tokenVersion = claims.get("tokenVersion", Integer.class);
-
-          User user = userRepository.findByEmail(email).orElse(null);
-
-          if (user == null || user.getTokenVersion() != tokenVersion) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            return;
-          }
-
-          UsernamePasswordAuthenticationToken authentication =
-              new UsernamePasswordAuthenticationToken(email, null, null);
-          SecurityContextHolder.getContext().setAuthentication(authentication);
+      if (token != null) {
+        if (!jwtTokenProvider.validateToken(token)) {
+          response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+          return;
         }
+
+        Claims claims = jwtTokenProvider.getClaims(token);
+        String email = claims.getSubject();
+        Integer tokenVersion = claims.get("tokenVersion", Integer.class);
+
+        User user = userRepository.findByEmail(email).orElse(null);
+
+        if (user == null || user.getTokenVersion() != tokenVersion) {
+          response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+          return;
+        }
+
+        UsernamePasswordAuthenticationToken authentication =
+            new UsernamePasswordAuthenticationToken(email, null, null);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+      }
     } catch (Exception e) {
       logger.debug("Could not authenticate JWT token: " + e.getMessage());
     }

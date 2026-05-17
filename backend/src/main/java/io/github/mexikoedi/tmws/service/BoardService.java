@@ -14,8 +14,6 @@ import io.github.mexikoedi.tmws.repository.UserRepository;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -383,14 +381,12 @@ public class BoardService {
         );
 
     response.setOwner(
-      new UserSummaryResponse(
-        board.getOwner().getId(),
-        board.getOwner().getName(),
-        board.getOwner().getEmail(),
-        board.getOwner().isEmailChanged(),
-        board.getOwner().getImage()
-      )
-    );
+        new UserSummaryResponse(
+            board.getOwner().getId(),
+            board.getOwner().getName(),
+            board.getOwner().getEmail(),
+            board.getOwner().isEmailChanged(),
+            board.getOwner().getImage()));
 
     return response;
   }

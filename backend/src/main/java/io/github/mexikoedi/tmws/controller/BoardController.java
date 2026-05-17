@@ -31,9 +31,8 @@ public class BoardController {
 
     List<Board> boards = boardRepository.findByOwnerEmailOrMembersEmail(email, email);
 
-    List<BoardResponse> responses = boards.stream()
-      .map(boardService::mapToResponse)
-      .collect(Collectors.toList());
+    List<BoardResponse> responses =
+        boards.stream().map(boardService::mapToResponse).collect(Collectors.toList());
 
     return ResponseEntity.ok(responses);
   }
