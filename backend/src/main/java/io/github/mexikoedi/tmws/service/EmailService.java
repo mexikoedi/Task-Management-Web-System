@@ -104,7 +104,8 @@ public class EmailService {
   }
 
   @Async
-  public void sendAccountAssignedEmail(String toEmail, String projectBoard, String statusCategory, String task) {
+  public void sendAccountAssignedEmail(
+      String toEmail, String projectBoard, String statusCategory, String task) {
     try {
       SimpleMailMessage message = new SimpleMailMessage();
       message.setTo(toEmail);
@@ -122,7 +123,8 @@ public class EmailService {
   }
 
   @Async
-  public void sendAccountUnassignedEmail(String toEmail, String projectBoard, String statusCategory, String task) {
+  public void sendAccountUnassignedEmail(
+      String toEmail, String projectBoard, String statusCategory, String task) {
     try {
       SimpleMailMessage message = new SimpleMailMessage();
       message.setTo(toEmail);
@@ -184,61 +186,80 @@ public class EmailService {
 
   private String buildPasswordChangedEmailBody(String email) {
     return "Hallo,\n\n"
-      + "Ihr Passwort wurde erfolgreich für folgenden Account geändert:\n\n"
-      + email
-      + "\n\n"
-      + "Falls Sie dies nicht waren, ist Ihr Account womöglich kompromittiert.\n\n"
-      + "Kontaktieren Sie uns so schnell wie möglich, damit wir den Account deaktivieren können.\n\n"
-      + "Mit freundlichen Grüßen,\n"
-      + "Das TMWS-Team";
+        + "Ihr Passwort wurde erfolgreich für folgenden Account geändert:\n\n"
+        + email
+        + "\n\n"
+        + "Falls Sie dies nicht waren, ist Ihr Account womöglich kompromittiert.\n\n"
+        + "Kontaktieren Sie uns so schnell wie möglich, damit wir den Account deaktivieren"
+        + " können.\n\n"
+        + "Mit freundlichen Grüßen,\n"
+        + "Das TMWS-Team";
   }
 
   private String buildAccountDeactivationEmailBody(String email) {
     return "Hallo,\n\n"
-      + "Ihr folgender Account wurde erfolgreich deaktiviert:\n\n"
-      + email
-      + "\n\n"
-      + "Kontaktieren Sie uns, falls Sie eine vollständige Löschung wollen.\n\n"
-      + "Mit freundlichen Grüßen,\n"
-      + "Das TMWS-Team";
+        + "Ihr folgender Account wurde erfolgreich deaktiviert:\n\n"
+        + email
+        + "\n\n"
+        + "Kontaktieren Sie uns, falls Sie eine vollständige Löschung wollen.\n\n"
+        + "Mit freundlichen Grüßen,\n"
+        + "Das TMWS-Team";
   }
 
   private String buildAccountInvitedEmailBody(String email, String projectBoard) {
     return "Hallo,\n\n"
-      + "Ihr Account " + email + " wurde zum folgenden Projektboard eingeladen:\n\n"
-      + projectBoard
-      + "\n\n"
-      + "Kontaktieren Sie uns, falls Sie denken, dass hier ein Fehler vorliegt.\n\n"
-      + "Mit freundlichen Grüßen,\n"
-      + "Das TMWS-Team";
+        + "Ihr Account "
+        + email
+        + " wurde zum folgenden Projektboard eingeladen:\n\n"
+        + projectBoard
+        + "\n\n"
+        + "Kontaktieren Sie uns, falls Sie denken, dass hier ein Fehler vorliegt.\n\n"
+        + "Mit freundlichen Grüßen,\n"
+        + "Das TMWS-Team";
   }
 
-  private String buildAccountAssignedEmailBody(String email, String projectBoard, String statusCategory, String task) {
+  private String buildAccountAssignedEmailBody(
+      String email, String projectBoard, String statusCategory, String task) {
     return "Hallo,\n\n"
-      + "Ihr Account " + email + " wurde zur folgenden Aufgabe zugewiesen:\n\n"
-      + task
-      + "\n\n"
-      + "Diese Aufgabe ist unter der Statuskategorie " + statusCategory + " bei dem Projekboard " + projectBoard + " zu finden.\n\n"
-      + "Mit freundlichen Grüßen,\n"
-      + "Das TMWS-Team";
+        + "Ihr Account "
+        + email
+        + " wurde zur folgenden Aufgabe zugewiesen:\n\n"
+        + task
+        + "\n\n"
+        + "Diese Aufgabe ist unter der Statuskategorie "
+        + statusCategory
+        + " bei dem Projekboard "
+        + projectBoard
+        + " zu finden.\n\n"
+        + "Mit freundlichen Grüßen,\n"
+        + "Das TMWS-Team";
   }
 
-  private String buildAccountUnassignedEmailBody(String email, String projectBoard, String statusCategory, String task) {
+  private String buildAccountUnassignedEmailBody(
+      String email, String projectBoard, String statusCategory, String task) {
     return "Hallo,\n\n"
-      + "Ihr Account " + email + " wurde von der folgenden Aufgabe entfernt:\n\n"
-      + task
-      + "\n\n"
-      + "Diese Aufgabe befindet sich unter der Statuskategorie " + statusCategory + " im Projektboard " + projectBoard + ".\n\n"
-      + "Mit freundlichen Grüßen,\n"
-      + "Das TMWS-Team";
+        + "Ihr Account "
+        + email
+        + " wurde von der folgenden Aufgabe entfernt:\n\n"
+        + task
+        + "\n\n"
+        + "Diese Aufgabe befindet sich unter der Statuskategorie "
+        + statusCategory
+        + " im Projektboard "
+        + projectBoard
+        + ".\n\n"
+        + "Mit freundlichen Grüßen,\n"
+        + "Das TMWS-Team";
   }
 
   private String buildNewProjectboardOwnerEmailBody(String email, String projectBoard) {
     return "Hallo,\n\n"
-      + "Ihr Account " + email + " wurde zum Besitzer vom folgenden Projektboard ernannt:\n\n"
-      + projectBoard
-      + "\n\n"
-      + "Mit freundlichen Grüßen,\n"
-      + "Das TMWS-Team";
+        + "Ihr Account "
+        + email
+        + " wurde zum Besitzer vom folgenden Projektboard ernannt:\n\n"
+        + projectBoard
+        + "\n\n"
+        + "Mit freundlichen Grüßen,\n"
+        + "Das TMWS-Team";
   }
 }

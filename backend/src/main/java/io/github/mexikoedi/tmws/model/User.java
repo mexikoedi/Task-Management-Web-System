@@ -34,7 +34,7 @@ public class User {
   @Column(name = "email_verified")
   private boolean emailVerified = false;
 
-  @Column(name ="email_changed")
+  @Column(name = "email_changed")
   private boolean emailChanged = false;
 
   @Column(name = "created_at", nullable = false, updatable = false)
@@ -87,9 +87,13 @@ public class User {
     this.password = password;
   }
 
-  public String getImage() { return image; }
+  public String getImage() {
+    return image;
+  }
 
-  public void setImage(String image) { this.image = image; }
+  public void setImage(String image) {
+    this.image = image;
+  }
 
   public boolean isEnabled() {
     return enabled;

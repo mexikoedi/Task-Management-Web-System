@@ -11,11 +11,9 @@ import io.github.mexikoedi.tmws.repository.BoardColumnRepository;
 import io.github.mexikoedi.tmws.repository.BoardRepository;
 import io.github.mexikoedi.tmws.repository.TaskRepository;
 import io.github.mexikoedi.tmws.repository.UserRepository;
-
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tools.jackson.databind.JsonNode;
@@ -29,10 +27,11 @@ public class BoardService {
   private final EmailService emailService;
 
   public BoardService(
-    BoardRepository boardRepository,
-    BoardColumnRepository columnRepository,
-    TaskRepository taskRepository,
-    UserRepository userRepository, EmailService emailService) {
+      BoardRepository boardRepository,
+      BoardColumnRepository columnRepository,
+      TaskRepository taskRepository,
+      UserRepository userRepository,
+      EmailService emailService) {
     this.boardRepository = boardRepository;
     this.columnRepository = columnRepository;
     this.taskRepository = taskRepository;
@@ -81,11 +80,15 @@ public class BoardService {
   @Transactional
   public Board inviteMember(Long boardId, String email) {
 
-    Board board = boardRepository.findById(boardId)
-      .orElseThrow(() -> new ResourceNotFoundException("Board nicht gefunden"));
+    Board board =
+        boardRepository
+            .findById(boardId)
+            .orElseThrow(() -> new ResourceNotFoundException("Board nicht gefunden"));
 
-    User user = userRepository.findByEmail(email)
-      .orElseThrow(() -> new ResourceNotFoundException("Benutzer existiert nicht"));
+    User user =
+        userRepository
+            .findByEmail(email)
+            .orElseThrow(() -> new ResourceNotFoundException("Benutzer existiert nicht"));
 
     if (board.getMembers().contains(user)) {
       throw new EmailAlreadyExistsException("Benutzer ist bereits Mitglied");
@@ -177,8 +180,8 @@ public class BoardService {
 
   @Transactional
   public Task updateTask(Long taskId, TaskUpdateRequest req) {
-    Task task = taskRepository.findById(taskId)
-      .orElseThrow(() -> new RuntimeException("Task not found"));
+    Task task =
+        taskRepository.findById(taskId).orElseThrow(() -> new RuntimeException("Task not found"));
 
     // Vorherige Assignees merken
     Set<User> previousAssignees = new HashSet<>(task.getAssignees());
@@ -209,24 +212,14 @@ public class BoardService {
     // 1. E-Mail für NEUE Zuweisungen
     for (User u : newAssignees) {
       if (!previousAssignees.contains(u)) {
-        emailService.sendAccountAssignedEmail(
-          u.getEmail(),
-          boardName,
-          statusCategory,
-          taskTitle
-        );
+        emailService.sendAccountAssignedEmail(u.getEmail(), boardName, statusCategory, taskTitle);
       }
     }
 
     // 2. E-Mail für ENTFERNTE Zuweisungen
     for (User u : previousAssignees) {
       if (!newAssignees.contains(u)) {
-        emailService.sendAccountUnassignedEmail(
-          u.getEmail(),
-          boardName,
-          statusCategory,
-          taskTitle
-        );
+        emailService.sendAccountUnassignedEmail(u.getEmail(), boardName, statusCategory, taskTitle);
       }
     }
 
@@ -252,35 +245,45 @@ public class BoardService {
     response.setBackground(board.getBackground());
 
     // Columns
-    response.setColumns(board.getColumns().stream().map(c -> {
-      BoardColumnResponse cr = new BoardColumnResponse();
-      cr.setId(c.getId());
-      cr.setTitle(c.getTitle());
-      cr.setPosition(c.getPosition());
-      cr.setBoardId(board.getId());
-      List<TaskResponse> taskResponses = c.getTasks().stream()
-        .sorted(Comparator.comparingInt(Task::getPosition))
-        .map(TaskResponse::fromEntity)
-        .collect(Collectors.toList());
-      cr.setTasks(taskResponses);
-      return cr;
-    }).collect(Collectors.toList()));
+    response.setColumns(
+        board.getColumns().stream()
+            .map(
+                c -> {
+                  BoardColumnResponse cr = new BoardColumnResponse();
+                  cr.setId(c.getId());
+                  cr.setTitle(c.getTitle());
+                  cr.setPosition(c.getPosition());
+                  cr.setBoardId(board.getId());
+                  List<TaskResponse> taskResponses =
+                      c.getTasks().stream()
+                          .sorted(Comparator.comparingInt(Task::getPosition))
+                          .map(TaskResponse::fromEntity)
+                          .collect(Collectors.toList());
+                  cr.setTasks(taskResponses);
+                  return cr;
+                })
+            .collect(Collectors.toList()));
 
     // Members
     response.setMembers(
-      board.getMembers().stream()
-        .sorted(Comparator.comparingLong(User::getId)) // nach ID aufsteigend
-        .map(u -> new UserSummaryResponse(u.getId(), u.getName(), u.getEmail(), u.isEmailChanged(), u.getImage()))
-        .collect(Collectors.toList()) // Liste statt Set, Reihenfolge bleibt
-    );
+        board.getMembers().stream()
+            .sorted(Comparator.comparingLong(User::getId)) // nach ID aufsteigend
+            .map(
+                u ->
+                    new UserSummaryResponse(
+                        u.getId(), u.getName(), u.getEmail(), u.isEmailChanged(), u.getImage()))
+            .collect(Collectors.toList()) // Liste statt Set, Reihenfolge bleibt
+        );
 
     return response;
   }
 
   @Transactional
   public void deleteColumn(Long columnId) {
-    BoardColumn column = columnRepository.findById(columnId)
-      .orElseThrow(() -> new RuntimeException("Column not found"));
+    BoardColumn column =
+        columnRepository
+            .findById(columnId)
+            .orElseThrow(() -> new RuntimeException("Column not found"));
 
     // Alle Tasks der Spalte löschen
     taskRepository.deleteAll(column.getTasks());
@@ -291,11 +294,13 @@ public class BoardService {
 
   @Transactional
   public void reorderColumns(Long boardId, List<BoardColumnPositionUpdate> updates) {
-    Board board = boardRepository.findById(boardId)
-      .orElseThrow(() -> new RuntimeException("Board not found"));
+    Board board =
+        boardRepository
+            .findById(boardId)
+            .orElseThrow(() -> new RuntimeException("Board not found"));
 
-    Map<Long, Integer> posMap = updates.stream()
-      .collect(Collectors.toMap(u -> u.id, u -> u.position));
+    Map<Long, Integer> posMap =
+        updates.stream().collect(Collectors.toMap(u -> u.id, u -> u.position));
 
     for (BoardColumn col : board.getColumns()) {
       if (posMap.containsKey(col.getId())) {
@@ -308,8 +313,7 @@ public class BoardService {
 
   @Transactional
   public Board updateColumn(Long columnId, JsonNode json) {
-    BoardColumn col = columnRepository.findById(columnId)
-      .orElseThrow();
+    BoardColumn col = columnRepository.findById(columnId).orElseThrow();
 
     if (json.has("title")) {
       String title = json.get("title").asString();
@@ -320,4 +324,3 @@ public class BoardService {
     return col.getBoard();
   }
 }
-

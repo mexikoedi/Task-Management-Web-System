@@ -14,7 +14,8 @@ public class ChangePasswordRequest {
 
   public ChangePasswordRequest() {}
 
-  public ChangePasswordRequest(String currentPassword, String newPassword, String newPasswordConfirm) {
+  public ChangePasswordRequest(
+      String currentPassword, String newPassword, String newPasswordConfirm) {
     this.currentPassword = currentPassword;
     this.newPassword = newPassword;
     this.newPasswordConfirm = newPasswordConfirm;
@@ -44,4 +45,3 @@ public class ChangePasswordRequest {
     this.newPasswordConfirm = newPasswordConfirm;
   }
 }
-

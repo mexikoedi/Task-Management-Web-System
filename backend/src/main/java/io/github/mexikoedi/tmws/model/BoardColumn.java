@@ -70,4 +70,3 @@ public class BoardColumn {
     this.position = position;
   }
 }
-

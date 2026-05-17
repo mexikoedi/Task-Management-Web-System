@@ -1,7 +1,6 @@
 package io.github.mexikoedi.tmws.dto;
 
 import io.github.mexikoedi.tmws.model.Task;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,23 +22,18 @@ public class TaskResponse {
     r.position = task.getPosition();
     r.labels = task.getLabels();
     r.attachments = task.getAttachments();
-    r.deadline = task.getDeadline() != null
-      ? task.getDeadline().toString()
-      : null;
+    r.deadline = task.getDeadline() != null ? task.getDeadline().toString() : null;
 
-    r.assignees = task.getAssignees().stream()
-      .map(u -> new UserSummaryResponse(
-        u.getId(),
-        u.getName(),
-        u.getEmail(),
-        u.isEmailChanged(),
-        u.getImage()
-      ))
-      .collect(Collectors.toList());
+    r.assignees =
+        task.getAssignees().stream()
+            .map(
+                u ->
+                    new UserSummaryResponse(
+                        u.getId(), u.getName(), u.getEmail(), u.isEmailChanged(), u.getImage()))
+            .collect(Collectors.toList());
 
     return r;
   }
-
 
   public Long getId() {
     return id;

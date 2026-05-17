@@ -10,13 +10,19 @@ public class UserResponse {
 
   public UserResponse() {}
 
-  public UserResponse(Long id, String name, String email, boolean emailVerified, boolean emailChanged, String image) {
+  public UserResponse(
+      Long id,
+      String name,
+      String email,
+      boolean emailVerified,
+      boolean emailChanged,
+      String image) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.emailVerified = emailVerified;
     this.emailChanged = emailChanged;
-    this.image =  image;
+    this.image = image;
   }
 
   public Long getId() {
@@ -59,8 +65,11 @@ public class UserResponse {
     this.emailChanged = emailChanged;
   }
 
-  public String getImage() { return image; }
+  public String getImage() {
+    return image;
+  }
 
-  public void setImage(String image) { this.image = image; }
+  public void setImage(String image) {
+    this.image = image;
+  }
 }
-

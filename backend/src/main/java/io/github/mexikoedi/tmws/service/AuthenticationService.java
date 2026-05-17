@@ -14,8 +14,6 @@ import io.github.mexikoedi.tmws.util.PasswordValidator;
 import io.github.mexikoedi.tmws.util.TokenGenerator;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,12 +30,14 @@ public class AuthenticationService {
   private final EmailService emailService;
 
   public AuthenticationService(
-    UserRepository userRepository, BoardRepository boardRepository, TaskRepository taskRepository,
-    VerificationTokenRepository verificationTokenRepository,
-    PasswordResetTokenRepository passwordResetTokenRepository,
-    PasswordEncoder passwordEncoder,
-    JwtTokenProvider jwtTokenProvider,
-    EmailService emailService) {
+      UserRepository userRepository,
+      BoardRepository boardRepository,
+      TaskRepository taskRepository,
+      VerificationTokenRepository verificationTokenRepository,
+      PasswordResetTokenRepository passwordResetTokenRepository,
+      PasswordEncoder passwordEncoder,
+      JwtTokenProvider jwtTokenProvider,
+      EmailService emailService) {
     this.userRepository = userRepository;
     this.boardRepository = boardRepository;
     this.taskRepository = taskRepository;
@@ -126,8 +126,9 @@ public class AuthenticationService {
                     new ResourceNotFoundException(
                         "Benutzer mit E-Mail " + request.getEmail() + " nicht gefunden"));
 
-    if(!user.isEnabled()) {
-      throw new UserDeactivatedException("Benutzer mit E-Mail " + request.getEmail() + " deaktiviert");
+    if (!user.isEnabled()) {
+      throw new UserDeactivatedException(
+          "Benutzer mit E-Mail " + request.getEmail() + " deaktiviert");
     }
 
     // Erstelle Password Reset Token (1 Stunde gültig)
@@ -209,19 +210,18 @@ public class AuthenticationService {
         .findByEmail(email)
         .orElseThrow(
             () ->
-                new ResourceNotFoundException(
-                    "Benutzer mit E-Mail " + email + " nicht gefunden"));
+                new ResourceNotFoundException("Benutzer mit E-Mail " + email + " nicht gefunden"));
   }
 
   /** Update Profil-Informationen (Name, Email, Image, Passwort) */
   public User updateProfile(
-    String currentEmail,
-    String newName,
-    String newEmail,
-    String currentPassword,
-    String newPassword,
-    String newPasswordConfirm,
-    String image) {
+      String currentEmail,
+      String newName,
+      String newEmail,
+      String currentPassword,
+      String newPassword,
+      String newPasswordConfirm,
+      String image) {
 
     User user = getUserByEmail(currentEmail);
 
@@ -233,7 +233,7 @@ public class AuthenticationService {
     }
 
     // Profilbild ändern / löschen
-    if (image != null) {  // Prüfe nur auf null, nicht auf isEmpty
+    if (image != null) { // Prüfe nur auf null, nicht auf isEmpty
       if (image.isEmpty()) {
         user.setImage(null); // Bild löschen
       } else {
@@ -265,7 +265,8 @@ public class AuthenticationService {
       verificationTokenRepository.save(verificationToken);
 
       // E-Mail senden
-      emailService.sendRegistrationEmail(newEmail, "http://localhost:4200/verify-email?token=" + token);
+      emailService.sendRegistrationEmail(
+          newEmail, "http://localhost:4200/verify-email?token=" + token);
     } else {
       user.setEmailChanged(false);
     }
@@ -319,8 +320,8 @@ public class AuthenticationService {
   @Transactional
   public void deactivateAccount(String email) {
     // 1. User laden
-    User user = userRepository.findByEmail(email)
-      .orElseThrow(() -> new RuntimeException("User not found"));
+    User user =
+        userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
 
     Long userId = user.getId();
 
@@ -335,9 +336,8 @@ public class AuthenticationService {
       boolean wasOwner = board.getOwner().getId().equals(userId);
 
       // Alle verbleibenden Mitglieder
-      List<User> remainingMembers = board.getMembers().stream()
-        .filter(u -> !u.getId().equals(userId))
-        .toList();
+      List<User> remainingMembers =
+          board.getMembers().stream().filter(u -> !u.getId().equals(userId)).toList();
 
       if (remainingMembers.isEmpty()) {
         // Keine Mitglieder mehr → Board löschen
@@ -351,10 +351,7 @@ public class AuthenticationService {
         board.setOwner(newOwner);
 
         // E‑Mail an neuen Owner
-        emailService.sendNewProjectboardOwnerEmail(
-          newOwner.getEmail(),
-          board.getTitle()
-        );
+        emailService.sendNewProjectboardOwnerEmail(newOwner.getEmail(), board.getTitle());
       }
 
       boardRepository.save(board);

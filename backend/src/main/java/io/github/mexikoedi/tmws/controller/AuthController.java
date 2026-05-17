@@ -91,49 +91,50 @@ public class AuthController {
   /** PUT /api/auth/profile Aktualisiere Profilinformationen (Name) */
   @PutMapping("/profile")
   public ResponseEntity<UserResponse> updateProfile(
-    @Valid @RequestBody UpdateProfileRequest request,
-    @RequestHeader("Authorization") String authHeader) {
+      @Valid @RequestBody UpdateProfileRequest request,
+      @RequestHeader("Authorization") String authHeader) {
 
     String token = authHeader.replace("Bearer ", "");
     String email = authenticationService.getEmailFromToken(token);
 
-    User user = authenticationService.updateProfile(
-      email,
-      request.getName(),
-      request.getNewEmail(),
-      request.getCurrentPassword(),
-      request.getNewPassword(),
-      request.getNewPasswordConfirm(),
-      request.getImage()
-    );
+    User user =
+        authenticationService.updateProfile(
+            email,
+            request.getName(),
+            request.getNewEmail(),
+            request.getCurrentPassword(),
+            request.getNewPassword(),
+            request.getNewPasswordConfirm(),
+            request.getImage());
 
     return ResponseEntity.ok(
-      new UserResponse(
-        user.getId(),
-        user.getName(),
-        user.getEmail(),
-        user.isEmailVerified(),
-        user.isEmailChanged(),
-        user.getImage()
-      )
-    );
+        new UserResponse(
+            user.getId(),
+            user.getName(),
+            user.getEmail(),
+            user.isEmailVerified(),
+            user.isEmailChanged(),
+            user.getImage()));
   }
 
   /** PUT /api/auth/change-password Ändere das Passwort */
   @PutMapping("/change-password")
   public ResponseEntity<MessageResponse> changePassword(
-      @RequestParam String email,
-      @Valid @RequestBody ChangePasswordRequest request) {
+      @RequestParam String email, @Valid @RequestBody ChangePasswordRequest request) {
     // Prüfe ob neue Passwörter übereinstimmen
     if (!request.getNewPassword().equals(request.getNewPasswordConfirm())) {
       return ResponseEntity.badRequest()
           .body(new MessageResponse("Neue Passwörter stimmen nicht überein", false));
     }
-    authenticationService.changePassword(email, request.getCurrentPassword(), request.getNewPassword());
+    authenticationService.changePassword(
+        email, request.getCurrentPassword(), request.getNewPassword());
     return ResponseEntity.ok(new MessageResponse("Passwort erfolgreich geändert", true));
   }
 
-  /** DELETE /api/auth/me Deaktiviere den Account des aktuellen Users (über JWT im Authorization Header) */
+  /**
+   * DELETE /api/auth/me Deaktiviere den Account des aktuellen Users (über JWT im Authorization
+   * Header)
+   */
   @DeleteMapping("/me")
   public ResponseEntity<?> deactivateAccount(@RequestHeader("Authorization") String authHeader) {
     String token = authHeader.replace("Bearer ", "");

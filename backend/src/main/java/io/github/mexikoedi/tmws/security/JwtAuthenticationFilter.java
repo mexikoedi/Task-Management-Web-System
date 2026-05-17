@@ -11,9 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-/**
- * JWT Authentication Filter - validiert JWT-Tokens in Authorization Header
- */
+/** JWT Authentication Filter - validiert JWT-Tokens in Authorization Header */
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
   private final JwtTokenProvider jwtTokenProvider;
@@ -54,4 +52,3 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     return null;
   }
 }
-

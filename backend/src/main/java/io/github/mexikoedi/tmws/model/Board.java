@@ -97,4 +97,3 @@ public class Board {
     this.background = background;
   }
 }
-

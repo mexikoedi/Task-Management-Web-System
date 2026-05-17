@@ -16,14 +16,14 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(UserDeactivatedException.class)
   public ResponseEntity<ErrorResponse> handleUserDeactivated(
-    UserDeactivatedException ex, HttpServletRequest request) {
+      UserDeactivatedException ex, HttpServletRequest request) {
     ErrorResponse error =
-      new ErrorResponse(
-        LocalDateTime.now(),
-        HttpStatus.FORBIDDEN.value(),
-        "User Is Deactivated",
-        ex.getMessage(),
-        request.getRequestURI());
+        new ErrorResponse(
+            LocalDateTime.now(),
+            HttpStatus.FORBIDDEN.value(),
+            "User Is Deactivated",
+            ex.getMessage(),
+            request.getRequestURI());
     return new ResponseEntity<>(error, HttpStatus.FORBIDDEN);
   }
 

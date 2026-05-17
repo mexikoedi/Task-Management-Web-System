@@ -1,7 +1,6 @@
 package io.github.mexikoedi.tmws.dto;
 
 import java.util.List;
-import java.util.Set;
 
 public class BoardResponse {
   private Long id;
@@ -11,18 +10,43 @@ public class BoardResponse {
   private List<UserSummaryResponse> members;
 
   // Getter & Setter
-  public Long getId() { return id; }
-  public void setId(Long id) { this.id = id; }
+  public Long getId() {
+    return id;
+  }
 
-  public String getTitle() { return title; }
-  public void setTitle(String title) { this.title = title; }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-  public String getBackground() { return background; }
-  public void setBackground(String background) { this.background = background; }
+  public String getTitle() {
+    return title;
+  }
 
-  public List<BoardColumnResponse> getColumns() { return columns; }
-  public void setColumns(List<BoardColumnResponse> columns) { this.columns = columns; }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-  public List<UserSummaryResponse> getMembers() { return members; }
-  public void setMembers(List<UserSummaryResponse> members) { this.members = members; }
+  public String getBackground() {
+    return background;
+  }
+
+  public void setBackground(String background) {
+    this.background = background;
+  }
+
+  public List<BoardColumnResponse> getColumns() {
+    return columns;
+  }
+
+  public void setColumns(List<BoardColumnResponse> columns) {
+    this.columns = columns;
+  }
+
+  public List<UserSummaryResponse> getMembers() {
+    return members;
+  }
+
+  public void setMembers(List<UserSummaryResponse> members) {
+    this.members = members;
+  }
 }

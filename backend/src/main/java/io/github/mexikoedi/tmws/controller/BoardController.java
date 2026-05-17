@@ -6,9 +6,7 @@ import io.github.mexikoedi.tmws.model.BoardColumn;
 import io.github.mexikoedi.tmws.model.Task;
 import io.github.mexikoedi.tmws.service.BoardService;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tools.jackson.databind.JsonNode;
@@ -24,22 +22,25 @@ public class BoardController {
 
   @GetMapping
   public ResponseEntity<List<BoardResponse>> listBoards() {
-    List<BoardResponse> boards = boardService.findAll().stream()
-      .map(boardService::mapToResponse)
-      .collect(Collectors.toList());
+    List<BoardResponse> boards =
+        boardService.findAll().stream()
+            .map(boardService::mapToResponse)
+            .collect(Collectors.toList());
     return ResponseEntity.ok(boards);
   }
 
   @GetMapping("/{id}")
   public ResponseEntity<BoardResponse> getBoard(@PathVariable Long id) {
-    return boardService.findById(id)
-      .map(boardService::mapToResponse)
-      .map(ResponseEntity::ok)
-      .orElse(ResponseEntity.notFound().build());
+    return boardService
+        .findById(id)
+        .map(boardService::mapToResponse)
+        .map(ResponseEntity::ok)
+        .orElse(ResponseEntity.notFound().build());
   }
 
   @PostMapping
-  public ResponseEntity<BoardResponse> createBoard(@RequestBody Board board, @RequestParam String ownerEmail) {
+  public ResponseEntity<BoardResponse> createBoard(
+      @RequestBody Board board, @RequestParam String ownerEmail) {
     Board created = boardService.createBoard(board, ownerEmail);
     return ResponseEntity.ok(boardService.mapToResponse(created));
   }
@@ -51,16 +52,16 @@ public class BoardController {
   }
 
   @PostMapping("/{id}/columns")
-  public ResponseEntity<BoardColumnResponse> addColumn(@PathVariable Long id, @RequestParam String title) {
+  public ResponseEntity<BoardColumnResponse> addColumn(
+      @PathVariable Long id, @RequestParam String title) {
     BoardColumn column = boardService.addColumn(id, title);
     BoardColumnResponse response = new BoardColumnResponse();
     response.setId(column.getId());
     response.setTitle(column.getTitle());
     response.setPosition(column.getPosition());
     response.setBoardId(column.getBoard().getId());
-    List<TaskResponse> taskResponses = column.getTasks().stream()
-      .map(TaskResponse::fromEntity)
-      .collect(Collectors.toList());
+    List<TaskResponse> taskResponses =
+        column.getTasks().stream().map(TaskResponse::fromEntity).collect(Collectors.toList());
     response.setTasks(taskResponses);
     return ResponseEntity.ok(response);
   }
@@ -73,18 +74,14 @@ public class BoardController {
 
   @PutMapping("/tasks/{taskId}/move")
   public ResponseEntity<Task> moveTask(
-    @PathVariable Long taskId,
-    @RequestParam Long targetColumnId,
-    @RequestParam int position
-  ) {
+      @PathVariable Long taskId, @RequestParam Long targetColumnId, @RequestParam int position) {
     Task moved = boardService.moveTask(taskId, targetColumnId, position);
     return ResponseEntity.ok(moved);
   }
 
   @PutMapping("/{id}")
   public ResponseEntity<BoardResponse> updateBoard(
-    @PathVariable Long id,
-    @RequestBody JsonNode json) {
+      @PathVariable Long id, @RequestBody JsonNode json) {
 
     Board updated = boardService.updateBoard(id, json);
     return ResponseEntity.ok(boardService.mapToResponse(updated));
@@ -92,8 +89,7 @@ public class BoardController {
 
   @PutMapping("/tasks/{taskId}")
   public ResponseEntity<TaskResponse> updateTask(
-    @PathVariable Long taskId,
-    @RequestBody TaskUpdateRequest request) {
+      @PathVariable Long taskId, @RequestBody TaskUpdateRequest request) {
 
     Task updated = boardService.updateTask(taskId, request);
     return ResponseEntity.ok(TaskResponse.fromEntity(updated));
@@ -112,17 +108,16 @@ public class BoardController {
   }
 
   @PutMapping("/{boardId}/columns/reorder")
-  public void reorderColumns(@PathVariable Long boardId, @RequestBody List<BoardColumnPositionUpdate> updates) {
+  public void reorderColumns(
+      @PathVariable Long boardId, @RequestBody List<BoardColumnPositionUpdate> updates) {
     boardService.reorderColumns(boardId, updates);
   }
 
   @PutMapping("/columns/{id}")
   public ResponseEntity<BoardResponse> updateColumn(
-    @PathVariable Long id,
-    @RequestBody JsonNode json) {
+      @PathVariable Long id, @RequestBody JsonNode json) {
 
     Board updatedBoard = boardService.updateColumn(id, json);
     return ResponseEntity.ok(boardService.mapToResponse(updatedBoard));
   }
 }
-
