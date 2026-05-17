@@ -41,7 +41,7 @@
 .add-column-inner{flex:1;display:flex;justify-content:center;align-items:center}
 .task{background:#fff;padding:8px;border-radius:6px;margin-bottom:8px;border:1px solid #edf2f7;transition:transform 0.2s,box-shadow 0.2s}
 .task:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.1)}
-.task h4{margin:0 0 4px;font-size:14px;font-weight:600}
+.task h4{margin:0 0 4px;font-size:14px;font-weight:500}
 .task p{margin:0;font-size:12px;color:#4a5568}
 .new-task{margin-bottom:8px;padding:8px;background:#f7fafc;border-radius:6px}
 .new-task input,.new-task textarea{width:100%;padding:6px;margin-bottom:6px;border:1px solid #cbd5e1;border-radius:6px;font-family:inherit}
