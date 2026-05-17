@@ -99,13 +99,13 @@ logging.level.org.springframework=INFO                                          
 ```
 
 #### Gradle Wrapper
-- Automatisches Download von Gradle 9.5.0
+- Automatisches Download von Gradle 9.5.1
 - Cross-platform Unterstützung (Windows, Linux, macOS)
 
 ### Frontend Konfiguration
 
 #### `package.json` - Abhängigkeiten
-- Angular Core 21.2.12 & CLI 21.2.10
+- Angular Core 21.2.13 & CLI 21.2.11
 - TypeScript 6.0.3
 - RxJS 7.8.2
 - Zone.js 0.16.2 für Async Operations
@@ -203,7 +203,7 @@ Der Frontend kommuniziert mit dem Backend über REST API auf `/api/*` Endpoints.
 ### Gradle Wrapper funktioniert nicht
 - Stelle sicher, dass Java 26.0.1 installiert ist
 - Prüfe JAVA_HOME Environment Variable
-- Versuche: `gradle wrapper --gradle-version 9.5.0`
+- Versuche: `gradle wrapper --gradle-version 9.5.1`
 
 ### npm install fehlgeschlagen
 - Lösche `node_modules` und `package-lock.json`
@@ -249,4 +249,4 @@ lsof -i :4200                          # macOS/Linux
 
 ---
 
-**Letzte Aktualisierung:** 2025-05-09
+**Letzte Aktualisierung:** 2025-05-17

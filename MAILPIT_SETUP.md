@@ -4,7 +4,7 @@ Mailpit ist ein Fake SMTP-Server für Entwicklung, mit dem E-Mails nicht wirklic
 
 ## Installation
 
-### Option 1: Docker (empfohlen)
+### Option 1: Docker
 ```bash
 docker run -d -p 1025:1025 -p 8025:8025 --name mailpit axllent/mailpit
 ```
@@ -43,4 +43,4 @@ Dort siehst du alle versandten E-Mails (Registrierung, Passwort-Reset, etc.)
 
 ---
 
-**Letzte Aktualisierung:** 2025-05-09
+**Letzte Aktualisierung:** 2025-05-17

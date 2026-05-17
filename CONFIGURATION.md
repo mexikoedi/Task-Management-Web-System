@@ -9,20 +9,20 @@ Dieses Dokument fasst alle Konfigurationen zusammen, die für das Task Managemen
 ## 🔧 Backend Konfiguration
 
 ### Build-Tool
-- **Framework**: Gradle Kotlin DSL (9.5.0)
-- **Spring Boot Version**: 4.0.6
+- **Framework**: Gradle Kotlin DSL (9.5.1)
+- **Java Spring Boot Version**: 4.0.6
 - **Java Version**: 26.0.1
 
 ### Wichtige Dateien
 
-| Datei | Zweck |
-|-------|-------|
+| Datei | Zweck                                       |
+|-------|---------------------------------------------|
 | `build.gradle.kts` | Gradle Build-Konfiguration mit Dependencies |
-| `settings.gradle.kts` | Gradle Settings & Projekt-Name |
-| `gradlew` / `gradlew.bat` | Gradle Wrapper Scripts (Windows & Unix) |
-| `gradle/wrapper/gradle-wrapper.properties` | Gradle Version & Download-URL |
-| `src/main/resources/application.properties` | Spring Boot Konfiguration |
-| `src/main/java/io/github/mexikoedi/tmws/TmwsApplication.java` | Spring Boot Main Class |
+| `settings.gradle.kts` | Gradle Settings & Projekt-Name              |
+| `gradlew` / `gradlew.bat` | Gradle Wrapper Scripts (Windows & Unix)     |
+| `gradle/wrapper/gradle-wrapper.properties` | Gradle Version & Download-URL               |
+| `src/main/resources/application.properties` | Java Spring Boot Konfiguration              |
+| `src/main/java/io/github/mexikoedi/tmws/TmwsApplication.java` | Java Spring Boot Main Class                 |
 
 ### Dependencies
 
@@ -62,14 +62,14 @@ logging.level.org.springframework=INFO
 io.github.mexikoedi.tmws/
 ├── config/           → CorsConfig.java (CORS-Konfiguration)
 ├── controller/       → HealthController.java (REST Endpoints)
-├── dto/              → (Data Transfer Objects - TODO)
-├── enum/             → (Enumerationen - TODO)
-├── exception/        → (Exception Handling - TODO)
-├── model/            → (JPA Entities - TODO)
-├── repository/       → (Spring Data Repositories - TODO)
-├── security/         → (Security Config - TODO)
-├── service/          → (Business Logic - TODO)
-└── util/             → (Utilities - TODO)
+├── dto/              → (Data Transfer Objects)
+├── enum/             → (Enumerationen)
+├── exception/        → (Exception Handling)
+├── model/            → (JPA Entities)
+├── repository/       → (Spring Data Repositories)
+├── security/         → (Security Config)
+├── service/          → (Business Logic)
+└── util/             → (Utilities)
 ```
 
 ### CORS-Konfiguration
@@ -89,7 +89,7 @@ Max Age: 3600 Sekunden
 ## 🎨 Frontend Konfiguration
 
 ### Build-Tool & Framework
-- **Framework**: Angular 21.2.12
+- **Framework**: Angular 21.2.13
 - **Language**: TypeScript 6.0.3
 - **Package Manager**: npm 11.13.0
 - **Node.js**: 26.1.0
@@ -146,12 +146,12 @@ src/
 ### Dependencies
 
 **Produktiv:**
-- `@angular/core`, `@angular/common`, `@angular/forms`, etc. (v21.2.12)
+- `@angular/core`, `@angular/common`, `@angular/forms`, etc. (v21.2.13)
 - `rxjs` (v7.8.2) → Reactive Programming
 - `zone.js` (v0.16.2) → Async Operations
 
 **Entwicklung:**
-- `@angular/cli` (v21.2.10) → CLI Tools
+- `@angular/cli` (v21.2.11) → CLI Tools
 - `typescript` (v6.0.3) → Typsystem
 - `karma` → Test-Runner
 - `jasmine` → Unit-Test Framework
@@ -177,7 +177,7 @@ Politicas:
 
 ```
 Task-Management-Web-System/
-├── backend/              # Spring Boot Backend (Gradle)
+├── backend/              # Java Spring Boot Backend (Gradle)
 │   ├── src/
 │   │   ├── main/
 │   │   └── test/
@@ -199,6 +199,8 @@ Task-Management-Web-System/
 ├── README.md             # Projekt-Übersicht
 ├── SETUP.md              # Installationsanleitung
 ├── CONFIGURATION.md      # Diese Datei
+├── MAILPIT_SETUP.md      # Mailpit Konfiguration
+├── README_FINAL.md       # Projekt-Abschlussbericht
 ├── .gitignore            # Git-Konfiguration
 ├── .editorconfig         # Editor-Standards
 ├── setup.bat             # Windows Setup-Skript
@@ -314,8 +316,7 @@ Nur folgende Ursprünge dürfen auf das Backend zugreifen:
 
 ### API-Authentifizierung
 
-⚠️ **TODO:** Authentifizierung noch nicht implementiert.
-Geplante Implementierung: Spring Security + JWT Tokens
+Spring Security + JWT Tokens
 
 ---
 
@@ -323,18 +324,18 @@ Geplante Implementierung: Spring Security + JWT Tokens
 
 ### Backend
 
-| Dependency | Version | Zweck |
-|-----------|---------|-------|
-| Spring Boot | 4.0.6   | Framework |
-| Spring Data JPA | 4.0.5   | ORM |
-| H2 Database | 2.4.240 | Dev Database |
-| JUnit Platform | 5       | Test Framework |
+| Dependency       | Version | Zweck |
+|------------------|---------|-------|
+| Java Spring Boot | 4.0.6   | Framework |
+| Spring Data JPA  | 4.0.5   | ORM |
+| H2 Database      | 2.4.240 | Dev Database |
+| JUnit Platform   | 5       | Test Framework |
 
 ### Frontend
 
 | Dependency | Version | Zweck |
 |-----------|---------|-------|
-| Angular | 21.2.12 | Framework |
+| Angular | 21.2.13 | Framework |
 | TypeScript | 6.0.3   | Language |
 | RxJS | 7.8.2   | Reactive |
 | Zone.js | 0.16.2  | Async |
@@ -383,11 +384,11 @@ npm run build -- --configuration production
 
 ## 📚 Weitere Ressourcen
 
-- [Spring Boot Docs](https://spring.io/projects/spring-boot)
+- [Java Spring Boot Docs](https://spring.io/projects/spring-boot)
 - [Angular Docs](https://angular.io/docs)
 - [Gradle User Guide](https://docs.gradle.org/current/userguide/)
 - [H2 Database](https://www.h2database.com/)
 
 ---
 
-**Letzte Aktualisierung:** 2025-05-09
+**Letzte Aktualisierung:** 2025-05-17

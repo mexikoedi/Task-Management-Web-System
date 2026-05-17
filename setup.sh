@@ -13,7 +13,7 @@ echo ""
 echo "[1/3] Checking Java Installation..."
 if ! command -v java &> /dev/null; then
     echo "ERROR: Java is not installed or not in PATH"
-    echo "Please install Java 17 or higher"
+    echo "Please install Java 26 or higher"
     exit 1
 else
     echo "OK: Java detected"
@@ -42,7 +42,7 @@ echo ""
 echo "[3/3] Checking Node.js Installation..."
 if ! command -v node &> /dev/null; then
     echo "ERROR: Node.js is not installed or not in PATH"
-    echo "Please install Node.js 16.0 or higher"
+    echo "Please install Node.js 26 or higher"
     exit 1
 else
     echo "OK: Node.js detected"

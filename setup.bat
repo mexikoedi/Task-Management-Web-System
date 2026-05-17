@@ -15,7 +15,7 @@ echo [1/3] Checking Java Installation...
 java -version >nul 2>&1
 if errorlevel 1 (
     echo ERROR: Java is not installed or not in PATH
-    echo Please install Java 17 or higher
+    echo Please install Java 26 or higher
     pause
     exit /b 1
 ) else (
@@ -46,7 +46,7 @@ echo [3/3] Checking Node.js Installation...
 node --version >nul 2>&1
 if errorlevel 1 (
     echo ERROR: Node.js is not installed or not in PATH
-    echo Please install Node.js 16.0 or higher
+    echo Please install Node.js 26 or higher
     pause
     exit /b 1
 ) else (

@@ -1,22 +1,20 @@
 package io.github.mexikoedi.tmws.controller;
 
 import io.github.mexikoedi.tmws.dto.AuthResponse;
+import io.github.mexikoedi.tmws.dto.ChangePasswordRequest;
 import io.github.mexikoedi.tmws.dto.LoginRequest;
 import io.github.mexikoedi.tmws.dto.MessageResponse;
 import io.github.mexikoedi.tmws.dto.PasswordResetRequest;
 import io.github.mexikoedi.tmws.dto.RegisterRequest;
+import io.github.mexikoedi.tmws.dto.UpdateProfileRequest;
+import io.github.mexikoedi.tmws.dto.UserResponse;
+import io.github.mexikoedi.tmws.model.User;
 import io.github.mexikoedi.tmws.service.AuthenticationService;
 import jakarta.validation.Valid;
 import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -74,5 +72,73 @@ public class AuthController {
   @GetMapping("/health")
   public ResponseEntity<MessageResponse> health() {
     return ResponseEntity.ok(new MessageResponse("Authentifizierungsdienst läuft", true));
+  }
+
+  /** GET /api/auth/me Hol die Benutzerinformationen (aus JWT extrahiert) */
+  @GetMapping("/me")
+  public ResponseEntity<UserResponse> getCurrentUser(@RequestParam String email) {
+    User user = authenticationService.getUserByEmail(email);
+    return ResponseEntity.ok(
+        new UserResponse(
+            user.getId(),
+            user.getName(),
+            user.getEmail(),
+            user.isEmailVerified(),
+            user.isEmailChanged(),
+            user.getImage()));
+  }
+
+  /** PUT /api/auth/profile Aktualisiere Profilinformationen (Name) */
+  @PutMapping("/profile")
+  public ResponseEntity<UserResponse> updateProfile(
+    @Valid @RequestBody UpdateProfileRequest request,
+    @RequestHeader("Authorization") String authHeader) {
+
+    String token = authHeader.replace("Bearer ", "");
+    String email = authenticationService.getEmailFromToken(token);
+
+    User user = authenticationService.updateProfile(
+      email,
+      request.getName(),
+      request.getNewEmail(),
+      request.getCurrentPassword(),
+      request.getNewPassword(),
+      request.getNewPasswordConfirm(),
+      request.getImage()
+    );
+
+    return ResponseEntity.ok(
+      new UserResponse(
+        user.getId(),
+        user.getName(),
+        user.getEmail(),
+        user.isEmailVerified(),
+        user.isEmailChanged(),
+        user.getImage()
+      )
+    );
+  }
+
+  /** PUT /api/auth/change-password Ändere das Passwort */
+  @PutMapping("/change-password")
+  public ResponseEntity<MessageResponse> changePassword(
+      @RequestParam String email,
+      @Valid @RequestBody ChangePasswordRequest request) {
+    // Prüfe ob neue Passwörter übereinstimmen
+    if (!request.getNewPassword().equals(request.getNewPasswordConfirm())) {
+      return ResponseEntity.badRequest()
+          .body(new MessageResponse("Neue Passwörter stimmen nicht überein", false));
+    }
+    authenticationService.changePassword(email, request.getCurrentPassword(), request.getNewPassword());
+    return ResponseEntity.ok(new MessageResponse("Passwort erfolgreich geändert", true));
+  }
+
+  /** DELETE /api/auth/me Deaktiviere den Account des aktuellen Users (über JWT im Authorization Header) */
+  @DeleteMapping("/me")
+  public ResponseEntity<?> deactivateAccount(@RequestHeader("Authorization") String authHeader) {
+    String token = authHeader.replace("Bearer ", "");
+    String email = authenticationService.getEmailFromToken(token);
+    authenticationService.deactivateAccount(email);
+    return ResponseEntity.ok(new MessageResponse("Account erfolgreich deaktiviert", true));
   }
 }

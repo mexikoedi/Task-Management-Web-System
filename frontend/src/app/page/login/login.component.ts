@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,13 +7,15 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 import { ChangeDetectorRef } from '@angular/core';
+import {NgIcon} from "@ng-icons/core";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, NgIcon],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('slideIn', [
       transition(':enter', [
@@ -57,6 +59,7 @@ export class LoginComponent implements OnInit {
         '',
         [
           Validators.required,
+          Validators.maxLength(30),
           this.emailValidator()
         ]
       ],
@@ -69,13 +72,14 @@ export class LoginComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(2),
-          Validators.maxLength(100)
+          Validators.maxLength(30)
         ]
       ],
       email: [
         '',
         [
           Validators.required,
+          Validators.maxLength(30),
           this.emailValidator()
         ]
       ],
@@ -96,7 +100,10 @@ export class LoginComponent implements OnInit {
     });
 
     this.resetForm = this.fb.group({
-      email: ['', [Validators.required, this.emailValidator()]]
+      email: ['', [
+        Validators.required,
+        Validators.maxLength(30),
+        this.emailValidator()]]
     });
   }
 
@@ -345,12 +352,20 @@ export class LoginComponent implements OnInit {
 
      if (error.status == 404) {
        this.errorMessage = 'Benutzer nicht gefunden. Bitte überprüfen Sie Ihre E-Mail oder registrieren Sie sich.';
+
+       return;
+     }
+
+     if (error.status == 403) {
+       this.errorMessage = 'Benutzer deaktiviert. Bitte überprüfen Sie Ihre E-Mail oder kontaktieren Sie uns.';
+
        return;
      }
 
      if (error.status === 400 && error.error?.errors) {
        this.fieldErrors = error.error.errors;
        this.errorMessage = 'Bitte korrigieren Sie die Eingaben.';
+
        return;
      }
 
@@ -428,6 +443,8 @@ export class LoginComponent implements OnInit {
     this.errorMessage = null;
     this.successMessage = null;
     this.fieldErrors = {};
+    this.loginForm.markAsUntouched();
+    this.resetForm.markAsUntouched();
   }
 
   switchToLogin(): void {
@@ -435,6 +452,8 @@ export class LoginComponent implements OnInit {
     this.errorMessage = null;
     this.successMessage = null;
     this.fieldErrors = {};
+    this.registerForm.markAsUntouched();
+    this.resetForm.markAsUntouched();
   }
 
   switchToReset(): void {
@@ -442,6 +461,8 @@ export class LoginComponent implements OnInit {
     this.errorMessage = null;
     this.successMessage = null;
     this.fieldErrors = {};
+    this.registerForm.markAsUntouched();
+    this.loginForm.markAsUntouched();
   }
 }
 

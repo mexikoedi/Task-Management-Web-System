@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import {UserSummary} from "../model/board.model";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,8 @@ export class AuthService {
     this.getToken()
   );
   public token$ = this.tokenSubject.asObservable();
+  private currentUserSubject = new BehaviorSubject<UserSummary | null>(null);
+  public currentUser$ = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -95,11 +98,75 @@ export class AuthService {
     const token = this.getToken();
     if (!token) return null;
     try {
-      const decoded = atob(token);
-      return decoded.split(':')[0];
+      // JWT payload is the second part (base64url). Decode and parse JSON.
+      const parts = token.split('.');
+      if (parts.length < 2) return null;
+      const payload = parts[1];
+      // base64url -> base64
+      let b64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+      while (b64.length % 4) b64 += '=';
+      const json = JSON.parse(atob(b64));
+      return (json.sub as string) || (json.email as string) || null;
     } catch {
       return null;
     }
+  }
+
+  /** Lösche den Account des aktuell eingeloggten Users (über Email query param) */
+  deactivateAccount(email: string) {
+    return this.http.delete(`${this.API_URL}/me`, { params: { email } });
+  }
+
+  /** Hol den aktuellen User (Email query param) */
+  getCurrentUser(email: string): Observable<UserSummary> {
+    return this.http.get<UserSummary>(`${this.API_URL}/me`, { params: { email } });
+  }
+
+  /** Update Profil-Informationen (Name) */
+  updateProfile(
+    name?: string,
+    newEmail?: string,
+    image?: string,
+    currentPassword?: string,
+    newPassword?: string,
+    newPasswordConfirm?: string
+  ): Observable<UserSummary> {
+    return this.http
+      .put<UserSummary>(`${this.API_URL}/profile`, { name, newEmail, image, currentPassword, newPassword, newPasswordConfirm })
+      .pipe(
+        tap((user) => {
+          // Aktuellen User aktualisieren
+          this.currentUserSubject.next(user);
+        })
+      );
+  }
+
+  /** Lädt aktuellen User und setzt BehaviorSubject */
+  loadCurrentUser(email: string): Observable<UserSummary> {
+    return this.getCurrentUser(email).pipe(
+      tap((user: UserSummary) => {
+        this.currentUserSubject.next(user);
+      })
+    );
+  }
+
+  /** Liefert den aktuellen User synchron (falls nötig) */
+  getCurrentUserSnapshot(): UserSummary | null {
+    return this.currentUserSubject.value;
+  }
+
+  /** Ändere das Passwort */
+  changePassword(
+    email: string,
+    currentPassword: string,
+    newPassword: string,
+    newPasswordConfirm: string
+  ) {
+    return this.http.put(
+      `${this.API_URL}/change-password`,
+      { currentPassword, newPassword, newPasswordConfirm },
+      { params: { email } }
+    );
   }
 }
 

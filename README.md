@@ -4,8 +4,8 @@ Ein Aufgabenmanagementsystem als Single Page Application mit Java Spring Boot Ba
 
 ## Stack
 
-- **Backend**: Java 26.0.1, Spring Boot 4.0.6, Spring Data JPA 4.0.5, Gradle 9.5.0
-- **Frontend**: Angular 21.2.12, TypeScript 6.0.3
+- **Backend**: Java 26.0.1, Spring Boot 4.0.6, Spring Data JPA 4.0.5, Gradle 9.5.1
+- **Frontend**: Angular 21.2.13, TypeScript 6.0.3
 - **Datenbank**: H2 (In-Memory)
 - **Architecture**: Client-Server REST API
 
@@ -145,10 +145,6 @@ Task-Management-Web-System/
 - `npm run lint` - ng lint
 - `npm run e2e` - ng e2e
 
-## API Endpunkte
-
-Hier werden später die REST API Endpunkte dokumentiert.
-
 ## Technische Details
 
 ### Backend Features
@@ -180,4 +176,4 @@ Siehe `.editorconfig` für Editor-Konfiguration.
 
 ---
 
-**Letzte Aktualisierung:** 2025-05-09
+**Letzte Aktualisierung:** 2025-05-17

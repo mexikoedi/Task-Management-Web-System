@@ -14,6 +14,19 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+  @ExceptionHandler(UserDeactivatedException.class)
+  public ResponseEntity<ErrorResponse> handleUserDeactivated(
+    UserDeactivatedException ex, HttpServletRequest request) {
+    ErrorResponse error =
+      new ErrorResponse(
+        LocalDateTime.now(),
+        HttpStatus.FORBIDDEN.value(),
+        "User Is Deactivated",
+        ex.getMessage(),
+        request.getRequestURI());
+    return new ResponseEntity<>(error, HttpStatus.FORBIDDEN);
+  }
+
   @ExceptionHandler(EmailAlreadyExistsException.class)
   public ResponseEntity<ErrorResponse> handleEmailAlreadyExists(
       EmailAlreadyExistsException ex, HttpServletRequest request) {

@@ -1,8 +1,445 @@
-<div class="dashboard-shell">
-  <div class="dashboard-card">
-    <h1>TMWS Dashboard</h1>
-    <p>You are successfully logged in.</p>
-    <button type="button" (click)="logout()">Logout</button>
-  </div>
-</div>
+<div class="app-shell">
+  <!-- Header -->
+  <header class="app-header">
+    <div class="left">TMWS</div>
 
+    <div class="search-wrapper">
+      <ng-icon name="bootstrapSearch" class="search-icon"></ng-icon>
+      <input
+        type="search"
+        placeholder="Aufgaben finden"
+        [(ngModel)]="searchQuery"
+        (input)="onSearchChange()"
+        [disabled]="isSaving"
+        (blur)="clearSearch()"
+        title="Gib einen Aufgabentitel ein, um Vorschläge zu sehen"
+      />
+      <ul class="suggestions" *ngIf="suggestions.length && searchQuery">
+        <li *ngFor="let s of suggestions" (mousedown)="openTaskDetail(s)">{{ s.title }}</li>
+      </ul>
+    </div>
+
+    <div class="right">
+        <div class="avatar" (click)="toggleProfile()" title="Account verwalten">
+          <img
+            *ngIf="profileImage"
+            [src]="profileImage"
+            alt="Profilbild"
+            class="avatar-image"/>
+          <span *ngIf="!profileImage">
+            {{ getCurrentUserInitials() }}
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Profile Popup -->
+  <div class="profile-popup" *ngIf="profileOpen">
+    <h3>Mein Konto</h3>
+
+    <!-- Profile Info / Edit -->
+    <ng-container *ngIf="!profileEditMode">
+      <div class="profile-info">
+        <label>Name: <strong>{{ profileName || 'Unbekannt' }}</strong></label>
+        <label>E-Mail: <strong>{{ profileEmail || authService.getEmailFromToken() }}</strong></label>
+      </div>
+      <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap">
+        <button [disabled]="isSaving" (click)="enterProfileEditMode()" title="Profil bearbeiten" style="width: 147px">Profil bearbeiten</button>
+        <button [disabled]="isSaving" (click)="logout()" title="Abmelden">Abmelden</button>
+        <button [disabled]="isSaving" (click)="deactivateAccount()" title="Account deaktivieren" style="background:#dc3545">Account deaktivieren</button>
+        <button [disabled]="isSaving" (click)="toggleProfile()" title="Schließen">Schließen</button>
+      </div>
+    </ng-container>
+
+    <!-- Edit Profile -->
+    <ng-container *ngIf="profileEditMode">
+      <div class="error-message" *ngIf="profileErrors['general']">{{ profileErrors['general'] }}</div>
+
+      <div class="form-group">
+        <label for="editName">Name:</label>
+        <input id="editName" [disabled]="isSaving" [(ngModel)]="profileNameTemp" placeholder="Name" maxlength="30" [class.error-input]="profileErrors['name']" />
+        <span class="error-text" *ngIf="profileErrors['name']">{{ profileErrors['name'] }}</span>
+      </div>
+
+      <div class="form-group">
+        <label for="editEmail">E-Mail:</label>
+        <input id="editEmail" [disabled]="isSaving" [(ngModel)]="profileEmailTemp" placeholder="E-Mail" maxlength="30" [class.error-input]="profileErrors['email']" />
+        <span class="error-text" *ngIf="profileErrors['email']">{{ profileErrors['email'] }}</span>
+      </div>
+
+      <div class="form-group">
+        <label for="editImage">Profilbild (URL):</label>
+        <input id="editImage" [disabled]="isSaving" [(ngModel)]="profileImageTemp" placeholder="Profilbild-URL" />
+        <span class="error-text" *ngIf="profileErrors['profileImage']">{{ profileErrors['profileImage'] }}</span>
+      </div>
+
+      <br />
+
+      <h4>Passwort ändern</h4>
+      <br />
+      <div class="form-group">
+        <label for="currentPwd">Aktuelles Passwort:</label>
+        <input id="currentPwd" [disabled]="isSaving" [type]="showPassword ? 'text' : 'password'" [(ngModel)]="profilePasswordCurrent" placeholder="Aktuelles Passwort" [class.error-input]="profileErrors['currentPassword']" />
+        <button type="button" class="password-toggle" [disabled]="isSaving" (click)="togglePasswordVisibility()" title="Passwort anzeigen/verbergen" tabindex="-1">
+          <ng-container *ngIf="showPassword; else hideIcon">
+            <ng-icon color="black" size="1.25em" name="bootstrapEye"></ng-icon>
+          </ng-container>
+
+          <ng-template #hideIcon>
+            <ng-icon color="black" size="1.25em" name="bootstrapEyeSlash"></ng-icon>
+          </ng-template>
+        </button>
+        <span class="error-text" *ngIf="profileErrors['currentPassword']">{{ profileErrors['currentPassword'] }}</span>
+      </div>
+
+      <div class="form-group">
+        <label for="newPwd">Neues Passwort:</label>
+        <input id="newPwd" [disabled]="isSaving" [type]="showPasswordConfirm ? 'text' : 'password'" [(ngModel)]="profilePasswordNew" placeholder="Neues Passwort" [class.error-input]="profileErrors['newPassword']" />
+        <button type="button" class="password-toggle" [disabled]="isSaving" (click)="togglePasswordConfirmVisibility()" title="Passwort anzeigen/verbergen" tabindex="-1">
+          <ng-container *ngIf="showPasswordConfirm; else hideIcon">
+            <ng-icon color="black" size="1.25em" name="bootstrapEye"></ng-icon>
+          </ng-container>
+
+          <ng-template #hideIcon>
+            <ng-icon color="black" size="1.25em" name="bootstrapEyeSlash"></ng-icon>
+          </ng-template>
+        </button>
+        <span class="error-text" *ngIf="profileErrors['newPassword']">{{ profileErrors['newPassword'] }}</span>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPwd">Passwort bestätigen:</label>
+        <input id="confirmPwd" [disabled]="isSaving" [type]="showPasswordConfirm ? 'text' : 'password'" [(ngModel)]="profilePasswordConfirm" placeholder="Passwort wiederholen" [class.error-input]="profileErrors['newPasswordConfirm']" />
+        <button type="button" class="password-toggle" [disabled]="isSaving" (click)="togglePasswordConfirmVisibility()" title="Passwort anzeigen/verbergen" tabindex="-1">
+          <ng-container *ngIf="showPasswordConfirm; else hideIcon">
+            <ng-icon color="black" size="1.25em" name="bootstrapEye"></ng-icon>
+          </ng-container>
+
+          <ng-template #hideIcon>
+            <ng-icon color="black" size="1.25em" name="bootstrapEyeSlash"></ng-icon>
+          </ng-template>
+        </button>
+        <span class="error-text" *ngIf="profileErrors['newPasswordConfirm']">{{ profileErrors['newPasswordConfirm'] }}</span>
+      </div>
+
+      <div class="password-requirements">
+        <small *ngFor="let req of getPasswordRequirements()" [class.met]="req.met">
+          {{ req.met ? '✓' : '✗' }} {{ req.text }}
+        </small>
+      </div>
+
+      <div style="display:flex; gap:8px; margin-top:12px">
+        <button [disabled]="isSaving" (click)="updateProfile()" title="Profil speichern">Speichern</button>
+        <button [disabled]="isSaving" (click)="cancelProfileEdit()" title="Abbrechen">Abbrechen</button>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- Body / Board -->
+  <main class="board-body" [ngStyle]="{'background-image': board?.background ? 'url(' + board?.background + ')' : 'none',
+              'background-size': 'cover',
+              'background-position': 'center'}">
+    <div class="board-header">
+      <div class="title">
+        <ng-container *ngIf="!editingTitle">
+          <h2>{{ board?.title || 'Neues Projektboard' }}</h2>
+          <button class="icon" title="Name bearbeiten" [disabled]="isSaving" (click)="toggleEditTitle()"><ng-icon color="black" size="1.25em" name="bootstrapPencil"></ng-icon></button>
+        </ng-container>
+        <ng-container *ngIf="editingTitle">
+          <div class="form-group title-group">
+            <input
+              id="title"
+              [(ngModel)]="editedTitle"
+              [disabled]="isSaving"
+              placeholder="Projektboard-Name"
+              maxlength="30"
+              [class.error-input]="profileErrors['title']"
+            />
+            <span class="error-text" *ngIf="profileErrors['title']">
+              {{ profileErrors['title'] }}
+            </span>
+          </div>
+          <div class="form-buttons title-buttons-group" style="display:flex;gap:8px">
+            <button [disabled]="isSaving" (click)="saveTitle()" title="Projektboard-Titel speichern">Speichern</button>
+            <button [disabled]="isSaving" (click)="toggleEditTitle()" title="Abbrechen">Abbrechen</button>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="board-controls">
+        <div class="members">
+          <div *ngFor="let m of (board?.members || [])" class="member-avatar" [title]="m.name || m.email">
+            <img *ngIf="m.image" [src]="m.image" class="avatar-image"/>
+            <span *ngIf="!m.image">{{ getUserInitials(m) }}</span>
+          </div>
+        </div>
+        <button class="icon" [disabled]="isSaving" (click)="toggleSettings()" title="Projektboard-Einstellungen"><ng-icon size="1.5em" name="bootstrapGear"></ng-icon></button>
+      </div>
+    </div>
+
+    <div class="board-settings" *ngIf="settingsOpen">
+      <h4>Projektboard-Einstellungen</h4>
+      <div class="error-message" *ngIf="bgInputError">{{ bgInputError }}</div>
+      <div class="form-group">
+        <label for="bgUrl">Hintergrundbild festlegen:</label>
+        <input
+          id="bgUrl"
+          type="text"
+          [disabled]="isSaving"
+          [(ngModel)]="bgInput"
+          [placeholder]="board?.background ? '' : 'Hintergrundbild-URL eingeben'"
+          maxlength="255"
+          [value]="bgInput || board?.background || ''"
+          [class.error-input]="bgInputError"
+        />
+        <span class="error-text" *ngIf="profileErrors['backgroundImage']">{{ profileErrors['backgroundImage'] }}</span>
+      </div>
+      <div class="form-buttons" style="display:flex;gap:8px">
+        <button [disabled]="isSaving" (click)="updateBackground()" title="Hintergrundbild speichern">Speichern</button>
+      </div>
+
+      <hr style="margin:12px 0" />
+
+      <div class="form-group">
+        <label for="inviteEmail">Person einladen:</label>
+        <input
+          id="inviteEmail"
+          type="email"
+          #inviteEmail
+          placeholder="E-Mail eingeben"
+          maxlength="30"
+          [disabled]="isSaving"
+          [class.error-input]="profileErrors['email']"
+        />
+        <span class="error-text" *ngIf="profileErrors['email']">{{ profileErrors['email'] }}</span>
+      </div>
+      <div class="form-buttons" style="display:flex;gap:8px">
+        <button [disabled]="isSaving" (click)="inviteMember(inviteEmail)" title="Person einladen">Einladen</button>
+        <button [disabled]="isSaving" (click)="toggleSettings()" title="Schließen">Schließen</button>
+      </div>
+    </div>
+
+     <!-- Columns -->
+     <div class="columns">
+       <div
+         class="column"
+         *ngFor="let col of (board?.columns || []); let i = index"
+         (dragover)="onDragOver($event)"
+         (drop)="onDrop($event, col.id)">
+         <div class="column-header"
+              draggable="true"
+              (dragstart)="onColumnDragStart($event, i)"
+              (dragover)="onColumnDragOver($event)"
+              (drop)="onColumnDrop($event, i)">
+           <!-- Normaler Modus -->
+           <ng-container *ngIf="editingColumnId !== col.id">
+             <h3>{{ col.title }}</h3>
+             <div class="column-actions">
+               <button class="edit-column"
+                       [disabled]="isSaving"
+                       (click)="startEditColumn(col)"
+                       title="Statuskategorie umbenennen">
+                 <ng-icon size="1.25em" name="bootstrapPencil"></ng-icon>
+               </button>
+               <button class="delete-column"
+                       [disabled]="isSaving"
+                       (click)="confirmDeleteColumn(col)"
+                       title="Statuskategorie löschen">
+                 <ng-icon size="1.25em" name="bootstrapTrash3"></ng-icon>
+               </button>
+             </div>
+           </ng-container>
+
+           <!-- Edit-Modus -->
+           <ng-container *ngIf="editingColumnId === col.id">
+             <div class="column-edit-wrapper">
+               <input
+                 [(ngModel)]="editedColumnTitle"
+                 [disabled]="isSaving"
+                 placeholder="Statuskategorie-Titel"
+                 maxlength="25"
+                 [class.error-input]="columnErrors['title']"
+               />
+
+               <div class="column-edit-buttons">
+                 <button [disabled]="isSaving" (click)="saveColumnTitle(col)" title="Statuskategorie-Namen speichern">Speichern</button>
+                 <button [disabled]="isSaving" (click)="cancelEditColumn()" title="Abbrechen">Abbrechen</button>
+               </div>
+
+               <span class="error-text" *ngIf="columnErrors['title']">
+                {{ columnErrors['title'] }}
+              </span>
+             </div>
+           </ng-container>
+         </div>
+
+         <div>
+           <div
+             class="task"
+             *ngFor="let t of (col.tasks || [])"
+             draggable="true"
+             (dragstart)="onDragStart($event, t.id)"
+             (dragover)="onDragOver($event)"
+             (drop)="onDrop($event, col.id)"
+             (click)="openTaskDetail(t)"
+             style="cursor: pointer; user-select: none">
+             <h4>{{ t.title }}</h4>
+           </div>
+         </div>
+
+         <!-- new task form -->
+         <div class="new-task" *ngIf="creatingTaskColumnId === col.id && col.id">
+           <div class="error-message" *ngIf="taskErrors['general']">{{ taskErrors['general'] }}</div>
+           <div class="form-group">
+             <label for="newTaskTitle-{{ col.id }}">Titel:</label>
+             <input
+               [id]="'newTaskTitle-' + col.id"
+               [(ngModel)]="creatingTask.title"
+               placeholder="Aufgabentitel"
+               [disabled]="isSaving"
+               maxlength="30"
+               [class.error-input]="taskErrors['title']"
+             />
+             <span class="error-text" *ngIf="taskErrors['title']">{{ taskErrors['title'] }}</span>
+           </div>
+           <div class="form-buttons" style="display:flex;gap:8px">
+             <button [disabled]="isSaving" (click)="createTask()" title="Aufgabe erstellen">Erstellen</button>
+             <button [disabled]="isSaving" (click)="cancelCreateTask()" title="Abbrechen">Abbrechen</button>
+           </div>
+         </div>
+
+         <button class="add-task" [disabled]="isSaving" (click)="startCreateTask(col.id)" title="Aufgabe hinzufügen"><ng-icon size="1.25em" name="bootstrapPlusSquare"></ng-icon></button>
+       </div>
+       <!-- create new column -->
+       <div class="add-column">
+         <div class="add-column-inner" *ngIf="!showAddColumn">
+           <button class="add-statuscategory" [disabled]="isSaving" (click)="showAddColumn = true" title="Statuskategorie hinzufügen"><ng-icon size="1.5em" name="bootstrapPlusSquare"></ng-icon></button>
+         </div>
+         <div *ngIf="showAddColumn">
+           <div class="form-group">
+             <label for="newColTitle">Titel der Kategorie:</label>
+             <input
+               id="newColTitle"
+               [(ngModel)]="newColumnTitle"
+               [disabled]="isSaving"
+               placeholder="Statuskategorie-Titel"
+               maxlength="25"
+               [class.error-input]="newColumnError"
+             />
+             <span class="error-text" *ngIf="newColumnError">{{ newColumnError }}</span>
+           </div>
+           <div class="form-buttons" style="display:flex;gap:8px">
+             <button [disabled]="isSaving" (click)="addColumn()" title="Statuskategorie erstellen">Erstellen</button>
+             <button [disabled]="isSaving" (click)="cancelAddColumn()" title="Abbrechen">Abbrechen</button>
+           </div>
+         </div>
+       </div>
+     </div>
+   </main>
+
+   <!-- Task Detail Modal -->
+   <div class="task-modal-overlay" *ngIf="taskDetailOpen" (click)="closeTaskDetail()"></div>
+   <div class="task-modal" *ngIf="taskDetailOpen">
+     <h3>Aufgaben-Details</h3>
+     <div class="error-message" *ngIf="taskErrors['general']">{{ taskErrors['general'] }}</div>
+
+     <div class="form-group">
+       <label for="taskTitle">Titel:</label>
+       <input
+         id="taskTitle"
+         [(ngModel)]="selectedTask!.title"
+         placeholder="Aufgabentitel"
+         [disabled]="isSaving"
+         maxlength="30"
+         [class.error-input]="taskErrors['title']"
+       />
+       <span class="error-text" *ngIf="taskErrors['title']">{{ taskErrors['title'] }}</span>
+     </div>
+
+     <div class="form-group">
+       <label for="taskDesc">Beschreibung:</label>
+       <textarea
+         id="taskDesc"
+         [(ngModel)]="selectedTask!.description"
+         placeholder="Aufgabenbeschreibung"
+         [disabled]="isSaving"
+         maxlength="1000"
+       ></textarea>
+     </div>
+
+     <div class="form-group">
+       <label for="taskDeadline">Deadline:</label>
+       <ngxsmk-datepicker
+         id="taskDeadline"
+         [disabled]="isSaving"
+         [locale]="'de-DE'"
+         [minDate]="today"
+         [maxDate]="comingYear"
+         [yearRange]="1"
+         [(ngModel)]="selectedTask!.deadline"
+         (ngModelChange)="onDeadlineChange($event)"
+         placeholder="Deadline festlegen">
+       </ngxsmk-datepicker>
+     </div>
+
+     <div class="form-group">
+       <label for="taskLabels">Labels (komma-getrennt):</label>
+       <input
+         id="taskLabels"
+         [(ngModel)]="selectedTask!.labels"
+         [disabled]="isSaving"
+         maxlength="255"
+         placeholder="z.B. wichtig, bug, feature"
+       />
+     </div>
+
+     <div class="form-group">
+       <label for="taskAttachments">Anhänge (komma-getrennt URLs):</label>
+       <input
+         id="taskAttachments"
+         [(ngModel)]="selectedTask!.attachments"
+         [disabled]="isSaving"
+         placeholder="z.B. https://example.com/file.pdf"
+         maxlength="255"
+       />
+     </div>
+
+     <div class="form-group floating-label-container">
+
+       <label
+         class="floating-label"
+         [class.active]="selectedAssigneeId">
+         Person zuweisen:
+       </label>
+
+       <ng-select
+         [items]="board?.members || []"
+         bindValue="id"
+         bindLabel="name"
+         [(ngModel)]="selectedAssigneeId"
+         placeholder=""
+         [searchable]="true"
+         [clearable]="true"
+         clearAllText="Alle löschen"
+         notFoundText="Keine Ergebnisse gefunden">
+
+         <ng-template ng-option-tmp let-item="item">
+           {{ item.name }} — <small>{{ item.email }}</small>
+         </ng-template>
+
+       </ng-select>
+
+     </div>
+
+     <div style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap">
+       <button [disabled]="isSaving" (click)="saveTaskDetails()" title="Aufgabe speichern">Speichern</button>
+       <button [disabled]="isSaving" (click)="deleteSelectedTask()" title="Aufgabe löschen" style="background:#dc3545">Löschen</button>
+       <button [disabled]="isSaving" (click)="closeTaskDetail()" title="Abbrechen">Abbrechen</button>
+     </div>
+   </div>
+
+   <!-- Footer -->
+   <footer class="app-footer">
+     <div class="title-text">© 2026-{{ currentYear }} mexikoedi</div>
+   </footer>
+</div>

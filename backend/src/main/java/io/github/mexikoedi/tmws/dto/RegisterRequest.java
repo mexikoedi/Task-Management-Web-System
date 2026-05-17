@@ -12,10 +12,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RegisterRequest {
   @NotBlank(message = "Name ist erforderlich")
-  @Size(min = 2, max = 100, message = "Name muss zwischen 2 und 100 Zeichen lang sein")
+  @Size(min = 2, max = 30, message = "Name muss zwischen 2 und 30 Zeichen lang sein")
   private String name;
 
   @NotBlank(message = "E-Mail ist erforderlich")
+  @Size(max = 30, message = "E-Mail darf nicht länger als 30 Zeichen lang sein")
   @ValidEmail
   private String email;
 

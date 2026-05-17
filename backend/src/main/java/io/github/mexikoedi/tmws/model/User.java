@@ -25,11 +25,17 @@ public class User {
   @Column(nullable = false)
   private String password;
 
+  @Column(name = "image")
+  private String image; // URL oder Base64-String
+
   @Column(nullable = false)
   private boolean enabled = false;
 
   @Column(name = "email_verified")
   private boolean emailVerified = false;
+
+  @Column(name ="email_changed")
+  private boolean emailChanged = false;
 
   @Column(name = "created_at", nullable = false, updatable = false)
   private LocalDateTime createdAt;
@@ -81,6 +87,10 @@ public class User {
     this.password = password;
   }
 
+  public String getImage() { return image; }
+
+  public void setImage(String image) { this.image = image; }
+
   public boolean isEnabled() {
     return enabled;
   }
@@ -95,6 +105,14 @@ public class User {
 
   public void setEmailVerified(boolean emailVerified) {
     this.emailVerified = emailVerified;
+  }
+
+  public boolean isEmailChanged() {
+    return emailChanged;
+  }
+
+  public void setEmailChanged(boolean emailChanged) {
+    this.emailChanged = emailChanged;
   }
 
   public LocalDateTime getCreatedAt() {
