@@ -3,16 +3,26 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor, HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {catchError, Observable, throwError} from 'rxjs';
 import { AuthService } from '../../service/auth.service';
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    // Token NICHT anhängen bei Login oder Register
+    if (request.url.includes('/api/auth/login') ||
+      request.url.includes('/api/auth/register')) {
+      return next.handle(request);
+    }
+
     const token = this.authService.getToken();
 
     if (token) {
@@ -23,7 +33,21 @@ export class AuthInterceptor implements HttpInterceptor {
       });
     }
 
-    return next.handle(request);
+    return next.handle(request).pipe(
+      catchError((error: HttpErrorResponse) => {
+
+        // Wenn Token ungültig → Auto‑Logout
+        if (error.status === 401) {
+          this.authService.logout();   // Token löschen
+          this.router.navigate(['/login']); // Weiterleitung
+
+          // Optional: Toast anzeigen
+          alert('Du wurdest abgemeldet, weil du dich in einem anderen Tab angemeldet hast.');
+        }
+
+        return throwError(() => error);
+      })
+    );
   }
 }
 

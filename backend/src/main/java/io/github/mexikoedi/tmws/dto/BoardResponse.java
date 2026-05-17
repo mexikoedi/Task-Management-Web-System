@@ -4,6 +4,7 @@ import java.util.List;
 
 public class BoardResponse {
   private Long id;
+  private UserSummaryResponse owner;
   private String title;
   private String background;
   private List<BoardColumnResponse> columns;
@@ -17,6 +18,10 @@ public class BoardResponse {
   public void setId(Long id) {
     this.id = id;
   }
+
+  public UserSummaryResponse getOwner() { return owner; }
+
+  public void setOwner(UserSummaryResponse owner) { this.owner = owner; }
 
   public String getTitle() {
     return title;

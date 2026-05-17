@@ -50,7 +50,7 @@ Passwort: Admin@123456789
 - [x] Registrierung mit E-Mail-Verifikation
 - [x] Passwort Reset via E-Mail
 - [x] Sichere Passwort-Speicherung (BCrypt)
-- [x] Session-Management (Stateless)
+- [x] Session-Management
 
 ### ✅ Dashboard
 - [x] Kanban-Board mit 3 Spalten (Standard)

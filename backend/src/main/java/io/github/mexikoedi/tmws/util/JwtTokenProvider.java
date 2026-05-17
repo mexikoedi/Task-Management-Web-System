@@ -1,5 +1,7 @@
 package io.github.mexikoedi.tmws.util;
 
+import io.github.mexikoedi.tmws.model.User;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -21,22 +23,22 @@ public class JwtTokenProvider {
     return Keys.hmacShaKeyFor(jwtSecret.getBytes());
   }
 
-  public String generateToken(String email) {
+  public String generateToken(User user) {
     return Jwts.builder()
-        .setSubject(email)
+        .setSubject(user.getEmail())
+        .claim("tokenVersion", user.getTokenVersion())
         .setIssuedAt(new Date())
         .setExpiration(new Date(System.currentTimeMillis() + jwtExpiration))
         .signWith(getSigningKey(), SignatureAlgorithm.HS256)
         .compact();
   }
 
-  public String getEmailFromToken(String token) {
+  public Claims getClaims(String token) {
     return Jwts.parser()
         .verifyWith(getSigningKey())
         .build()
         .parseSignedClaims(token)
-        .getPayload()
-        .getSubject();
+        .getPayload();
   }
 
   public boolean validateToken(String token) {

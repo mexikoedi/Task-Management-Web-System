@@ -34,20 +34,18 @@ public class SecurityConfig {
         .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
         .sessionManagement(
             session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        .authorizeHttpRequests(
-            auth ->
-                auth.requestMatchers("/api/auth/**")
-                    .permitAll()
-                    .requestMatchers("/api/health/**")
-                    .permitAll()
-                    .requestMatchers("/h2-console/**")
-                    .permitAll()
-                    .requestMatchers(HttpMethod.OPTIONS, "/**")
-                    .permitAll()
-                    .requestMatchers("/api/boards/**")
-                    .authenticated()
-                    .anyRequest()
-                    .authenticated())
+          .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/api/auth/login").permitAll()
+            .requestMatchers("/api/auth/register").permitAll()
+            .requestMatchers("/api/auth/verify-email").permitAll()
+            .requestMatchers("/api/auth/password-reset").permitAll()
+            .requestMatchers("/api/auth/reset-password").permitAll()
+            .requestMatchers("/api/health/**").permitAll()
+            .requestMatchers("/h2-console/**").permitAll()
+            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+            .requestMatchers("/ws/**").permitAll()
+            .anyRequest().authenticated()
+          )
         .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
         .formLogin(AbstractHttpConfigurer::disable)
         .httpBasic(AbstractHttpConfigurer::disable);

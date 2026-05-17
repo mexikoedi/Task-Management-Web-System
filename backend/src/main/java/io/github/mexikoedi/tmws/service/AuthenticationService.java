@@ -13,7 +13,11 @@ import io.github.mexikoedi.tmws.util.JwtTokenProvider;
 import io.github.mexikoedi.tmws.util.PasswordValidator;
 import io.github.mexikoedi.tmws.util.TokenGenerator;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,16 +32,18 @@ public class AuthenticationService {
   private final PasswordEncoder passwordEncoder;
   private final JwtTokenProvider jwtTokenProvider;
   private final EmailService emailService;
+  private final SimpMessagingTemplate messagingTemplate;
 
   public AuthenticationService(
-      UserRepository userRepository,
-      BoardRepository boardRepository,
-      TaskRepository taskRepository,
-      VerificationTokenRepository verificationTokenRepository,
-      PasswordResetTokenRepository passwordResetTokenRepository,
-      PasswordEncoder passwordEncoder,
-      JwtTokenProvider jwtTokenProvider,
-      EmailService emailService) {
+    UserRepository userRepository,
+    BoardRepository boardRepository,
+    TaskRepository taskRepository,
+    VerificationTokenRepository verificationTokenRepository,
+    PasswordResetTokenRepository passwordResetTokenRepository,
+    PasswordEncoder passwordEncoder,
+    JwtTokenProvider jwtTokenProvider,
+    EmailService emailService,
+    SimpMessagingTemplate messagingTemplate) {
     this.userRepository = userRepository;
     this.boardRepository = boardRepository;
     this.taskRepository = taskRepository;
@@ -46,6 +52,7 @@ public class AuthenticationService {
     this.passwordEncoder = passwordEncoder;
     this.jwtTokenProvider = jwtTokenProvider;
     this.emailService = emailService;
+    this.messagingTemplate = messagingTemplate;
   }
 
   /** Login mit Email und Passwort */
@@ -67,8 +74,11 @@ public class AuthenticationService {
           "Konto ist nicht aktiviert. Bitte überprüfen Sie Ihre E-Mail.");
     }
 
+    // Token-Version erhöhen → alte Tabs werden ungültig
+    user.setTokenVersion(user.getTokenVersion() + 1);
+    userRepository.save(user);
     System.out.println("User " + request.getEmail() + " logged in successfully");
-    return jwtTokenProvider.generateToken(request.getEmail());
+    return jwtTokenProvider.generateToken(user);
   }
 
   /** Registrierung mit Name, Email und Passwort */
@@ -204,7 +214,7 @@ public class AuthenticationService {
     System.out.println("Password reset for user " + user.getEmail());
   }
 
-  /** Höle einen User anhand der E-Mail */
+  /** Hole einen User anhand der E-Mail */
   public User getUserByEmail(String email) {
     return userRepository
         .findByEmail(email)
@@ -292,8 +302,19 @@ public class AuthenticationService {
       emailService.sendPasswordChangedEmail(newEmail, user.getEmail());
     }
 
-    userRepository.save(user);
-    return user;
+    User saved = userRepository.save(user);
+
+    // Alle Mitglieder inklusive Owner benachrichtigen (damit Profilbild/Name Änderung bei jedem ankommt)
+    for (User u: userRepository.findAll()) {
+      notifyUser(u.getId());
+    }
+
+    // Alle Boards, in denen der User Mitglied ist, updaten
+    List<Board> boards = boardRepository.findAllByMembersContains(saved);
+    for (Board b : boards) {
+      notifyBoard(b.getId());
+    }
+    return saved;
   }
 
   /** Ändere das Passwort des Users */
@@ -325,6 +346,9 @@ public class AuthenticationService {
 
     Long userId = user.getId();
 
+    // Set aller betroffenen User (z.B. Admin, andere Mitglieder)
+    Set<Long> affectedUserIds = new HashSet<>();
+
     // 2. Alle Boards finden, in denen der User Mitglied ist
     List<Board> boards = boardRepository.findAllByMembersContains(user);
 
@@ -342,6 +366,8 @@ public class AuthenticationService {
       if (remainingMembers.isEmpty()) {
         // Keine Mitglieder mehr → Board löschen
         boardRepository.delete(board);
+        // Alle Nutzer informieren, dass Board verschwunden ist
+        notifyBoard(board.getId());
         continue;
       }
 
@@ -354,7 +380,13 @@ public class AuthenticationService {
         emailService.sendNewProjectboardOwnerEmail(newOwner.getEmail(), board.getTitle());
       }
 
+      // Alle verbleibenden Mitglieder merken
+      for (User u : remainingMembers) {
+        affectedUserIds.add(u.getId());
+      }
+
       boardRepository.save(board);
+      notifyBoard(board.getId());
     }
 
     // 3. User aus allen Task‑Assignees entfernen
@@ -363,6 +395,8 @@ public class AuthenticationService {
     for (Task task : tasks) {
       task.getAssignees().remove(user);
       taskRepository.save(task);
+      // Board des Tasks informieren
+      notifyBoard(task.getColumn().getBoard().getId());
     }
 
     // 4. Tokens löschen
@@ -373,7 +407,15 @@ public class AuthenticationService {
     user.setEnabled(false);
     userRepository.save(user);
 
-    // 6. E‑Mail an User selbst
+    // 6. User selbst informieren (Logout)
+    notifyUser(userId);
+
+    // 7. Alle verbleibenden Nutzer informieren
+    for (Long id : affectedUserIds) {
+      notifyUser(id);
+    }
+
+    // 8. E‑Mail an User selbst
     emailService.sendAccountDeactivationEmail(user.getEmail(), user.getEmail());
 
     System.out.println("Deactivated user account and cleaned all relations: " + email);
@@ -397,6 +439,14 @@ public class AuthenticationService {
   }
 
   public String getEmailFromToken(String token) {
-    return jwtTokenProvider.getEmailFromToken(token);
+    return jwtTokenProvider.getClaims(token).getSubject();
+  }
+
+  private void notifyBoard(Long boardId) {
+    messagingTemplate.convertAndSend("/topic/board/" + boardId, "update");
+  }
+
+  private void notifyUser(Long userId) {
+    messagingTemplate.convertAndSend("/topic/user/" + userId, "update");
   }
 }

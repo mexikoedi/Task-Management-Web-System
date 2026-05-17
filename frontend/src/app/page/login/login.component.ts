@@ -8,6 +8,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 import { ChangeDetectorRef } from '@angular/core';
 import {NgIcon} from "@ng-icons/core";
+import {HeartbeatService} from "../../service/heartbeat.service";
 
 @Component({
   selector: 'app-login',
@@ -42,7 +43,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private heartbeat: HeartbeatService,
   ) {}
 
   ngOnInit(): void {
@@ -151,6 +153,7 @@ export class LoginComponent implements OnInit {
            this.registerForm.reset();
            this.fieldErrors = {};
            this.successMessage = null;
+           this.heartbeat.start();
            this.router.navigate(['/dashboard']);
            this.loginForm.enable();
          }, 4000);

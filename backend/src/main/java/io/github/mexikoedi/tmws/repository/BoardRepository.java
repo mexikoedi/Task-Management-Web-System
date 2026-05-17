@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long> {
   List<Board> findAllByMembersContains(User user);
+
+  List<Board> findByOwnerEmailOrMembersEmail(String ownerEmail, String memberEmail);
 }

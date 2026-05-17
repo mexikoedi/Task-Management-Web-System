@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import {UserSummary} from "../model/board.model";
+import {HeartbeatService} from "./heartbeat.service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,10 @@ export class AuthService {
   private currentUserSubject = new BehaviorSubject<UserSummary | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private heartbeat: HeartbeatService
+  ) {}
 
   /**
    * Anmeldung mit Email und Passwort
@@ -25,7 +29,7 @@ export class AuthService {
     return this.http.post(`${this.API_URL}/login`, { email, password }).pipe(
       tap((response: any) => {
         if (response.token) {
-          localStorage.setItem('token', response.token);
+          sessionStorage.setItem('token', response.token);
           this.tokenSubject.next(response.token);
         }
       })
@@ -73,15 +77,16 @@ export class AuthService {
    * Logout
    */
   logout(): void {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     this.tokenSubject.next(null);
+    this.heartbeat.stop();
   }
 
   /**
-   * Hol den Token aus dem Local Storage
+   * Hol den Token aus dem Session Storage
    */
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
   }
 
   /**

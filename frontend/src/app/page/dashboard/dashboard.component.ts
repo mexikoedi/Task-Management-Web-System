@@ -14,6 +14,7 @@ import {
   UserSummary
 } from '../../model/board.model';
 import {NgIcon} from "@ng-icons/core";
+import {WebsocketService} from "../../service/websocket.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -33,6 +34,8 @@ import {NgIcon} from "@ng-icons/core";
 export class DashboardComponent implements OnInit {
   isSaving = false;
   board: BoardModel | null = null;
+  boards: BoardModel[] = [];
+  selectedBoardId: number | null = null;
   profileOpen = false;
   settingsOpen = false;
   taskDetailOpen = false;
@@ -86,24 +89,119 @@ export class DashboardComponent implements OnInit {
     public authService: AuthService,
     private router: Router,
     private boardService: BoardService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private websocket: WebsocketService,
   ) {}
 
   ngOnInit(): void {
+    // User laden
+    this.loadCurrentUser();
+
+    // User-WebSocket
+    this.authService.currentUser$.subscribe(user => {
+      if (!user) return;
+
+      this.websocket.subscribeUser(user.id!, () => {
+        // Profil neu laden
+        this.authService.loadCurrentUser(user.email).subscribe();
+
+        // Boards neu laden (z.B. Einladung)
+        if (this.board?.id) {
+          this.boardService.get(this.board.id).subscribe(board => {
+            this.board = { ...board };
+            this.buildSuggestions();
+            this.cdr.detectChanges();
+          });
+        }
+
+        this.boardService.list().subscribe(boards => {
+          this.boards = boards;
+          this.cdr.detectChanges();
+        });
+      });
+    });
+
+    // Boards initial laden + aktives Board bestimmen
     this.boardService.list().subscribe(boards => {
+      this.boards = boards;
+
+      const email = this.authService.getEmailFromToken();
+      const key = `activeBoardId:${email}`;
+
+      const savedId = localStorage.getItem(key);
+
+      if (savedId) {
+        const savedBoard = boards.find(b => b.id === Number(savedId));
+        if (savedBoard) {
+          this.board = savedBoard;
+          this.selectedBoardId = savedBoard.id!;
+          this.loadBoard();
+          this.cdr.detectChanges();
+          return;
+        }
+      }
+
       if (boards.length > 0) {
         this.board = boards[0];
+        this.selectedBoardId = boards[0].id!;
         this.loadBoard();
+        this.cdr.detectChanges();
       } else {
-        const ownerEmail = this.authService.getEmailFromToken() || 'demo@tmws.local';
+        const ownerEmail = this.authService.getEmailFromToken()!;
         this.boardService.create({ title: 'Neues Projektboard' }, ownerEmail).subscribe(board => {
           this.board = board;
+          this.selectedBoardId = board.id!;
+          localStorage.setItem(key, String(board.id));
           this.loadBoard();
+          this.cdr.detectChanges();
         });
       }
     });
+  }
 
-    this.loadCurrentUser();
+  switchBoard() {
+    if (!this.selectedBoardId || this.selectedBoardId === this.board?.id) {
+      // Gleiches Board → nichts tun
+      this.settingsOpen = false;
+      return;
+    }
+
+    this.isSaving = true;
+
+    this.boardService.get(this.selectedBoardId).subscribe({
+      next: (board) => {
+        this.board = board;
+        const email = this.authService.getEmailFromToken();
+        const key = `activeBoardId:${email}`;
+        localStorage.setItem(key, String(board.id));
+        this.settingsOpen = false;
+        this.isSaving = false;
+        this.buildSuggestions();
+        this.cdr.detectChanges();
+
+        Swal.fire({
+          toast: true,
+          position: 'top-end',
+          icon: 'success',
+          title: 'Projektboard wurde gewechselt.',
+          showConfirmButton: false,
+          timer: 2500,
+          timerProgressBar: true
+        });
+      },
+      error: () => {
+        this.isSaving = false;
+        Swal.fire({
+          toast: true,
+          position: 'top-end',
+          icon: 'error',
+          title: 'Das ausgewählte Projektboard konnte nicht geladen werden.',
+          showConfirmButton: false,
+          timer: 2500,
+          timerProgressBar: true
+        });
+      }
+    });
   }
 
   private loadCurrentUser() {
@@ -139,22 +237,34 @@ export class DashboardComponent implements OnInit {
 
   private loadBoard() {
     const id = this.board?.id;
-    if (id) {
-      // Board existiert → richtig laden
+    if (!id) return;
+
+    // 1. Initiales Laden des Boards
+    this.boardService.get(id).subscribe(board => {
+      this.board = { ...board };
+
+      this.boardService.list().subscribe(allBoards => {
+        this.boards = allBoards;
+        this.selectedBoardId = board.id!;
+      });
+
+      this.buildSuggestions();
+      this.cdr.detectChanges();
+    });
+
+    // 2. Board-Realtime-Updates
+    this.websocket.subscribeBoard(id, () => {
       this.boardService.get(id).subscribe(board => {
-        this.board = board;
+        this.board = { ...board };
+
+        this.boardService.list().subscribe(allBoards => {
+          this.boards = allBoards;
+          this.selectedBoardId = board.id!;
+        });
+
         this.buildSuggestions();
         this.cdr.detectChanges();
       });
-      return;
-    }
-
-    // Board existiert noch nicht → erstellen
-    const ownerEmail = this.authService.getEmailFromToken() || 'demo@tmws.local';
-    this.boardService.create({ title: 'Neues Projektboard' }, ownerEmail).subscribe(board => {
-      this.board = board;
-      this.buildSuggestions();
-      this.cdr.detectChanges();
     });
   }
 
@@ -190,8 +300,10 @@ export class DashboardComponent implements OnInit {
   toggleSettings() {
     this.profileErrors = {};
     this.settingsOpen = !this.settingsOpen;
-    this.bgInput = this.board?.background || '';
-    if (!this.settingsOpen) {
+    if (this.settingsOpen) {
+      this.bgInput = this.board?.background || '';
+      this.editedTitle = this.board?.title || '';
+    } else {
       this.resetPasswordFields();
       this.bgInputError = '';
     }
@@ -214,6 +326,10 @@ export class DashboardComponent implements OnInit {
     }
     this.boardService.update(this.board.id!, { title: newTitle }).subscribe((b) => {
       this.board = b;
+      const index = this.boards.findIndex(x => x.id === b.id);
+      if (index !== -1) {
+        this.boards[index] = b;
+      }
       this.editingTitle = false;
       this.cdr.detectChanges();
     });
@@ -496,7 +612,7 @@ export class DashboardComponent implements OnInit {
       confirmButtonColor: "#dc3545",
       denyButtonColor: "#10b981"
     }).then((result) => {
-      if (result.isDenied) {
+      if (result.isDenied || result.isDismissed) {
         Swal.fire("Account wurde nicht deaktiviert.", "", "info");
         this.isSaving = false;
         return;
@@ -620,7 +736,7 @@ export class DashboardComponent implements OnInit {
       confirmButtonColor: "#dc3545",
       denyButtonColor: "#10b981"
     }).then((result) => {
-      if (result.isDenied) {
+      if (result.isDenied || result.isDismissed) {
         Swal.fire("Statuskategorie wurde nicht gelöscht.", "", "info");
         this.isSaving = false;
         return;
@@ -755,7 +871,7 @@ export class DashboardComponent implements OnInit {
       confirmButtonColor: "#dc3545",
       denyButtonColor: "#10b981"
     }).then((result) => {
-      if (result.isDenied) {
+      if (result.isDenied || result.isDismissed) {
         Swal.fire("Aufgabe wurde nicht gelöscht.", "", "info");
         this.isSaving = false;
         return;

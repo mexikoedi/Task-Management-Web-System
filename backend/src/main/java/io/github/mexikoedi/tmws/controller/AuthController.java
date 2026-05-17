@@ -142,4 +142,9 @@ public class AuthController {
     authenticationService.deactivateAccount(email);
     return ResponseEntity.ok(new MessageResponse("Account erfolgreich deaktiviert", true));
   }
+
+  @GetMapping("/heartbeat")
+  public ResponseEntity<?> heartbeat() {
+    return ResponseEntity.ok().build();
+  }
 }

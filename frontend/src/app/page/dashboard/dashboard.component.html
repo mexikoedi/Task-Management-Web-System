@@ -215,6 +215,32 @@
       </div>
       <div class="form-buttons" style="display:flex;gap:8px">
         <button [disabled]="isSaving" (click)="inviteMember(inviteEmail)" title="Person einladen">Einladen</button>
+      </div>
+
+      <hr style="margin:12px 0" />
+
+      <div class="form-group">
+        <label for="boardSelect">Projektboard auswählen:</label>
+
+        <ng-select style="margin-top:-15px"
+          id="boardSelect"
+          [items]="boards"
+          bindValue="id"
+          bindLabel="title"
+          [(ngModel)]="selectedBoardId"
+          placeholder=""
+          [searchable]="false"
+          [clearable]="false">
+
+          <ng-template ng-option-tmp let-item="item">
+            {{ item.title }} — <small>{{ item.owner?.email }}</small>
+          </ng-template>
+
+        </ng-select>
+      </div>
+
+      <div class="form-buttons" style="display:flex;gap:8px;margin-top:-20px">
+        <button [disabled]="isSaving" (click)="switchBoard()" title="Projektboard wechseln">Speichern</button>
         <button [disabled]="isSaving" (click)="toggleSettings()" title="Schließen">Schließen</button>
       </div>
     </div>
@@ -317,7 +343,7 @@
          </div>
          <div *ngIf="showAddColumn">
            <div class="form-group">
-             <label for="newColTitle">Titel der Kategorie:</label>
+             <label for="newColTitle">Titel:</label>
              <input
                id="newColTitle"
                [(ngModel)]="newColumnTitle"
@@ -431,7 +457,7 @@
 
      </div>
 
-     <div style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap">
+     <div style="display:flex; gap:8px; flex-wrap:wrap;margin-top:-30px">
        <button [disabled]="isSaving" (click)="saveTaskDetails()" title="Aufgabe speichern">Speichern</button>
        <button [disabled]="isSaving" (click)="deleteSelectedTask()" title="Aufgabe löschen" style="background:#dc3545">Löschen</button>
        <button [disabled]="isSaving" (click)="closeTaskDetail()" title="Abbrechen">Abbrechen</button>

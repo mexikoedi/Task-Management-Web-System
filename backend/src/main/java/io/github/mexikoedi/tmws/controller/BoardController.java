@@ -4,10 +4,13 @@ import io.github.mexikoedi.tmws.dto.*;
 import io.github.mexikoedi.tmws.model.Board;
 import io.github.mexikoedi.tmws.model.BoardColumn;
 import io.github.mexikoedi.tmws.model.Task;
+import io.github.mexikoedi.tmws.repository.BoardRepository;
 import io.github.mexikoedi.tmws.service.BoardService;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import tools.jackson.databind.JsonNode;
 
@@ -15,18 +18,24 @@ import tools.jackson.databind.JsonNode;
 @RequestMapping("/api/boards")
 public class BoardController {
   private final BoardService boardService;
+  private final BoardRepository boardRepository;
 
-  public BoardController(BoardService boardService) {
+  public BoardController(BoardService boardService, BoardRepository boardRepository) {
     this.boardService = boardService;
+    this.boardRepository = boardRepository;
   }
 
   @GetMapping
   public ResponseEntity<List<BoardResponse>> listBoards() {
-    List<BoardResponse> boards =
-        boardService.findAll().stream()
-            .map(boardService::mapToResponse)
-            .collect(Collectors.toList());
-    return ResponseEntity.ok(boards);
+    String email = getCurrentUserEmail();
+
+    List<Board> boards = boardRepository.findByOwnerEmailOrMembersEmail(email, email);
+
+    List<BoardResponse> responses = boards.stream()
+      .map(boardService::mapToResponse)
+      .collect(Collectors.toList());
+
+    return ResponseEntity.ok(responses);
   }
 
   @GetMapping("/{id}")
@@ -119,5 +128,10 @@ public class BoardController {
 
     Board updatedBoard = boardService.updateColumn(id, json);
     return ResponseEntity.ok(boardService.mapToResponse(updatedBoard));
+  }
+
+  public String getCurrentUserEmail() {
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    return auth != null ? auth.getName() : null;
   }
 }

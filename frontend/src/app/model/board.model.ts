@@ -33,6 +33,7 @@ export interface ColumnModel {
 
 export interface BoardModel {
   id?: number;
+  owner?: UserSummary;
   title: string;
   background?: string | null;
   columns?: ColumnModel[];

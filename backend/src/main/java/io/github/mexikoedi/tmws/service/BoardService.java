@@ -14,6 +14,9 @@ import io.github.mexikoedi.tmws.repository.UserRepository;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tools.jackson.databind.JsonNode;
@@ -25,18 +28,21 @@ public class BoardService {
   private final TaskRepository taskRepository;
   private final UserRepository userRepository;
   private final EmailService emailService;
+  private final SimpMessagingTemplate messagingTemplate;
 
   public BoardService(
       BoardRepository boardRepository,
       BoardColumnRepository columnRepository,
       TaskRepository taskRepository,
       UserRepository userRepository,
-      EmailService emailService) {
+      EmailService emailService,
+      SimpMessagingTemplate messagingTemplate) {
     this.boardRepository = boardRepository;
     this.columnRepository = columnRepository;
     this.taskRepository = taskRepository;
     this.userRepository = userRepository;
     this.emailService = emailService;
+    this.messagingTemplate = messagingTemplate;
   }
 
   public List<Board> findAll() {
@@ -74,7 +80,20 @@ public class BoardService {
     board.getColumns().add(c2);
     board.getColumns().add(c3);
 
-    return boardRepository.save(board);
+    Board saved = boardRepository.save(board);
+
+    // 1. Board-Update für alle Nutzer, die gerade auf diesem Board sind
+    notifyBoard(saved.getId());
+
+    // 2. User-Update für alle Mitglieder eingeladene Mitglieder bei jedem erscheinen
+    Set<User> members = new HashSet<>(saved.getMembers());
+    members.add(saved.getOwner()); // Owner nicht vergessen
+
+    for (User u : members) {
+      notifyUser(u.getId());
+    }
+
+    return saved;
   }
 
   @Transactional
@@ -94,11 +113,28 @@ public class BoardService {
       throw new EmailAlreadyExistsException("Benutzer ist bereits Mitglied");
     }
 
+    if (user.getId().equals(board.getOwner().getId())) {
+      throw new EmailAlreadyExistsException("Der Besitzer kann nicht eingeladen werden.");
+    }
+
     board.getMembers().add(user);
 
     emailService.sendAccountInvitedEmail(user.getEmail(), board.getTitle());
 
-    return boardRepository.save(board);
+    Board saved = boardRepository.save(board);
+
+    // 1. Board-Update für alle Nutzer, die gerade auf diesem Board sind
+    notifyBoard(saved.getId());
+
+    // 2. User-Update für alle Mitglieder eingeladene Mitglieder bei jedem erscheinen
+    Set<User> members = new HashSet<>(saved.getMembers());
+    members.add(saved.getOwner()); // Owner nicht vergessen
+
+    for (User u : members) {
+      notifyUser(u.getId());
+    }
+
+    return saved;
   }
 
   @Transactional
@@ -110,6 +146,17 @@ public class BoardService {
     column.setPosition(board.getColumns().size());
     BoardColumn saved = columnRepository.save(column);
     board.getColumns().add(saved);
+    // 1. Board-Update für alle Nutzer, die gerade auf diesem Board sind
+    notifyBoard(board.getId());
+
+    // 2. User-Update für alle Mitglieder eingeladene Mitglieder bei jedem erscheinen
+    Set<User> members = new HashSet<>(board.getMembers());
+    members.add(board.getOwner()); // Owner nicht vergessen
+
+    for (User u : members) {
+      notifyUser(u.getId());
+    }
+
     return saved;
   }
 
@@ -121,6 +168,17 @@ public class BoardService {
     Task saved = taskRepository.save(task);
     column.getTasks().add(saved);
     columnRepository.save(column);
+    // 1. Board-Update für alle Nutzer, die gerade auf diesem Board sind
+    notifyBoard(column.getBoard().getId());
+
+    // 2. User-Update für alle Mitglieder eingeladene Mitglieder bei jedem erscheinen
+    Set<User> members = new HashSet<>(column.getBoard().getMembers());
+    members.add(column.getBoard().getOwner()); // Owner nicht vergessen
+
+    for (User u : members) {
+      notifyUser(u.getId());
+    }
+
     return saved;
   }
 
@@ -151,6 +209,17 @@ public class BoardService {
       target.getTasks().get(i).setPosition(i);
     }
 
+    // 1. Board-Update für alle Nutzer, die gerade auf diesem Board sind
+    notifyBoard(target.getBoard().getId());
+
+    // 2. User-Update für alle Mitglieder eingeladene Mitglieder bei jedem erscheinen
+    Set<User> members = new HashSet<>(target.getBoard().getMembers());
+    members.add(target.getBoard().getOwner()); // Owner nicht vergessen
+
+    for (User u : members) {
+      notifyUser(u.getId());
+    }
+
     return saved;
   }
 
@@ -175,7 +244,20 @@ public class BoardService {
       }
     }
 
-    return boardRepository.save(board);
+    Board saved = boardRepository.save(board);
+
+    // 1. Board-Update für alle Nutzer, die gerade auf diesem Board sind
+    notifyBoard(saved.getId());
+
+    // 2. User-Update für alle Mitglieder, damit Dropdown aktualisiert wird
+    Set<User> members = new HashSet<>(saved.getMembers());
+    members.add(saved.getOwner()); // Owner nicht vergessen
+
+    for (User u : members) {
+      notifyUser(u.getId());
+    }
+
+    return saved;
   }
 
   @Transactional
@@ -223,7 +305,19 @@ public class BoardService {
       }
     }
 
-    return taskRepository.save(task);
+    Task saved = taskRepository.save(task);
+    // 1. Board-Update für alle Nutzer, die gerade auf diesem Board sind
+    notifyBoard(saved.getColumn().getBoard().getId());
+
+    // 2. User-Update für alle Mitglieder eingeladene Mitglieder bei jedem erscheinen
+    Set<User> members = new HashSet<>(saved.getColumn().getBoard().getMembers());
+    members.add(saved.getColumn().getBoard().getOwner()); // Owner nicht vergessen
+
+    for (User u : members) {
+      notifyUser(u.getId());
+    }
+
+    return saved;
   }
 
   @Transactional
@@ -235,6 +329,17 @@ public class BoardService {
       columnRepository.save(column);
     }
     taskRepository.deleteById(taskId);
+    assert column != null;
+    // 1. Board-Update für alle Nutzer, die gerade auf diesem Board sind
+    notifyBoard(column.getBoard().getId());
+
+    // 2. User-Update für alle Mitglieder eingeladene Mitglieder bei jedem erscheinen
+    Set<User> members = new HashSet<>(column.getBoard().getMembers());
+    members.add(column.getBoard().getOwner()); // Owner nicht vergessen
+
+    for (User u : members) {
+      notifyUser(u.getId());
+    }
   }
 
   @Transactional(readOnly = true)
@@ -264,9 +369,11 @@ public class BoardService {
                 })
             .collect(Collectors.toList()));
 
-    // Members
+    // Owner + Members zusammenführen
+    Set<User> allMembers = new LinkedHashSet<>(board.getMembers());
+    allMembers.add(board.getOwner());
     response.setMembers(
-        board.getMembers().stream()
+        allMembers.stream()
             .sorted(Comparator.comparingLong(User::getId)) // nach ID aufsteigend
             .map(
                 u ->
@@ -274,6 +381,16 @@ public class BoardService {
                         u.getId(), u.getName(), u.getEmail(), u.isEmailChanged(), u.getImage()))
             .collect(Collectors.toList()) // Liste statt Set, Reihenfolge bleibt
         );
+
+    response.setOwner(
+      new UserSummaryResponse(
+        board.getOwner().getId(),
+        board.getOwner().getName(),
+        board.getOwner().getEmail(),
+        board.getOwner().isEmailChanged(),
+        board.getOwner().getImage()
+      )
+    );
 
     return response;
   }
@@ -290,6 +407,16 @@ public class BoardService {
 
     // Spalte löschen
     columnRepository.delete(column);
+    // 1. Board-Update für alle Nutzer, die gerade auf diesem Board sind
+    notifyBoard(column.getBoard().getId());
+
+    // 2. User-Update für alle Mitglieder eingeladene Mitglieder bei jedem erscheinen
+    Set<User> members = new HashSet<>(column.getBoard().getMembers());
+    members.add(column.getBoard().getOwner()); // Owner nicht vergessen
+
+    for (User u : members) {
+      notifyUser(u.getId());
+    }
   }
 
   @Transactional
@@ -308,6 +435,17 @@ public class BoardService {
       }
     }
 
+    // 1. Board-Update für alle Nutzer, die gerade auf diesem Board sind
+    notifyBoard(boardId);
+
+    // 2. User-Update für alle Mitglieder eingeladene Mitglieder bei jedem erscheinen
+    Set<User> members = new HashSet<>(board.getMembers());
+    members.add(board.getOwner()); // Owner nicht vergessen
+
+    for (User u : members) {
+      notifyUser(u.getId());
+    }
+
     boardRepository.save(board);
   }
 
@@ -321,6 +459,27 @@ public class BoardService {
     }
 
     // Board zurückgeben, damit mapToResponse() funktioniert
-    return col.getBoard();
+    Board saved = col.getBoard();
+
+    // 1. Board-Update für alle Nutzer, die gerade auf diesem Board sind
+    notifyBoard(saved.getId());
+
+    // 2. User-Update für alle Mitglieder eingeladene Mitglieder bei jedem erscheinen
+    Set<User> members = new HashSet<>(saved.getMembers());
+    members.add(saved.getOwner()); // Owner nicht vergessen
+
+    for (User u : members) {
+      notifyUser(u.getId());
+    }
+
+    return saved;
+  }
+
+  private void notifyBoard(Long boardId) {
+    messagingTemplate.convertAndSend("/topic/board/" + boardId, "update");
+  }
+
+  private void notifyUser(Long userId) {
+    messagingTemplate.convertAndSend("/topic/user/" + userId, "update");
   }
 }
