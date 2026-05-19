@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # TMWS Setup Script for Unix-like systems (macOS, Linux)
-# This script initializes the project with Gradle Wrapper and npm dependencies
+# This script initializes the project with Gradle Wrapper and pnpm dependencies
 
 echo ""
 echo "========================================"
@@ -63,7 +63,7 @@ echo "  ./gradlew bootRun"
 echo ""
 echo "Frontend:"
 echo "  cd frontend"
-echo "  npm install"
-echo "  npm start"
+echo "  pnpm install"
+echo "  pnpm start"
 echo ""
 

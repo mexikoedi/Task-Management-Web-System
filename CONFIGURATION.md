@@ -91,21 +91,20 @@ Max Age: 3600 Sekunden
 ### Build-Tool & Framework
 - **Framework**: Angular 21.2.13
 - **Language**: TypeScript 6.0.3
-- **Package Manager**: npm 11.13.0
+- **Package Manager**: pnpm 11.1.3
 - **Node.js**: 26.1.0
 
 ### Wichtige Dateien
 
-| Datei | Zweck |
-|-------|-------|
-| `package.json` | npm Abhängigkeiten & Scripts |
-| `angular.json` | Angular CLI Konfiguration |
+| Datei | Zweck                             |
+|-------|-----------------------------------|
+| `package.json` | pnpm Abhängigkeiten & Scripts     |
+| `angular.json` | Angular CLI Konfiguration         |
 | `tsconfig.json` | TypeScript Konfiguration (Global) |
-| `tsconfig.app.json` | TypeScript Konfiguration (App) |
-| `tsconfig.spec.json` | TypeScript Konfiguration (Tests) |
-| `karma.conf.js` | Karma Test-Runner Konfiguration |
-| `.browserslistrc` | Browser-Kompatibilität |
-| `.npmrc` | npm Konfiguration |
+| `tsconfig.app.json` | TypeScript Konfiguration (App)    |
+| `tsconfig.spec.json` | TypeScript Konfiguration (Tests)  |
+| `karma.conf.js` | Karma Test-Runner Konfiguration   |
+| `.browserslistrc` | Browser-Kompatibilität            |
 
 ### Angular Struktur
 
@@ -128,7 +127,7 @@ src/
 └── assets/           → Statische Assets (Bilder, etc.)
 ```
 
-### npm Scripts
+### pnpm Scripts
 
 | Script | Befehl | Ergebnis |
 |--------|--------|----------|
@@ -186,13 +185,14 @@ Task-Management-Web-System/
 │   ├── gradlew / gradlew.bat
 │   └── gradle/wrapper/
 │
-├── frontend/             # Angular Frontend (npm/ng)
+├── frontend/             # Angular Frontend (pnpm/ng)
 │   ├── src/
 │   │   ├── app/
 │   │   ├── index.html
 │   │   └── assets/
 │   ├── package.json
-│   ├── package-lock.json
+│   ├── pnpm-lock.yaml
+│   ├── pnpm-workspace.yaml
 │   ├── angular.json
 │   └── tsconfig.json
 │
@@ -215,7 +215,7 @@ Node: node_modules/, yarn.lock
 IDE: .idea/, .vscode/, *.iml, *.swp, *~
 Java: *.class, *.war, bin/, out/
 Angular: /dist/, /out-tsc/, /.angular/, /coverage/
-TypeScript: *.tsbuildinfo, npm-debug.log*
+TypeScript: *.tsbuildinfo, pnpm-debug.log*
 ```
 
 ---
@@ -251,8 +251,8 @@ gradlew.bat bootRun  # Windows
 
 ```bash
 cd frontend
-npm install    # First time only
-npm start      # or: ng serve --open
+pnpm install    # First time only
+pnpm start      # or: ng serve --open
 ```
 
 **Expected Output:**
@@ -287,7 +287,7 @@ cd backend
 
 ```bash
 cd frontend
-npm test    # Karma Test-Runner öffnet Chrome Browser
+pnpm test    # Karma Test-Runner öffnet Chrome Browser
 ```
 
 **Test-Datei:** `src/app/app.component.spec.ts`
@@ -362,7 +362,7 @@ java -jar build/libs/backend-0.0.1-SNAPSHOT.jar
 cd frontend
 
 # Production Build
-npm run build -- --configuration production
+pnpm run build -- --configuration production
 
 # Resultat in dist/frontend/
 ```
@@ -374,7 +374,7 @@ npm run build -- --configuration production
 - [ ] Java 26.0.1 installiert? `java -version`
 - [ ] Node.js 26.1.0 installiert? `node --version`
 - [ ] Gradle Wrapper lädt herunter?
-- [ ] npm install zonder errors?
+- [ ] pnpm install zonder errors?
 - [ ] Backend läuft auf :8080?
 - [ ] Frontend läuft auf :4200?
 - [ ] CORS funktioniert (Backend headers)?
@@ -391,4 +391,4 @@ npm run build -- --configuration production
 
 ---
 
-**Letzte Aktualisierung:** 2025-05-17
+**Letzte Aktualisierung:** 2025-05-19

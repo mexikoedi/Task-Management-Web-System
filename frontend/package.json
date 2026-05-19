@@ -2,7 +2,9 @@
   "name": "tmws-frontend",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "ng": "ng",
     "start": "ng serve --open",
     "build": "ng build",
@@ -32,16 +34,29 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^21.2.11",
+    "@angular-eslint/builder": "^21.4.0",
     "@angular/cli": "^21.2.11",
     "@angular/compiler-cli": "^21.2.13",
+    "@eslint/js": "^10.0.1",
     "@types/jasmine": "^6.0.0",
     "@types/sockjs-client": "^1.5.4",
+    "angular-eslint": "^21.4.0",
+    "eslint": "^10.3.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
     "jasmine-core": "^6.2.0",
     "karma": "^6.4.4",
     "karma-chrome-launcher": "^3.2.0",
     "karma-coverage": "^2.2.1",
     "karma-jasmine": "^5.1.0",
     "karma-jasmine-html-reporter": "^2.2.0",
-    "typescript": "^6.0.3"
-  }
+    "prettier": "^3.8.3",
+    "prettier-eslint": "^16.4.2",
+    "stylelint": "^17.11.1",
+    "stylelint-config-standard": "^40.0.0",
+    "tslib": "^2.8.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.2"
+  },
+  "packageManager": "pnpm@11.1.3+sha512.c85357fe17ca12dd23dd7071822666dfd7e3cb76fe214e3370b5ea2fb34f2a231185509b63e717f3cd0acb38dd3f8d82bcd5e8172400ae678b70ea4fbed0896d"
 }

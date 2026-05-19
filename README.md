@@ -69,7 +69,7 @@ Task-Management-Web-System/
 
 - **Java** 26.0.1 oder höher
 - **Node.js** 26.1.0 oder höher
-- **npm** 11.13.0 oder höher
+- **pnpm** 11.1.3 oder höher
 
 ### Backend Setup
 
@@ -110,24 +110,24 @@ Task-Management-Web-System/
 1. **Abhängigkeiten installieren**:
    ```bash
    cd frontend
-   npm install
+   pnpm install
    ```
 
 2. **Entwicklungsserver starten**:
    ```bash
-   npm start
+   pnpm start
    ```
 
    Das Frontend läuft dann auf `http://localhost:4200`
 
 3. **Production Build**:
    ```bash
-   npm run build
+   pnpm run build
    ```
 
 4. **Tests ausführen**:
    ```bash
-   npm test
+   pnpm test
    ```
 
 ## Verfügbare Scripts
@@ -138,12 +138,12 @@ Task-Management-Web-System/
 - `gradlew test` - Unit Tests ausführen
 - `gradlew clean` - Build-Verzeichnis löschen
 
-### Frontend (npm)
-- `npm start` - ng serve --open
-- `npm run build` - ng build
-- `npm test` - ng test
-- `npm run lint` - ng lint
-- `npm run e2e` - ng e2e
+### Frontend (pnpm)
+- `pnpm start` - ng serve --open
+- `pnpm run build` - ng build
+- `pnpm test` - ng test
+- `pnpm run lint` - ng lint
+- `pnpm run e2e` - ng e2e
 
 ## Technische Details
 
@@ -176,4 +176,4 @@ Siehe `.editorconfig` für Editor-Konfiguration.
 
 ---
 
-**Letzte Aktualisierung:** 2025-05-17
+**Letzte Aktualisierung:** 2025-05-19

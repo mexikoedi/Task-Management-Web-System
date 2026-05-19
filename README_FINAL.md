@@ -25,8 +25,8 @@ cd backend
 ### 2. Frontend starten (neues Terminal)
 ```bash
 cd frontend
-npm install
-npm start
+pnpm install
+pnpm start
 ```
 **Läuft auf**: http://localhost:4200
 
@@ -234,7 +234,7 @@ Invoke-WebRequest -Uri "http://localhost:8080/api/auth/me?email=admin%40tmws.loc
 - **TypeScript 6+**
 - **RxJS**
 - **Node.js 26+**
-- **npm 11+**
+- **pnpm 11+**
 
 ### DevOps
 - **Gradle Wrapper**
@@ -295,7 +295,7 @@ Task-Management-Web-System/
 
 ### Problem: "Cannot find module..."
 ```bash
-cd frontend && npm install
+cd frontend && pnpm install
 ```
 
 ### Problem: "Port 8080 already in use"
@@ -314,4 +314,4 @@ Get-Process java | Stop-Process -Force
 
 ---
 
-**Letzte Aktualisierung:** 2025-05-17
+**Letzte Aktualisierung:** 2025-05-19

@@ -1,6 +1,6 @@
 @echo off
 REM TMWS Setup Script for Windows
-REM This script initializes the project with Gradle Wrapper and npm dependencies
+REM This script initializes the project with Gradle Wrapper and pnpm dependencies
 
 setlocal enabledelayedexpansion
 
@@ -68,8 +68,8 @@ echo   .\gradlew.bat bootRun
 echo.
 echo Frontend:
 echo   cd frontend
-echo   npm install
-echo   npm start
+echo   pnpm install
+echo   pnpm start
 echo.
 echo.
 pause

@@ -15,7 +15,7 @@ Stelle sicher, dass du folgende Software installiert hast:
 ```bash
 java -version
 node --version
-npm --version
+pnpm --version
 git --version
 ```
 
@@ -65,10 +65,10 @@ Das Backend läuft dann auf: **http://localhost:8080**
 cd frontend
 
 # Dependencies installieren
-npm install
+pnpm install
 
 # Entwicklungsserver starten (öffnet Browser automatisch)
-npm start
+pnpm start
 ```
 
 Das Frontend läuft dann auf: **http://localhost:4200**
@@ -141,19 +141,19 @@ cd backend
 ./gradlew dependencies   # Dependencies anzeigen
 ```
 
-### Frontend (npm)
+### Frontend (pnpm)
 
 ```bash
 cd frontend
 
 # Development
-npm start                # Dev-Server starten (http://localhost:4200)
-npm run build            # Production Build
-npm test                 # Unit Tests (Chrome, interactive)
+pnpm start                # Dev-Server starten (http://localhost:4200)
+pnpm run build            # Production Build
+pnpm test                 # Unit Tests (Chrome, interactive)
 
 # Production
-npm run build -- --configuration production
-npm run lint             # Code Linting
+pnpm run build -- --configuration production
+pnpm run lint             # Code Linting
 ```
 
 ## Architektur
@@ -205,9 +205,9 @@ Der Frontend kommuniziert mit dem Backend über REST API auf `/api/*` Endpoints.
 - Prüfe JAVA_HOME Environment Variable
 - Versuche: `gradle wrapper --gradle-version 9.5.1`
 
-### npm install fehlgeschlagen
+### pnpm install fehlgeschlagen
 - Lösche `node_modules` und `package-lock.json`
-- Versuche: `npm cache clean --force && npm install`
+- Versuche: `pnpm cache clean --force && pnpm install`
 - Prüfe Netzwerk-Verbindung
 
 ### Port bereits in Verwendung
@@ -249,4 +249,4 @@ lsof -i :4200                          # macOS/Linux
 
 ---
 
-**Letzte Aktualisierung:** 2025-05-17
+**Letzte Aktualisierung:** 2025-05-19

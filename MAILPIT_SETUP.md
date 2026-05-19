@@ -43,4 +43,4 @@ Dort siehst du alle versandten E-Mails (Registrierung, Passwort-Reset, etc.)
 
 ---
 
-**Letzte Aktualisierung:** 2025-05-17
+**Letzte Aktualisierung:** 2025-05-19
