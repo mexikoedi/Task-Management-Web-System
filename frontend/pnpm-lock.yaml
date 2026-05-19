@@ -48,8 +48,8 @@ importers:
         specifier: ^7.3.0
         version: 7.3.0
       ngxsmk-datepicker:
-        specifier: ^2.2.13
-        version: 2.2.13(132499f8458e6ae89e34bace642273e8)
+        specifier: ^2.2.15
+        version: 2.2.15(132499f8458e6ae89e34bace642273e8)
       rxjs:
         specifier: ^7.8.2
         version: 7.8.2
@@ -4300,8 +4300,8 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  ngxsmk-datepicker@2.2.13:
-    resolution: {integrity: sha512-vy/vQ27TxLazLZZA4XXF9QCUYZoSF8W5+odcYeyqkAd7gK7p6zzOGFa9Zmo9Lk4QR8aiNfBIbk3ChcdekD64MA==}
+  ngxsmk-datepicker@2.2.15:
+    resolution: {integrity: sha512-vLHo3BWcy8YREqwPsgBCEBEVAtrFpQmT2oyPmJwwrA0ttKTbRorg1RxvBeBNVx/YUP2vc+6d3TwiVu93jGLGMA==}
     engines: {node: '>=20.19.0 || >=22.12.0', npm: '>=10.0.0'}
     peerDependencies:
       '@angular/cdk': '*'
@@ -10159,7 +10159,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  ngxsmk-datepicker@2.2.13(132499f8458e6ae89e34bace642273e8):
+  ngxsmk-datepicker@2.2.15(132499f8458e6ae89e34bace642273e8):
     dependencies:
       '@angular/common': 21.2.13(@angular/core@21.2.13(@angular/compiler@21.2.13)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
       '@angular/core': 21.2.13(@angular/compiler@21.2.13)(rxjs@7.8.2)(zone.js@0.16.2)
