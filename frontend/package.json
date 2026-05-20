@@ -26,7 +26,7 @@
     "@ng-icons/core": "^33.2.2",
     "@ng-select/ng-select": "^21.8.2",
     "@stomp/stompjs": "^7.3.0",
-    "ngxsmk-datepicker": "^2.2.13",
+    "ngxsmk-datepicker": "^2.2.15",
     "rxjs": "^7.8.2",
     "sockjs-client": "^1.6.1",
     "sweetalert2": "^11.26.24",

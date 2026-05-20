@@ -10,7 +10,7 @@ docker run -d -p 1025:1025 -p 8025:8025 --name mailpit axllent/mailpit
 ```
 
 ### Option 2: Direkter Download
-1. Lade Mailpit herunter von: https://github.com/axllent/mailpit/releases
+1. Lade Mailpit (v1.30.0) herunter von: https://github.com/axllent/mailpit/releases
 2. Entpacke die Datei
 3. Starte Mailpit:
    ```bash
@@ -43,4 +43,4 @@ Dort siehst du alle versandten E-Mails (Registrierung, Passwort-Reset, etc.)
 
 ---
 
-**Letzte Aktualisierung:** 2025-05-19
+**Letzte Aktualisierung:** 2025-05-20

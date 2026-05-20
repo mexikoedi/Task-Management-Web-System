@@ -7,8 +7,8 @@
 Stelle sicher, dass du folgende Software installiert hast:
 
 - **Java 26.0.1** oder höher ([Download](https://adoptium.net/))
-- **Node.js 26.1.0** oder höher ([Download](https://nodejs.org/))
-- **Git** ([Download](https://git-scm.com/))
+- **Node.js 26.2.0** oder höher ([Download](https://nodejs.org/))
+- **Git 2.54.0** ([Download](https://git-scm.com/))
 
 Überprüfe die Installationen:
 
@@ -249,4 +249,4 @@ lsof -i :4200                          # macOS/Linux
 
 ---
 
-**Letzte Aktualisierung:** 2025-05-19
+**Letzte Aktualisierung:** 2025-05-20

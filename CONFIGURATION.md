@@ -92,7 +92,7 @@ Max Age: 3600 Sekunden
 - **Framework**: Angular 21.2.13
 - **Language**: TypeScript 6.0.3
 - **Package Manager**: pnpm 11.1.3
-- **Node.js**: 26.1.0
+- **Node.js**: 26.2.0
 
 ### Wichtige Dateien
 
@@ -372,7 +372,7 @@ pnpm run build -- --configuration production
 ## 🐛 Troubleshooting-Checkliste
 
 - [ ] Java 26.0.1 installiert? `java -version`
-- [ ] Node.js 26.1.0 installiert? `node --version`
+- [ ] Node.js 26.2.0 installiert? `node --version`
 - [ ] Gradle Wrapper lädt herunter?
 - [ ] pnpm install zonder errors?
 - [ ] Backend läuft auf :8080?
@@ -391,4 +391,4 @@ pnpm run build -- --configuration production
 
 ---
 
-**Letzte Aktualisierung:** 2025-05-19
+**Letzte Aktualisierung:** 2025-05-20

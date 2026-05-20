@@ -68,7 +68,7 @@ Task-Management-Web-System/
 ### Voraussetzungen
 
 - **Java** 26.0.1 oder höher
-- **Node.js** 26.1.0 oder höher
+- **Node.js** 26.2.0 oder höher
 - **pnpm** 11.1.3 oder höher
 
 ### Backend Setup
@@ -176,4 +176,4 @@ Siehe `.editorconfig` für Editor-Konfiguration.
 
 ---
 
-**Letzte Aktualisierung:** 2025-05-19
+**Letzte Aktualisierung:** 2025-05-20

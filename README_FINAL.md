@@ -190,8 +190,10 @@ Invoke-WebRequest -Uri "http://localhost:8080/api/auth/me?email=admin%40tmws.loc
    - [ ] Aufgabe erstellen
    - [ ] Aufgabe bearbeiten
    - [ ] Aufgabe verschieben (Drag & Drop)
-   - [ ] Spalte hinzufügen
+   - [ ] Aufgabe löschen
+   - [ ] Spalte erstellen
    - [ ] Spalte bearbeiten
+   - [ ] Spalte verschieben (Drag & Drop)
    - [ ] Spalte löschen
    - [ ] Mitglied einladen
 
@@ -314,4 +316,4 @@ Get-Process java | Stop-Process -Force
 
 ---
 
-**Letzte Aktualisierung:** 2025-05-19
+**Letzte Aktualisierung:** 2025-05-20
