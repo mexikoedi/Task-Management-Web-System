@@ -1,5 +1,7 @@
 package io.github.mexikoedi.tmws.util;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import io.github.mexikoedi.tmws.model.User;
 import io.jsonwebtoken.Claims;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,15 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * Unit tests for JwtTokenProvider.
  *
  * <p>Tests JWT token generation, validation, and claims extraction.
  */
 @SpringBootTest
-@TestPropertySource(properties = {"jwt.secret=mySuperSecretKeyThatIsAtLeast32CharactersLongForHS256", "jwt.expiration=3600000"})
+@TestPropertySource(
+    properties = {
+      "jwt.secret=mySuperSecretKeyThatIsAtLeast32CharactersLongForHS256",
+      "jwt.expiration=3600000"
+    })
 @DisplayName("JwtTokenProvider Tests")
 class JwtTokenProviderTest {
 
@@ -82,4 +86,3 @@ class JwtTokenProviderTest {
     assertFalse(isValid);
   }
 }
-

@@ -33,4 +33,3 @@ class PasswordValidatorTest {
     assertFalse(PasswordValidator.isValid(null));
   }
 }
-
