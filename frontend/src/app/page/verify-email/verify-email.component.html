@@ -1,0 +1,29 @@
+<div class="verification-container">
+  <div class="verification-card">
+    @if (isLoading) {
+      <div class="loading">
+        <p>Verifiziere Ihre E-Mail-Adresse...</p>
+      </div>
+    }
+
+    @if (success && !isLoading) {
+      <div class="success">
+        <ng-icon size="3em" color="green" name="bootstrapCheckLg"></ng-icon>
+        <h2>E-Mail verifiziert!</h2>
+        <p>E-Mail-Adresse erfolgreich verifiziert.</p>
+        <p>Sie werden zur Anmeldung weitergeleitet...</p>
+      </div>
+    }
+
+    @if (error && !isLoading) {
+      <div class="error">
+        <ng-icon size="3em" color="red" name="bootstrapX"></ng-icon>
+        <h2>Verifikation fehlgeschlagen</h2>
+        <p>{{ error }}</p>
+        <button (click)="router.navigate(['/login'])">
+          Zurück zur Anmeldung
+        </button>
+      </div>
+    }
+  </div>
+</div>

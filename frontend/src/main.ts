@@ -11,7 +11,8 @@ import {
   bootstrapEyeSlash, bootstrapGear,
   bootstrapInfoCircle, bootstrapPencil,
   bootstrapPlusSquare, bootstrapSearch,
-  bootstrapTrash3
+  bootstrapTrash3, bootstrapCheckLg,
+  bootstrapX
 } from "@ng-icons/bootstrap-icons";
 
 bootstrapApplication(AppComponent, {
@@ -28,7 +29,9 @@ bootstrapApplication(AppComponent, {
       bootstrapSearch,
       bootstrapEye,
       bootstrapEyeSlash,
-      bootstrapInfoCircle
-    })
-  ]
+      bootstrapInfoCircle,
+      bootstrapCheckLg,
+      bootstrapX,
+    }),
+  ],
 }).catch(err => console.error(err));

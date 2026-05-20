@@ -12,13 +12,13 @@
 
     <!-- Success Message -->
     <div *ngIf="successMessage" class="success-message">
-      <span class="icon">✓</span>
+      <span class="icon"><ng-icon size="1.5em" name="bootstrapCheckLg"></ng-icon></span>
       {{ successMessage }}
     </div>
 
     <!-- Error Message -->
     <div *ngIf="errorMessage" class="error-message">
-      <span class="icon">✕</span>
+      <span class="icon"><ng-icon size="1.5em" name="bootstrapX"></ng-icon></span>
       {{ errorMessage }}
     </div>
 
@@ -197,7 +197,16 @@
         </div>
         <div class="password-requirements">
           <small *ngFor="let req of getPasswordRequirements()" [class.met]="req.met">
-            {{ req.met ? '✓' : '✗' }} {{ req.text }}
+            <ng-container *ngIf="req.met; else hideReq">
+              <ng-icon color="black" size="1.125em" name="bootstrapCheckLg"></ng-icon>
+            </ng-container>
+            <ng-template #hideReq>
+              <ng-icon
+                color="black"
+                size="1.125em"
+                name="bootstrapX"></ng-icon>
+            </ng-template>
+            {{ req.text }}
           </small>
         </div>
       </div>

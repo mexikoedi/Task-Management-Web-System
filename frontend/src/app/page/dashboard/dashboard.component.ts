@@ -1,20 +1,28 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import { NgOptionTemplateDirective, NgSelectComponent } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
+import {
+  NgOptionTemplateDirective,
+  NgSelectComponent,
+} from '@ng-select/ng-select';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 import { BoardService } from '../../service/board.service';
-import {DateInput, NgxsmkDatepickerComponent} from 'ngxsmk-datepicker';
+import { DateInput, NgxsmkDatepickerComponent } from 'ngxsmk-datepicker';
 import Swal from 'sweetalert2';
 import {
   BoardModel,
   ColumnModel,
   TaskModel,
-  UserSummary
+  UserSummary,
 } from '../../model/board.model';
-import {NgIcon} from "@ng-icons/core";
-import {WebsocketService} from "../../service/websocket.service";
+import { NgIcon } from '@ng-icons/core';
+import { WebsocketService } from '../../service/websocket.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,7 +33,7 @@ import {WebsocketService} from "../../service/websocket.service";
     NgxsmkDatepickerComponent,
     NgIcon,
     NgOptionTemplateDirective,
-    NgSelectComponent
+    NgSelectComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
@@ -53,7 +61,11 @@ export class DashboardComponent implements OnInit {
   currentMonth: number = new Date().getMonth() + 1;
   currentDay: number = new Date().getDate();
   today: DateInput = new Date();
-  comingYear: DateInput = new Date(this.currentYear + 1, this.currentMonth - 1, this.currentDay);
+  comingYear: DateInput = new Date(
+    this.currentYear + 1,
+    this.currentMonth - 1,
+    this.currentDay
+  );
 
   // Profile update
   profileEditMode = false;
@@ -74,7 +86,7 @@ export class DashboardComponent implements OnInit {
   draggedColumnIndex: number | null = null;
   editingColumnId: number | null = null;
   editedColumnTitle: string = '';
-  columnErrors: any = {};
+  columnErrors: Record<string, string> = {};
 
   // Create task
   creatingTaskColumnId: number | null = null;
@@ -90,7 +102,7 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private boardService: BoardService,
     private cdr: ChangeDetectorRef,
-    private websocket: WebsocketService,
+    private websocket: WebsocketService
   ) {}
 
   ngOnInit(): void {
@@ -148,13 +160,15 @@ export class DashboardComponent implements OnInit {
         this.cdr.detectChanges();
       } else {
         const ownerEmail = this.authService.getEmailFromToken()!;
-        this.boardService.create({ title: 'Neues Projektboard' }, ownerEmail).subscribe(board => {
-          this.board = board;
-          this.selectedBoardId = board.id!;
-          localStorage.setItem(key, String(board.id));
-          this.loadBoard();
-          this.cdr.detectChanges();
-        });
+        this.boardService
+          .create({ title: 'Neues Projektboard' }, ownerEmail)
+          .subscribe(board => {
+            this.board = board;
+            this.selectedBoardId = board.id!;
+            localStorage.setItem(key, String(board.id));
+            this.loadBoard();
+            this.cdr.detectChanges();
+          });
       }
     });
   }
@@ -169,7 +183,7 @@ export class DashboardComponent implements OnInit {
     this.isSaving = true;
 
     this.boardService.get(this.selectedBoardId).subscribe({
-      next: (board) => {
+      next: board => {
         this.board = board;
         const email = this.authService.getEmailFromToken();
         const key = `activeBoardId:${email}`;
@@ -186,7 +200,7 @@ export class DashboardComponent implements OnInit {
           title: 'Projektboard wurde gewechselt.',
           showConfirmButton: false,
           timer: 2500,
-          timerProgressBar: true
+          timerProgressBar: true,
         });
       },
       error: () => {
@@ -198,9 +212,9 @@ export class DashboardComponent implements OnInit {
           title: 'Das ausgewählte Projektboard konnte nicht geladen werden.',
           showConfirmButton: false,
           timer: 2500,
-          timerProgressBar: true
+          timerProgressBar: true,
         });
-      }
+      },
     });
   }
 
@@ -211,7 +225,7 @@ export class DashboardComponent implements OnInit {
     this.authService.loadCurrentUser(email).subscribe(); // ruft HTTP ab & updated BehaviorSubject
 
     // 2. Subscription, um alle Änderungen live zu übernehmen
-    this.authService.currentUser$.subscribe((user) => {
+    this.authService.currentUser$.subscribe(user => {
       if (user) {
         this.profileName = user.name || '';
         this.profileEmail = user.email || email;
@@ -324,15 +338,17 @@ export class DashboardComponent implements OnInit {
       this.cdr.detectChanges();
       return;
     }
-    this.boardService.update(this.board.id!, { title: newTitle }).subscribe((b) => {
-      this.board = b;
-      const index = this.boards.findIndex(x => x.id === b.id);
-      if (index !== -1) {
-        this.boards[index] = b;
-      }
-      this.editingTitle = false;
-      this.cdr.detectChanges();
-    });
+    this.boardService
+      .update(this.board.id!, { title: newTitle })
+      .subscribe(b => {
+        this.board = b;
+        const index = this.boards.findIndex(x => x.id === b.id);
+        if (index !== -1) {
+          this.boards[index] = b;
+        }
+        this.editingTitle = false;
+        this.cdr.detectChanges();
+      });
   }
 
   startEditColumn(col: ColumnModel) {
@@ -357,11 +373,15 @@ export class DashboardComponent implements OnInit {
     }
 
     // Titel muss eindeutig sein
-    const exists = this.board!.columns!
-      .some(c => c.id !== col.id && c.title.trim().toLowerCase() === newTitle.toLowerCase());
+    const exists = this.board!.columns!.some(
+      c =>
+        c.id !== col.id &&
+        c.title.trim().toLowerCase() === newTitle.toLowerCase()
+    );
 
     if (exists) {
-      this.columnErrors['title'] = 'Es gibt schon eine Statuskategorie mit diesem Namen.';
+      this.columnErrors['title'] =
+        'Es gibt schon eine Statuskategorie mit diesem Namen.';
 
       return;
     }
@@ -393,35 +413,38 @@ export class DashboardComponent implements OnInit {
 
     const imageValid = await this.validateImageUrl(bg);
     if (!imageValid) {
-      this.profileErrors['backgroundImage'] = 'Dieses Hintergrundbild existiert nicht.';
+      this.profileErrors['backgroundImage'] =
+        'Dieses Hintergrundbild existiert nicht.';
       this.cdr.detectChanges();
       return;
     }
 
     this.isSaving = true;
-    this.boardService.update(this.board.id!, { background: newBackground }).subscribe({
-      next: (b) => {
-        this.board = b;
-        this.bgInput = '';
-        this.settingsOpen = false;
-        this.isSaving = false;
-        Swal.fire({
-          toast: true,
-          position: 'top-end',
-          icon: 'success',
-          title: 'Hintergrund wurde erfolgreich geändert.',
-          showConfirmButton: false,
-          timer: 2500,
-          timerProgressBar: true
-        });
-        this.cdr.detectChanges();
-      },
-      error: () => {
-        this.isSaving = false;
-        this.bgInputError = 'Fehler beim Speichern der Hintergrund-URL.';
-        this.cdr.detectChanges();
-      }
-    });
+    this.boardService
+      .update(this.board.id!, { background: newBackground })
+      .subscribe({
+        next: b => {
+          this.board = b;
+          this.bgInput = '';
+          this.settingsOpen = false;
+          this.isSaving = false;
+          Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: 'Hintergrund wurde erfolgreich geändert.',
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+          });
+          this.cdr.detectChanges();
+        },
+        error: () => {
+          this.isSaving = false;
+          this.bgInputError = 'Fehler beim Speichern der Hintergrund-URL.';
+          this.cdr.detectChanges();
+        },
+      });
   }
 
   inviteMember(emailInput: HTMLInputElement) {
@@ -436,7 +459,8 @@ export class DashboardComponent implements OnInit {
     }
 
     if (email && !this.validateEmail(email)) {
-      this.profileErrors['email'] = 'Bitte geben Sie eine gültige E-Mail-Adresse ein';
+      this.profileErrors['email'] =
+        'Bitte geben Sie eine gültige E-Mail-Adresse ein';
       this.cdr.detectChanges();
       return;
     }
@@ -454,12 +478,12 @@ export class DashboardComponent implements OnInit {
           title: 'Nutzer ' + email + ' wurde erfolgreich eingeladen.',
           showConfirmButton: false,
           timer: 2500,
-          timerProgressBar: true
+          timerProgressBar: true,
         });
         this.settingsOpen = false;
         this.cdr.detectChanges();
       },
-      error: (err) => {
+      error: err => {
         this.isSaving = false;
         this.profileErrors = {};
 
@@ -477,7 +501,7 @@ export class DashboardComponent implements OnInit {
 
         this.profileErrors['general'] = 'Fehler beim Einladen des Benutzers.';
         this.cdr.detectChanges();
-      }
+      },
     });
   }
 
@@ -510,30 +534,45 @@ export class DashboardComponent implements OnInit {
     const currentPwd = (this.profilePasswordCurrent || '').trim();
     const newPwd = (this.profilePasswordNew || '').trim();
     const confirmPwd = (this.profilePasswordConfirm || '').trim();
-    const image = (this.profileImageTemp || '').trim() || "";
+    const image = (this.profileImageTemp || '').trim() || '';
 
     // Pflichtfelder prüfen
-    if (!name || name.length < 2) this.profileErrors['name'] = 'Name ist erforderlich und muss mindestens 2 Zeichen lang sein ';
+    if (!name || name.length < 2)
+      this.profileErrors['name'] =
+        'Name ist erforderlich und muss mindestens 2 Zeichen lang sein ';
     if (!newEmail) this.profileErrors['email'] = 'E-Mail ist erforderlich';
 
     // E-Mail Format
     if (newEmail && !this.validateEmail(newEmail)) {
-      this.profileErrors['email'] = 'Bitte geben Sie eine gültige E-Mail-Adresse ein';
+      this.profileErrors['email'] =
+        'Bitte geben Sie eine gültige E-Mail-Adresse ein';
     }
 
     // Passwortvalidierung
     if (currentPwd || newPwd || confirmPwd) {
-      if (!currentPwd) this.profileErrors['currentPassword'] = 'Aktuelles Passwort erforderlich';
-      if (!newPwd) this.profileErrors['newPassword'] = 'Neues Passwort erforderlich';
-      if (!confirmPwd) this.profileErrors['newPasswordConfirm'] = 'Bestätigung erforderlich';
+      if (!currentPwd)
+        this.profileErrors['currentPassword'] =
+          'Aktuelles Passwort erforderlich';
+      if (!newPwd)
+        this.profileErrors['newPassword'] = 'Neues Passwort erforderlich';
+      if (!confirmPwd)
+        this.profileErrors['newPasswordConfirm'] = 'Bestätigung erforderlich';
       if (newPwd && !this.validatePasswordStrength(newPwd)) {
-        this.profileErrors['newPassword'] = 'Passwort erfüllt nicht alle Anforderungen';
+        this.profileErrors['newPassword'] =
+          'Passwort erfüllt nicht alle Anforderungen';
       }
-      if (newPwd && confirmPwd && newPwd !== confirmPwd && !this.validatePasswordMatch(newPwd, confirmPwd))
-        this.profileErrors['newPasswordConfirm'] = 'Passwörter stimmen nicht überein';
+      if (
+        newPwd &&
+        confirmPwd &&
+        newPwd !== confirmPwd &&
+        !this.validatePasswordMatch(newPwd, confirmPwd)
+      )
+        this.profileErrors['newPasswordConfirm'] =
+          'Passwörter stimmen nicht überein';
 
       if (currentPwd == newPwd)
-        this.profileErrors['newPassword'] = 'Neues Passwort muss sich vom aktuellen Passwort unterscheiden';
+        this.profileErrors['newPassword'] =
+          'Neues Passwort muss sich vom aktuellen Passwort unterscheiden';
     }
 
     if (Object.keys(this.profileErrors).length > 0) return;
@@ -549,7 +588,7 @@ export class DashboardComponent implements OnInit {
     this.authService
       .updateProfile(name, newEmail, image, currentPwd, newPwd, confirmPwd)
       .subscribe({
-        next:(updatedUser: UserSummary) => {
+        next: (updatedUser: UserSummary) => {
           // BehaviorSubject wurde schon in AuthService aktualisiert
           this.profileEditMode = false;
           this.profilePasswordCurrent = '';
@@ -570,10 +609,11 @@ export class DashboardComponent implements OnInit {
               toast: true,
               position: 'top-end',
               icon: 'success',
-              title: 'Profil erfolgreich aktualisiert. Da E-Mail oder Passwort geändert wurde, bitte  E-Mail prüfen und erneut einloggen.',
+              title:
+                'Profil erfolgreich aktualisiert. Da E-Mail oder Passwort geändert wurde, bitte  E-Mail prüfen und erneut einloggen.',
               showConfirmButton: false,
               timer: 5000,
-              timerProgressBar: true
+              timerProgressBar: true,
             });
             this.isSaving = false;
             this.logout();
@@ -585,18 +625,18 @@ export class DashboardComponent implements OnInit {
               title: 'Profil wurde erfolgreich aktualisiert.',
               showConfirmButton: false,
               timer: 2500,
-              timerProgressBar: true
+              timerProgressBar: true,
             });
             this.isSaving = false;
             this.closeProfilePopup();
             this.cdr.detectChanges();
           }
         },
-          error: (err) => {
+        error: err => {
           this.isSaving = false;
           this.handleError(err);
           this.cdr.detectChanges();
-        }
+        },
       });
   }
 
@@ -605,15 +645,15 @@ export class DashboardComponent implements OnInit {
     if (!email) return;
     this.isSaving = true;
     Swal.fire({
-      title: "Möchten Sie Ihren Account wirklich deaktivieren?",
+      title: 'Möchten Sie Ihren Account wirklich deaktivieren?',
       showDenyButton: true,
-      confirmButtonText: "Ja.",
+      confirmButtonText: 'Ja.',
       denyButtonText: `Nein.`,
-      confirmButtonColor: "#dc3545",
-      denyButtonColor: "#10b981"
-    }).then((result) => {
+      confirmButtonColor: '#dc3545',
+      denyButtonColor: '#10b981',
+    }).then(result => {
       if (result.isDenied || result.isDismissed) {
-        Swal.fire("Account wurde nicht deaktiviert.", "", "info");
+        Swal.fire('Account wurde nicht deaktiviert.', '', 'info');
         this.isSaving = false;
         return;
       }
@@ -626,7 +666,7 @@ export class DashboardComponent implements OnInit {
           title: 'Account wurde erfolgreich deaktiviert.',
           showConfirmButton: false,
           timer: 2500,
-          timerProgressBar: true
+          timerProgressBar: true,
         });
         this.isSaving = false;
         this.authService.logout();
@@ -655,7 +695,7 @@ export class DashboardComponent implements OnInit {
     return 'U';
   }
 
-  getUserInitials(user: any): string {
+  getUserInitials(user: UserSummary): string {
     const source = user.name || user.email || '';
     if (!source) return 'U';
 
@@ -667,7 +707,6 @@ export class DashboardComponent implements OnInit {
     // fallback: email prefix
     return source.substring(0, 2).toUpperCase();
   }
-
 
   /* Task management */
   startCreateTask(columnId?: number) {
@@ -695,23 +734,26 @@ export class DashboardComponent implements OnInit {
       this.taskErrors['title'] = 'Titel ist erforderlich';
     }
 
-    const exists = this.board.columns!
-      .flatMap(c => c.tasks || [])
+    const exists = this.board
+      .columns!.flatMap(c => c.tasks || [])
       .some(t => t.title.trim().toLowerCase() === title.toLowerCase());
 
     if (exists) {
-      this.taskErrors['title'] = 'Es existiert bereits eine Aufgabe mit diesem Titel.';
+      this.taskErrors['title'] =
+        'Es existiert bereits eine Aufgabe mit diesem Titel.';
     }
 
     if (Object.keys(this.taskErrors).length > 0) return;
 
-    const col = this.board.columns!.find((c) => c.id === this.creatingTaskColumnId);
+    const col = this.board.columns!.find(
+      c => c.id === this.creatingTaskColumnId
+    );
     if (!col) return;
     const payload: Partial<TaskModel> = {
-      title
+      title,
     };
     this.boardService.addTask(this.creatingTaskColumnId!, payload).subscribe(
-      (task) => {
+      task => {
         col.tasks = col.tasks || [];
         col.tasks.push(task);
         this.creatingTask = { title: '' };
@@ -719,7 +761,7 @@ export class DashboardComponent implements OnInit {
         this.taskErrors = {};
         this.cdr.detectChanges();
       },
-      (err) => {
+      err => {
         this.taskErrors['general'] = 'Fehler beim Erstellen der Aufgabe.';
         this.cdr.detectChanges();
       }
@@ -729,15 +771,16 @@ export class DashboardComponent implements OnInit {
   confirmDeleteColumn(col: ColumnModel) {
     this.isSaving = true;
     Swal.fire({
-      title: "Möchtest du diese Statuskategorie wirklich löschen? Alle Aufgaben darin werden ebenfalls gelöscht.",
+      title:
+        'Möchtest du diese Statuskategorie wirklich löschen? Alle Aufgaben darin werden ebenfalls gelöscht.',
       showDenyButton: true,
-      confirmButtonText: "Ja.",
+      confirmButtonText: 'Ja.',
       denyButtonText: `Nein.`,
-      confirmButtonColor: "#dc3545",
-      denyButtonColor: "#10b981"
-    }).then((result) => {
+      confirmButtonColor: '#dc3545',
+      denyButtonColor: '#10b981',
+    }).then(result => {
       if (result.isDenied || result.isDismissed) {
-        Swal.fire("Statuskategorie wurde nicht gelöscht.", "", "info");
+        Swal.fire('Statuskategorie wurde nicht gelöscht.', '', 'info');
         this.isSaving = false;
         return;
       }
@@ -757,7 +800,7 @@ export class DashboardComponent implements OnInit {
           title: 'Statuskategorie wurde erfolgreich gelöscht.',
           showConfirmButton: false,
           timer: 2500,
-          timerProgressBar: true
+          timerProgressBar: true,
         });
         this.isSaving = false;
         this.cdr.detectChanges();
@@ -770,7 +813,7 @@ export class DashboardComponent implements OnInit {
           title: 'Fehler beim Löschen der Statuskategorie.',
           showConfirmButton: false,
           timer: 2500,
-          timerProgressBar: true
+          timerProgressBar: true,
         });
         this.isSaving = false;
       }
@@ -791,7 +834,7 @@ export class DashboardComponent implements OnInit {
     }
 
     // delete search suggestions and searchQuery of search bar after opening task details
-    this.clearSearch()
+    this.clearSearch();
   }
 
   closeTaskDetail() {
@@ -812,12 +855,13 @@ export class DashboardComponent implements OnInit {
     if (Object.keys(this.taskErrors).length > 0) return;
 
     if (this.selectedAssigneeId) {
-      const user = this.board?.members?.find(m => m.id === this.selectedAssigneeId);
-      if (user) {
-          const user = this.board?.members?.find(m => m.id === this.selectedAssigneeId);
-          this.selectedTask.assignees = user ? [user] : [];
+      const selectedMember = this.board?.members?.find(
+        m => m.id === this.selectedAssigneeId
+      );
+      if (selectedMember) {
+        this.selectedTask.assignees = [selectedMember];
       }
-    }  else {
+    } else {
       this.selectedTask.assignees = [];
     }
 
@@ -830,7 +874,7 @@ export class DashboardComponent implements OnInit {
       deadline: this.selectedTask.deadline,
       labels: this.selectedTask.labels,
       attachments: this.selectedTask.attachments,
-      assigneeIds
+      assigneeIds,
     };
 
     this.isSaving = true;
@@ -845,12 +889,12 @@ export class DashboardComponent implements OnInit {
           title: 'Aufgabe wurde erfolgreich aktualisiert.',
           showConfirmButton: false,
           timer: 2500,
-          timerProgressBar: true
+          timerProgressBar: true,
         });
         this.isSaving = false;
         this.cdr.detectChanges();
       },
-      (err) => {
+      err => {
         this.taskErrors['general'] = 'Fehler beim Aktualisieren der Aufgabe.';
         this.isSaving = false;
         this.cdr.detectChanges();
@@ -864,15 +908,15 @@ export class DashboardComponent implements OnInit {
     const taskId = this.selectedTask.id;
     this.isSaving = true;
     Swal.fire({
-      title: "Möchten Sie diese Aufgabe wirklich löschen?",
+      title: 'Möchten Sie diese Aufgabe wirklich löschen?',
       showDenyButton: true,
-      confirmButtonText: "Ja.",
+      confirmButtonText: 'Ja.',
       denyButtonText: `Nein.`,
-      confirmButtonColor: "#dc3545",
-      denyButtonColor: "#10b981"
-    }).then((result) => {
+      confirmButtonColor: '#dc3545',
+      denyButtonColor: '#10b981',
+    }).then(result => {
       if (result.isDenied || result.isDismissed) {
-        Swal.fire("Aufgabe wurde nicht gelöscht.", "", "info");
+        Swal.fire('Aufgabe wurde nicht gelöscht.', '', 'info');
         this.isSaving = false;
         return;
       }
@@ -888,11 +932,11 @@ export class DashboardComponent implements OnInit {
             title: 'Aufgabe wurde erfolgreich gelöscht.',
             showConfirmButton: false,
             timer: 2500,
-            timerProgressBar: true
+            timerProgressBar: true,
           });
           this.isSaving = false;
         },
-        (err) => {
+        err => {
           Swal.fire({
             toast: true,
             position: 'top-end',
@@ -900,7 +944,7 @@ export class DashboardComponent implements OnInit {
             title: 'Fehler beim Löschen der Aufgabe.',
             showConfirmButton: false,
             timer: 2500,
-            timerProgressBar: true
+            timerProgressBar: true,
           });
           this.isSaving = false;
         }
@@ -919,11 +963,13 @@ export class DashboardComponent implements OnInit {
       return;
     }
 
-    const exists = this.board.columns!
-      .some(c => c.title.trim().toLowerCase() === title.toLowerCase());
+    const exists = this.board.columns!.some(
+      c => c.title.trim().toLowerCase() === title.toLowerCase()
+    );
 
     if (exists) {
-      this.newColumnError = 'Es gibt schon eine Statuskategorie mit diesem Namen.';
+      this.newColumnError =
+        'Es gibt schon eine Statuskategorie mit diesem Namen.';
 
       return;
     }
@@ -934,8 +980,9 @@ export class DashboardComponent implements OnInit {
         col.tasks = col.tasks || [];
 
         // Column hinzufügen + sortieren
-        this.board!.columns = [...(this.board!.columns || []), col]
-          .sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
+        this.board!.columns = [...(this.board!.columns || []), col].sort(
+          (a, b) => (a.position ?? 0) - (b.position ?? 0)
+        );
 
         // UI zurücksetzen
         this.newColumnTitle = '';
@@ -945,7 +992,7 @@ export class DashboardComponent implements OnInit {
         // Change Detection
         this.cdr.markForCheck();
       },
-      (err) => {
+      err => {
         this.newColumnError = 'Fehler beim Erstellen der Statuskategorie.';
         this.cdr.detectChanges();
       }
@@ -974,15 +1021,15 @@ export class DashboardComponent implements OnInit {
     const id = Number(event.dataTransfer?.getData('task'));
     if (!id || !targetColumnId) return;
     this.isTaskDrag = false;
-    const targetCol = this.board!.columns!.find((c) => c.id === targetColumnId)!;
-    const pos = (targetCol.tasks?.length ?? 0);
+    const targetCol = this.board!.columns!.find(c => c.id === targetColumnId)!;
+    const pos = targetCol.tasks?.length ?? 0;
     this.isSaving = true;
     this.boardService.moveTask(id, targetColumnId, pos).subscribe(
       () => {
         this.loadBoard();
         this.isSaving = false;
       },
-      (err) => {
+      err => {
         Swal.fire({
           toast: true,
           position: 'top-end',
@@ -990,7 +1037,7 @@ export class DashboardComponent implements OnInit {
           title: 'Fehler beim Verschieben der Aufgabe.',
           showConfirmButton: false,
           timer: 2500,
-          timerProgressBar: true
+          timerProgressBar: true,
         });
         this.isSaving = false;
       }
@@ -999,7 +1046,7 @@ export class DashboardComponent implements OnInit {
 
   onColumnDragStart(event: DragEvent, index: number) {
     if (this.isSaving) return;
-    if (!event.dataTransfer || !index) return;
+    if (!event.dataTransfer || index < 0) return;
     this.isTaskDrag = false;
     this.draggedColumnIndex = index;
     event.dataTransfer?.setData('column', String(index));
@@ -1023,7 +1070,7 @@ export class DashboardComponent implements OnInit {
     cols.splice(targetIndex, 0, moved);
 
     // neue Positionen setzen
-    cols.forEach((c, i) => c.position = i);
+    cols.forEach((c, i) => (c.position = i));
 
     this.board!.columns = cols;
 
@@ -1036,7 +1083,7 @@ export class DashboardComponent implements OnInit {
   saveColumnOrder(columns: ColumnModel[]) {
     const payload = columns.map(c => ({
       id: c.id,
-      position: c.position
+      position: c.position,
     }));
 
     this.isSaving = true;
@@ -1053,7 +1100,7 @@ export class DashboardComponent implements OnInit {
           title: 'Fehler beim Verschieben der Statuskategorie.',
           showConfirmButton: false,
           timer: 2500,
-          timerProgressBar: true
+          timerProgressBar: true,
         });
         this.isSaving = false;
       }
@@ -1079,7 +1126,7 @@ export class DashboardComponent implements OnInit {
   }
 
   private validateImageUrl(url: string): Promise<boolean> {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       if (!url) return resolve(true);
 
       const img = new Image();
@@ -1110,61 +1157,69 @@ export class DashboardComponent implements OnInit {
    * Validiere Passwort-Stärke
    */
   private validatePasswordStrength(password: string): boolean {
-    return /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]).{8,}$/.test(password);
+    return /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]).{8,}$/.test(
+      password
+    );
   }
-    /**
-     * Validiere E-Mail-Format
-     */
-    private validateEmail(email: string): boolean {
-      const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-      return pattern.test(email);
+  /**
+   * Validiere E-Mail-Format
+   */
+  private validateEmail(email: string): boolean {
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    return pattern.test(email);
+  }
+
+  /**
+   * Validiere Passwort-Übereinstimmung
+   */
+  private validatePasswordMatch(pwd: string, confirm: string): boolean {
+    return pwd === confirm;
+  }
+
+  /**
+   * Prüfe einzelne Passwort-Anforderungen
+   */
+  getPasswordRequirements(): Array<{ text: string; met: boolean }> {
+    const pwd = this.profilePasswordNew || '';
+    return [
+      { text: 'Mindestens 8 Zeichen', met: pwd.length >= 8 },
+      {
+        text: 'Groß- und Kleinbuchstaben',
+        met: /(?=.*[A-Z])(?=.*[a-z])/.test(pwd),
+      },
+      { text: 'Mindestens eine Ziffer (0-9)', met: /\d/.test(pwd) },
+      {
+        text: 'Mindestens ein Sonderzeichen (!@#$%^&*)',
+        met: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]/.test(pwd),
+      },
+    ];
+  }
+
+  /**
+   * Fehlerbehandlung
+   */
+  private handleError(error: { status?: number }): void {
+    this.profileErrors = {};
+
+    // 400 → falsches aktuelles Passwort
+    if (error.status === 400) {
+      this.profileErrors['currentPassword'] = 'Aktuelles Passwort ist falsch';
+      return;
     }
 
-    /**
-     * Validiere Passwort-Übereinstimmung
-     */
-    private validatePasswordMatch(pwd: string, confirm: string): boolean {
-      return pwd === confirm;
+    // 409 → E-Mail existiert bereits
+    if (error.status === 409) {
+      this.profileErrors['email'] = 'Diese E-Mail wird bereits verwendet';
+      return;
     }
 
-    /**
-     * Prüfe einzelne Passwort-Anforderungen
-     */
-    getPasswordRequirements(): Array<{ text: string; met: boolean }> {
-      const pwd = this.profilePasswordNew || '';
-      return [
-        { text: 'Mindestens 8 Zeichen', met: pwd.length >= 8 },
-        { text: 'Groß- und Kleinbuchstaben', met: /(?=.*[A-Z])(?=.*[a-z])/.test(pwd) },
-        { text: 'Mindestens eine Ziffer (0-9)', met: /\d/.test(pwd) },
-        { text: 'Mindestens ein Sonderzeichen (!@#$%^&*)', met: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]/.test(pwd) }
-      ];
+    // 404 -> Profilbild existiert nicht
+    if (error.status === 404) {
+      this.profileErrors['profileImage'] = 'Dieses Profilbild existiert nicht.';
+      return;
     }
 
-    /**
-     * Fehlerbehandlung
-     */
-    private handleError(error: any): void {
-      this.profileErrors = {};
-
-      // 400 → falsches aktuelles Passwort
-      if (error.status === 400) {
-        this.profileErrors['currentPassword'] = 'Aktuelles Passwort ist falsch';
-        return;
-      }
-
-      // 409 → E-Mail existiert bereits
-      if (error.status === 409) {
-        this.profileErrors['email'] = 'Diese E-Mail wird bereits verwendet';
-        return;
-      }
-
-      // 404 -> Profilbild existiert nicht
-      if (error.status === 404) {
-        this.profileErrors['profileImage'] = 'Dieses Profilbild existiert nicht.';
-        return;
-      }
-
-      // Fallback
-      this.profileErrors['general'] = 'Ein unbekannter Fehler ist aufgetreten';
-    }
+    // Fallback
+    this.profileErrors['general'] = 'Ein unbekannter Fehler ist aufgetreten';
+  }
 }
