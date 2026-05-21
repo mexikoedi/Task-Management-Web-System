@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { interval, Subscription } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class HeartbeatService {
   private sub?: Subscription;
-
-  constructor(private http: HttpClient) {}
+  private readonly http: HttpClient = inject(HttpClient);
 
   start() {
     if (this.sub) return;

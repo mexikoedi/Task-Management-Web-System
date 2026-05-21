@@ -148,7 +148,7 @@ export class DashboardComponent implements OnInit {
       const email = this.authService.getEmailFromToken();
       const key = `activeBoardId:${email}`;
 
-      const savedId = localStorage.getItem(key);
+      const savedId = sessionStorage.getItem(key);
 
       if (savedId) {
         const savedBoard = boards.find(b => b.id === Number(savedId));
@@ -171,7 +171,7 @@ export class DashboardComponent implements OnInit {
         this.boardService.create({ title: 'Neues Projektboard' }, ownerEmail).subscribe(board => {
           this.board = board;
           this.selectedBoardId = board.id!;
-          localStorage.setItem(key, String(board.id));
+          sessionStorage.setItem(key, String(board.id));
           this.loadBoard();
           this.cdr.detectChanges();
         });
@@ -193,7 +193,7 @@ export class DashboardComponent implements OnInit {
         this.board = board;
         const email = this.authService.getEmailFromToken();
         const key = `activeBoardId:${email}`;
-        localStorage.setItem(key, String(board.id));
+        sessionStorage.setItem(key, String(board.id));
         this.settingsOpen = false;
         this.isSaving = false;
         this.buildSuggestions();
