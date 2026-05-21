@@ -81,7 +81,6 @@ Ein modernes Aufgabenmanagementsystem (Kanban-Board) als Single Page Application
 | **Angular CLI** | 21.2.11 |
 | **TypeScript** | 6.0.3 |
 | **RxJS** | 7.8.2 |
-| **Zone.js** | 0.16.2 |
 | **pnpm** | 11.1.3 |
 | **Node.js** | 26.2.0+ |
 

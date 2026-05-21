@@ -1,14 +1,14 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Client, StompSubscription } from '@stomp/stompjs';
 import SockJS from 'sockjs-client/dist/sockjs';
 
 @Injectable({ providedIn: 'root' })
 export class WebsocketService {
+  boardUpdates = signal(0);
+  userUpdates = signal(0);
   private client: Client | null = null;
   private boardSub: StompSubscription | null = null;
   private userSub: StompSubscription | null = null;
-
-  constructor(private zone: NgZone) {}
 
   private ensureClient() {
     if (this.client) return;
@@ -36,24 +36,24 @@ export class WebsocketService {
     }
   }
 
-  subscribeBoard(boardId: number, callback: () => void) {
+  subscribeBoard(boardId: number) {
     this.ensureClient();
 
     this.onConnected(() => {
       this.boardSub?.unsubscribe();
       this.boardSub = this.client!.subscribe(`/topic/board/${boardId}`, () => {
-        this.zone.run(() => callback());
+        this.boardUpdates.update(v => v + 1);
       });
     });
   }
 
-  subscribeUser(userId: number, callback: () => void) {
+  subscribeUser(userId: number) {
     this.ensureClient();
 
     this.onConnected(() => {
       this.userSub?.unsubscribe();
       this.userSub = this.client!.subscribe(`/topic/user/${userId}`, () => {
-        this.zone.run(() => callback());
+        this.userUpdates.update(v => v + 1);
       });
     });
   }

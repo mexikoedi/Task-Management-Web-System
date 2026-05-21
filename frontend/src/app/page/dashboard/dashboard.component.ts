@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, effect, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgOptionTemplateDirective, NgSelectComponent } from '@ng-select/ng-select';
@@ -79,7 +79,56 @@ export class DashboardComponent implements OnInit {
     private boardService: BoardService,
     private cdr: ChangeDetectorRef,
     private websocket: WebsocketService
-  ) {}
+  ) {
+    // Realtime-Updates des Users
+    effect(() => {
+      const updates = this.websocket.userUpdates();
+
+      if (updates === 0) return;
+
+      const user = this.authService.getCurrentUserSnapshot();
+      if (!user) return;
+
+      // Profil neu laden
+      this.authService.loadCurrentUser(user.email).subscribe();
+
+      // Boards neu laden
+      if (this.board?.id) {
+        this.boardService.get(this.board.id).subscribe(board => {
+          this.board = { ...board };
+          this.buildSuggestions();
+          this.cdr.detectChanges();
+        });
+      }
+
+      this.boardService.list().subscribe(boards => {
+        this.boards = boards;
+        this.cdr.detectChanges();
+      });
+    });
+
+    effect(() => {
+      const updates = this.websocket.boardUpdates();
+
+      if (updates === 0) return;
+
+      const id = this.board?.id;
+      if (!id) return;
+
+      // Board neu laden
+      this.boardService.get(id).subscribe(board => {
+        this.board = { ...board };
+
+        this.boardService.list().subscribe(allBoards => {
+          this.boards = allBoards;
+          this.selectedBoardId = board.id!;
+        });
+
+        this.buildSuggestions();
+        this.cdr.detectChanges();
+      });
+    });
+  }
 
   ngOnInit(): void {
     // User laden
@@ -89,24 +138,7 @@ export class DashboardComponent implements OnInit {
     this.authService.currentUser$.subscribe(user => {
       if (!user) return;
 
-      this.websocket.subscribeUser(user.id!, () => {
-        // Profil neu laden
-        this.authService.loadCurrentUser(user.email).subscribe();
-
-        // Boards neu laden (z.B. Einladung)
-        if (this.board?.id) {
-          this.boardService.get(this.board.id).subscribe(board => {
-            this.board = { ...board };
-            this.buildSuggestions();
-            this.cdr.detectChanges();
-          });
-        }
-
-        this.boardService.list().subscribe(boards => {
-          this.boards = boards;
-          this.cdr.detectChanges();
-        });
-      });
+      this.websocket.subscribeUser(user.id!);
     });
 
     // Boards initial laden + aktives Board bestimmen
@@ -240,20 +272,8 @@ export class DashboardComponent implements OnInit {
       this.cdr.detectChanges();
     });
 
-    // 2. Board-Realtime-Updates
-    this.websocket.subscribeBoard(id, () => {
-      this.boardService.get(id).subscribe(board => {
-        this.board = { ...board };
-
-        this.boardService.list().subscribe(allBoards => {
-          this.boards = allBoards;
-          this.selectedBoardId = board.id!;
-        });
-
-        this.buildSuggestions();
-        this.cdr.detectChanges();
-      });
-    });
+    // 2. Websocket aktivieren
+    this.websocket.subscribeBoard(id);
   }
 
   buildSuggestions() {
