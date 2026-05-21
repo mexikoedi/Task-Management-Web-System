@@ -2,17 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import {UserSummary} from "../model/board.model";
-import {HeartbeatService} from "./heartbeat.service";
+import { UserSummary } from '../model/board.model';
+import { HeartbeatService } from './heartbeat.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private readonly API_URL = 'http://localhost:8080/api/auth';
-  private tokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(
-    this.getToken()
-  );
+  private tokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(this.getToken());
   public token$ = this.tokenSubject.asObservable();
   private currentUserSubject = new BehaviorSubject<UserSummary | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
@@ -44,7 +42,7 @@ export class AuthService {
       name,
       email,
       password,
-      passwordConfirm
+      passwordConfirm,
     });
   }
 
@@ -137,9 +135,16 @@ export class AuthService {
     newPasswordConfirm?: string
   ): Observable<UserSummary> {
     return this.http
-      .put<UserSummary>(`${this.API_URL}/profile`, { name, newEmail, image, currentPassword, newPassword, newPasswordConfirm })
+      .put<UserSummary>(`${this.API_URL}/profile`, {
+        name,
+        newEmail,
+        image,
+        currentPassword,
+        newPassword,
+        newPasswordConfirm,
+      })
       .pipe(
-        tap((user) => {
+        tap(user => {
           // Aktuellen User aktualisieren
           this.currentUserSubject.next(user);
         })
@@ -161,12 +166,7 @@ export class AuthService {
   }
 
   /** Ändere das Passwort */
-  changePassword(
-    email: string,
-    currentPassword: string,
-    newPassword: string,
-    newPasswordConfirm: string
-  ) {
+  changePassword(email: string, currentPassword: string, newPassword: string, newPasswordConfirm: string) {
     return this.http.put(
       `${this.API_URL}/change-password`,
       { currentPassword, newPassword, newPasswordConfirm },
@@ -174,4 +174,3 @@ export class AuthService {
     );
   }
 }
-

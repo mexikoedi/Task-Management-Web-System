@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,8 +7,8 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 import { ChangeDetectorRef } from '@angular/core';
-import {NgIcon} from "@ng-icons/core";
-import {HeartbeatService} from "../../service/heartbeat.service";
+import { NgIcon } from '@ng-icons/core';
+import { HeartbeatService } from '../../service/heartbeat.service';
 
 @Component({
   selector: 'app-login',
@@ -21,10 +21,10 @@ import {HeartbeatService} from "../../service/heartbeat.service";
     trigger('slideIn', [
       transition(':enter', [
         style({ transform: 'translateY(-50px)', opacity: 0 }),
-        animate('300ms ease-out', style({ transform: 'translateY(0)', opacity: 1 }))
-      ])
-    ])
-  ]
+        animate('300ms ease-out', style({ transform: 'translateY(0)', opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
-    private heartbeat: HeartbeatService,
+    private heartbeat: HeartbeatService
   ) {}
 
   ngOnInit(): void {
@@ -57,55 +57,19 @@ export class LoginComponent implements OnInit {
    */
   private initializeForms(): void {
     this.loginForm = this.fb.group({
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.maxLength(30),
-          this.emailValidator()
-        ]
-      ],
-      password: ['', [Validators.required]]
+      email: ['', [Validators.required, Validators.maxLength(30), this.emailValidator()]],
+      password: ['', [Validators.required]],
     });
 
     this.registerForm = this.fb.group({
-      name: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(30)
-        ]
-      ],
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.maxLength(30),
-          this.emailValidator()
-        ]
-      ],
-      password: [
-        '',
-        [
-          Validators.required,
-          this.passwordStrengthValidator()
-        ]
-      ],
-      passwordConfirm: [
-        '',
-        [
-          Validators.required,
-          this.passwordMatchValidator()
-        ]
-      ]
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]],
+      email: ['', [Validators.required, Validators.maxLength(30), this.emailValidator()]],
+      password: ['', [Validators.required, this.passwordStrengthValidator()]],
+      passwordConfirm: ['', [Validators.required, this.passwordMatchValidator()]],
     });
 
     this.resetForm = this.fb.group({
-      email: ['', [
-        Validators.required,
-        Validators.maxLength(30),
-        this.emailValidator()]]
+      email: ['', [Validators.required, Validators.maxLength(30), this.emailValidator()]],
     });
   }
 
@@ -119,134 +83,146 @@ export class LoginComponent implements OnInit {
         this.mode = 'login';
       }
       if (params['reset'] === 'true') {
-        this.successMessage = 'Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail gesendet. Klicken Sie auf den Link, um Ihr Passwort zurückzusetzen.';
+        this.successMessage =
+          'Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail gesendet. Klicken Sie auf den Link, um Ihr Passwort zurückzusetzen.';
         this.mode = 'reset';
       }
     });
   }
 
-   /**
-    * Anmeldung
-    */
-   onLogin(): void {
-     if (this.loginForm.invalid) {
-       this.markFormGroupTouched(this.loginForm);
-       return;
-     }
+  /**
+   * Anmeldung
+   */
+  onLogin(): void {
+    if (this.loginForm.invalid) {
+      this.markFormGroupTouched(this.loginForm);
+      return;
+    }
 
-     this.isLoading = true;
-     this.errorMessage = null;
-     this.fieldErrors = {};
+    this.isLoading = true;
+    this.errorMessage = null;
+    this.fieldErrors = {};
 
-     const { email, password } = this.loginForm.value;
-     this.loginForm.disable();
-     this.authService.login(email, password).pipe(
-       finalize(() => {
-         this.isLoading = false;
-         this.cdr.detectChanges();
-       })
-     ).subscribe({
-       next: () => {
-         this.successMessage = 'Anmeldung erfolgreich!';
-         this.cdr.detectChanges();
-         setTimeout(() => {
-           this.registerForm.reset();
-           this.fieldErrors = {};
-           this.successMessage = null;
-           this.heartbeat.start();
-           this.router.navigate(['/dashboard']);
-           this.loginForm.enable();
-         }, 4000);
-       },
-       error: (err) => {
-         this.handleError(err);
-         this.loginForm.enable();
-         this.cdr.detectChanges();
-       }
-     });
-   }
+    const { email, password } = this.loginForm.value;
+    this.loginForm.disable();
+    this.authService
+      .login(email, password)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe({
+        next: () => {
+          this.successMessage = 'Anmeldung erfolgreich!';
+          this.cdr.detectChanges();
+          setTimeout(() => {
+            this.registerForm.reset();
+            this.fieldErrors = {};
+            this.successMessage = null;
+            this.heartbeat.start();
+            this.router.navigate(['/dashboard']);
+            this.loginForm.enable();
+          }, 4000);
+        },
+        error: err => {
+          this.handleError(err);
+          this.loginForm.enable();
+          this.cdr.detectChanges();
+        },
+      });
+  }
 
-   /**
-    * Registrierung
-    */
-   onRegister(): void {
-     if (this.registerForm.invalid) {
-       this.markFormGroupTouched(this.registerForm);
-       this.errorMessage = 'Bitte füllen Sie alle erforderlichen Felder aus.';
-       return;
-     }
+  /**
+   * Registrierung
+   */
+  onRegister(): void {
+    if (this.registerForm.invalid) {
+      this.markFormGroupTouched(this.registerForm);
+      this.errorMessage = 'Bitte füllen Sie alle erforderlichen Felder aus.';
+      return;
+    }
 
-     this.isLoading = true;
-     this.errorMessage = null;
-     this.fieldErrors = {};
+    this.isLoading = true;
+    this.errorMessage = null;
+    this.fieldErrors = {};
 
-     const { name, email, password, passwordConfirm } = this.registerForm.value;
-     this.registerForm.disable();
-     this.authService.register(name, email, password, passwordConfirm).pipe(
-       finalize(() => {
-         this.isLoading = false;
-         this.cdr.detectChanges();
-       })
-     ).subscribe({
-       next: () => {
-         this.successMessage = 'Registrierung erfolgreich! Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu verifizieren.';
-         this.cdr.detectChanges();
-         setTimeout(() => {
-           this.mode = 'login';
-           this.registerForm.reset();
-           this.fieldErrors = {};
-           this.successMessage = null;
-           this.registerForm.enable();
-         }, 4000);
-       },
-       error: (err) => {
-         this.handleError(err);
-         this.registerForm.enable();
-         this.cdr.detectChanges();
-       }
-     });
-   }
+    const { name, email, password, passwordConfirm } = this.registerForm.value;
+    this.registerForm.disable();
+    this.authService
+      .register(name, email, password, passwordConfirm)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe({
+        next: () => {
+          this.successMessage =
+            'Registrierung erfolgreich! Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu verifizieren.';
+          this.cdr.detectChanges();
+          setTimeout(() => {
+            this.mode = 'login';
+            this.registerForm.reset();
+            this.fieldErrors = {};
+            this.successMessage = null;
+            this.registerForm.enable();
+          }, 4000);
+        },
+        error: err => {
+          this.handleError(err);
+          this.registerForm.enable();
+          this.cdr.detectChanges();
+        },
+      });
+  }
 
-   /**
-    * Passwort-Reset anfordern
-    */
-   onPasswordReset(): void {
-     if (this.resetForm.invalid) {
-       this.markFormGroupTouched(this.resetForm);
-       this.errorMessage = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
-       return;
-     }
+  /**
+   * Passwort-Reset anfordern
+   */
+  onPasswordReset(): void {
+    if (this.resetForm.invalid) {
+      this.markFormGroupTouched(this.resetForm);
+      this.errorMessage = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
+      return;
+    }
 
-     this.isLoading = true;
-     this.errorMessage = null;
-     this.fieldErrors = {};
+    this.isLoading = true;
+    this.errorMessage = null;
+    this.fieldErrors = {};
 
-     const email = this.resetForm.get('email')?.value as string;
-     this.resetForm.disable();
-     this.authService.requestPasswordReset(email).pipe(
-       finalize(() => {
-         this.isLoading = false;
-         this.cdr.detectChanges();
-       })
-     ).subscribe({
-       next: () => {
-         this.successMessage = 'Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail gesendet. Bitte überprüfen Sie Ihren Posteingang.';
-         this.cdr.detectChanges();
-         setTimeout(() => {
-           this.mode = 'login';
-           this.resetForm.reset();
-           this.fieldErrors = {};
-           this.successMessage = null;
-           this.resetForm.enable();
-         }, 4000);
-       },
-       error: (err) => {
-         this.handleError(err);
-         this.resetForm.enable();
-         this.cdr.detectChanges();
-       }
-     });
-   }
+    const email = this.resetForm.get('email')?.value as string;
+    this.resetForm.disable();
+    this.authService
+      .requestPasswordReset(email)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe({
+        next: () => {
+          this.successMessage =
+            'Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail gesendet. Bitte überprüfen Sie Ihren Posteingang.';
+          this.cdr.detectChanges();
+          setTimeout(() => {
+            this.mode = 'login';
+            this.resetForm.reset();
+            this.fieldErrors = {};
+            this.successMessage = null;
+            this.resetForm.enable();
+          }, 4000);
+        },
+        error: err => {
+          this.handleError(err);
+          this.resetForm.enable();
+          this.cdr.detectChanges();
+        },
+      });
+  }
 
   /**
    * Toggle Passwort-Sichtbarkeit
@@ -259,19 +235,18 @@ export class LoginComponent implements OnInit {
     this.showPasswordConfirm = !this.showPasswordConfirm;
   }
 
-   /**
-    * Validiere Passwort-Stärke
-    */
-   private passwordStrengthValidator(): ValidatorFn {
-     return (control: AbstractControl): ValidationErrors | null => {
-       const password = control.value || '';
+  /**
+   * Validiere Passwort-Stärke
+   */
+  private passwordStrengthValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const password = control.value || '';
 
-       const strong =
-         /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]).{8,}$/.test(password);
+      const strong = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]).{8,}$/.test(password);
 
-       return strong ? null : { weakPassword: true };
-     };
-   }
+      return strong ? null : { weakPassword: true };
+    };
+  }
 
   /**
    * Validiere E-Mail-Format
@@ -311,7 +286,7 @@ export class LoginComponent implements OnInit {
       { text: 'Mindestens 8 Zeichen', met: password.length >= 8 },
       { text: 'Groß- und Kleinbuchstaben', met: /(?=.*[A-Z])(?=.*[a-z])/.test(password) },
       { text: 'Mindestens eine Ziffer (0-9)', met: /\d/.test(password) },
-      { text: 'Mindestens ein Sonderzeichen (!@#$%^&*)', met: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]/.test(password) }
+      { text: 'Mindestens ein Sonderzeichen (!@#$%^&*)', met: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]/.test(password) },
     ];
   }
 
@@ -326,54 +301,55 @@ export class LoginComponent implements OnInit {
     }
 
     if (control.errors && control.touched) {
-      this.fieldErrors[fieldName] = Object.keys(control.errors).map(
-        errorKey => this.getErrorMessage(fieldName, errorKey, control.errors?.[errorKey])
+      this.fieldErrors[fieldName] = Object.keys(control.errors).map(errorKey =>
+        this.getErrorMessage(fieldName, errorKey, control.errors?.[errorKey])
       );
     } else {
       delete this.fieldErrors[fieldName];
     }
   }
 
-   /**
-    * Fehlerbehandlung
-    */
-   private handleError(error: any): void {
-     this.isLoading = false;
-     this.fieldErrors = {};
+  /**
+   * Fehlerbehandlung
+   */
+  private handleError(error: any): void {
+    this.isLoading = false;
+    this.fieldErrors = {};
 
-     if (error.status === 401) {
-       this.errorMessage = 'Ungültige E-Mail oder Passwort.';
+    if (error.status === 401) {
+      this.errorMessage = 'Ungültige E-Mail oder Passwort.';
 
-       return;
-     }
+      return;
+    }
 
-     if (error.status == 409) {
-       this.errorMessage = 'E-Mail ist bereits registriert. Bitte melden Sie sich an oder verwenden Sie eine andere E-Mail.';
+    if (error.status == 409) {
+      this.errorMessage =
+        'E-Mail ist bereits registriert. Bitte melden Sie sich an oder verwenden Sie eine andere E-Mail.';
 
-       return;
-     }
+      return;
+    }
 
-     if (error.status == 404) {
-       this.errorMessage = 'Benutzer nicht gefunden. Bitte überprüfen Sie Ihre E-Mail oder registrieren Sie sich.';
+    if (error.status == 404) {
+      this.errorMessage = 'Benutzer nicht gefunden. Bitte überprüfen Sie Ihre E-Mail oder registrieren Sie sich.';
 
-       return;
-     }
+      return;
+    }
 
-     if (error.status == 403) {
-       this.errorMessage = 'Benutzer deaktiviert. Bitte überprüfen Sie Ihre E-Mail oder kontaktieren Sie uns.';
+    if (error.status == 403) {
+      this.errorMessage = 'Benutzer deaktiviert. Bitte überprüfen Sie Ihre E-Mail oder kontaktieren Sie uns.';
 
-       return;
-     }
+      return;
+    }
 
-     if (error.status === 400 && error.error?.errors) {
-       this.fieldErrors = error.error.errors;
-       this.errorMessage = 'Bitte korrigieren Sie die Eingaben.';
+    if (error.status === 400 && error.error?.errors) {
+      this.fieldErrors = error.error.errors;
+      this.errorMessage = 'Bitte korrigieren Sie die Eingaben.';
 
-       return;
-     }
+      return;
+    }
 
-     this.errorMessage = error.error?.message || 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.';
-   }
+    this.errorMessage = error.error?.message || 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.';
+  }
 
   /**
    * Markiere alle FormControl als touched für Validierungsanzeige
@@ -384,27 +360,27 @@ export class LoginComponent implements OnInit {
       control?.markAsTouched();
 
       if (control && control.errors) {
-        this.fieldErrors[key] = Object.keys(control.errors).map(
-          errorKey => this.getErrorMessage(key, errorKey, control.errors?.[errorKey])
+        this.fieldErrors[key] = Object.keys(control.errors).map(errorKey =>
+          this.getErrorMessage(key, errorKey, control.errors?.[errorKey])
         );
       }
     });
   }
 
-   /**
-    * Generiere Fehlermeldungen
-    */
-   private getErrorMessage(fieldName: string, errorType: string, errorValue: any): string {
-     const messages: { [key: string]: string } = {
-       required: `${this.getFieldDisplayName(fieldName)} ist erforderlich`,
-       invalidEmail: 'Bitte geben Sie eine gültige E-Mail-Adresse ein',
-       minlength: `${this.getFieldDisplayName(fieldName)} muss mindestens ${errorValue?.requiredLength} Zeichen lang sein`,
-       maxlength: `${this.getFieldDisplayName(fieldName)} darf nicht mehr als ${errorValue?.requiredLength} Zeichen lang sein`,
-       weakPassword: 'Passwort erfüllt nicht alle Anforderungen',
-       passwordMismatch: 'Passwörter stimmen nicht überein'
-     };
-     return messages[errorType] || `${this.getFieldDisplayName(fieldName)} ist ungültig`;
-   }
+  /**
+   * Generiere Fehlermeldungen
+   */
+  private getErrorMessage(fieldName: string, errorType: string, errorValue: any): string {
+    const messages: { [key: string]: string } = {
+      required: `${this.getFieldDisplayName(fieldName)} ist erforderlich`,
+      invalidEmail: 'Bitte geben Sie eine gültige E-Mail-Adresse ein',
+      minlength: `${this.getFieldDisplayName(fieldName)} muss mindestens ${errorValue?.requiredLength} Zeichen lang sein`,
+      maxlength: `${this.getFieldDisplayName(fieldName)} darf nicht mehr als ${errorValue?.requiredLength} Zeichen lang sein`,
+      weakPassword: 'Passwort erfüllt nicht alle Anforderungen',
+      passwordMismatch: 'Passwörter stimmen nicht überein',
+    };
+    return messages[errorType] || `${this.getFieldDisplayName(fieldName)} ist ungültig`;
+  }
 
   /**
    * Mappe Feldnamen zu benutzerfreundlichen Anzeigenamen
@@ -414,7 +390,7 @@ export class LoginComponent implements OnInit {
       name: 'Name',
       email: 'E-Mail-Adresse',
       password: 'Passwort',
-      passwordConfirm: 'Passwortbestätigung'
+      passwordConfirm: 'Passwortbestätigung',
     };
 
     return fieldNames[fieldName] || this.capitalize(fieldName);
@@ -468,6 +444,3 @@ export class LoginComponent implements OnInit {
     this.loginForm.markAsUntouched();
   }
 }
-
-
-

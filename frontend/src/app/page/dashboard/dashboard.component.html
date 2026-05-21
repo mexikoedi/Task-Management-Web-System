@@ -22,11 +22,7 @@
 
     <div class="right">
       <div class="avatar" (click)="toggleProfile()" title="Account verwalten">
-        <img
-          *ngIf="profileImage"
-          [src]="profileImage"
-          alt="Profilbild"
-          class="avatar-image" />
+        <img *ngIf="profileImage" [src]="profileImage" alt="Profilbild" class="avatar-image" />
         <span *ngIf="!profileImage">
           {{ getCurrentUserInitials() }}
         </span>
@@ -45,36 +41,18 @@
           >Name: <strong>{{ profileName || 'Unbekannt' }}</strong></label
         >
         <label
-          >E-Mail:
-          <strong>{{
-            profileEmail || authService.getEmailFromToken()
-          }}</strong></label
+          >E-Mail: <strong>{{ profileEmail || authService.getEmailFromToken() }}</strong></label
         >
       </div>
       <div class="profile-actions">
-        <button
-          [disabled]="isSaving"
-          (click)="enterProfileEditMode()"
-          title="Profil bearbeiten"
-          class="button-fixed">
+        <button [disabled]="isSaving" (click)="enterProfileEditMode()" title="Profil bearbeiten" class="button-fixed">
           Profil bearbeiten
         </button>
-        <button [disabled]="isSaving" (click)="logout()" title="Abmelden">
-          Abmelden
-        </button>
-        <button
-          [disabled]="isSaving"
-          (click)="deactivateAccount()"
-          title="Account deaktivieren"
-          class="button-danger">
+        <button [disabled]="isSaving" (click)="logout()" title="Abmelden">Abmelden</button>
+        <button [disabled]="isSaving" (click)="deactivateAccount()" title="Account deaktivieren" class="button-danger">
           Account deaktivieren
         </button>
-        <button
-          [disabled]="isSaving"
-          (click)="toggleProfile()"
-          title="Schließen">
-          Schließen
-        </button>
+        <button [disabled]="isSaving" (click)="toggleProfile()" title="Schließen">Schließen</button>
       </div>
     </ng-container>
 
@@ -93,9 +71,7 @@
           placeholder="Name"
           maxlength="30"
           [class.error-input]="profileErrors['name']" />
-        <span class="error-text" *ngIf="profileErrors['name']">{{
-          profileErrors['name']
-        }}</span>
+        <span class="error-text" *ngIf="profileErrors['name']">{{ profileErrors['name'] }}</span>
       </div>
 
       <div class="form-group">
@@ -107,21 +83,13 @@
           placeholder="E-Mail"
           maxlength="30"
           [class.error-input]="profileErrors['email']" />
-        <span class="error-text" *ngIf="profileErrors['email']">{{
-          profileErrors['email']
-        }}</span>
+        <span class="error-text" *ngIf="profileErrors['email']">{{ profileErrors['email'] }}</span>
       </div>
 
       <div class="form-group">
         <label for="editImage">Profilbild (URL):</label>
-        <input
-          id="editImage"
-          [disabled]="isSaving"
-          [(ngModel)]="profileImageTemp"
-          placeholder="Profilbild-URL" />
-        <span class="error-text" *ngIf="profileErrors['profileImage']">{{
-          profileErrors['profileImage']
-        }}</span>
+        <input id="editImage" [disabled]="isSaving" [(ngModel)]="profileImageTemp" placeholder="Profilbild-URL" />
+        <span class="error-text" *ngIf="profileErrors['profileImage']">{{ profileErrors['profileImage'] }}</span>
       </div>
 
       <br />
@@ -149,15 +117,10 @@
           </ng-container>
 
           <ng-template #hideIcon>
-            <ng-icon
-              color="black"
-              size="1.25em"
-              name="bootstrapEyeSlash"></ng-icon>
+            <ng-icon color="black" size="1.25em" name="bootstrapEyeSlash"></ng-icon>
           </ng-template>
         </button>
-        <span class="error-text" *ngIf="profileErrors['currentPassword']">{{
-          profileErrors['currentPassword']
-        }}</span>
+        <span class="error-text" *ngIf="profileErrors['currentPassword']">{{ profileErrors['currentPassword'] }}</span>
       </div>
 
       <div class="form-group">
@@ -181,15 +144,10 @@
           </ng-container>
 
           <ng-template #hideIcon>
-            <ng-icon
-              color="black"
-              size="1.25em"
-              name="bootstrapEyeSlash"></ng-icon>
+            <ng-icon color="black" size="1.25em" name="bootstrapEyeSlash"></ng-icon>
           </ng-template>
         </button>
-        <span class="error-text" *ngIf="profileErrors['newPassword']">{{
-          profileErrors['newPassword']
-        }}</span>
+        <span class="error-text" *ngIf="profileErrors['newPassword']">{{ profileErrors['newPassword'] }}</span>
       </div>
 
       <div class="form-group">
@@ -212,10 +170,7 @@
             <ng-icon color="black" size="1.25em" name="bootstrapEye"></ng-icon>
           </ng-container>
           <ng-template #hideIcon>
-            <ng-icon
-              color="black"
-              size="1.25em"
-              name="bootstrapEyeSlash"></ng-icon>
+            <ng-icon color="black" size="1.25em" name="bootstrapEyeSlash"></ng-icon>
           </ng-template>
         </button>
         <span class="error-text" *ngIf="profileErrors['newPasswordConfirm']">{{
@@ -224,58 +179,32 @@
       </div>
 
       <div class="password-requirements">
-        <small
-          *ngFor="let req of getPasswordRequirements()"
-          [class.met]="req.met">
+        <small *ngFor="let req of getPasswordRequirements()" [class.met]="req.met">
           <ng-container *ngIf="req.met; else hideReq">
             <ng-icon color="black" size="1.125em" name="bootstrapCheckLg"></ng-icon>
           </ng-container>
           <ng-template #hideReq>
-            <ng-icon
-              color="black"
-              size="1.125em"
-              name="bootstrapX"></ng-icon>
+            <ng-icon color="black" size="1.125em" name="bootstrapX"></ng-icon>
           </ng-template>
           {{ req.text }}
         </small>
       </div>
 
       <div class="profile-edit-actions">
-        <button
-          [disabled]="isSaving"
-          (click)="updateProfile()"
-          title="Profil speichern">
-          Speichern
-        </button>
-        <button
-          [disabled]="isSaving"
-          (click)="cancelProfileEdit()"
-          title="Abbrechen">
-          Abbrechen
-        </button>
+        <button [disabled]="isSaving" (click)="updateProfile()" title="Profil speichern">Speichern</button>
+        <button [disabled]="isSaving" (click)="cancelProfileEdit()" title="Abbrechen">Abbrechen</button>
       </div>
     </ng-container>
   </div>
 
   <!-- Body / Board -->
-  <main
-    class="board-body"
-    [style.background-image]="
-      board?.background ? 'url(' + board?.background + ')' : 'none'
-    ">
+  <main class="board-body" [style.background-image]="board?.background ? 'url(' + board?.background + ')' : 'none'">
     <div class="board-header">
       <div class="title">
         <ng-container *ngIf="!editingTitle">
           <h2>{{ board?.title || 'Neues Projektboard' }}</h2>
-          <button
-            class="icon"
-            title="Name bearbeiten"
-            [disabled]="isSaving"
-            (click)="toggleEditTitle()">
-            <ng-icon
-              color="black"
-              size="1.25em"
-              name="bootstrapPencil"></ng-icon>
+          <button class="icon" title="Name bearbeiten" [disabled]="isSaving" (click)="toggleEditTitle()">
+            <ng-icon color="black" size="1.25em" name="bootstrapPencil"></ng-icon>
           </button>
         </ng-container>
         <ng-container *ngIf="editingTitle">
@@ -292,37 +221,20 @@
             </span>
           </div>
           <div class="form-buttons title-buttons-group">
-            <button
-              [disabled]="isSaving"
-              (click)="saveTitle()"
-              title="Projektboard-Titel speichern">
-              Speichern
-            </button>
-            <button
-              [disabled]="isSaving"
-              (click)="toggleEditTitle()"
-              title="Abbrechen">
-              Abbrechen
-            </button>
+            <button [disabled]="isSaving" (click)="saveTitle()" title="Projektboard-Titel speichern">Speichern</button>
+            <button [disabled]="isSaving" (click)="toggleEditTitle()" title="Abbrechen">Abbrechen</button>
           </div>
         </ng-container>
       </div>
 
       <div class="board-controls">
         <div class="members">
-          <div
-            *ngFor="let m of board?.members || []"
-            class="member-avatar"
-            [title]="m.name || m.email">
+          <div *ngFor="let m of board?.members || []" class="member-avatar" [title]="m.name || m.email">
             <img *ngIf="m.image" [src]="m.image" class="avatar-image" />
             <span *ngIf="!m.image">{{ getUserInitials(m) }}</span>
           </div>
         </div>
-        <button
-          class="icon"
-          [disabled]="isSaving"
-          (click)="toggleSettings()"
-          title="Projektboard-Einstellungen">
+        <button class="icon" [disabled]="isSaving" (click)="toggleSettings()" title="Projektboard-Einstellungen">
           <ng-icon size="1.5em" name="bootstrapGear"></ng-icon>
         </button>
       </div>
@@ -338,23 +250,14 @@
           type="text"
           [disabled]="isSaving"
           [(ngModel)]="bgInput"
-          [placeholder]="
-            board?.background ? '' : 'Hintergrundbild-URL eingeben'
-          "
+          [placeholder]="board?.background ? '' : 'Hintergrundbild-URL eingeben'"
           maxlength="255"
           [value]="bgInput || board?.background || ''"
           [class.error-input]="bgInputError" />
-        <span class="error-text" *ngIf="profileErrors['backgroundImage']">{{
-          profileErrors['backgroundImage']
-        }}</span>
+        <span class="error-text" *ngIf="profileErrors['backgroundImage']">{{ profileErrors['backgroundImage'] }}</span>
       </div>
       <div class="form-buttons inline-actions">
-        <button
-          [disabled]="isSaving"
-          (click)="updateBackground()"
-          title="Hintergrundbild speichern">
-          Speichern
-        </button>
+        <button [disabled]="isSaving" (click)="updateBackground()" title="Hintergrundbild speichern">Speichern</button>
       </div>
 
       <hr class="section-divider" />
@@ -369,17 +272,10 @@
           maxlength="30"
           [disabled]="isSaving"
           [class.error-input]="profileErrors['email']" />
-        <span class="error-text" *ngIf="profileErrors['email']">{{
-          profileErrors['email']
-        }}</span>
+        <span class="error-text" *ngIf="profileErrors['email']">{{ profileErrors['email'] }}</span>
       </div>
       <div class="form-buttons inline-actions">
-        <button
-          [disabled]="isSaving"
-          (click)="inviteMember(inviteEmail)"
-          title="Person einladen">
-          Einladen
-        </button>
+        <button [disabled]="isSaving" (click)="inviteMember(inviteEmail)" title="Person einladen">Einladen</button>
       </div>
 
       <hr class="section-divider" />
@@ -404,18 +300,8 @@
       </div>
 
       <div class="form-buttons inline-actions board-switch-actions">
-        <button
-          [disabled]="isSaving"
-          (click)="switchBoard()"
-          title="Projektboard wechseln">
-          Speichern
-        </button>
-        <button
-          [disabled]="isSaving"
-          (click)="toggleSettings()"
-          title="Schließen">
-          Schließen
-        </button>
+        <button [disabled]="isSaving" (click)="switchBoard()" title="Projektboard wechseln">Speichern</button>
+        <button [disabled]="isSaving" (click)="toggleSettings()" title="Schließen">Schließen</button>
       </div>
     </div>
 
@@ -464,18 +350,10 @@
                 [class.error-input]="columnErrors['title']" />
 
               <div class="column-edit-buttons">
-                <button
-                  [disabled]="isSaving"
-                  (click)="saveColumnTitle(col)"
-                  title="Statuskategorie-Namen speichern">
+                <button [disabled]="isSaving" (click)="saveColumnTitle(col)" title="Statuskategorie-Namen speichern">
                   Speichern
                 </button>
-                <button
-                  [disabled]="isSaving"
-                  (click)="cancelEditColumn()"
-                  title="Abbrechen">
-                  Abbrechen
-                </button>
+                <button [disabled]="isSaving" (click)="cancelEditColumn()" title="Abbrechen">Abbrechen</button>
               </div>
 
               <span class="error-text" *ngIf="columnErrors['title']">
@@ -512,31 +390,15 @@
               [disabled]="isSaving"
               maxlength="30"
               [class.error-input]="taskErrors['title']" />
-            <span class="error-text" *ngIf="taskErrors['title']">{{
-              taskErrors['title']
-            }}</span>
+            <span class="error-text" *ngIf="taskErrors['title']">{{ taskErrors['title'] }}</span>
           </div>
           <div class="form-buttons inline-actions">
-            <button
-              [disabled]="isSaving"
-              (click)="createTask()"
-              title="Aufgabe erstellen">
-              Erstellen
-            </button>
-            <button
-              [disabled]="isSaving"
-              (click)="cancelCreateTask()"
-              title="Abbrechen">
-              Abbrechen
-            </button>
+            <button [disabled]="isSaving" (click)="createTask()" title="Aufgabe erstellen">Erstellen</button>
+            <button [disabled]="isSaving" (click)="cancelCreateTask()" title="Abbrechen">Abbrechen</button>
           </div>
         </div>
 
-        <button
-          class="add-task"
-          [disabled]="isSaving"
-          (click)="startCreateTask(col.id)"
-          title="Aufgabe hinzufügen">
+        <button class="add-task" [disabled]="isSaving" (click)="startCreateTask(col.id)" title="Aufgabe hinzufügen">
           <ng-icon size="1.25em" name="bootstrapPlusSquare"></ng-icon>
         </button>
       </div>
@@ -561,23 +423,11 @@
               placeholder="Statuskategorie-Titel"
               maxlength="25"
               [class.error-input]="newColumnError" />
-            <span class="error-text" *ngIf="newColumnError">{{
-              newColumnError
-            }}</span>
+            <span class="error-text" *ngIf="newColumnError">{{ newColumnError }}</span>
           </div>
           <div class="form-buttons inline-actions">
-            <button
-              [disabled]="isSaving"
-              (click)="addColumn()"
-              title="Statuskategorie erstellen">
-              Erstellen
-            </button>
-            <button
-              [disabled]="isSaving"
-              (click)="cancelAddColumn()"
-              title="Abbrechen">
-              Abbrechen
-            </button>
+            <button [disabled]="isSaving" (click)="addColumn()" title="Statuskategorie erstellen">Erstellen</button>
+            <button [disabled]="isSaving" (click)="cancelAddColumn()" title="Abbrechen">Abbrechen</button>
           </div>
         </div>
       </div>
@@ -585,10 +435,7 @@
   </main>
 
   <!-- Task Detail Modal -->
-  <div
-    class="task-modal-overlay"
-    *ngIf="taskDetailOpen"
-    (click)="closeTaskDetail()"></div>
+  <div class="task-modal-overlay" *ngIf="taskDetailOpen" (click)="closeTaskDetail()"></div>
   <div class="task-modal" *ngIf="taskDetailOpen">
     <h3>Aufgaben-Details</h3>
     <div class="error-message" *ngIf="taskErrors['general']">
@@ -604,9 +451,7 @@
         [disabled]="isSaving"
         maxlength="30"
         [class.error-input]="taskErrors['title']" />
-      <span class="error-text" *ngIf="taskErrors['title']">{{
-        taskErrors['title']
-      }}</span>
+      <span class="error-text" *ngIf="taskErrors['title']">{{ taskErrors['title'] }}</span>
     </div>
 
     <div class="form-group">
@@ -655,9 +500,7 @@
     </div>
 
     <div class="form-group floating-label-container">
-      <label class="floating-label" [class.active]="selectedAssigneeId">
-        Person zuweisen:
-      </label>
+      <label class="floating-label" [class.active]="selectedAssigneeId"> Person zuweisen: </label>
 
       <ng-select
         [items]="board?.members || []"
@@ -676,25 +519,11 @@
     </div>
 
     <div class="task-modal-actions">
-      <button
-        [disabled]="isSaving"
-        (click)="saveTaskDetails()"
-        title="Aufgabe speichern">
-        Speichern
-      </button>
-      <button
-        [disabled]="isSaving"
-        (click)="deleteSelectedTask()"
-        title="Aufgabe löschen"
-        class="button-danger">
+      <button [disabled]="isSaving" (click)="saveTaskDetails()" title="Aufgabe speichern">Speichern</button>
+      <button [disabled]="isSaving" (click)="deleteSelectedTask()" title="Aufgabe löschen" class="button-danger">
         Löschen
       </button>
-      <button
-        [disabled]="isSaving"
-        (click)="closeTaskDetail()"
-        title="Abbrechen">
-        Abbrechen
-      </button>
+      <button [disabled]="isSaving" (click)="closeTaskDetail()" title="Abbrechen">Abbrechen</button>
     </div>
   </div>
 

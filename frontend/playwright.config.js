@@ -1,3 +1,4 @@
+// Playwright E2E testing configuration file.
 import { devices } from '@playwright/test';
 
 const config = {

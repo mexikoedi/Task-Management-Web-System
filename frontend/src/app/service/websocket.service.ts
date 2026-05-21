@@ -16,7 +16,7 @@ export class WebsocketService {
     this.client = new Client({
       webSocketFactory: () => new SockJS('http://localhost:8080/ws'),
       reconnectDelay: 500,
-      debug: () => {}
+      debug: () => {},
     });
 
     this.client.activate();

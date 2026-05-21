@@ -14,7 +14,7 @@ export class HeartbeatService {
     this.sub = interval(15000).subscribe(() => {
       this.http.get('http://localhost:8080/api/auth/heartbeat').subscribe({
         next: () => {},
-        error: () => {}
+        error: () => {},
       });
     });
   }

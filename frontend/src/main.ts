@@ -5,15 +5,19 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
 import { AuthInterceptor } from './app/core/interceptors/auth.interceptor';
-import {provideIcons} from "@ng-icons/core";
+import { provideIcons } from '@ng-icons/core';
 import {
   bootstrapEye,
-  bootstrapEyeSlash, bootstrapGear,
-  bootstrapInfoCircle, bootstrapPencil,
-  bootstrapPlusSquare, bootstrapSearch,
-  bootstrapTrash3, bootstrapCheckLg,
-  bootstrapX
-} from "@ng-icons/bootstrap-icons";
+  bootstrapEyeSlash,
+  bootstrapGear,
+  bootstrapInfoCircle,
+  bootstrapPencil,
+  bootstrapPlusSquare,
+  bootstrapSearch,
+  bootstrapTrash3,
+  bootstrapCheckLg,
+  bootstrapX,
+} from '@ng-icons/bootstrap-icons';
 
 bootstrapApplication(AppComponent, {
   providers: [

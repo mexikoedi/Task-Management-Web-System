@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent]
+      imports: [AppComponent],
     }).compileComponents();
   });
 
@@ -20,4 +20,3 @@ describe('AppComponent', () => {
     expect(component.title).toEqual('TMWS');
   });
 });
-

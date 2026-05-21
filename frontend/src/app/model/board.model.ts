@@ -49,4 +49,3 @@ export interface ChangePasswordInfo {
   newPassword: string;
   newPasswordConfirm: string;
 }
-

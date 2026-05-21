@@ -12,8 +12,7 @@
   position: fixed;
   inset: 0;
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background: rgba(255, 255, 255, 0.08);
+  background: rgb(255 255 255 / 8%);
   z-index: 999;
 }
 
@@ -24,15 +23,16 @@
   padding: 34px;
   border-radius: 12px;
   background: #fff;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  animation: slideUp 0.3s ease-out;
+  box-shadow: 0 20px 60px rgb(0 0 0 / 30%);
+  animation: slide-up 0.3s ease-out;
 }
 
-@keyframes slideUp {
+@keyframes slide-up {
   from {
     transform: translateY(50px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -118,7 +118,7 @@
   outline: 0;
   border-color: #667eea;
   background: #fff;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 3px rgb(102 126 234 / 10%);
 }
 
 .form-input.error {
@@ -192,13 +192,13 @@
   transition: 0.2s;
 }
 
-.submit-btn:hover:not(:disabled) {
-  transform: translateY(-1px);
-}
-
 .submit-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
 }
 
 .form-links {
@@ -228,7 +228,7 @@
   color: #cbd5e0;
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .login-card {
     padding: 24px 16px;
     margin: 16px;
@@ -251,6 +251,3 @@
     display: none;
   }
 }
-
-
-

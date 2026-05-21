@@ -231,7 +231,7 @@ logging.level.io.github.mexikoedi=DEBUG
 
 Erlaubte Domains sind in `backend/src/main/java/.../config/CorsConfig.java` konfiguriert:
 
-```java
+```
 // Erlaubte Origins
 - http://localhost:4200 (Entwicklung)
 - http://localhost:3000  (Alternative)
@@ -312,12 +312,12 @@ cd backend
 ./gradlew clean              # Aufräumen
 
 # Execution
-./gradlew bootRun            # Anwendung starten
+./gradlew bootRun                              # Anwendung starten
 ./gradlew bootRun --args='--server.port=8081'  # Mit anderem Port
 
 # Information
-./gradlew tasks              # Alle verfügbaren Tasks anzeigen
-./gradlew dependencies       # Dependencies auflisten
+./gradlew tasks                     # Alle verfügbaren Tasks anzeigen
+./gradlew dependencies              # Dependencies auflisten
 ./gradlew check --warning-mode all  # Mit allen Warnungen
 ```
 
@@ -327,22 +327,24 @@ cd backend
 cd frontend
 
 # Development
-pnpm start                   # Dev-Server starten (http://localhost:4200)
-pnpm build                   # Production Build
-pnpm build --configuration production  # Mit Optimierungen
+pnpm start                               # Dev-Server starten (http://localhost:4200)
+pnpm build                               # Production Build
+pnpm build --configuration production    # Mit Optimierungen
 
 # Testing
 pnpm test                    # Unit Tests (Karma/Jasmine)
-pnpm test -- --code-coverage    # Mit Coverage-Report
+pnpm test -- --code-coverage # Mit Coverage-Report
 pnpm e2e                     # E2E Tests
+pnpm e2e:ui                  # E2E Tests mit UI-Feedback
 
 # Code Quality
 pnpm lint                    # ESLint ausführen
 pnpm lint --fix              # ESLint mit Auto-Fix
-pnpm lint:styles             # Stylelint ausführen
+pnpm stylelint .             # Stylelint ausführen
+pnpm stylelint . --fix       # Stylelint ausführen mit Auto-Fix
 
 # Formatting
-pnpm format                  # Mit Prettier formatieren
+pnpm prettier . --w          # Mit Prettier formatieren
 ```
 
 ---
@@ -362,7 +364,7 @@ Nach dem Backend-Start kannst du die Datenbank über die H2 Web Console ansehen:
 
 ### SQL Queries Beispiele
 
-```sql
+```
 -- Alle Benutzer anzeigen
 SELECT * FROM users;
 
@@ -568,10 +570,4 @@ pnpm install
 
 ---
 
-## 📝 Lizenz
-
-MIT Lizenz
-
----
-
-**Letzte Aktualisierung:** 2026-05-20
+**Letzte Aktualisierung:** 21.05.2026

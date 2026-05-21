@@ -62,7 +62,7 @@ export class ResetPasswordComponent implements OnInit {
       { text: 'Mindestens 8 Zeichen', met: password.length >= 8 },
       { text: 'Groß- und Kleinbuchstaben', met: /(?=.*[A-Z])(?=.*[a-z])/.test(password) },
       { text: 'Mindestens eine Ziffer (0-9)', met: /\d/.test(password) },
-      { text: 'Mindestens ein Sonderzeichen (!@#$%^&*)', met: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]/.test(password) }
+      { text: 'Mindestens ein Sonderzeichen (!@#$%^&*)', met: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]/.test(password) },
     ];
   }
 

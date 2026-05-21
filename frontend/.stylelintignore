@@ -1,0 +1,27 @@
+# -----------------------------------------------------------------
+# .stylelintignore
+#
+# This file specifies files and directories that should be ignored by Stylelint when formatting code.
+# https://stylelint.io/user-guide/ignore-code
+#
+# -----------------------------------------------------------------
+
+# Ignore cache and build files:
+node_modules
+.angular
+dist
+
+# Ignore test files:
+playwright-report
+test-results
+coverage
+
+# Ignore package lock file:
+pnpm-lock.yaml
+
+# Ignore non CSS files:
+*.js
+*.ts
+*.html
+*.json
+*.yaml

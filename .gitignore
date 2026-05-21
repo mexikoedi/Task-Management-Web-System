@@ -64,6 +64,8 @@ hs_err_pid*
 /e2e/test-output/
 /.angular/
 .angular/
+/playwright-report/
+/test-results/
 
 # Node modules and dependency files
 /node_modules/

@@ -61,4 +61,3 @@ export class BoardService {
     return this.http.put<ColumnModel>(`${this.API}/columns/${columnId}`, partial);
   }
 }
-
