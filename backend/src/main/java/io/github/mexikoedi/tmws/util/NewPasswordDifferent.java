@@ -1,6 +1,6 @@
 /**
- * Diese Annotation wird verwendet, um sicherzustellen, dass das neue Passwort eines Benutzers sich vom
- * aktuellen Passwort unterscheidet.
+ * Diese Annotation wird verwendet, um sicherzustellen, dass das neue Passwort eines Benutzers sich
+ * vom aktuellen Passwort unterscheidet.
  */
 package io.github.mexikoedi.tmws.util;
 

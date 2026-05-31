@@ -1,15 +1,13 @@
-/**
- * Diese Klasse ist für den Versand von E-Mails im TMWS verantwortlich.
- */
+/** Diese Klasse ist für den Versand von E-Mails im TMWS verantwortlich. */
 package io.github.mexikoedi.tmws.service;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.mail.MailSendException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Service
 public class EmailService {
@@ -26,10 +24,12 @@ public class EmailService {
   }
 
   /**
-   * Sendet eine Registrierungsbestätigung an die angegebene E-Mail-Adresse mit einem Verifizierungslink.
+   * Sendet eine Registrierungsbestätigung an die angegebene E-Mail-Adresse mit einem
+   * Verifizierungslink.
    *
    * @param toEmail Die E-Mail-Adresse des Empfängers.
-   * @param verificationLink Der Link, den der Benutzer anklicken muss, um seine Registrierung abzuschließen.
+   * @param verificationLink Der Link, den der Benutzer anklicken muss, um seine Registrierung
+   *     abzuschließen.
    */
   @Async
   public void sendRegistrationEmail(String toEmail, String verificationLink) {
@@ -46,8 +46,8 @@ public class EmailService {
   }
 
   /**
-   * Sendet eine E-Mail zum Zurücksetzen des Passworts an die angegebene E-Mail-Adresse mit einem Link zum
-   * Erstellen eines neuen Passworts.
+   * Sendet eine E-Mail zum Zurücksetzen des Passworts an die angegebene E-Mail-Adresse mit einem
+   * Link zum Erstellen eines neuen Passworts.
    *
    * @param toEmail Die E-Mail-Adresse des Empfängers.
    * @param resetLink Der Link, den der Benutzer anklicken muss, um ein neues Passwort zu erstellen.
@@ -67,11 +67,12 @@ public class EmailService {
   }
 
   /**
-   * Sendet eine E-Mail, die den Benutzer darüber informiert, dass sein Passwort erfolgreich geändert wurde.
+   * Sendet eine E-Mail, die den Benutzer darüber informiert, dass sein Passwort erfolgreich
+   * geändert wurde.
    *
    * @param toEmail Die E-Mail-Adresse des Empfängers.
-   * @param email Die E-Mail-Adresse des Accounts, dessen Passwort geändert wurde, damit der Benutzer überprüfen
-   * kann, ob es sich um seinen Account handelt.
+   * @param email Die E-Mail-Adresse des Accounts, dessen Passwort geändert wurde, damit der
+   *     Benutzer überprüfen kann, ob es sich um seinen Account handelt.
    */
   @Async
   public void sendPasswordChangedEmail(String toEmail, String email) {
@@ -88,11 +89,12 @@ public class EmailService {
   }
 
   /**
-   * Sendet eine E-Mail, die den Benutzer darüber informiert, dass sein Account erfolgreich deaktiviert wurde.
+   * Sendet eine E-Mail, die den Benutzer darüber informiert, dass sein Account erfolgreich
+   * deaktiviert wurde.
    *
    * @param toEmail Die E-Mail-Adresse des Empfängers.
-   * @param email Die E-Mail-Adresse des Accounts, der deaktiviert wurde, damit der Benutzer überprüfen kann,
-   * ob es sich um seinen Account handelt.
+   * @param email Die E-Mail-Adresse des Accounts, der deaktiviert wurde, damit der Benutzer
+   *     überprüfen kann, ob es sich um seinen Account handelt.
    */
   @Async
   public void sendAccountDeactivationEmail(String toEmail, String email) {
@@ -109,11 +111,12 @@ public class EmailService {
   }
 
   /**
-   * Sendet eine E-Mail, die den Benutzer darüber informiert, dass sein Account zu einem Projektboard eingeladen.
+   * Sendet eine E-Mail, die den Benutzer darüber informiert, dass sein Account zu einem
+   * Projektboard eingeladen.
    *
    * @param toEmail Die E-Mail-Adresse des Empfängers.
-   * @param projectBoard Der Name des Projektboards, zu dem der Benutzer eingeladen wurde, damit er überprüfen kann,
-   * ob es sich um ein Projektboard handelt, zu dem er Zugang haben sollte.
+   * @param projectBoard Der Name des Projektboards, zu dem der Benutzer eingeladen wurde, damit er
+   *     überprüfen kann, ob es sich um ein Projektboard handelt, zu dem er Zugang haben sollte.
    */
   @Async
   public void sendAccountInvitedEmail(String toEmail, String projectBoard) {
@@ -130,14 +133,16 @@ public class EmailService {
   }
 
   /**
-   * Sendet eine E-Mail, die den Benutzer darüber informiert, dass sein Account zu einer Aufgabe zugewiesen wurde.
+   * Sendet eine E-Mail, die den Benutzer darüber informiert, dass sein Account zu einer Aufgabe
+   * zugewiesen wurde.
    *
    * @param toEmail Die E-Mail-Adresse des Empfängers.
-   * @param projectBoard Der Name des Projektboards, zu dem die Aufgabe gehört, damit der Benutzer überprüfen kann,
-   * ob es sich um ein Projektboard handelt, zu dem er Zugang haben sollte.
-   * @param statusCategory Die Statuskategorie, zu der die Aufgabe gehört, damit der Benutzer die Aufgabe leichter
-   * finden kann.
-   * @param task Der Name der Aufgabe, zu der der Benutzer zugewiesen wurde, damit er die Aufgabe leichter finden kann.
+   * @param projectBoard Der Name des Projektboards, zu dem die Aufgabe gehört, damit der Benutzer
+   *     überprüfen kann, ob es sich um ein Projektboard handelt, zu dem er Zugang haben sollte.
+   * @param statusCategory Die Statuskategorie, zu der die Aufgabe gehört, damit der Benutzer die
+   *     Aufgabe leichter finden kann.
+   * @param task Der Name der Aufgabe, zu der der Benutzer zugewiesen wurde, damit er die Aufgabe
+   *     leichter finden kann.
    */
   @Async
   public void sendAccountAssignedEmail(
@@ -155,14 +160,16 @@ public class EmailService {
   }
 
   /**
-   * Sendet eine E-Mail, die den Benutzer darüber informiert, dass sein Account von einer Aufgabe entfernt wurde.
+   * Sendet eine E-Mail, die den Benutzer darüber informiert, dass sein Account von einer Aufgabe
+   * entfernt wurde.
    *
    * @param toEmail Die E-Mail-Adresse des Empfängers.
-   * @param projectBoard Der Name des Projektboards, zu dem die Aufgabe gehört, damit der Benutzer überprüfen kann,
-   * ob es sich um ein Projektboard handelt, zu dem er Zugang haben sollte.
-   * @param statusCategory Die Statuskategorie, zu der die Aufgabe gehört, damit der Benutzer die Aufgabe leichter
-   * finden kann.
-   * @param task Der Name der Aufgabe, von der der Benutzer entfernt wurde, damit er die Aufgabe leichter finden kann.
+   * @param projectBoard Der Name des Projektboards, zu dem die Aufgabe gehört, damit der Benutzer
+   *     überprüfen kann, ob es sich um ein Projektboard handelt, zu dem er Zugang haben sollte.
+   * @param statusCategory Die Statuskategorie, zu der die Aufgabe gehört, damit der Benutzer die
+   *     Aufgabe leichter finden kann.
+   * @param task Der Name der Aufgabe, von der der Benutzer entfernt wurde, damit er die Aufgabe
+   *     leichter finden kann.
    */
   @Async
   public void sendAccountUnassignedEmail(
@@ -180,12 +187,13 @@ public class EmailService {
   }
 
   /**
-   * Sendet eine E-Mail, die den Benutzer darüber informiert, dass sein Account zum Besitzer eines Projektboards
-   * ernannt wurde.
+   * Sendet eine E-Mail, die den Benutzer darüber informiert, dass sein Account zum Besitzer eines
+   * Projektboards ernannt wurde.
    *
    * @param toEmail Die E-Mail-Adresse des Empfängers.
-   * @param projectBoard Der Name des Projektboards, von dem der Benutzer zum Besitzer ernannt wurde, damit der
-   * Benutzer überprüfen kann, ob es sich um ein Projektboard handelt, zu dem er Zugang haben sollte.
+   * @param projectBoard Der Name des Projektboards, von dem der Benutzer zum Besitzer ernannt
+   *     wurde, damit der Benutzer überprüfen kann, ob es sich um ein Projektboard handelt, zu dem
+   *     er Zugang haben sollte.
    */
   @Async
   public void sendNewProjectboardOwnerEmail(String toEmail, String projectBoard) {
@@ -202,9 +210,11 @@ public class EmailService {
   }
 
   /**
-   * Hilfsmethode zum Erstellen des E-Mail-Textes für die Registrierungsbestätigung, der den Verifizierungslink enthält.
+   * Hilfsmethode zum Erstellen des E-Mail-Textes für die Registrierungsbestätigung, der den
+   * Verifizierungslink enthält.
    *
-   * @param verificationLink Der Link, den der Benutzer anklicken muss, um seine Registrierung abzuschließen.
+   * @param verificationLink Der Link, den der Benutzer anklicken muss, um seine Registrierung
+   *     abzuschließen.
    * @return Der E-Mail-Text für die Registrierungsbestätigung.
    */
   private String buildRegistrationEmailBody(String verificationLink) {
@@ -221,8 +231,8 @@ public class EmailService {
   }
 
   /**
-   * Hilfsmethode zum Erstellen des E-Mail-Textes für die Passwort-Zurücksetzen-E-Mail, der den Link zum
-   * Erstellen eines neuen Passworts enthält.
+   * Hilfsmethode zum Erstellen des E-Mail-Textes für die Passwort-Zurücksetzen-E-Mail, der den Link
+   * zum Erstellen eines neuen Passworts enthält.
    *
    * @param resetLink Der Link, den der Benutzer anklicken muss, um ein neues Passwort zu erstellen.
    * @return Der E-Mail-Text für die Passwort-Zurücksetzen-E-Mail.
@@ -240,11 +250,11 @@ public class EmailService {
   }
 
   /**
-   * Hilfsmethode zum Erstellen des E-Mail-Textes für die Passwort-Änderungs-E-Mail, der die E-Mail-Adresse des
-   * Accounts enthält, dessen Passwort geändert wurde.
+   * Hilfsmethode zum Erstellen des E-Mail-Textes für die Passwort-Änderungs-E-Mail, der die
+   * E-Mail-Adresse des Accounts enthält, dessen Passwort geändert wurde.
    *
-   * @param email Die E-Mail-Adresse des Accounts, dessen Passwort geändert wurde, damit der Benutzer überprüfen
-   * kann, ob es sich um seinen Account handelt.
+   * @param email Die E-Mail-Adresse des Accounts, dessen Passwort geändert wurde, damit der
+   *     Benutzer überprüfen kann, ob es sich um seinen Account handelt.
    * @return Der E-Mail-Text für die Passwort-Änderungs-E-Mail.
    */
   private String buildPasswordChangedEmailBody(String email) {
@@ -260,11 +270,11 @@ public class EmailService {
   }
 
   /**
-   * Hilfsmethode zum Erstellen des E-Mail-Textes für die Account-Deaktivierungs-E-Mail, der die E-Mail-Adresse
-   * des Accounts enthält, der deaktiviert wurde.
+   * Hilfsmethode zum Erstellen des E-Mail-Textes für die Account-Deaktivierungs-E-Mail, der die
+   * E-Mail-Adresse des Accounts enthält, der deaktiviert wurde.
    *
-   * @param email Die E-Mail-Adresse des Accounts, der deaktiviert wurde, damit der Benutzer überprüfen kann, ob es
-   * sich um seinen Account handelt.
+   * @param email Die E-Mail-Adresse des Accounts, der deaktiviert wurde, damit der Benutzer
+   *     überprüfen kann, ob es sich um seinen Account handelt.
    * @return Der E-Mail-Text für die Account-Deaktivierungs-E-Mail.
    */
   private String buildAccountDeactivationEmailBody(String email) {
@@ -278,13 +288,14 @@ public class EmailService {
   }
 
   /**
-   * Hilfsmethode zum Erstellen des E-Mail-Textes für die Account-Invited-E-Mail, der die E-Mail-Adresse des Accounts
-   * und den Namen des Projektboards enthält, zu dem der Benutzer eingeladen wurde.
+   * Hilfsmethode zum Erstellen des E-Mail-Textes für die Account-Invited-E-Mail, der die
+   * E-Mail-Adresse des Accounts und den Namen des Projektboards enthält, zu dem der Benutzer
+   * eingeladen wurde.
    *
-   * @param email Die E-Mail-Adresse des Accounts, der eingeladen wurde, damit der Benutzer überprüfen kann, ob es
-   * sich um seinen Account handelt.
-   * @param projectBoard Der Name des Projektboards, zu dem der Benutzer eingeladen wurde, damit er überprüfen kann,
-   * ob es sich um ein Projektboard handelt, zu dem er Zugang haben sollte.
+   * @param email Die E-Mail-Adresse des Accounts, der eingeladen wurde, damit der Benutzer
+   *     überprüfen kann, ob es sich um seinen Account handelt.
+   * @param projectBoard Der Name des Projektboards, zu dem der Benutzer eingeladen wurde, damit er
+   *     überprüfen kann, ob es sich um ein Projektboard handelt, zu dem er Zugang haben sollte.
    * @return Der E-Mail-Text für die Account-Invited-E-Mail.
    */
   private String buildAccountInvitedEmailBody(String email, String projectBoard) {
@@ -302,17 +313,18 @@ public class EmailService {
   }
 
   /**
-   * Hilfsmethode zum Erstellen des E-Mail-Textes für die Account-Assigned-E-Mail, der die E-Mail-Adresse des
-   * Accounts, den Namen des Projektboards, die Statuskategorie und den Namen der Aufgabe enthält, zu der der
-   * Benutzer zugewiesen wurde.
+   * Hilfsmethode zum Erstellen des E-Mail-Textes für die Account-Assigned-E-Mail, der die
+   * E-Mail-Adresse des Accounts, den Namen des Projektboards, die Statuskategorie und den Namen der
+   * Aufgabe enthält, zu der der Benutzer zugewiesen wurde.
    *
-   * @param email Die E-Mail-Adresse des Accounts, der zu einer Aufgabe zugewiesen wurde, damit der Benutzer
-   * überprüfen kann, ob es sich um seinen Account handelt.
-   * @param projectBoard Der Name des Projektboards, zu dem die Aufgabe gehört, damit der Benutzer überprüfen kann,
-   * ob es sich um ein Projektboard handelt, zu dem er Zugang haben sollte.
-   * @param statusCategory Die Statuskategorie, zu der die Aufgabe gehört, damit der Benutzer die Aufgabe leichter
-   * finden kann.
-   * @param task Der Name der Aufgabe, zu der der Benutzer zugewiesen wurde, damit er die Aufgabe leichter finden kann.
+   * @param email Die E-Mail-Adresse des Accounts, der zu einer Aufgabe zugewiesen wurde, damit der
+   *     Benutzer überprüfen kann, ob es sich um seinen Account handelt.
+   * @param projectBoard Der Name des Projektboards, zu dem die Aufgabe gehört, damit der Benutzer
+   *     überprüfen kann, ob es sich um ein Projektboard handelt, zu dem er Zugang haben sollte.
+   * @param statusCategory Die Statuskategorie, zu der die Aufgabe gehört, damit der Benutzer die
+   *     Aufgabe leichter finden kann.
+   * @param task Der Name der Aufgabe, zu der der Benutzer zugewiesen wurde, damit er die Aufgabe
+   *     leichter finden kann.
    * @return Der E-Mail-Text für die Account-Assigned-E-Mail.
    */
   private String buildAccountAssignedEmailBody(
@@ -333,17 +345,18 @@ public class EmailService {
   }
 
   /**
-   * Hilfsmethode zum Erstellen des E-Mail-Textes für die Account-Unassigned-E-Mail, der die E-Mail-Adresse des
-   * Accounts, den Namen des Projektboards, die Statuskategorie und den Namen der Aufgabe enthält, von der der
-   * Benutzer entfernt wurde.
+   * Hilfsmethode zum Erstellen des E-Mail-Textes für die Account-Unassigned-E-Mail, der die
+   * E-Mail-Adresse des Accounts, den Namen des Projektboards, die Statuskategorie und den Namen der
+   * Aufgabe enthält, von der der Benutzer entfernt wurde.
    *
-   * @param email Die E-Mail-Adresse des Accounts, der von einer Aufgabe entfernt wurde, damit der Benutzer
-   * überprüfen kann, ob es sich um seinen Account handelt.
-   * @param projectBoard Der Name des Projektboards, zu dem die Aufgabe gehört, damit der Benutzer überprüfen kann,
-   * ob es sich um ein Projektboard handelt, zu dem er Zugang haben sollte.
-   * @param statusCategory Die Statuskategorie, zu der die Aufgabe gehört, damit der Benutzer die Aufgabe leichter
-   * finden kann.
-   * @param task Der Name der Aufgabe, von der der Benutzer entfernt wurde, damit er die Aufgabe leichter finden kann.
+   * @param email Die E-Mail-Adresse des Accounts, der von einer Aufgabe entfernt wurde, damit der
+   *     Benutzer überprüfen kann, ob es sich um seinen Account handelt.
+   * @param projectBoard Der Name des Projektboards, zu dem die Aufgabe gehört, damit der Benutzer
+   *     überprüfen kann, ob es sich um ein Projektboard handelt, zu dem er Zugang haben sollte.
+   * @param statusCategory Die Statuskategorie, zu der die Aufgabe gehört, damit der Benutzer die
+   *     Aufgabe leichter finden kann.
+   * @param task Der Name der Aufgabe, von der der Benutzer entfernt wurde, damit er die Aufgabe
+   *     leichter finden kann.
    * @return Der E-Mail-Text für die Account-Unassigned-E-Mail.
    */
   private String buildAccountUnassignedEmailBody(
@@ -364,13 +377,15 @@ public class EmailService {
   }
 
   /**
-   * Hilfsmethode zum Erstellen des E-Mail-Textes für die New-Projectboard-Owner-E-Mail, der die E-Mail-Adresse
-   * des Accounts und den Namen des Projektboards enthält, von dem der Benutzer zum Besitzer ernannt wurde.
+   * Hilfsmethode zum Erstellen des E-Mail-Textes für die New-Projectboard-Owner-E-Mail, der die
+   * E-Mail-Adresse des Accounts und den Namen des Projektboards enthält, von dem der Benutzer zum
+   * Besitzer ernannt wurde.
    *
-   * @param email Die E-Mail-Adresse des Accounts, der zum Besitzer eines Projektboards ernannt wurde, damit der Benutzer
-   * überprüfen kann, ob es sich um seinen Account handelt.
-   * @param projectBoard Der Name des Projektboards, von dem der Benutzer zum Besitzer ernannt wurde, damit der
-   * Benutzer überprüfen kann, ob es sich um ein Projektboard handelt, zu dem er Zugang haben sollte.
+   * @param email Die E-Mail-Adresse des Accounts, der zum Besitzer eines Projektboards ernannt
+   *     wurde, damit der Benutzer überprüfen kann, ob es sich um seinen Account handelt.
+   * @param projectBoard Der Name des Projektboards, von dem der Benutzer zum Besitzer ernannt
+   *     wurde, damit der Benutzer überprüfen kann, ob es sich um ein Projektboard handelt, zu dem
+   *     er Zugang haben sollte.
    * @return Der E-Mail-Text für die New-Projectboard-Owner-E-Mail.
    */
   private String buildNewProjectboardOwnerEmailBody(String email, String projectBoard) {

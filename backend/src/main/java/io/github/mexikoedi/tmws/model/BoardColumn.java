@@ -1,16 +1,14 @@
-/**
- * Diese Klasse repräsentiert eine Statuskategorie im Projekttboard im TMWS.
- */
+/** Diese Klasse repräsentiert eine Statuskategorie im Projekttboard im TMWS. */
 package io.github.mexikoedi.tmws.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import lombok.Getter;
+import lombok.Setter;
 
 @Setter
 @Getter
@@ -44,7 +42,8 @@ public class BoardColumn {
   private LocalDateTime updatedAt;
 
   /**
-   * Setzt die Erstellungs- und Aktualisierungszeitstempel, bevor die Statuskategorie in die Datenbank eingefügt wird.
+   * Setzt die Erstellungs- und Aktualisierungszeitstempel, bevor die Statuskategorie in die
+   * Datenbank eingefügt wird.
    */
   @PrePersist
   private void onCreate() {
@@ -53,7 +52,8 @@ public class BoardColumn {
   }
 
   /**
-   * Aktualisiert den Aktualisierungszeitstempel, bevor die Statuskategorie in der Datenbank aktualisiert wird.
+   * Aktualisiert den Aktualisierungszeitstempel, bevor die Statuskategorie in der Datenbank
+   * aktualisiert wird.
    */
   @PreUpdate
   private void onUpdate() {

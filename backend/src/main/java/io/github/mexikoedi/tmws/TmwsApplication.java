@@ -1,6 +1,4 @@
-/**
- * Diese Klasse ist der Einstiegspunkt für die Spring Boot Anwendung.
- */
+/** Diese Klasse ist der Einstiegspunkt für die Spring Boot Anwendung. */
 package io.github.mexikoedi.tmws;
 
 import org.springframework.boot.SpringApplication;

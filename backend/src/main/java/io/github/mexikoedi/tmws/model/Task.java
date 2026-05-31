@@ -1,17 +1,15 @@
-/**
- * Diese Klasse repräsentiert eine Aufgabe im TMWS.
- */
+/** Diese Klasse repräsentiert eine Aufgabe im TMWS. */
 package io.github.mexikoedi.tmws.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.Getter;
+import lombok.Setter;
 
 @Setter
 @Getter
@@ -38,7 +36,10 @@ public class Task {
   private String attachments;
 
   @ManyToMany
-  @JoinTable(name = "task_assignees", joinColumns = @JoinColumn(name = "task_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+  @JoinTable(
+      name = "task_assignees",
+      joinColumns = @JoinColumn(name = "task_id"),
+      inverseJoinColumns = @JoinColumn(name = "user_id"))
   @JsonIgnore
   private Set<User> assignees = new HashSet<>();
 
@@ -54,7 +55,8 @@ public class Task {
   private LocalDateTime updatedAt;
 
   /**
-   * Setzt die Erstellungs- und Aktualisierungszeitstempel, bevor die Aufgabe in die Datenbank eingefügt wird.
+   * Setzt die Erstellungs- und Aktualisierungszeitstempel, bevor die Aufgabe in die Datenbank
+   * eingefügt wird.
    */
   @PrePersist
   private void onCreate() {
@@ -63,7 +65,8 @@ public class Task {
   }
 
   /**
-   * Aktualisiert den Aktualisierungszeitstempel, bevor die Aufgabe in der Datenbank aktualisiert wird.
+   * Aktualisiert den Aktualisierungszeitstempel, bevor die Aufgabe in der Datenbank aktualisiert
+   * wird.
    */
   @PreUpdate
   private void onUpdate() {

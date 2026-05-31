@@ -1,13 +1,11 @@
-/**
- * Diese Annotation wird verwendet, um sicherzustellen, dass die Passwörter übereinstimmen.
- */
+/** Diese Annotation wird verwendet, um sicherzustellen, dass die Passwörter übereinstimmen. */
 package io.github.mexikoedi.tmws.util;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import java.lang.annotation.*;
 
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = PasswordMatchesValidator.class)
 @Documented
@@ -25,7 +23,6 @@ public @interface PasswordMatches {
    * @return Die Gruppen, zu denen diese Validierung gehört.
    */
   Class<?>[] groups() default {};
-
 
   /**
    * Gibt die Nutzlast an, die mit dieser Validierung verbunden ist.

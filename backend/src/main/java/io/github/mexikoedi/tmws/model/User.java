@@ -1,12 +1,10 @@
-/**
- * Diese Klasse repräsentiert einen Benutzer im TMWS.
- */
+/** Diese Klasse repräsentiert einen Benutzer im TMWS. */
 package io.github.mexikoedi.tmws.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
-import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -47,7 +45,8 @@ public class User {
   private LocalDateTime updatedAt;
 
   /**
-   * Setzt die Erstellungs- und Aktualisierungszeitstempel, bevor der Benutzer in die Datenbank eingefügt wird.
+   * Setzt die Erstellungs- und Aktualisierungszeitstempel, bevor der Benutzer in die Datenbank
+   * eingefügt wird.
    */
   @PrePersist
   private void onCreate() {
@@ -56,7 +55,8 @@ public class User {
   }
 
   /**
-   * Aktualisiert den Aktualisierungszeitstempel, bevor der Benutzer in der Datenbank aktualisiert wird.
+   * Aktualisiert den Aktualisierungszeitstempel, bevor der Benutzer in der Datenbank aktualisiert
+   * wird.
    */
   @PreUpdate
   private void onUpdate() {

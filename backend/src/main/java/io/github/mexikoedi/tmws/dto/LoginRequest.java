@@ -1,6 +1,4 @@
-/**
- * Diese Klasse repräsentiert die Daten, die für eine Login-Anfrage benötigt werden.
- */
+/** Diese Klasse repräsentiert die Daten, die für eine Login-Anfrage benötigt werden. */
 package io.github.mexikoedi.tmws.dto;
 
 import io.github.mexikoedi.tmws.util.ValidEmail;
@@ -20,8 +18,7 @@ public class LoginRequest {
   private String password;
 
   /**
-   * Konstruktor für die LoginRequest-Klasse.
-   * Für Tests benutzt.
+   * Konstruktor für die LoginRequest-Klasse. Für Tests benutzt.
    *
    * @param email E-Mail-Adresse des Benutzers.
    * @param password Passwort des Benutzers.

@@ -1,10 +1,11 @@
 /**
- * Diese Klasse repräsentiert die Antwort auf eine Gesundheitsprüfungsanfrage (Health Check) an die Anwendung.
+ * Diese Klasse repräsentiert die Antwort auf eine Gesundheitsprüfungsanfrage (Health Check) an die
+ * Anwendung.
  */
 package io.github.mexikoedi.tmws.dto;
 
-import lombok.*;
 import java.time.Instant;
+import lombok.*;
 
 @Setter
 @Getter

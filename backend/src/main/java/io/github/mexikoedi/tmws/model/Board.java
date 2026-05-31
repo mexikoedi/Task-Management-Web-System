@@ -1,15 +1,13 @@
-/**
- * Diese Klasse repräsentiert ein Projekttboard im TMWS.
- */
+/** Diese Klasse repräsentiert ein Projekttboard im TMWS. */
 package io.github.mexikoedi.tmws.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Setter
 @Getter
@@ -36,7 +34,10 @@ public class Board {
   private Set<BoardColumn> columns = new LinkedHashSet<>();
 
   @ManyToMany
-  @JoinTable(name = "board_members", joinColumns = @JoinColumn(name = "board_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+  @JoinTable(
+      name = "board_members",
+      joinColumns = @JoinColumn(name = "board_id"),
+      inverseJoinColumns = @JoinColumn(name = "user_id"))
   @JsonIgnore
   private Set<User> members = new HashSet<>();
 
@@ -47,7 +48,8 @@ public class Board {
   private LocalDateTime updatedAt;
 
   /**
-   * Setzt die Erstellungs- und Aktualisierungszeitstempel, bevor das Board in die Datenbank eingefügt wird.
+   * Setzt die Erstellungs- und Aktualisierungszeitstempel, bevor das Board in die Datenbank
+   * eingefügt wird.
    */
   @PrePersist
   private void onCreate() {
@@ -56,7 +58,8 @@ public class Board {
   }
 
   /**
-   * Aktualisiert den Aktualisierungszeitstempel, bevor das Board in der Datenbank aktualisiert wird.
+   * Aktualisiert den Aktualisierungszeitstempel, bevor das Board in der Datenbank aktualisiert
+   * wird.
    */
   @PreUpdate
   private void onUpdate() {

@@ -1,6 +1,4 @@
-/**
- * Diese Klasse bietet Authentifizierungs- und Benutzerverwaltungsdienste für TMWS.
- */
+/** Diese Klasse bietet Authentifizierungs- und Benutzerverwaltungsdienste für TMWS. */
 package io.github.mexikoedi.tmws.service;
 
 import io.github.mexikoedi.tmws.dto.*;
@@ -38,7 +36,8 @@ public class AuthService {
    * @param passwordEncoder PasswordEncoder für die sichere Speicherung von Passwörtern.
    * @param jwtProvider JwtProvider für die Generierung von JWT-Tokens.
    * @param emailService EmailService für den Versand von E-Mails.
-   * @param websocket WebSocketNotificationService für die Benachrichtigung von Clients über WebSockets.
+   * @param websocket WebSocketNotificationService für die Benachrichtigung von Clients über
+   *     WebSockets.
    */
   public AuthService(
       UserRepository userRepository,
@@ -64,14 +63,21 @@ public class AuthService {
   /**
    * Authentifiziert einen Benutzer anhand seiner E-Mail-Adresse und seines Passworts.
    *
-   * @param request LoginRequest-Objekt, das die E-Mail-Adresse und das Passwort des Benutzers enthält.
-   * @throws ResourceNotFoundException Wenn kein Benutzer mit der angegebenen E-Mail-Adresse gefunden wird.
-   * @throws InvalidPasswordException Wenn das angegebene Passwort nicht mit dem gespeicherten Passwort übereinstimmt.
+   * @param request LoginRequest-Objekt, das die E-Mail-Adresse und das Passwort des Benutzers
+   *     enthält.
+   * @throws ResourceNotFoundException Wenn kein Benutzer mit der angegebenen E-Mail-Adresse
+   *     gefunden wird.
+   * @throws InvalidPasswordException Wenn das angegebene Passwort nicht mit dem gespeicherten
+   *     Passwort übereinstimmt.
    * @throws UserDeactivatedException Wenn der Benutzer deaktiviert ist.
-   * @return Ein JWT-Token, das für die Authentifizierung bei zukünftigen Anfragen verwendet werden kann.
+   * @return Ein JWT-Token, das für die Authentifizierung bei zukünftigen Anfragen verwendet werden
+   *     kann.
    */
   public String login(LoginRequest request) {
-    User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new ResourceNotFoundException("Benutzer nicht gefunden."));
+    User user =
+        userRepository
+            .findByEmail(request.getEmail())
+            .orElseThrow(() -> new ResourceNotFoundException("Benutzer nicht gefunden."));
 
     if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
       throw new InvalidPasswordException("Ungültiges Passwort.");
@@ -89,11 +95,15 @@ public class AuthService {
   }
 
   /**
-   * Registriert einen neuen Benutzer, speichert ihn in der Datenbank und sendet eine Verifikations-E-Mail.
+   * Registriert einen neuen Benutzer, speichert ihn in der Datenbank und sendet eine
+   * Verifikations-E-Mail.
    *
-   * @param request RegisterRequest-Objekt, das den Namen, die E-Mail-Adresse und das Passwort des neuen Benutzers enthält.
-   * @throws EmailAlreadyExistsException Wenn die angegebene E-Mail-Adresse bereits von einem anderen Benutzer verwendet wird.
-   * @return Eine Erfolgsmeldung, die den Benutzer auffordert, seine E-Mail-Adresse zu überprüfen, um das Konto zu verifizieren.
+   * @param request RegisterRequest-Objekt, das den Namen, die E-Mail-Adresse und das Passwort des
+   *     neuen Benutzers enthält.
+   * @throws EmailAlreadyExistsException Wenn die angegebene E-Mail-Adresse bereits von einem
+   *     anderen Benutzer verwendet wird.
+   * @return Eine Erfolgsmeldung, die den Benutzer auffordert, seine E-Mail-Adresse zu überprüfen,
+   *     um das Konto zu verifizieren.
    */
   public String register(RegisterRequest request) {
     if (userRepository.existsByEmail(request.getEmail())) {
@@ -116,22 +126,28 @@ public class AuthService {
     String verificationLink = "http://localhost:4200/verify-email?token=" + token;
     emailService.sendRegistrationEmail(request.getEmail(), verificationLink);
 
-    return "Registrierung erfolgreich. Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu verifizieren.";
+    return "Registrierung erfolgreich. Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu"
+               + " verifizieren.";
   }
 
   /**
-   * Initiiert den Passwort-Zurücksetzen-Prozess, indem er einen Reset-Token generiert, diesen in der Datenbank
-   * speichert und einen Link zum Zurücksetzen des Passworts an die E-Mail-Adresse des Benutzers sendet.
+   * Initiiert den Passwort-Zurücksetzen-Prozess, indem er einen Reset-Token generiert, diesen in
+   * der Datenbank speichert und einen Link zum Zurücksetzen des Passworts an die E-Mail-Adresse des
+   * Benutzers sendet.
    *
-   * @param request PasswordResetInquiryRequest-Objekt, das die E-Mail-Adresse des Benutzers enthält, der sein
-   * Passwort zurücksetzen möchte.
-   * @throws ResourceNotFoundException Wenn kein Benutzer mit der angegebenen E-Mail-Adresse gefunden wird.
+   * @param request PasswordResetInquiryRequest-Objekt, das die E-Mail-Adresse des Benutzers
+   *     enthält, der sein Passwort zurücksetzen möchte.
+   * @throws ResourceNotFoundException Wenn kein Benutzer mit der angegebenen E-Mail-Adresse
+   *     gefunden wird.
    * @throws UserDeactivatedException Wenn der Benutzer deaktiviert ist.
-   * @return Eine Erfolgsmeldung, die den Benutzer darüber informiert, dass ein Link zum Zurücksetzen des Passworts
-   * an seine E-Mail-Adresse gesendet wurde.
+   * @return Eine Erfolgsmeldung, die den Benutzer darüber informiert, dass ein Link zum
+   *     Zurücksetzen des Passworts an seine E-Mail-Adresse gesendet wurde.
    */
   public String requestPasswordReset(PasswordResetInquiryRequest request) {
-    User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new ResourceNotFoundException("Benutzer nicht gefunden."));
+    User user =
+        userRepository
+            .findByEmail(request.getEmail())
+            .orElseThrow(() -> new ResourceNotFoundException("Benutzer nicht gefunden."));
 
     if (!user.isEnabled()) {
       throw new UserDeactivatedException("Benutzer ist deaktiviert.");
@@ -150,8 +166,8 @@ public class AuthService {
   }
 
   /**
-   * Verifiziert die E-Mail eines Users anhand des Verifikationstokens.
-   * Prüft ob Token existiert, ob er abgelaufen ist oder bereits verwendet wurde.
+   * Verifiziert die E-Mail eines Users anhand des Verifikationstokens. Prüft ob Token existiert, ob
+   * er abgelaufen ist oder bereits verwendet wurde.
    *
    * @param token Verifikationstoken aus der E-Mail.
    * @throws ResourceNotFoundException Wenn Token nicht gefunden wird.
@@ -160,7 +176,10 @@ public class AuthService {
    */
   @Transactional
   public void verifyEmail(String token) {
-    VerificationToken verificationToken = verificationTokenRepository.findByToken(token).orElseThrow(() -> new ResourceNotFoundException("Verifikationstoken nicht gefunden."));
+    VerificationToken verificationToken =
+        verificationTokenRepository
+            .findByToken(token)
+            .orElseThrow(() -> new ResourceNotFoundException("Verifikationstoken nicht gefunden."));
     boolean isExpired = LocalDateTime.now().isAfter(verificationToken.getExpiryDate());
 
     if (isExpired) {
@@ -168,7 +187,8 @@ public class AuthService {
     }
 
     if (verificationToken.isUsed()) {
-      throw new VerificationTokenAlreadyUsedException("Verifikationstoken wurde bereits verwendet.");
+      throw new VerificationTokenAlreadyUsedException(
+          "Verifikationstoken wurde bereits verwendet.");
     }
 
     User user = verificationToken.getUser();
@@ -185,7 +205,8 @@ public class AuthService {
   }
 
   /**
-   * Setzt das Passwort eines Users zurück, indem es den Reset-Token überprüft und das neue Passwort speichert.
+   * Setzt das Passwort eines Users zurück, indem es den Reset-Token überprüft und das neue Passwort
+   * speichert.
    *
    * @param token Passwort-Reset-Token aus der E-Mail.
    * @param request PasswordResetRequest-Objekt, das das neue Passwort enthält.
@@ -195,7 +216,11 @@ public class AuthService {
    */
   @Transactional
   public void resetPassword(String token, PasswordResetRequest request) {
-    PasswordResetToken resetToken = passwordResetTokenRepository.findByToken(token).orElseThrow(() -> new ResourceNotFoundException("Passwort-Reset-Token nicht gefunden."));
+    PasswordResetToken resetToken =
+        passwordResetTokenRepository
+            .findByToken(token)
+            .orElseThrow(
+                () -> new ResourceNotFoundException("Passwort-Reset-Token nicht gefunden."));
     boolean isExpired = LocalDateTime.now().isAfter(resetToken.getExpiryDate());
 
     if (isExpired) {
@@ -203,7 +228,8 @@ public class AuthService {
     }
 
     if (resetToken.isUsed()) {
-      throw new PasswordResetTokenAlreadyUsedException("Passwort-Reset-Token wurde bereits verwendet.");
+      throw new PasswordResetTokenAlreadyUsedException(
+          "Passwort-Reset-Token wurde bereits verwendet.");
     }
 
     User user = resetToken.getUser();
@@ -220,13 +246,18 @@ public class AuthService {
    * @param newName Der neue Name des Users.
    * @param newEmail Die neue E-Mail-Adresse des Users.
    * @param image Das neue Profilbild des Users.
-   * @throws ResourceNotFoundException Wenn kein User mit der aktuellen E-Mail-Adresse gefunden wird.
-   * @throws EmailAlreadyExistsException Wenn die neue E-Mail-Adresse bereits von einem anderen User verwendet wird.
+   * @throws ResourceNotFoundException Wenn kein User mit der aktuellen E-Mail-Adresse gefunden
+   *     wird.
+   * @throws EmailAlreadyExistsException Wenn die neue E-Mail-Adresse bereits von einem anderen User
+   *     verwendet wird.
    * @return Das aktualisierte User-Objekt.
    */
   @Transactional
   public User updateProfile(String currentEmail, String newName, String newEmail, String image) {
-    User user = userRepository.findByEmail(currentEmail).orElseThrow(() -> new ResourceNotFoundException("Benutzer nicht gefunden."));
+    User user =
+        userRepository
+            .findByEmail(currentEmail)
+            .orElseThrow(() -> new ResourceNotFoundException("Benutzer nicht gefunden."));
 
     if (newName != null && !newName.isBlank()) {
       user.setName(newName.trim());
@@ -256,7 +287,8 @@ public class AuthService {
       verificationToken.setExpiryDate(LocalDateTime.now().plusHours(24));
       userRepository.save(user);
       verificationTokenRepository.save(verificationToken);
-      emailService.sendRegistrationEmail(newEmail, "http://localhost:4200/verify-email?token=" + token);
+      emailService.sendRegistrationEmail(
+          newEmail, "http://localhost:4200/verify-email?token=" + token);
     } else {
       user.setEmailChanged(false);
     }
@@ -272,16 +304,23 @@ public class AuthService {
   }
 
   /**
-   * Ändert das Passwort eines Users, indem es das aktuelle Passwort überprüft und das neue Passwort speichert.
+   * Ändert das Passwort eines Users, indem es das aktuelle Passwort überprüft und das neue Passwort
+   * speichert.
    *
    * @param email Die E-Mail-Adresse des Users, dessen Passwort geändert werden soll.
-   * @param currentPassword Das aktuelle Passwort des Users, das überprüft wird, um sicherzustellen, dass der Benutzer berechtigt ist, das Passwort zu ändern.
+   * @param currentPassword Das aktuelle Passwort des Users, das überprüft wird, um sicherzustellen,
+   *     dass der Benutzer berechtigt ist, das Passwort zu ändern.
    * @param newPassword Das neue Passwort, das für den User gespeichert werden soll.
-   * @throws ResourceNotFoundException Wenn kein User mit der angegebenen E-Mail-Adresse gefunden wird.
-   * @throws InvalidPasswordException Wenn das aktuelle Passwort nicht mit dem gespeicherten Passwort übereinstimmt.
+   * @throws ResourceNotFoundException Wenn kein User mit der angegebenen E-Mail-Adresse gefunden
+   *     wird.
+   * @throws InvalidPasswordException Wenn das aktuelle Passwort nicht mit dem gespeicherten
+   *     Passwort übereinstimmt.
    */
   public void changePassword(String email, String currentPassword, String newPassword) {
-    User user = userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Benutzer nicht gefunden."));
+    User user =
+        userRepository
+            .findByEmail(email)
+            .orElseThrow(() -> new ResourceNotFoundException("Benutzer nicht gefunden."));
 
     if (!passwordEncoder.matches(currentPassword, user.getPassword())) {
       throw new InvalidPasswordException("Aktuelles Passwort ist falsch.");
@@ -296,11 +335,15 @@ public class AuthService {
    * Deaktiviert das Konto eines Users anhand seiner E-Mail-Adresse.
    *
    * @param email Die E-Mail-Adresse des Users, dessen Konto deaktiviert werden soll.
-   * @throws ResourceNotFoundException Wenn kein User mit der angegebenen E-Mail-Adresse gefunden wird.
+   * @throws ResourceNotFoundException Wenn kein User mit der angegebenen E-Mail-Adresse gefunden
+   *     wird.
    */
   @Transactional
   public void deactivateAccount(String email) {
-    User user = userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Benutzer nicht gefunden."));
+    User user =
+        userRepository
+            .findByEmail(email)
+            .orElseThrow(() -> new ResourceNotFoundException("Benutzer nicht gefunden."));
     Long userId = user.getId();
     List<Board> boards = boardRepository.findBoardsForUserWithRelations(user);
 
@@ -348,15 +391,20 @@ public class AuthService {
   }
 
   /**
-   * Gibt die Informationen des aktuell angemeldeten Users zurück, basierend auf seiner E-Mail-Adresse.
+   * Gibt die Informationen des aktuell angemeldeten Users zurück, basierend auf seiner
+   * E-Mail-Adresse.
    *
    * @param email Die E-Mail-Adresse des aktuell angemeldeten Users.
-   * @throws ResourceNotFoundException Wenn kein User mit der angegebenen E-Mail-Adresse gefunden wird.
+   * @throws ResourceNotFoundException Wenn kein User mit der angegebenen E-Mail-Adresse gefunden
+   *     wird.
    * @throws UserDeactivatedException Wenn der User deaktiviert ist.
    * @return Ein UserResponse-Objekt, das die Informationen des aktuell angemeldeten Users enthält.
    */
   public UserResponse getCurrentUser(String email) {
-    User user = userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Benutzer nicht gefunden."));
+    User user =
+        userRepository
+            .findByEmail(email)
+            .orElseThrow(() -> new ResourceNotFoundException("Benutzer nicht gefunden."));
 
     if (!user.isEnabled()) {
       throw new UserDeactivatedException("Benutzer ist deaktiviert.");

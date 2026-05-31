@@ -7,6 +7,7 @@ package io.github.mexikoedi.tmws.exception;
 public class EmailAlreadyExistsException extends RuntimeException {
   /**
    * Konstruktor, der eine benutzerdefinierte Fehlermeldung akzeptiert.
+   *
    * @param message Die Fehlermeldung, die die Details der Ausnahme beschreibt.
    */
   public EmailAlreadyExistsException(String message) {

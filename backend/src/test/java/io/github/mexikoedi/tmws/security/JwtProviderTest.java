@@ -1,12 +1,13 @@
 /**
- * Diese Klasse enthält Unit-Tests für die JwtProvider-Klasse, die für die Generierung und Validierung
- * von JWT-Token verantwortlich ist.
- * Die Tests überprüfen, ob die generierten Token gültig sind, ob die Claims korrekt extrahiert werden können und
- * ob die Validierung von gültigen und ungültigen Token korrekt funktioniert.
+ * Diese Klasse enthält Unit-Tests für die JwtProvider-Klasse, die für die Generierung und
+ * Validierung von JWT-Token verantwortlich ist. Die Tests überprüfen, ob die generierten Token
+ * gültig sind, ob die Claims korrekt extrahiert werden können und ob die Validierung von gültigen
+ * und ungültigen Token korrekt funktioniert.
  */
 package io.github.mexikoedi.tmws.security;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import io.github.mexikoedi.tmws.model.User;
 import io.jsonwebtoken.Claims;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +18,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
 @SpringBootTest
-@TestPropertySource(properties = {"jwt.secret=mySuperSecretKeyThatIsAtLeast32CharactersLongForHS256", "jwt.expiration=3600000"})
+@TestPropertySource(
+    properties = {
+      "jwt.secret=mySuperSecretKeyThatIsAtLeast32CharactersLongForHS256",
+      "jwt.expiration=3600000"
+    })
 @DisplayName("JwtProvider Tests")
 class JwtProviderTest {
   @Autowired private JwtProvider jwtProvider;

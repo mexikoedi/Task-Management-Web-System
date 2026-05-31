@@ -1,20 +1,24 @@
 /**
- * Diese Klasse enthält Unit-Tests für die BoardService-Klasse, um sicherzustellen, dass die Geschäftslogik
- * korrekt funktioniert.
- * Es werden verschiedene Szenarien getestet, einschließlich erfolgreicher Operationen und Fehlerfälle.
- * Mockito wird verwendet, um die Abhängigkeiten zu mocken und die Interaktionen zu überprüfen.
- * JUnit 5 wird als Testframework verwendet, um die Tests zu strukturieren und auszuführen.
- * Die Tests decken Funktionen wie das Auflisten von Boards, das Erstellen von Boards, das Einladen von Benutzern,
- * das Hinzufügen und Verschieben von Spalten sowie das Hinzufügen, Aktualisieren, Verschieben und Löschen von
- * Aufgaben ab. Jeder Test überprüft die erwarteten Ergebnisse und die Interaktionen mit den gemockten
- * Abhängigkeiten, um sicherzustellen, dass die BoardService-Klasse wie erwartet funktioniert.
+ * Diese Klasse enthält Unit-Tests für die BoardService-Klasse, um sicherzustellen, dass die
+ * Geschäftslogik korrekt funktioniert. Es werden verschiedene Szenarien getestet, einschließlich
+ * erfolgreicher Operationen und Fehlerfälle. Mockito wird verwendet, um die Abhängigkeiten zu
+ * mocken und die Interaktionen zu überprüfen. JUnit 5 wird als Testframework verwendet, um die
+ * Tests zu strukturieren und auszuführen. Die Tests decken Funktionen wie das Auflisten von Boards,
+ * das Erstellen von Boards, das Einladen von Benutzern, das Hinzufügen und Verschieben von Spalten
+ * sowie das Hinzufügen, Aktualisieren, Verschieben und Löschen von Aufgaben ab. Jeder Test
+ * überprüft die erwarteten Ergebnisse und die Interaktionen mit den gemockten Abhängigkeiten, um
+ * sicherzustellen, dass die BoardService-Klasse wie erwartet funktioniert.
  */
 package io.github.mexikoedi.tmws.service;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import io.github.mexikoedi.tmws.dto.*;
 import io.github.mexikoedi.tmws.exception.*;
 import io.github.mexikoedi.tmws.model.*;
 import io.github.mexikoedi.tmws.repository.*;
+import java.util.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,9 +26,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import java.util.*;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("BoardService Tests")
@@ -64,16 +65,19 @@ class BoardServiceTest {
   }
 
   @Test
-  @DisplayName("createBoard() – Sollte ein neues Board erstellen und die Standardspalten hinzufügen.")
+  @DisplayName(
+      "createBoard() – Sollte ein neues Board erstellen und die Standardspalten hinzufügen.")
   void createBoard_success() {
     when(userRepository.findByEmail("test@example.com")).thenReturn(Optional.of(user));
 
-    when(boardRepository.save(any(Board.class))).thenAnswer(inv -> {
-      Board b = inv.getArgument(0);
-      b.setId(99L);
+    when(boardRepository.save(any(Board.class)))
+        .thenAnswer(
+            inv -> {
+              Board b = inv.getArgument(0);
+              b.setId(99L);
 
-      return b;
-    });
+              return b;
+            });
 
     Board newBoard = new Board();
     newBoard.setTitle("Neues Projektboard");
@@ -86,7 +90,9 @@ class BoardServiceTest {
   }
 
   @Test
-  @DisplayName("invite() – Sollte einen Benutzer zum Board einladen und eine Benachrichtigungs-E-Mail senden.")
+  @DisplayName(
+      "invite() – Sollte einen Benutzer zum Board einladen und eine Benachrichtigungs-E-Mail"
+          + " senden.")
   void invite_success() {
     User invited = new User();
     invited.setId(2L);
@@ -103,16 +109,20 @@ class BoardServiceTest {
   }
 
   @Test
-  @DisplayName("addColumn() – Sollte eine neue Spalte zum Board hinzufügen und die Mitglieder benachrichtigen.")
+  @DisplayName(
+      "addColumn() – Sollte eine neue Spalte zum Board hinzufügen und die Mitglieder"
+          + " benachrichtigen.")
   void addColumn_success() {
     when(boardRepository.findByIdWithRelations(10L)).thenReturn(Optional.of(board));
 
-    when(columnRepository.save(any(BoardColumn.class))).thenAnswer(inv -> {
-      BoardColumn c = inv.getArgument(0);
-      c.setId(5L);
+    when(columnRepository.save(any(BoardColumn.class)))
+        .thenAnswer(
+            inv -> {
+              BoardColumn c = inv.getArgument(0);
+              c.setId(5L);
 
-      return c;
-    });
+              return c;
+            });
 
     UpdateBoardColumnRequest req = new UpdateBoardColumnRequest("Neue Spalte");
     BoardColumnResponse response = boardService.addColumn(10L, req);
@@ -121,11 +131,19 @@ class BoardServiceTest {
   }
 
   @Test
-  @DisplayName("moveColumn() – Sollte die Spalte an die neue Position verschieben und die Positionen der anderen Spalten entsprechend anpassen.")
+  @DisplayName(
+      "moveColumn() – Sollte die Spalte an die neue Position verschieben und die Positionen der"
+          + " anderen Spalten entsprechend anpassen.")
   void moveColumn_success() {
-    BoardColumn c1 = new BoardColumn(); c1.setId(1L); c1.setPosition(0);
-    BoardColumn c2 = new BoardColumn(); c2.setId(2L); c2.setPosition(1);
-    BoardColumn c3 = new BoardColumn(); c3.setId(3L); c3.setPosition(2);
+    BoardColumn c1 = new BoardColumn();
+    c1.setId(1L);
+    c1.setPosition(0);
+    BoardColumn c2 = new BoardColumn();
+    c2.setId(2L);
+    c2.setPosition(1);
+    BoardColumn c3 = new BoardColumn();
+    c3.setId(3L);
+    c3.setPosition(2);
     board.setColumns(new HashSet<>(List.of(c1, c2, c3)));
     when(columnRepository.findByIdWithRelations(2L)).thenReturn(Optional.of(c2));
     c2.setBoard(board);
@@ -137,7 +155,9 @@ class BoardServiceTest {
   }
 
   @Test
-  @DisplayName("deleteColumn() – Soll die Spalte löschen, alle darin enthaltenen Aufgaben entfernen und die Mitglieder benachrichtigen.")
+  @DisplayName(
+      "deleteColumn() – Soll die Spalte löschen, alle darin enthaltenen Aufgaben entfernen und die"
+          + " Mitglieder benachrichtigen.")
   void deleteColumn_success() {
     BoardColumn col = new BoardColumn();
     col.setId(5L);
@@ -152,7 +172,9 @@ class BoardServiceTest {
   }
 
   @Test
-  @DisplayName("addTask() – Soll eine neue Aufgabe zur Spalte hinzufügen, die Mitglieder benachrichtigen und die Aufgabe zurückgeben.")
+  @DisplayName(
+      "addTask() – Soll eine neue Aufgabe zur Spalte hinzufügen, die Mitglieder benachrichtigen und"
+          + " die Aufgabe zurückgeben.")
   void addTask_success() {
     BoardColumn col = new BoardColumn();
     col.setId(5L);
@@ -160,12 +182,14 @@ class BoardServiceTest {
     col.setTasks(new HashSet<>());
     when(columnRepository.findByIdWithRelations(5L)).thenReturn(Optional.of(col));
 
-    when(taskRepository.save(any(Task.class))).thenAnswer(inv -> {
-      Task t = inv.getArgument(0);
-      t.setId(100L);
+    when(taskRepository.save(any(Task.class)))
+        .thenAnswer(
+            inv -> {
+              Task t = inv.getArgument(0);
+              t.setId(100L);
 
-      return t;
-    });
+              return t;
+            });
 
     UpdateTaskRequest req = new UpdateTaskRequest("Aufgabe 1", null, null, null, null, null);
     TaskResponse res = boardService.addTask(5L, req);
@@ -174,7 +198,9 @@ class BoardServiceTest {
   }
 
   @Test
-  @DisplayName("updateTask() – Soll die Aufgabe aktualisieren, die Mitglieder benachrichtigen und die aktualisierte Aufgabe zurückgeben.")
+  @DisplayName(
+      "updateTask() – Soll die Aufgabe aktualisieren, die Mitglieder benachrichtigen und die"
+          + " aktualisierte Aufgabe zurückgeben.")
   void updateTask_success() {
     BoardColumn col = new BoardColumn();
     col.setBoard(board);
@@ -184,7 +210,8 @@ class BoardServiceTest {
     task.setAssignees(new HashSet<>());
     when(taskRepository.findByIdWithRelations(10L)).thenReturn(Optional.of(task));
     when(taskRepository.save(task)).thenReturn(task);
-    UpdateTaskRequest req = new UpdateTaskRequest("Neuer Titel", "Beschreibung", null, null, null, null);
+    UpdateTaskRequest req =
+        new UpdateTaskRequest("Neuer Titel", "Beschreibung", null, null, null, null);
     Task updated = boardService.updateTask(10L, req);
     assertEquals("Neuer Titel", updated.getTitle());
     assertEquals("Beschreibung", updated.getDescription());
@@ -192,7 +219,10 @@ class BoardServiceTest {
   }
 
   @Test
-  @DisplayName("moveTask() – Soll die Aufgabe in die neue Spalte verschieben, die Positionen der anderen Aufgaben entsprechend anpassen, die Mitglieder benachrichtigen und die aktualisierte Aufgabe zurückgeben.")
+  @DisplayName(
+      "moveTask() – Soll die Aufgabe in die neue Spalte verschieben, die Positionen der anderen"
+          + " Aufgaben entsprechend anpassen, die Mitglieder benachrichtigen und die aktualisierte"
+          + " Aufgabe zurückgeben.")
   void moveTask_success() {
     BoardColumn oldCol = new BoardColumn();
     oldCol.setId(1L);
@@ -221,7 +251,9 @@ class BoardServiceTest {
   }
 
   @Test
-  @DisplayName("deleteTask() – Soll die Aufgabe löschen, die Mitglieder benachrichtigen und sicherstellen, dass die Aufgabe aus der Spalte entfernt wird.")
+  @DisplayName(
+      "deleteTask() – Soll die Aufgabe löschen, die Mitglieder benachrichtigen und sicherstellen,"
+          + " dass die Aufgabe aus der Spalte entfernt wird.")
   void deleteTask_success() {
     BoardColumn col = new BoardColumn();
     col.setBoard(board);

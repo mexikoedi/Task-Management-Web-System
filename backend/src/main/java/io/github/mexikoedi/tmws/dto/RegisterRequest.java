@@ -1,5 +1,6 @@
 /**
- * Diese Klasse repräsentiert die Daten, die für die Registrierung eines neuen Benutzers erforderlich sind.
+ * Diese Klasse repräsentiert die Daten, die für die Registrierung eines neuen Benutzers
+ * erforderlich sind.
  */
 package io.github.mexikoedi.tmws.dto;
 
@@ -26,15 +27,17 @@ public class RegisterRequest implements PasswordConfirmation {
 
   @NotBlank(message = "Passwort ist erforderlich.")
   @Size(min = 8, max = 50, message = "Passwort muss zwischen 8 und 50 Zeichen lang sein.")
-  @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?]).*$", message = "Passwort muss Groß-/Kleinbuchstaben, Zahl und Sonderzeichen enthalten.")
+  @Pattern(
+      regexp =
+          "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?]).*$",
+      message = "Passwort muss Groß-/Kleinbuchstaben, Zahl und Sonderzeichen enthalten.")
   private String password;
 
   @NotBlank(message = "Passwortbestätigung ist erforderlich.")
   private String passwordConfirm;
 
   /**
-   * Konstruktor für die Registrierung eines neuen Benutzers.
-   * Für Tests benutzt.
+   * Konstruktor für die Registrierung eines neuen Benutzers. Für Tests benutzt.
    *
    * @param name Name des Benutzers.
    * @param email E-Mail des Benutzers.
@@ -47,8 +50,7 @@ public class RegisterRequest implements PasswordConfirmation {
   }
 
   /**
-   * Gibt das Passwort zurück, das für die Registrierung verwendet wird.
-   * Für Validierung benutzt.
+   * Gibt das Passwort zurück, das für die Registrierung verwendet wird. Für Validierung benutzt.
    *
    * @return Das Passwort des Benutzers.
    */
@@ -58,8 +60,8 @@ public class RegisterRequest implements PasswordConfirmation {
   }
 
   /**
-   * Gibt die Passwortbestätigung zurück, die für die Registrierung verwendet wird.
-   * Für Validierung benutzt.
+   * Gibt die Passwortbestätigung zurück, die für die Registrierung verwendet wird. Für Validierung
+   * benutzt.
    *
    * @return Die Passwortbestätigung des Benutzers.
    */

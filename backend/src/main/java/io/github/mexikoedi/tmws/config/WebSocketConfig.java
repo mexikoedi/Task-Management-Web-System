@@ -1,6 +1,6 @@
 /**
- * Diese Klasse konfiguriert die WebSocket-Verbindung für die Anwendung.
- * Sie ermöglicht die Kommunikation zwischen dem Server und den Clients über das STOMP-Protokoll.
+ * Diese Klasse konfiguriert die WebSocket-Verbindung für die Anwendung. Sie ermöglicht die
+ * Kommunikation zwischen dem Server und den Clients über das STOMP-Protokoll.
  */
 package io.github.mexikoedi.tmws.config;
 
@@ -17,8 +17,8 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
   /**
-   * Registriert den STOMP-Endpunkt für die WebSocket-Verbindung.
-   * Clients können sich über diesen Endpunkt verbinden.
+   * Registriert den STOMP-Endpunkt für die WebSocket-Verbindung. Clients können sich über diesen
+   * Endpunkt verbinden.
    *
    * @param registry Der StompEndpointRegistry, um den Endpunkt zu registrieren.
    */
@@ -28,14 +28,17 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
   }
 
   /**
-   * Konfiguriert den Message Broker für die WebSocket-Verbindung.
-   * Der Broker ermöglicht die Kommunikation zwischen dem Server und den Clients über das STOMP-Protokoll.
+   * Konfiguriert den Message Broker für die WebSocket-Verbindung. Der Broker ermöglicht die
+   * Kommunikation zwischen dem Server und den Clients über das STOMP-Protokoll.
    *
    * @param registry Der MessageBrokerRegistry, um den Broker zu konfigurieren.
    */
   @Override
   public void configureMessageBroker(MessageBrokerRegistry registry) {
-    registry.enableSimpleBroker("/topic").setHeartbeatValue(new long[]{10000, 10000}).setTaskScheduler(heartBeatScheduler());
+    registry
+        .enableSimpleBroker("/topic")
+        .setHeartbeatValue(new long[] {10000, 10000})
+        .setTaskScheduler(heartBeatScheduler());
     registry.setApplicationDestinationPrefixes("/app");
   }
 

@@ -1,6 +1,6 @@
 /**
- * Diese Klasse ist ein Interceptor für WebSocket-Nachrichten, der sicherstellt, dass Benutzer nur auf ihre
- * eigenen Themen zugreifen können.
+ * Diese Klasse ist ein Interceptor für WebSocket-Nachrichten, der sicherstellt, dass Benutzer nur
+ * auf ihre eigenen Themen zugreifen können.
  */
 package io.github.mexikoedi.tmws.security;
 
@@ -29,15 +29,15 @@ public class WebSocketTopicInterceptor implements ChannelInterceptor {
   }
 
   /**
-   * Diese Methode wird bei jeder WebSocket-Nachricht aufgerufen und überprüft, ob ein Benutzer versucht,
-   * auf ein Thema zuzugreifen, das nicht ihm gehört. Wenn dies der Fall ist, wird die Nachricht verworfen,
-   * indem null zurückgegeben wird. Andernfalls wird die ursprüngliche Nachricht zurückgegeben, damit sie
-   * weiterverarbeitet werden kann.
+   * Diese Methode wird bei jeder WebSocket-Nachricht aufgerufen und überprüft, ob ein Benutzer
+   * versucht, auf ein Thema zuzugreifen, das nicht ihm gehört. Wenn dies der Fall ist, wird die
+   * Nachricht verworfen, indem null zurückgegeben wird. Andernfalls wird die ursprüngliche
+   * Nachricht zurückgegeben, damit sie weiterverarbeitet werden kann.
    *
    * @param message Die eingehende Nachricht, die überprüft werden soll.
    * @param channel Der MessageChannel, über den die Nachricht gesendet wird.
-   * @return Die ursprüngliche Nachricht, wenn der Zugriff erlaubt ist, oder null, wenn die Nachricht verworfen werden
-   * soll.
+   * @return Die ursprüngliche Nachricht, wenn der Zugriff erlaubt ist, oder null, wenn die
+   *     Nachricht verworfen werden soll.
    */
   @Override
   public Message<?> preSend(@NonNull Message<?> message, @NonNull MessageChannel channel) {

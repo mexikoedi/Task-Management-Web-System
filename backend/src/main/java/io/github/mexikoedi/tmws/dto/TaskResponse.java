@@ -1,13 +1,14 @@
 /**
- * Diese Klasse repräsentiert die Antwort, die zurückgegeben wird, wenn eine Anfrage für eine Aufgabe gestellt wird.
+ * Diese Klasse repräsentiert die Antwort, die zurückgegeben wird, wenn eine Anfrage für eine
+ * Aufgabe gestellt wird.
  */
 package io.github.mexikoedi.tmws.dto;
 
 import io.github.mexikoedi.tmws.model.Task;
-import lombok.Getter;
-import lombok.Setter;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.Getter;
+import lombok.Setter;
 
 @Setter
 @Getter

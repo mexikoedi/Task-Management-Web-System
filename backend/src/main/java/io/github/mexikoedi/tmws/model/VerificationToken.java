@@ -1,12 +1,10 @@
-/**
- * Diese Klasse repräsentiert ein Verifizierungs-Token im TMWS.
- */
+/** Diese Klasse repräsentiert ein Verifizierungs-Token im TMWS. */
 package io.github.mexikoedi.tmws.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
-import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -37,7 +35,8 @@ public class VerificationToken {
   private LocalDateTime updatedAt;
 
   /**
-   * Setzt die Erstellungs- und Aktualisierungszeitstempel, bevor das Verifizierungs-Token in die Datenbank eingefügt wird.
+   * Setzt die Erstellungs- und Aktualisierungszeitstempel, bevor das Verifizierungs-Token in die
+   * Datenbank eingefügt wird.
    */
   @PrePersist
   private void onCreate() {
@@ -46,7 +45,8 @@ public class VerificationToken {
   }
 
   /**
-   * Aktualisiert den Aktualisierungszeitstempel, bevor das Verifizierungs-Token in der Datenbank aktualisiert wird.
+   * Aktualisiert den Aktualisierungszeitstempel, bevor das Verifizierungs-Token in der Datenbank
+   * aktualisiert wird.
    */
   @PreUpdate
   private void onUpdate() {

@@ -1,6 +1,6 @@
 /**
- * Diese Klasse ist ein Filter, der bei jeder Anfrage überprüft, ob ein gültiges JWT-Token im Authorization-Header
- * vorhanden ist.
+ * Diese Klasse ist ein Filter, der bei jeder Anfrage überprüft, ob ein gültiges JWT-Token im
+ * Authorization-Header vorhanden ist.
  */
 package io.github.mexikoedi.tmws.security;
 
@@ -37,18 +37,23 @@ public class JwtAuthFilter extends OncePerRequestFilter {
   }
 
   /**
-   * Diese Methode wird bei jeder Anfrage aufgerufen und überprüft, ob ein gültiges JWT-Token im Authorization-Header vorhanden ist.
-   * Wenn ja, wird die Authentifizierung im SecurityContext gesetzt.
-   * Andernfalls wird die Anfrage ohne Authentifizierung weitergeleitet.
+   * Diese Methode wird bei jeder Anfrage aufgerufen und überprüft, ob ein gültiges JWT-Token im
+   * Authorization-Header vorhanden ist. Wenn ja, wird die Authentifizierung im SecurityContext
+   * gesetzt. Andernfalls wird die Anfrage ohne Authentifizierung weitergeleitet.
    *
    * @param request Der HttpServletRequest, der die eingehende Anfrage repräsentiert.
    * @param response Der HttpServletResponse, der die Antwort repräsentiert.
-   * @param filterChain Der FilterChain, um die Anfrage weiterzuleiten, wenn kein gültiges Token gefunden wird.
+   * @param filterChain Der FilterChain, um die Anfrage weiterzuleiten, wenn kein gültiges Token
+   *     gefunden wird.
    * @throws ServletException Wenn ein Fehler bei der Verarbeitung der Anfrage auftritt.
    * @throws IOException Wenn ein Fehler bei der Ein- oder Ausgabe auftritt.
    */
   @Override
-  protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
+  protected void doFilterInternal(
+      @NonNull HttpServletRequest request,
+      @NonNull HttpServletResponse response,
+      @NonNull FilterChain filterChain)
+      throws ServletException, IOException {
     String token = extractTokenFromRequest(request);
 
     if (token != null) {
@@ -56,7 +61,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         Claims claims = jwtProvider.getClaims(token);
         String email = claims.getSubject();
         Integer tokenVersion = claims.get("tokenVersion", Integer.class);
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Benutzer nicht gefunden."));
+        User user =
+            userRepository
+                .findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("Benutzer nicht gefunden."));
 
         if (!user.isEnabled()) {
           throw new UserDeactivatedException("Benutzer ist deaktiviert.");
@@ -66,9 +74,15 @@ public class JwtAuthFilter extends OncePerRequestFilter {
           throw new InvalidTokenException("Token ist ungültig.");
         }
 
-        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(email, null, List.of());
+        UsernamePasswordAuthenticationToken auth =
+            new UsernamePasswordAuthenticationToken(email, null, List.of());
         SecurityContextHolder.getContext().setAuthentication(auth);
-      } catch (ResourceNotFoundException | UserDeactivatedException | InvalidTokenException | JwtExpiredException | JwtMalformedException | JwtInvalidException _) {
+      } catch (ResourceNotFoundException
+          | UserDeactivatedException
+          | InvalidTokenException
+          | JwtExpiredException
+          | JwtMalformedException
+          | JwtInvalidException _) {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
         return;
@@ -79,11 +93,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
   }
 
   /**
-   * Diese Methode extrahiert das JWT-Token aus dem Authorization-Header der Anfrage.
-   * Es wird erwartet, dass der Header im Format "Bearer <token>" vorliegt.
+   * Diese Methode extrahiert das JWT-Token aus dem Authorization-Header der Anfrage. Es wird
+   * erwartet, dass der Header im Format "Bearer <token>" vorliegt.
    *
    * @param request Der HttpServletRequest, der die eingehende Anfrage repräsentiert.
-   * @return Das extrahierte JWT-Token oder null, wenn kein gültiger Authorization-Header gefunden wurde.
+   * @return Das extrahierte JWT-Token oder null, wenn kein gültiger Authorization-Header gefunden
+   *     wurde.
    */
   private String extractTokenFromRequest(HttpServletRequest request) {
     String bearer = request.getHeader("Authorization");

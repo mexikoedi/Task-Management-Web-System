@@ -1,6 +1,4 @@
-/**
- * Diese Klasse repräsentiert die Anforderung zum Aktualisieren einer Spalte in einem Board.
- */
+/** Diese Klasse repräsentiert die Anforderung zum Aktualisieren einer Spalte in einem Board. */
 package io.github.mexikoedi.tmws.dto;
 
 import jakarta.validation.constraints.NotBlank;
@@ -16,8 +14,7 @@ public class UpdateBoardColumnRequest {
   private String title;
 
   /**
-   * Konstruktor für die UpdateBoardColumnRequest-Klasse.
-   * Für Tests benutzt.
+   * Konstruktor für die UpdateBoardColumnRequest-Klasse. Für Tests benutzt.
    *
    * @param title Der neue Titel der Spalte.
    */

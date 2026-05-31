@@ -1,6 +1,4 @@
-/**
- * Diese Annotation wird verwendet, um sicherzustellen, dass eine E-Mail-Adresse gültig ist.
- */
+/** Diese Annotation wird verwendet, um sicherzustellen, dass eine E-Mail-Adresse gültig ist. */
 package io.github.mexikoedi.tmws.util;
 
 import jakarta.validation.Constraint;

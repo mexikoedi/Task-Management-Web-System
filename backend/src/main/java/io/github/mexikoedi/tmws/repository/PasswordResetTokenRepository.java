@@ -1,6 +1,4 @@
-/**
- * Diese Klasse definiert das Repository für die PasswordResetToken-Entität.
- */
+/** Diese Klasse definiert das Repository für die PasswordResetToken-Entität. */
 package io.github.mexikoedi.tmws.repository;
 
 import io.github.mexikoedi.tmws.model.PasswordResetToken;
@@ -15,22 +13,24 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PasswordResetTokenRepository extends JpaRepository<PasswordResetToken, Long> {
   /**
-   * Diese Methode ermöglicht das Abrufen eines PasswordResetToken anhand seines Tokens und lädt dabei den
-   * zugehörigen Benutzer vorab.
+   * Diese Methode ermöglicht das Abrufen eines PasswordResetToken anhand seines Tokens und lädt
+   * dabei den zugehörigen Benutzer vorab.
    *
    * @param token Der Token, für den der PasswordResetToken abgerufen werden soll.
-   * @return Ein Optional, das den PasswordResetToken mit dem zugehörigen Benutzer enthält, wenn er gefunden wird,
-   * oder leer ist, wenn er nicht gefunden wird.
+   * @return Ein Optional, das den PasswordResetToken mit dem zugehörigen Benutzer enthält, wenn er
+   *     gefunden wird, oder leer ist, wenn er nicht gefunden wird.
    */
-  @Query("""
-    SELECT t FROM PasswordResetToken t
-    JOIN FETCH t.user
-    WHERE t.token = :token
-    """)
+  @Query(
+      """
+      SELECT t FROM PasswordResetToken t
+      JOIN FETCH t.user
+      WHERE t.token = :token
+      """)
   Optional<PasswordResetToken> findByToken(@Param("token") String token);
 
   /**
-   * Diese Methode ermöglicht das Löschen aller PasswordResetToken, die einem bestimmten Benutzer zugeordnet sind.
+   * Diese Methode ermöglicht das Löschen aller PasswordResetToken, die einem bestimmten Benutzer
+   * zugeordnet sind.
    *
    * @param user Der Benutzer, für den die PasswordResetToken gelöscht werden sollen.
    */

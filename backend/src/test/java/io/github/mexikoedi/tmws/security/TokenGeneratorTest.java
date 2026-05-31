@@ -1,15 +1,16 @@
 /**
  * Diese Klasse enthält Unit-Tests für die TokenGenerator-Klasse, die für die Generierung von
- * Authentifizierungs-Token verantwortlich ist.
- * Die Tests überprüfen, ob die generierten Token gültige UUID-Strings sind und ob sie eindeutig sind,
- * um sicherzustellen, dass keine Duplikate entstehen.
+ * Authentifizierungs-Token verantwortlich ist. Die Tests überprüfen, ob die generierten Token
+ * gültige UUID-Strings sind und ob sie eindeutig sind, um sicherzustellen, dass keine Duplikate
+ * entstehen.
  */
 package io.github.mexikoedi.tmws.security;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import java.util.UUID;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("TokenGenerator Tests")
 class TokenGeneratorTest {

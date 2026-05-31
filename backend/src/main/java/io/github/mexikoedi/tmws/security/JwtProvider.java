@@ -1,6 +1,4 @@
-/**
- * Diese Klasse ist verantwortlich für die Erstellung und Validierung von JWTs in der Anwendung.
- */
+/** Diese Klasse ist verantwortlich für die Erstellung und Validierung von JWTs in der Anwendung. */
 package io.github.mexikoedi.tmws.security;
 
 import io.github.mexikoedi.tmws.exception.JwtExpiredException;
@@ -12,9 +10,9 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
 import java.util.Date;
 import javax.crypto.SecretKey;
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -29,15 +27,21 @@ public class JwtProvider {
   private SecretKey signingKey;
 
   /**
-   * Generiert ein JWT für den angegebenen Benutzer.
-   * Das Token enthält die E-Mail des Benutzers als Subject und die aktuelle Token-Version als Claim.
-   * Das Token ist für die in der Konfiguration angegebene Dauer gültig und wird mit dem definierten SecretKey signiert.
+   * Generiert ein JWT für den angegebenen Benutzer. Das Token enthält die E-Mail des Benutzers als
+   * Subject und die aktuelle Token-Version als Claim. Das Token ist für die in der Konfiguration
+   * angegebene Dauer gültig und wird mit dem definierten SecretKey signiert.
    *
    * @param user Der Benutzer, für den das JWT generiert werden soll.
    * @return Das generierte JWT als String.
    */
   public String generateToken(User user) {
-    return Jwts.builder().subject(user.getEmail()).claim("tokenVersion", user.getTokenVersion()).issuedAt(new Date()).expiration(new Date(System.currentTimeMillis() + jwtExpiration)).signWith(signingKey, Jwts.SIG.HS256).compact();
+    return Jwts.builder()
+        .subject(user.getEmail())
+        .claim("tokenVersion", user.getTokenVersion())
+        .issuedAt(new Date())
+        .expiration(new Date(System.currentTimeMillis() + jwtExpiration))
+        .signWith(signingKey, Jwts.SIG.HS256)
+        .compact();
   }
 
   /**
@@ -78,7 +82,8 @@ public class JwtProvider {
   }
 
   /**
-   * Extrahiert die E-Mail-Adresse des Benutzers aus dem übergebenen JWT, indem die Claims geparst werden.
+   * Extrahiert die E-Mail-Adresse des Benutzers aus dem übergebenen JWT, indem die Claims geparst
+   * werden.
    *
    * @param token Das JWT, aus dem die E-Mail-Adresse extrahiert werden soll.
    * @return Die E-Mail-Adresse des Benutzers, wenn das JWT gültig ist, andernfalls null.
@@ -91,9 +96,7 @@ public class JwtProvider {
     }
   }
 
-  /**
-   * Initialisiert den SecretKey für die JWT-Signierung nach dem Laden der Konfiguration.
-   */
+  /** Initialisiert den SecretKey für die JWT-Signierung nach dem Laden der Konfiguration. */
   @PostConstruct
   private void init() {
     this.signingKey = Keys.hmacShaKeyFor(jwtSecret.getBytes());

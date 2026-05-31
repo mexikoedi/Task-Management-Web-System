@@ -1,5 +1,6 @@
 /**
- * Diese Klasse repräsentiert die Antwort, die zurückgegeben wird, wenn Informationen über einen Benutzer angefordert werden.
+ * Diese Klasse repräsentiert die Antwort, die zurückgegeben wird, wenn Informationen über einen
+ * Benutzer angefordert werden.
  */
 package io.github.mexikoedi.tmws.dto;
 

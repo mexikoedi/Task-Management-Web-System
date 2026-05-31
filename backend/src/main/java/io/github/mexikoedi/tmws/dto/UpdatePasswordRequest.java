@@ -1,6 +1,4 @@
-/**
- * Dise Klasse repräsentiert die Anforderung zum Aktualisieren des Passworts eines Benutzers.
- */
+/** Dise Klasse repräsentiert die Anforderung zum Aktualisieren des Passworts eines Benutzers. */
 package io.github.mexikoedi.tmws.dto;
 
 import io.github.mexikoedi.tmws.util.NewPasswordDifferent;
@@ -22,7 +20,10 @@ public class UpdatePasswordRequest implements PasswordConfirmation {
 
   @NotBlank(message = "Neues Passwort ist erforderlich.")
   @Size(min = 8, max = 50, message = "Passwort muss zwischen 8 und 50 Zeichen lang sein.")
-  @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?]).*$", message = "Passwort muss Groß-/Kleinbuchstaben, Zahl und Sonderzeichen enthalten.")
+  @Pattern(
+      regexp =
+          "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?]).*$",
+      message = "Passwort muss Groß-/Kleinbuchstaben, Zahl und Sonderzeichen enthalten.")
   private String newPassword;
 
   @NotBlank(message = "Passwortbestätigung ist erforderlich.")

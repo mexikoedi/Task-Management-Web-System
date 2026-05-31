@@ -1,5 +1,6 @@
 /**
- * Diese Klasse repräsentiert die Daten, die für die Aktualisierung eines Benutzerprofils erforderlich sind.
+ * Diese Klasse repräsentiert die Daten, die für die Aktualisierung eines Benutzerprofils
+ * erforderlich sind.
  */
 package io.github.mexikoedi.tmws.dto;
 
@@ -23,6 +24,8 @@ public class UpdateProfileRequest {
   private String newEmail;
 
   @Size(max = 255, message = "Profilbild darf nicht länger als 255 Zeichen lang sein.")
-  @Pattern(regexp = "^(|https?://.+\\.(png|jpg|jpeg|webp)(\\?.*)?)$", message = "Nur gültige Bild-URLs erlaubt.")
+  @Pattern(
+      regexp = "^(|https?://.+\\.(png|jpg|jpeg|webp)(\\?.*)?)$",
+      message = "Nur gültige Bild-URLs erlaubt.")
   private String image;
 }

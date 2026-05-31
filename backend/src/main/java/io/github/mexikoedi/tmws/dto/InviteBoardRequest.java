@@ -1,6 +1,4 @@
-/**
- * Diese Klasse repräsentiert die Anforderung zum Einladen eines Benutzers zu einem Board.
- */
+/** Diese Klasse repräsentiert die Anforderung zum Einladen eines Benutzers zu einem Board. */
 package io.github.mexikoedi.tmws.dto;
 
 import io.github.mexikoedi.tmws.util.ValidEmail;
@@ -18,8 +16,7 @@ public class InviteBoardRequest {
   private String email;
 
   /**
-   * Konstruktor für die InviteBoardRequest-Klasse.
-   * Für Tests benutzt.
+   * Konstruktor für die InviteBoardRequest-Klasse. Für Tests benutzt.
    *
    * @param email E-Mail-Adresse des Benutzers, der eingeladen werden soll.
    */

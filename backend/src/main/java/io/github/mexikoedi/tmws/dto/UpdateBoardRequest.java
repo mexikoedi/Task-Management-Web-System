@@ -17,6 +17,8 @@ public class UpdateBoardRequest {
   private String title;
 
   @Size(max = 255, message = "Hintergrundbild darf nicht länger als 255 Zeichen lang sein.")
-  @Pattern(regexp = "^(|https?://.+\\.(png|jpg|jpeg|webp)(\\?.*)?)$", message = "Nur gültige Bild-URLs erlaubt.")
+  @Pattern(
+      regexp = "^(|https?://.+\\.(png|jpg|jpeg|webp)(\\?.*)?)$",
+      message = "Nur gültige Bild-URLs erlaubt.")
   private String background;
 }

@@ -1,6 +1,4 @@
-/**
- * Diese Klasse definiert das Repository für die VerificationToken-Entität.
- */
+/** Diese Klasse definiert das Repository für die VerificationToken-Entität. */
 package io.github.mexikoedi.tmws.repository;
 
 import io.github.mexikoedi.tmws.model.User;
@@ -15,22 +13,24 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface VerificationTokenRepository extends JpaRepository<VerificationToken, Long> {
   /**
-   * Diese Methode ermöglicht das Abrufen eines VerificationToken anhand seines Tokens und lädt dabei den
-   * zugehörigen Benutzer vorab.
+   * Diese Methode ermöglicht das Abrufen eines VerificationToken anhand seines Tokens und lädt
+   * dabei den zugehörigen Benutzer vorab.
    *
    * @param token Der Token, für den der VerificationToken abgerufen werden soll.
-   * @return Ein Optional, das den VerificationToken mit dem zugehörigen Benutzer enthält, wenn er gefunden wird,
-   * oder leer ist, wenn er nicht gefunden wird.
+   * @return Ein Optional, das den VerificationToken mit dem zugehörigen Benutzer enthält, wenn er
+   *     gefunden wird, oder leer ist, wenn er nicht gefunden wird.
    */
-  @Query("""
-    SELECT t FROM VerificationToken t
-    JOIN FETCH t.user
-    WHERE t.token = :token
-    """)
+  @Query(
+      """
+      SELECT t FROM VerificationToken t
+      JOIN FETCH t.user
+      WHERE t.token = :token
+      """)
   Optional<VerificationToken> findByToken(@Param("token") String token);
 
   /**
-   * Diese Methode ermöglicht das Löschen aller VerificationToken, die einem bestimmten Benutzer zugeordnet sind.
+   * Diese Methode ermöglicht das Löschen aller VerificationToken, die einem bestimmten Benutzer
+   * zugeordnet sind.
    *
    * @param user Der Benutzer, für den die VerificationToken gelöscht werden sollen.
    */

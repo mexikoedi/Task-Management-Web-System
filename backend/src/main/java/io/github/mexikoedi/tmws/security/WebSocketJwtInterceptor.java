@@ -1,11 +1,11 @@
-/**
- * Interceptor, der JWT-Token aus WebSocket-Verbindungsanfragen extrahiert und validiert.
- */
+/** Interceptor, der JWT-Token aus WebSocket-Verbindungsanfragen extrahiert und validiert. */
 package io.github.mexikoedi.tmws.security;
 
 import io.github.mexikoedi.tmws.model.User;
 import io.github.mexikoedi.tmws.repository.UserRepository;
 import io.jsonwebtoken.Claims;
+import java.util.List;
+import java.util.Objects;
 import org.jspecify.annotations.NonNull;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
@@ -14,8 +14,6 @@ import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Component;
-import java.util.List;
-import java.util.Objects;
 
 @Component
 public class WebSocketJwtInterceptor implements ChannelInterceptor {
@@ -34,13 +32,13 @@ public class WebSocketJwtInterceptor implements ChannelInterceptor {
   }
 
   /**
-   * Diese Methode wird bei jeder WebSocket-Verbindungsanfrage aufgerufen und überprüft, ob ein gültiges
-   * JWT-Token im Authorization-Header vorhanden ist.
+   * Diese Methode wird bei jeder WebSocket-Verbindungsanfrage aufgerufen und überprüft, ob ein
+   * gültiges JWT-Token im Authorization-Header vorhanden ist.
    *
    * @param message Die eingehende Nachricht, die die Verbindungsanfrage repräsentiert.
    * @param channel Der MessageChannel, über den die Nachricht gesendet wird.
-   * @return Die ursprüngliche Nachricht, wenn ein gültiges Token gefunden und die Authentifizierung erfolgreich
-   * gesetzt wurde, oder null, wenn die Verbindung abgelehnt werden soll.
+   * @return Die ursprüngliche Nachricht, wenn ein gültiges Token gefunden und die Authentifizierung
+   *     erfolgreich gesetzt wurde, oder null, wenn die Verbindung abgelehnt werden soll.
    */
   @Override
   public Message<?> preSend(@NonNull Message<?> message, @NonNull MessageChannel channel) {
@@ -82,7 +80,8 @@ public class WebSocketJwtInterceptor implements ChannelInterceptor {
         return null;
       }
 
-      UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(email, null, List.of());
+      UsernamePasswordAuthenticationToken auth =
+          new UsernamePasswordAuthenticationToken(email, null, List.of());
       accessor.setUser(auth);
       accessor.setLeaveMutable(true);
       Objects.requireNonNull(accessor.getSessionAttributes()).put("SPRING.AUTHENTICATION", auth);

@@ -6,9 +6,9 @@ package io.github.mexikoedi.tmws.dto;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.*;
 import java.time.LocalDate;
 import java.util.List;
+import lombok.*;
 
 @Setter
 @Getter
@@ -32,8 +32,8 @@ public class UpdateTaskRequest {
   private List<Long> assigneeIds;
 
   /**
-   * Konstruktor, der die Felder basierend auf den übergebenen Objekten initialisiert.
-   * Es wird versucht, die Objekte in die entsprechenden Typen zu konvertieren, falls sie nicht null sind.
+   * Konstruktor, der die Felder basierend auf den übergebenen Objekten initialisiert. Es wird
+   * versucht, die Objekte in die entsprechenden Typen zu konvertieren, falls sie nicht null sind.
    * Für Tests benutzt.
    *
    * @param title Der Titel der Aufgabe.
@@ -43,7 +43,13 @@ public class UpdateTaskRequest {
    * @param attachments Die Anhänge der Aufgabe.
    * @param assigneeIds Die IDs der zugewiesenen Benutzer für die Aufgabe.
    */
-  public UpdateTaskRequest(String title, Object description, Object deadline, Object labels, Object attachments, Object assigneeIds) {
+  public UpdateTaskRequest(
+      String title,
+      Object description,
+      Object deadline,
+      Object labels,
+      Object attachments,
+      Object assigneeIds) {
     this.title = title;
     this.description = description != null ? description.toString() : null;
     this.deadline = deadline != null ? LocalDate.parse(deadline.toString()) : null;
@@ -51,7 +57,12 @@ public class UpdateTaskRequest {
     this.attachments = attachments != null ? attachments.toString() : null;
 
     if (assigneeIds instanceof List) {
-      this.assigneeIds = ((List<?>) assigneeIds).stream().filter(id -> id instanceof Number).map(id -> ((Number) id).longValue()).toList();
+      this.assigneeIds =
+          ((List<?>) assigneeIds)
+              .stream()
+                  .filter(id -> id instanceof Number)
+                  .map(id -> ((Number) id).longValue())
+                  .toList();
     } else {
       this.assigneeIds = null;
     }

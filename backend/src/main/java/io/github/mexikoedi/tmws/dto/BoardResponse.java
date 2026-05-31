@@ -1,11 +1,12 @@
 /**
- * Diese Klasse repräsentiert die Antwort, die zurückgegeben wird, wenn Informationen über ein Board angefordert werden.
+ * Diese Klasse repräsentiert die Antwort, die zurückgegeben wird, wenn Informationen über ein Board
+ * angefordert werden.
  */
 package io.github.mexikoedi.tmws.dto;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import java.util.List;
 
 @Setter
 @Getter

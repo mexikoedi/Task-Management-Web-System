@@ -1,5 +1,6 @@
 /**
- * Diese Klasse repräsentiert die Daten, die für eine Anfrage zum Zurücksetzen des Passworts erforderlich sind.
+ * Diese Klasse repräsentiert die Daten, die für eine Anfrage zum Zurücksetzen des Passworts
+ * erforderlich sind.
  */
 package io.github.mexikoedi.tmws.dto;
 
@@ -17,8 +18,7 @@ public class PasswordResetInquiryRequest {
   private String email;
 
   /**
-   * Konstruktor für die PasswordResetInquiryRequest-Klasse.
-   * Für Tests benutzt.
+   * Konstruktor für die PasswordResetInquiryRequest-Klasse. Für Tests benutzt.
    *
    * @param email Die E-Mail-Adresse des Benutzers, der das Passwort zurücksetzen möchte.
    */
