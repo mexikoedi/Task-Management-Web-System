@@ -18,10 +18,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
 @SpringBootTest
-@TestPropertySource(properties = {
-  "jwt.secret=myNotVerySecretKeyWhichIsUsedForTestingPurposesOnlyAndShouldNotBeUsedInProduction",
-  "jwt.expiration=40000000"
-})
+@TestPropertySource(
+    properties = {
+      "jwt.secret=myNotVerySecretKeyWhichIsUsedForTestingPurposesOnlyAndShouldNotBeUsedInProduction",
+      "jwt.expiration=40000000"
+    })
 @DisplayName("JwtProvider Tests")
 class JwtProviderTest {
   @Autowired private JwtProvider jwtProvider;
