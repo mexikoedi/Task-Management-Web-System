@@ -127,7 +127,7 @@ public class AuthService {
     emailService.sendRegistrationEmail(request.getEmail(), verificationLink);
 
     return "Registrierung erfolgreich. Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu"
-               + " verifizieren.";
+        + " verifizieren.";
   }
 
   /**
