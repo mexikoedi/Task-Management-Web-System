@@ -220,11 +220,15 @@ Zum Beispiel `frontend/angular.json`.
 
 ---
 
-## Architektur
+## Architektur und weitere Informationen
 Das Backend läuft auf Java Spring Boot mit einem klassischen MVC-Pattern, während das Frontend mit Angular als Single
-Page Application (SPA) aufgebaut ist. <br>
+Page Application aufgebaut ist. <br>
 Die Kommunikation zwischen beiden erfolgt über REST und WebSockets für Echtzeit-Updates. <br>
-Außerdem ist die Ornder-Struktur klar unterteilt, um eine saubere, moderne Trennung der Verantwortlichkeiten zu gewährleisten.
+Dazu wird H2 als die Datenbank und Mailpit als der Fake-SMTP-Server für E-Mails verwendet, um einige Features zu ermöglichen. <br>
+Außerdem ist die Ordner-Struktur klar unterteilt, um eine saubere, moderne Trennung der Verantwortlichkeiten zu gewährleisten. <br>
+Die Webanwendung funktioniert ohne Probleme für Test- und Entwicklungszwecke. <br>
+Dennoch muss angemerkt werden, dass diese Anwendung **nicht produktionsreif** ist. <br>
+Zum Beispiel müsste die Datenbank und der E-Mail-Server in einem echten Produktionsbetrieb ausgetauscht werden.
 
 ---
 
