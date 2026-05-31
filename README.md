@@ -3,19 +3,6 @@ Ein modernes Aufgabenmanagementsystem (Kanban-Projektboard) als Single Page Appl
 Das System bietet vollständige Authentifizierung, Projektboard-Management und Real-time-Updates via WebSocket. <br>
 Es ist im Rahmen meiner Bachelor-Thesis unter dem Titel "Unterstützung der Softwareentwicklung durch KI-basierte Code-Generierung: Eine empirische Untersuchung am Beispiel von GitHub Copilot" entstanden.
 
-## Inhaltsverzeichnis
-- [Features](#-features)
-- [Technologie-Stack](#-technologie-stack)
-- [Voraussetzungen](#-voraussetzungen)
-- [Schnelleinstieg](#-schnelleinstieg)
-- [Konfiguration](#-konfiguration)
-- [Architektur](#-architektur)
-- [Häufige Befehle](#-häufige-befehle)
-- [Datenbankzugriff](#-datenbankzugriff)
-- [E-Mail-Setup (Mailpit)](#-e-mail-setup-mailpit)
-- [Tests](#-tests)
-- [Fehlerbehebung](#-fehlerbehebung)
-
 ---
 
 ## Features
