@@ -196,7 +196,7 @@ Nach Registrierung und E-Mail-Verifikation mit Folgendem anmelden:
 Im Backend Ornder unter den jeweiligen Konfigurationsdateien einsehbar. <br>
 Zum Beispiel `backend/src/main/resources/application.properties`.
 
-#### Wichtig:
+**Wichtig:**
 Unter `backend/src/main/resources` muss vor dem Start eine `application.local.properties` erstellt werden. <br>
 Diese enthält sensible Informationen wie Benutzernamen, Passwörter und den JWT-Secret-Key:
 ```
