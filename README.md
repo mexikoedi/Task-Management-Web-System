@@ -149,7 +149,7 @@ cd Task-Management-Web-System
 ```
 
 ### 2. Konfiguration anpassen
-Siehe [Konfiguration](#-konfiguration) weiter unten für wichtige Details zur Backend- und Frontend-Konfiguration.
+Siehe [Konfiguration](#konfiguration) weiter unten für wichtige Details zur Backend- und Frontend-Konfiguration.
 
 ### 3. Backend starten
 ```
@@ -417,7 +417,7 @@ pnpm install
 
 ---
 
-### Danksagung
+## Danksagung
 Danke an [Slifer808](https://steamcommunity.com/profiles/76561198347469960) für die Hilfe beim Erstellen vom `favicon.ico`.
 
 ---
