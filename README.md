@@ -122,7 +122,6 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 
 ## Voraussetzungen
 Stelle sicher, dass folgende Software installiert ist:
-
 ```
 IntelliJ IDEA (oder andere IDE für Java und Angular)
 Mailpit (für E-Mail-Testing)
@@ -131,7 +130,7 @@ Node.js 26.2.0 oder höher
 pnpm 11.5.0 oder höher
 ```
 
-### Installation überprüfen
+Installation überprüfen:
 ```
 java -version
 node --version
@@ -227,7 +226,9 @@ Page Application (SPA) aufgebaut ist. <br>
 Die Kommunikation zwischen beiden erfolgt über REST und WebSockets für Echtzeit-Updates. <br>
 Außerdem ist die Ornder-Struktur klar unterteilt, um eine saubere, moderne Trennung der Verantwortlichkeiten zu gewährleisten.
 
-### Datenbank-Schema
+---
+
+## Datenbank-Schema
 Die H2 In-Memory Datenbank wird automatisch beim Start initialisiert mit:
 
 **Haupttabellen:**
