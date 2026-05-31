@@ -55,6 +55,10 @@ jobs:
       working-directory: ./frontend
       run: pnpm test
 
+    - name: Install Playwright browsers and dependencies
+      working-directory: ./frontend
+      run: pnpm e2e:install
+
     - name: E2E
       working-directory: ./frontend
       run: pnpm e2e
