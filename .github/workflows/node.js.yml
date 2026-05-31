@@ -40,7 +40,7 @@ jobs:
         cache-dependency-path: ./frontend/pnpm-lock.yaml
 
     - name: Install dependencies
-      working-directory: frontend
+      working-directory: ./frontend
       run: pnpm install --frozen-lockfile
 
     - name: Build
@@ -56,5 +56,5 @@ jobs:
       run: pnpm test
 
     - name: E2E
-      working-directory: ./Frontend
+      working-directory: ./frontend
       run: pnpm e2e
