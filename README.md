@@ -174,7 +174,7 @@ pnpm start
 # Das Frontend läuft auf: http://localhost:4200
 ```
 
-## 5. Fake-SMTP-Server (Mailpit) starten
+### 5. Fake-SMTP-Server (Mailpit) starten
 ```
 # In einem separaten (externen) Terminal starten
 macOS/Linux: mailpit
