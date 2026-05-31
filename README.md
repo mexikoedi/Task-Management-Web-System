@@ -52,6 +52,15 @@ Es ist im Rahmen meiner Bachelor-Thesis unter dem Titel "Unterstützung der Soft
 
 ---
 
+## Beispiele
+So sieht das Login-Fenster aus: <br>
+<img width="763" height="720" alt="tmws_login_fenster" src="https://github.com/user-attachments/assets/c252d067-b072-4b91-9772-7f1c707ec5bf" />
+
+Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen Anmeldung, sehen: <br>
+<img width="1904" height="910" alt="tmws_hauptansicht_fenster" src="https://github.com/user-attachments/assets/e2993e98-3a88-49c7-9592-a77f0a9d24fc" />
+
+---
+
 ## Technologie-Stack
 
 ### Backend
