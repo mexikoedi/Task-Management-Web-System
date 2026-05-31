@@ -1,5 +1,5 @@
-# This file is used to configure the pnpm workspace for the frontend project.
-# It specifies which packages are included in the workspace and which ones are allowed to be built.
+# Diese Datei wird verwendet, um den pnpm-Arbeitsbereich für das Frontend-Projekt zu konfigurieren.
+# Sie gibt an, welche Pakete im Arbeitsbereich enthalten sind und welche gebaut werden dürfen.
 allowBuilds:
   '@parcel/watcher': true
   esbuild: true

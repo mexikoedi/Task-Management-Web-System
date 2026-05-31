@@ -1,10 +1,15 @@
+/**
+ * Diese Klasse repräsentiert einen Benutzer im TMWS.
+ */
 package io.github.mexikoedi.tmws.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
 import java.time.LocalDateTime;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
@@ -12,21 +17,16 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank(message = "Name ist erforderlich")
   @Column(nullable = false)
   private String name;
 
-  @NotBlank(message = "E-Mail ist erforderlich")
-  @Email(message = "E-Mail sollte gültig sein")
   @Column(nullable = false, unique = true)
   private String email;
 
-  @NotBlank(message = "Passwort ist erforderlich")
   @Column(nullable = false)
   private String password;
 
-  @Column(name = "image")
-  private String image; // URL oder Base64-String
+  private String image;
 
   @Column(nullable = false)
   private boolean enabled = false;
@@ -37,112 +37,29 @@ public class User {
   @Column(name = "email_changed")
   private boolean emailChanged = false;
 
+  @Column(nullable = false)
+  private int tokenVersion = 0;
+
   @Column(name = "created_at", nullable = false, updatable = false)
   private LocalDateTime createdAt;
 
   @Column(name = "updated_at")
   private LocalDateTime updatedAt;
 
-  @Column(nullable = false)
-  private int tokenVersion = 0;
-
+  /**
+   * Setzt die Erstellungs- und Aktualisierungszeitstempel, bevor der Benutzer in die Datenbank eingefügt wird.
+   */
   @PrePersist
-  protected void onCreate() {
+  private void onCreate() {
     createdAt = LocalDateTime.now();
     updatedAt = LocalDateTime.now();
   }
 
+  /**
+   * Aktualisiert den Aktualisierungszeitstempel, bevor der Benutzer in der Datenbank aktualisiert wird.
+   */
   @PreUpdate
-  protected void onUpdate() {
+  private void onUpdate() {
     updatedAt = LocalDateTime.now();
-  }
-
-  // Getters and Setters
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public String getImage() {
-    return image;
-  }
-
-  public void setImage(String image) {
-    this.image = image;
-  }
-
-  public boolean isEnabled() {
-    return enabled;
-  }
-
-  public void setEnabled(boolean enabled) {
-    this.enabled = enabled;
-  }
-
-  public boolean isEmailVerified() {
-    return emailVerified;
-  }
-
-  public void setEmailVerified(boolean emailVerified) {
-    this.emailVerified = emailVerified;
-  }
-
-  public boolean isEmailChanged() {
-    return emailChanged;
-  }
-
-  public void setEmailChanged(boolean emailChanged) {
-    this.emailChanged = emailChanged;
-  }
-
-  public LocalDateTime getCreatedAt() {
-    return createdAt;
-  }
-
-  public void setCreatedAt(LocalDateTime createdAt) {
-    this.createdAt = createdAt;
-  }
-
-  public LocalDateTime getUpdatedAt() {
-    return updatedAt;
-  }
-
-  public void setUpdatedAt(LocalDateTime updatedAt) {
-    this.updatedAt = updatedAt;
-  }
-
-  public int getTokenVersion() {
-    return tokenVersion;
-  }
-
-  public void setTokenVersion(int tokenVersion) {
-    this.tokenVersion = tokenVersion;
   }
 }

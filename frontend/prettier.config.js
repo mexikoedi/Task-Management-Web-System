@@ -1,8 +1,7 @@
 /**
  * @see https://prettier.io/docs/configuration
- * @type {{tabWidth: number, useTabs: boolean, singleQuote: boolean, semi: boolean, bracketSpacing: boolean, arrowParens: string, trailingComma: string, bracketSameLine: boolean, printWidth: number}}
  */
-const config = {
+export default {
   tabWidth: 2,
   useTabs: false,
   singleQuote: true,
@@ -14,5 +13,3 @@ const config = {
   printWidth: 120,
   endOfLine: 'crlf',
 };
-
-export default config;

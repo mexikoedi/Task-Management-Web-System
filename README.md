@@ -1,9 +1,9 @@
-# Task Management Web System (TMWS)
+# Task Management Web System
+Ein modernes Aufgabenmanagementsystem (Kanban-Projektboard) als Single Page Application mit Java Spring Boot Backend und Angular Frontend. <br>
+Das System bietet vollständige Authentifizierung, Projektboard-Management und Real-time-Updates via WebSocket. <br>
+Es ist im Rahmen meiner Bachelor-Thesis unter dem Titel "Unterstützung der Softwareentwicklung durch KI-basierte Code-Generierung: Eine empirische Untersuchung am Beispiel von GitHub Copilot" entstanden.
 
-Ein modernes Aufgabenmanagementsystem (Kanban-Board) als Single Page Application mit Java Spring Boot Backend und Angular Frontend. Das System bietet vollständige Authentifizierung, Board-Management und Real-time-Updates via WebSocket.
-
-## 📋 Inhaltsverzeichnis
-
+## Inhaltsverzeichnis
 - [Features](#-features)
 - [Technologie-Stack](#-technologie-stack)
 - [Voraussetzungen](#-voraussetzungen)
@@ -18,137 +18,155 @@ Ein modernes Aufgabenmanagementsystem (Kanban-Board) als Single Page Application
 
 ---
 
-## 🎯 Features
+## Features
 
-### ✅ Authentifizierung
-- Login mit JWT Token-basierter Authentifizierung
+### Authentifizierung
 - Benutzerregistrierung mit E-Mail-Verifikation
-- Passwort-Reset via E-Mail
+- Login mit JWT-basierter Authentifizierung
+- Passwort-Zurücksetzung via E-Mail
 - Sichere Passwort-Speicherung (BCrypt)
-- Single-Session-Pro-User Erzwingung
-- Account-Verwaltung und Deaktivierung
 
-### ✅ Kanban-Board
-- Mehrere Bretter im klassischen Kanban-Format
-- Standard 3-Spalten-Layout (TODO, Doing, Done) - erweiterbar
-- Aufgaben erstellen, bearbeiten, löschen
-- Drag & Drop zwischen Spalten (mit Position-Tracking)
-- Neue Spalten hinzufügen, bearbeiten, löschen
-- Labels und Anhänge pro Aufgabe
-- Aufgabe-Zuweisungen (Mehrfach-Zuweisungen)
-- Deadline-Tracking
+### Kanban-Projektboard
+- Mehrere Statuskategorien im klassischen Kanban-Format
+- Standard 3-Statuskategorien-Layout (Demnächst, In Bearbeitung, Fertig) - erweiterbar
+- Aufgaben erstellen, umbenennen, bearbeiten, löschen
+- Titel, Beschreibung, Deadline (Datepicker), Labels, Anhänge und Zuweisung an Benutzer pro Aufgabe
+- Aufgaben in andere Statuskategorien durch Drag & Drop verschiebbar
+- Neue Statuskategorien erstellen, umbenennen, bearbeiten, löschen
+- Statuskategorien können auch durch Drag & Drop neu angeordnet werden
 - Real-time-Updates via WebSocket
 
-### ✅ Board-Management
-- Bretter erstellen, bearbeiten, löschen
-- Benutzerfreigabe (Members hinzufügen/entfernen)
-- Benutzerdefinierte Hintergrundfarben
-- Owner- und Member-Rollen
+### Projektboard-Management
+- Titel vom Projektboard kann geändert werden
+- Benutzer können zu Projektboard eingeladen werden
+- Man kann zwischen den Projektboards wechseln
+- Benutzerdefiniertes Hintergrundbild möglich
 
-### ✅ Benutzerprofile
-- Profilansicht mit Avatar (generierte Initialen)
-- Namen ändern
-- E-Mail-Verwaltung
-- Passwort ändern
-- Account-Verwaltung und Deaktivierung
+### Benutzerprofile
+- Account-Verwaltung (Name, E-Mail, Profilbild, Passwort, Deaktivierung)
+- Profilbilder oder generierte Initialen sichtbar im Projektboard
 
-### ✅ Suche & Filterung
+### Suche und Filterung
 - Live-Suchleiste für Aufgaben
-- Intelligente Vorschläge basierend auf Titeln
+- Vorschläge basierend auf Titeln
 
 ---
 
-## 🚀 Technologie-Stack
+## Technologie-Stack
 
 ### Backend
-| Komponente | Version |
-|-----------|---------|
-| **Java** | 26.0.1 |
-| **Spring Boot** | 4.0.6 |
-| **Spring Data JPA** | 4.0.5 |
-| **Spring Security** | 4.0.6 |
-| **Spring WebSocket** | 4.0.6 |
-| **Gradle** | 9.5.1 |
-| **H2 Database** | 2.4.240 (In-Memory) |
-| **JWT (JJWT)** | 0.13.0 |
-| **Lombok** | 1.18.46 |
-| **JUnit 5** | Latest (via Spring Boot) |
+| Komponente                       | Version |
+|----------------------------------|---------|
+| **Gradle**                       | 9.5.1   |
+| **Java**                         | 26.0.1  |
+| **Spring Boot**                  | 4.0.6   |
+| **Dependency Management Plugin** | 1.1.7   |
+| **FreeFair Lombok**              | 9.5.0   |
+| **Spring Starter Web MVC**       | 4.0.6   |
+| **Spring Starter WebSocket**     | 4.0.6   |
+| **Spring Starter Data JPA**      | 4.0.6   |
+| **Spring H2console**             | 4.0.6   |
+| **H2 Database Engine**           | 2.4.240 |
+| **Spring Starter Validation**    | 4.0.6   |
+| **Spring Starter Mail**          | 4.0.6   |
+| **Spring Starter Security**      | 4.0.6   |
+| **JJWT API**                     | 0.13.0  |
+| **JJWT Impl**                    | 0.13.0  |
+| **JJWT Jackson**                 | 0.13.0  |
+| **JJWT Jackson**                 | 0.13.0  |
+| **Spring Boot Starter Test**     | 4.0.6   |
 
 ### Frontend
-| Komponente | Version |
-|-----------|---------|
-| **Angular** | 21.2.13 |
-| **Angular CLI** | 21.2.11 |
-| **TypeScript** | 6.0.3 |
-| **RxJS** | 7.8.2 |
-| **pnpm** | 11.1.3 |
-| **Node.js** | 26.2.0+ |
+| Komponente (Normale)            | Version    |
+|---------------------------------|------------|
+| **Node.js**                     | 26.2.0     |
+| **pnpm**                        | 11.5.0     |
+| **@angular/common**             | 21.2.15    |
+| **@angular/compiler**           | 21.2.15    |
+| **@angular/core**               | 21.2.15    |
+| **@angular/forms**              | 21.2.15    |
+| **@angular/platform-browser**   | 21.2.15    |
+| **@angular/router**             | 21.2.15    |
+| **@ng-icons/core**              | 33.2.3     |
+| **@ng-icons/bootstrap-icons**   | 33.2.3     |
+| **@ng-select/ng-select**        | 21.8.2     |
+| **ngxsmk-datepicker**           | 2.2.15     |
+| **@stomp/stompjs**              | 7.3.0      |
+| **rxjs**                        | 7.8.2      |
+| **sweetalert2**                 | 11.26.25   |
+| **tslib**                       | 2.8.1      |
+
+| Komponente (Dev)              | Version    |
+|-------------------------------|------------|
+| **@angular/build**            | 21.2.13    |
+| **@angular/cli**              | 21.2.13    |
+| **@angular/compiler-cli**     | 21.2.15    |
+| **angular-eslint**            | 21.4.0     |
+| **@angular-eslint/builder**   | 21.4.0     |
+| **eslint**                    | 10.4.1     |
+| **@eslint/js**                | 10.0.1     |
+| **eslint-config-prettier**    | 10.1.8     |
+| **eslint-plugin-prettier**    | 5.5.6      |
+| **prettier**                  | 3.8.3      |
+| **stylelint**                 | 17.12.0    |
+| **stylelint-config-standard** | 40.0.0     |
+| **typescript**                | 6.0.3      |
+| **typescript-eslint**         | 8.60.0     |
+| **vitest**                    | 4.1.7      |
+| **@playwright/test**          | 1.60.0     |
+| **happy-dom**                 | 20.9.0     |
 
 ### Zusätzliche Tools
-- **Bootstrap Icons** (ng-icons)
-- **ng-select** für Dropdown-Komponenten
-- **Datepicker** (ngxsmk-datepicker)
-- **SweetAlert2** für Benachrichtigungen
-- **Stomp.js** für WebSocket-Kommunikation
-- **ESLint** | Code-Linting
-- **Prettier** | Code-Formatierung
-- **Stylelint** | CSS-Linting
-- **Karma + Jasmine** | Unit-Testing
-- **Mailpit** | Fake SMTP für E-Mails (optional)
+- **IntelliJ IDEA** - IDE für Entwicklung
+- **GitHub Copilot** - KI-basierte Code-Generierung
+- **Git** - Versionskontrolle
+- **Mailpit** - Fake-SMTP-Server für E-Mails
 
 ---
 
-## 📦 Voraussetzungen
-
+## Voraussetzungen
 Stelle sicher, dass folgende Software installiert ist:
 
-```bash
-# Erforderliche Versionen
-Java 26.0.1 oder höher      (https://adoptium.net/)
-Node.js 26.2.0 oder höher   (https://nodejs.org/)
-Git 2.54.0 oder höher       (https://git-scm.com/)
-pnpm 11.1.3 oder höher      (npm install -g pnpm)
+```
+IntelliJ IDEA (oder andere IDE für Java und Angular)
+Mailpit (für E-Mail-Testing)
+Java 26.0.1 oder höher
+Node.js 26.2.0 oder höher
+pnpm 11.5.0 oder höher
 ```
 
 ### Installation überprüfen
-
-```bash
-# Überprüfe die installierten Versionen
+```
 java -version
 node --version
 pnpm --version
-git --version
 ```
 
 ---
 
-## 🎬 Schnelleinstieg
+## Schnelleinstieg
 
 ### 1. Repository klonen
-
-```bash
+```
 git clone https://github.com/mexikoedi/Task-Management-Web-System.git
 cd Task-Management-Web-System
 ```
 
-### 2. Backend starten
+### 2. Konfiguration anpassen
+Siehe [Konfiguration](#-konfiguration) weiter unten für wichtige Details zur Backend- und Frontend-Konfiguration.
 
-```bash
+### 3. Backend starten
+```
 cd backend
 
-# Option A: Mit Gradle Wrapper (empfohlen - keine Installation erforderlich)
-./gradlew bootRun        # macOS/Linux
-gradlew.bat bootRun      # Windows
-
-# Option B: Mit lokalem Gradle (falls installiert)
-gradle bootRun
+# Mit Gradle Wrapper starten
+./gradlew bootRun
 
 # Das Backend läuft auf: http://localhost:8080
 ```
 
-### 3. Frontend starten (separates Terminal)
-
-```bash
+### 4. Frontend starten (separates Terminal)
+```
 cd frontend
 
 # Dependencies installieren
@@ -160,392 +178,235 @@ pnpm start
 # Das Frontend läuft auf: http://localhost:4200
 ```
 
-### 4. Anmeldung testen
+## 5. Fake-SMTP-Server (Mailpit) starten
+```
+# In einem separaten (externen) Terminal starten
+macOS/Linux: mailpit
+Windows: mailpit.exe
 
-**Demo-Benutzer (oder nach Registrierung anmelden):**
-- E-Mail: `demo@tmws.local`
-- Passwort: `Demo@1234567`
+# Der SMTP-Server läuft auf Port http://localhost:1025 (Backend sendet Mails hier) und die Web-UI für E-Mails ist unter http://localhost:8025 erreichbar.
+```
+
+### 6. Anmeldung/E-Mail-Versand testen
+Nach Registrierung und E-Mail-Verifikation mit Folgendem anmelden:
+- E-Mail
+- Passwort
 
 ---
 
-## ⚙️ Konfiguration
+## Konfiguration
 
-### Backend-Konfiguration (`backend/src/main/resources/application.properties`)
+### Backend-Konfiguration
+Im Backend Ornder unter den jeweiligen Konfigurationsdateien einsehbar. <br>
+Zum Beispiel `backend/src/main/resources/application.properties`.
 
-```properties
-# Server
-server.port=8080
+#### Wichtig:
+Unter `backend/src/main/resources` muss vor dem Start eine `application.local.properties` erstellt werden. <br>
+Diese enthält sensible Informationen wie Benutzernamen, Passwörter und den JWT-Secret-Key:
+```
+## Benutzernamen und Passwörter für die Datenbank, Spring Security und E-Mail-Konfiguration
+DATASOURCE_USERNAME=YOUR_DB_USERNAME
+DATASOURCE_PASSWORD=YOUR_DB_PASSWORD
+JPA_USERNAME=YOUR_DB_USERNAME
+JPA_PASSWORD=YOUR_DB_PASSWORD
+SECURITY_USERNAME=YOUR_SECURITY_USERNAME
+SECURITY_PASSWORD=YOUR_SECURITY_PASSWORD
+MAIL_USERNAME=YOUR_MAIL_USERNAME
+MAIL_PASSWORD=YOUR_MAIL_PASSWORD
 
-# H2 Database (In-Memory)
-spring.datasource.url=jdbc:h2:mem:tmws;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-spring.datasource.driverClassName=org.h2.Driver
-spring.datasource.username=sa
-spring.datasource.password=
-spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
-spring.jpa.hibernate.ddl-auto=update
-
-# H2 Console
-spring.h2.console.enabled=true
-spring.h2.console.path=/h2-console
-spring.h2.console.settings.web-allow-others=true
-
-# JWT
-jwt.secret=mySecretKeyForJWTTokenGenerationAndValidationMustBeAtLeast256bitsForHS256Algorithm
-jwt.expiration=86400000
-
-# Mail (Mailpit)
-spring.mail.host=localhost
-spring.mail.port=1025
-spring.mail.username=
-spring.mail.password=
-spring.mail.properties.mail.smtp.auth=false
-spring.mail.properties.mail.smtp.starttls.enable=false
-
-# Logging
-logging.level.root=INFO
-logging.level.io.github.mexikoedi=DEBUG
+## JWT Secret und Expiration
+JWT_SECRET=YOUR_JWT_SECRET (mindestens 256 bit (32 byte) lang für HS256 Algorithmus)
+JWT_EXPIRATION=YOUR_JWT_EXPIRATION (in Millisekunden)
 ```
 
-### Frontend-Konfiguration (`frontend/angular.json`)
-
-```json
-{
-  "projects": {
-    "tmws-frontend": {
-      "targets": {
-        "serve": {
-          "options": {
-            "port": 4200,
-            "host": "localhost",
-            "open": true
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-### CORS-Konfiguration (Backend)
-
-Erlaubte Domains sind in `backend/src/main/java/.../config/CorsConfig.java` konfiguriert:
-
-```
-// Erlaubte Origins
-- http://localhost:4200 (Entwicklung)
-- http://localhost:3000  (Alternative)
-
-// Erlaubte HTTP-Methoden: GET, POST, PUT, DELETE, OPTIONS
-// Erlaubte Headers: *
-// Max Age: 3600 Sekunden
-```
+### Frontend-Konfiguration
+Im Frontend Ordner unter den jeweiligen Konfigurationsdateien einsehbar. <br>
+Zum Beispiel `frontend/angular.json`.
 
 ---
 
-## 🏗️ Architektur
-
-### Backend - MVC Pattern
-
-```
-io.github.mexikoedi.tmws/
-├── config/              # Spring Configuration, CORS, WebSocket, Security
-├── controller/          # REST Endpoints (@RestController)
-├── dto/                 # Data Transfer Objects (Request/Response)
-├── enum/               # Enumerationen (TaskStatus, UserRole, etc.)
-├── exception/          # Custom Exception Handling
-├── model/              # JPA Entities (@Entity)
-├── repository/         # Spring Data Repositories (Data Access)
-├── security/           # Spring Security Configuration
-├── service/            # Business Logic Services
-├── util/               # Utility Classes (JWT, Validation, etc.)
-└── TmwsApplication.java # Main Application Class
-```
-
-### Frontend - Angular-Struktur
-
-```
-src/app/
-├── app.component.*      # Root Component
-├── app.routes.ts        # Routing Configuration
-├── component/           # Reusable Components
-├── core/               # Core Services (Auth, Guards, Interceptors)
-│   ├── guards/         # Auth Guards, Route Protectors
-│   └── interceptors/   # HTTP Interceptors (Token-Handling)
-├── directive/          # Custom Directives
-├── model/              # TypeScript Interfaces & Models
-├── page/               # Page Components (Dashboard, Login, etc.)
-├── service/            # Application Services
-│   ├── auth.service.ts
-│   ├── board.service.ts
-│   ├── heartbeat.service.ts
-│   └── websocket.service.ts
-└── shared/             # Shared Modules & Components
-```
+## Architektur
+Das Backend läuft auf Java Spring Boot mit einem klassischen MVC-Pattern, während das Frontend mit Angular als Single
+Page Application (SPA) aufgebaut ist. <br>
+Die Kommunikation zwischen beiden erfolgt über REST und WebSockets für Echtzeit-Updates. <br>
+Außerdem ist die Ornder-Struktur klar unterteilt, um eine saubere, moderne Trennung der Verantwortlichkeiten zu gewährleisten.
 
 ### Datenbank-Schema
-
 Die H2 In-Memory Datenbank wird automatisch beim Start initialisiert mit:
 
 **Haupttabellen:**
 - `users` - Benutzer mit Authentifizierung
-- `boards` - Kanban Bretter
-- `board_columns` - Spalten (TODO, Doing, Done)
+- `boards` - Kanban Projektboards
+- `board_columns` - Statuskategorien
+- `board_members` - Many-to-Many Benutzer-Projektboard-Zuordnung
 - `tasks` - Aufgaben mit Zuweisungen
-- `task_assignees` - Many-to-Many Zuweisungen
+- `task_assignees` - Many-to-Many Aufgaben-Benutzer-Zuordnung
 - `verification_tokens` - E-Mail-Verifikation
 - `password_reset_tokens` - Passwort-Zurücksetzen
 
 ---
 
-## 🔧 Häufige Befehle
+## Häufige Befehle
 
 ### Backend (Gradle)
-
-```bash
+```
 cd backend
 
 # Build & Test
-./gradlew build              # Clean build + tests
-./gradlew assemble           # Nur assemblieren (ohne Tests)
-./gradlew test               # Nur Tests ausführen
-./gradlew clean              # Aufräumen
+./gradlew build                                 # Clean build + tests
+./gradlew assemble                              # Nur assemblieren (ohne Tests)
+./gradlew test                                  # Nur Tests ausführen
+./gradlew clean                                 # Aufräumen
 
 # Execution
-./gradlew bootRun                              # Anwendung starten
-./gradlew bootRun --args='--server.port=8081'  # Mit anderem Port
+./gradlew bootRun                               # Anwendung starten
+./gradlew bootRun --args='--server.port=8081'   # Mit anderem Port
 
 # Information
-./gradlew tasks                     # Alle verfügbaren Tasks anzeigen
-./gradlew dependencies              # Dependencies auflisten
-./gradlew check --warning-mode all  # Mit allen Warnungen
+./gradlew tasks                                 # Alle verfügbaren Tasks anzeigen
+./gradlew dependencies                          # Dependencies auflisten
+./gradlew check --warning-mode all              # Mit allen Warnungen
 ```
 
 ### Frontend (pnpm)
-
-```bash
+```
 cd frontend
 
-# Development
-pnpm start                               # Dev-Server starten (http://localhost:4200)
-pnpm build                               # Production Build
-pnpm build --configuration production    # Mit Optimierungen
+# Entwicklung
+pnpm start                                      # Dev-Server starten
+pnpm build                                      # Production Build
+pnpm build --configuration production           # Mit Optimierungen
 
-# Testing
-pnpm test                    # Unit Tests (Karma/Jasmine)
-pnpm test -- --code-coverage # Mit Coverage-Report
-pnpm e2e                     # E2E Tests
-pnpm e2e:ui                  # E2E Tests mit UI-Feedback
+# Testen
+pnpm test                                       # Unit Tests
+pnpm test -- --code-coverage                    # Mit Coverage-Report
+pnpm e2e                                        # E2E Tests
+pnpm e2e:ui                                     # E2E Tests mit UI-Feedback
+pnpm e2e:install                                # Playwright-Browser und Abhängigkeiten installieren
 
-# Code Quality
-pnpm lint                    # ESLint ausführen
-pnpm lint --fix              # ESLint mit Auto-Fix
-pnpm stylelint .             # Stylelint ausführen
-pnpm stylelint . --fix       # Stylelint ausführen mit Auto-Fix
-
-# Formatting
-pnpm prettier . --w          # Mit Prettier formatieren
+# Code Qualität und Formatierung
+pnpm lint                                       # ESLint ausführen
+pnpm lintFix                                    # ESLint mit Auto-Fix
+pnpm prettier                                   # Prettier ausführen
+pnpm stylelint                                  # Stylelint mit Auto-Fix
 ```
 
 ---
 
-## 💾 Datenbankzugriff
+## Datenbankzugriff
 
 ### H2 Console
-
-Nach dem Backend-Start kannst du die Datenbank über die H2 Web Console ansehen:
-
-**URL:** http://localhost:8080/h2-console
+Nach dem Backend-Start kannst du die Datenbank über die H2 Web Console ansehen: <br>
+http://localhost:8080/api/h2-console
 
 **Verbindung:**
-- JDBC URL: `jdbc:h2:mem:tmws`
-- Benutzer: `sa`
-- Passwort: (leer lassen)
+- JDBC URL: `jdbc:h2:mem:tmws;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE`
+- Benutzer: (Das zuvor festgelegte `DATASOURCE_USERNAME` in `application.local.properties`.)
+- Passwort: (Das zuvor festgelegte `DATASOURCE_PASSWORD` in `application.local.properties`.)
 
 ### SQL Queries Beispiele
-
 ```
 -- Alle Benutzer anzeigen
 SELECT * FROM users;
 
--- Alle Bretter eines Benutzers
+-- Alle Projektboards eines Benutzers
 SELECT * FROM boards WHERE owner_id = 1;
 
--- Aufgaben in einer Spalte
+-- Aufgaben in einer Statuskategorie
 SELECT * FROM tasks WHERE column_id = 1 ORDER BY position_index;
 ```
 
 ---
 
-## 📧 E-Mail-Setup (Mailpit)
-
-Mailpit ist ein Fake SMTP-Server für lokale Entwicklung. E-Mails werden nicht wirklich versendet, sondern lokal gehostet.
-
-### Installation Option 1: Docker (empfohlen)
-
-```bash
-# Mailpit mit Docker starten
-docker run -d -p 1025:1025 -p 8025:8025 --name mailpit axllent/mailpit
-
-# Portierung:
-# - SMTP: 1025 (Backend sendet Mails hier)
-# - Web-UI: 8025 (E-Mails anschauen)
-```
-
-### Installation Option 2: Direkter Download
-
-1. Lade Mailpit herunter: https://github.com/axllent/mailpit/releases
-2. Entpacke die Datei
-3. Starte Mailpit:
-   ```bash
-   ./mailpit              # macOS/Linux
-   mailpit.exe            # Windows
-   ```
-
-### Verwendung
-
-Nach Registrierung oder Passwort-Reset besuche:
-
-**http://localhost:8025** - Alle versandten E-Mails werden hier angezeigt
+## Server-Health-Check
+Um die Erreichbarkeit des Backends zu überprüfen, kannst du den folgenden Endpoint aufrufen: <br>
+http://localhost:8080/api/health
 
 ---
 
-## 🧪 Tests
-
-### Backend Tests
-
-```bash
-cd backend
-
-# Alle Tests ausführen
-./gradlew test
-
-# Spezifischen Test ausführen
-./gradlew test --tests "io.github.mexikoedi.tmws.controller.*"
-
-# Mit Coverage
-./gradlew test --jacoco
-```
-
-### Frontend Tests
-
-```bash
-cd frontend
-
-# Unit Tests mit Karma/Jasmine
-pnpm test
-
-# Mit Code Coverage
-pnpm test -- --code-coverage
-
-# Watch Mode (kontinuierlich)
-pnpm test -- --watch
-```
-
-### E2E Tests
-
-```bash
-cd frontend
-
-# E2E Tests ausführen
-pnpm e2e
-```
-
----
-
-## 🎨 Code-Formatierung & Linting
-
-### Frontend
-
-```bash
-cd frontend
-
-# ESLint
-pnpm lint              # Prüfen
-pnpm lint --fix        # Auto-Fix
-
-# Prettier
-pnpm format            # Formatieren
-
-# Stylelint
-pnpm lint:styles       # CSS prüfen
-```
-
----
-
-## 📱 API-Endpoints
+## API-Endpoints
 
 ### Authentifizierung
-
 ```
-POST   /api/auth/register       # Registrierung
-POST   /api/auth/login          # Anmeldung
-POST   /api/auth/verify-email   # E-Mail verifizieren
-POST   /api/auth/reset-password # Passwort zurücksetzen
+POST    /api/auth/register                      # Registrierung
+POST    /api/auth/login                         # Anmeldung
+GET     /api/auth/verify-email                  # E-Mail verifizieren
+POST    /api/auth/password-reset                # Passwort zurücksetzen (Anfrage)
+PUT     /api/auth/reset-password                # Passwort zurücksetzen (Update)
 ```
 
 ### Benutzer
-
 ```
-GET    /api/users/me            # Aktuellen Benutzer abrufen
-PUT    /api/users/profile       # Profil aktualisieren
-PUT    /api/users/password      # Passwort ändern
-DELETE /api/users/account       # Account deaktivieren
+GET     /api/auth/me                            # Aktuellen Benutzer abrufen
+PUT     /api/auth/profile                       # Profil aktualisieren
+PUT     /api/auth/profile/change-password       # Passwort ändern
+DELETE  /api/auth/me                            # Account deaktivieren
 ```
 
-### Bretter
-
+### Projektboard
 ```
-GET    /api/boards              # Alle Bretter abrufen
-POST   /api/boards              # Neues Brett erstellen
-GET    /api/boards/{id}         # Brett-Details abrufen
-PUT    /api/boards/{id}         # Brett aktualisieren
-DELETE /api/boards/{id}         # Brett löschen
+GET     /api/boards                             # Alle Projektboards abrufen
+POST    /api/boards                             # Neues Projektboard erstellen
+GET     /api/boards/{id}                        # Projektboard-Details abrufen
+PUT     /api/boards/{id}                        # Projektboard aktualisieren
+```
+
+### Statuskategorien
+```
+POST    /api/boards/{id}/columns                # Neue Statuskategorie erstellen
+PUT     /api/boards/columns/{id}                # Statuskategorie aktualisieren
+PUT     /api/boards/columns/{id}/move           # Statuskategorie verschieben (Position ändern)
+DELETE  /api/boards/columns/{id}                # Statuskategorie löschen
 ```
 
 ### Aufgaben
-
 ```
-GET    /api/boards/{id}/tasks   # Aufgaben eines Bretts
-POST   /api/tasks               # Neue Aufgabe erstellen
-PUT    /api/tasks/{id}          # Aufgabe aktualisieren
-DELETE /api/tasks/{id}          # Aufgabe löschen
+POST    /api/boards/columns/{columnId}/tasks    # Neue Aufgabe erstellen
+PUT     /api/boards/tasks/{taskId}              # Aufgabe aktualisieren
+PUT     /api/boards/tasks/{taskId}/move         # Aufgabe verschieben (Position ändern)
+DELETE  /api/boards/tasks/{taskId}              # Aufgabe löschen
+```
+
+### Projektboard Mitglieder
+```
+POST    /api/boards/{id}/invite                 # Benutzer zu Projektboard einladen
 ```
 
 ### Sonstiges
 
 ```
-GET    /api/health              # Health Check
+GET     /api/health                             # Health Check
 ```
 
 ---
 
-## 🐛 Fehlerbehebung
+## Fehlerbehebung
 
 ### Backend-Probleme
 
 **Port 8080 bereits in Verwendung:**
-```bash
+```
 # Anderen Port verwenden
 ./gradlew bootRun --args='--server.port=8081'
 ```
 
 **H2 Console nicht erreichbar:**
 - Überprüfe `application.properties`: `spring.h2.console.enabled=true`
-- URL: http://localhost:8080/h2-console
+- URL: http://localhost:8080/api/h2-console
 
-**JWT Token-Fehler:**
-- Überprüfe `jwt.secret` in `application.properties`
+**JWT-Fehler:**
+- Überprüfe `jwt.secret` in `application.local.properties`
 - Muss mindestens 32 Zeichen lang sein für HS256
 
 ### Frontend-Probleme
 
 **Port 4200 bereits in Verwendung:**
-```bash
+```
 pnpm start -- --port 4300
 ```
 
 **Abhängigkeiten nicht installiert:**
-```bash
+```
 rm -rf node_modules pnpm-lock.yaml
 pnpm install
 ```
@@ -554,19 +415,17 @@ pnpm install
 
 **Frontend kann Backend nicht erreichen:**
 - Überprüfe CORS-Konfiguration
-- Backend läuft auf http://localhost:8080?
-- Frontend läuft auf http://localhost:4200?
-- Überprüfe Browser-Console auf Errors
+- Läuft Backend auf http://localhost:8080?
+- Läuft Frontend auf http://localhost:4200?
+- Überprüfe Frontend, Backend und Browser-Konsole auf Fehler
 
 ---
 
-## 📚 Weitere Ressourcen
-
-- **Spring Boot**: https://spring.io/projects/spring-boot
-- **Angular**: https://angular.io/docs
-- **JWT.io**: https://jwt.io/
-- **Mailpit**: https://mailpit.axllent.org/
+### Danksagung
+Danke an [Slifer808](https://steamcommunity.com/profiles/76561198347469960) für die Hilfe beim Erstellen vom `favicon.ico`.
 
 ---
 
-**Letzte Aktualisierung:** 21.05.2026
+© 2026-2026 mexikoedi
+
+Alle Rechte vorbehalten.

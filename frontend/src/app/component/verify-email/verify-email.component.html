@@ -1,0 +1,32 @@
+<!--
+    VerifyEmailComponent die den Verifikationsstatus der E-Mail-Adresse anzeigt.
+-->
+<div class="verification-container">
+  <div class="verification-card">
+    <!-- Ladeanzeige während der Verifikation -->
+    @if (isLoading()) {
+      <div class="loading">
+        <p>Verifiziere Ihre E-Mail-Adresse...</p>
+      </div>
+    }
+
+    <!-- Erfolgsmeldung bei erfolgreicher Verifikation -->
+    @if (success() && !isLoading()) {
+      <div class="success">
+        <ng-icon size="3em" color="green" name="bootstrapCheckLg"></ng-icon>
+        <h2>E-Mail verifiziert!</h2>
+        <p>{{ successMessage() }}</p>
+      </div>
+    }
+
+    <!-- Fehlermeldung bei Verifikationsfehler -->
+    @if (errorMessage() && !isLoading()) {
+      <div class="error">
+        <ng-icon size="3em" color="red" name="bootstrapX"></ng-icon>
+        <h2>Verifikation fehlgeschlagen!</h2>
+        <p>{{ errorMessage() }}</p>
+        <button title="Zurück zur Anmeldung" (click)="switchToLogin()">Zurück zur Anmeldung</button>
+      </div>
+    }
+  </div>
+</div>

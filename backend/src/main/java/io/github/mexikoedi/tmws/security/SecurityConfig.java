@@ -1,3 +1,7 @@
+/**
+ * Diese Klasse konfiguriert die Sicherheitseinstellungen der Anwendung, einschließlich der Authentifizierung und
+ * Autorisierung.
+ */
 package io.github.mexikoedi.tmws.security;
 
 import org.springframework.context.annotation.Bean;
@@ -17,48 +21,53 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
-  /** Password Encoder für User-Passwörter */
+  /**
+   * Definiert den PasswordEncoder, der für die sichere Speicherung von Passwörtern verwendet wird.
+   *
+   * @return Ein BCryptPasswordEncoder-Bean, der für die Passwortverschlüsselung verwendet wird.
+   */
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
 
-  /** Security-Konfiguration */
+  /**
+   * Konfiguriert die Sicherheitsfilterkette, um die Authentifizierungs- und Autorisierungsregeln festzulegen.
+   * Es werden bestimmte Endpunkte für die öffentliche Nutzung freigegeben, während alle anderen Endpunkte eine
+   * Authentifizierung erfordern. Außerdem wird die CSRF-Schutz deaktiviert, CORS aktiviert und die
+   * Session-Management-Strategie auf stateless gesetzt, um die Verwendung von JWTs zu unterstützen.
+   * Der JwtAuthFilter wird vor dem UsernamePasswordAuthenticationFilter hinzugefügt, um die JWT-Authentifizierung
+   * zu ermöglichen und die Sicherheit der Anwendung zu gewährleisten.
+   *
+   * @param http Das HttpSecurity-Objekt, das für die Konfiguration der Sicherheitsregeln verwendet wird.
+   * @param jwtFilter Der JwtAuthFilter, der für die Verarbeitung von JWTs in den Anfragen verantwortlich ist.
+   * @return Ein SecurityFilterChain-Bean, der die konfigurierten Sicherheitsregeln enthält und von Spring Security
+   * verwendet wird.
+   */
   @Bean
-  public SecurityFilterChain securityFilterChain(
-      HttpSecurity http, JwtAuthenticationFilter jwtFilter) throws Exception {
-
-    http.csrf(AbstractHttpConfigurer::disable)
-        .cors(Customizer.withDefaults())
-        .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
-        .sessionManagement(
-            session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        .authorizeHttpRequests(
-            auth ->
-                auth.requestMatchers("/api/auth/login")
-                    .permitAll()
-                    .requestMatchers("/api/auth/register")
-                    .permitAll()
-                    .requestMatchers("/api/auth/verify-email")
-                    .permitAll()
-                    .requestMatchers("/api/auth/password-reset")
-                    .permitAll()
-                    .requestMatchers("/api/auth/reset-password")
-                    .permitAll()
-                    .requestMatchers("/api/health/**")
-                    .permitAll()
-                    .requestMatchers("/h2-console/**")
-                    .permitAll()
-                    .requestMatchers(HttpMethod.OPTIONS, "/**")
-                    .permitAll()
-                    .requestMatchers("/ws/**")
-                    .permitAll()
-                    .anyRequest()
-                    .authenticated())
-        .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-        .formLogin(AbstractHttpConfigurer::disable)
-        .httpBasic(AbstractHttpConfigurer::disable);
+  public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthFilter jwtFilter) {
+    http
+      .csrf(AbstractHttpConfigurer::disable)
+      .cors(Customizer.withDefaults())
+      .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+      .authorizeHttpRequests(auth -> auth
+        .requestMatchers(
+          "/api/auth/login",
+          "/api/auth/register",
+          "/api/auth/verify-email",
+          "/api/auth/password-reset",
+          "/api/auth/reset-password",
+          "/api/health",
+          "/api/h2-console/**",
+          "/api/ws/**"
+        ).permitAll()
+        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+        .anyRequest().authenticated()
+      )
+      .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
+      .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+      .formLogin(AbstractHttpConfigurer::disable)
+      .httpBasic(AbstractHttpConfigurer::disable);
 
     return http.build();
   }

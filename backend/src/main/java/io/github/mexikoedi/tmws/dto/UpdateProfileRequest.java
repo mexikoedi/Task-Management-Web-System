@@ -1,72 +1,28 @@
+/**
+ * Diese Klasse repräsentiert die Daten, die für die Aktualisierung eines Benutzerprofils erforderlich sind.
+ */
 package io.github.mexikoedi.tmws.dto;
 
-import jakarta.validation.constraints.Email;
+import io.github.mexikoedi.tmws.util.ValidEmail;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class UpdateProfileRequest {
-  @NotBlank(message = "Name ist erforderlich")
+  @NotBlank(message = "Name ist erforderlich.")
+  @Size(min = 2, max = 30, message = "Name muss zwischen 2 und 30 Zeichen lang sein.")
   private String name;
 
-  @Email private String newEmail; // optional neue Email
-  private String image; // optionales Profilbild
+  @NotBlank(message = "E-Mail ist erforderlich.")
+  @Size(max = 30, message = "E-Mail darf nicht länger als 30 Zeichen lang sein.")
+  @ValidEmail
+  private String newEmail;
 
-  // Optional Passwortfelder
-  private String currentPassword;
-  private String newPassword;
-  private String newPasswordConfirm;
-
-  // Getter & Setter für alle Felder
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getNewEmail() {
-    return newEmail;
-  }
-
-  public void setNewEmail(String newEmail) {
-    this.newEmail = newEmail;
-  }
-
-  public String getImage() {
-    return image;
-  }
-
-  public void setImage(String image) {
-    this.image = image;
-  }
-
-  public String getCurrentPassword() {
-    return currentPassword;
-  }
-
-  public void setCurrentPassword(String currentPassword) {
-    this.currentPassword = currentPassword;
-  }
-
-  public String getNewPassword() {
-    return newPassword;
-  }
-
-  public void setNewPassword(String newPassword) {
-    this.newPassword = newPassword;
-  }
-
-  public String getNewPasswordConfirm() {
-    return newPasswordConfirm;
-  }
-
-  public void setNewPasswordConfirm(String newPasswordConfirm) {
-    this.newPasswordConfirm = newPasswordConfirm;
-  }
-
-  public UpdateProfileRequest() {}
-
-  public UpdateProfileRequest(String name) {
-    this.name = name;
-  }
+  @Size(max = 255, message = "Profilbild darf nicht länger als 255 Zeichen lang sein.")
+  @Pattern(regexp = "^(|https?://.+\\.(png|jpg|jpeg|webp)(\\?.*)?)$", message = "Nur gültige Bild-URLs erlaubt.")
+  private String image;
 }

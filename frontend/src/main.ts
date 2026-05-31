@@ -1,41 +1,10 @@
+/**
+ * Diese Datei ist der Haupteinstiegspunkt der Angular-Anwendung.
+ * Hier wird die Anwendung mit der `bootstrapApplication`-Funktion gestartet, die das `AppComponent`
+ * als Root-Komponente verwendet und die Konfiguration aus `appConfig` lädt.
+ */
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter } from '@angular/router';
-import { provideHttpClient, withInterceptorsFromDi, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { AppComponent } from './app/app.component';
-import { routes } from './app/app.routes';
-import { AuthInterceptor } from './app/core/interceptors/auth.interceptor';
-import { provideIcons } from '@ng-icons/core';
-import {
-  bootstrapEye,
-  bootstrapEyeSlash,
-  bootstrapGear,
-  bootstrapInfoCircle,
-  bootstrapPencil,
-  bootstrapPlusSquare,
-  bootstrapSearch,
-  bootstrapTrash3,
-  bootstrapCheckLg,
-  bootstrapX,
-} from '@ng-icons/bootstrap-icons';
+import { appConfig } from './app/app.config';
 
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideRouter(routes),
-    provideHttpClient(withInterceptorsFromDi()),
-    provideAnimations(),
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    provideIcons({
-      bootstrapPlusSquare,
-      bootstrapTrash3,
-      bootstrapPencil,
-      bootstrapGear,
-      bootstrapSearch,
-      bootstrapEye,
-      bootstrapEyeSlash,
-      bootstrapInfoCircle,
-      bootstrapCheckLg,
-      bootstrapX,
-    }),
-  ],
-}).catch(err => console.error(err));
+bootstrapApplication(AppComponent, appConfig).catch((err: unknown): void => console.error(err));

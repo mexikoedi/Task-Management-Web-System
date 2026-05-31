@@ -1,18 +1,29 @@
+/**
+ * Diese Klasse repräsentiert die Anforderung zum Zurücksetzen des Passworts.
+ */
 package io.github.mexikoedi.tmws.dto;
 
-import io.github.mexikoedi.tmws.util.ValidEmail;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Setter
+@Getter
 public class PasswordResetRequest {
-  @NotBlank(message = "E-Mail ist erforderlich")
-  @Size(max = 30, message = "E-Mail darf nicht länger als 30 Zeichen lang sein")
-  @ValidEmail
-  private String email;
+  @NotBlank(message = "Neues Passwort ist erforderlich.")
+  @Size(min = 8, max = 50, message = "Passwort muss zwischen 8 und 50 Zeichen lang sein.")
+  @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?]).*$", message = "Passwort muss Groß-/Kleinbuchstaben, Zahl und Sonderzeichen enthalten.")
+  private String password;
+
+  /**
+   * Konstruktor für die PasswordResetRequest-Klasse.
+   * Für Tests benutzt.
+   *
+   * @param password Das neue Passwort, das der Benutzer festlegen möchte.
+   */
+  public PasswordResetRequest(String password) {
+    this.password = password;
+  }
 }

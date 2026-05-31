@@ -1,9 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./out-tsc/spec",
-    "moduleResolution": "bundler",
-    "types": ["jasmine"]
+    "types": ["vitest/globals"]
   },
   "include": ["src/**/*.spec.ts", "src/**/*.d.ts"]
 }

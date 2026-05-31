@@ -1,7 +1,9 @@
-// Playwright E2E testing configuration file.
-import { devices } from '@playwright/test';
+/**
+ * @see https://playwright.dev/docs/test-configuration
+ */
+import { defineConfig, devices } from '@playwright/test';
 
-const config = {
+export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
@@ -26,6 +28,4 @@ const config = {
     reuseExistingServer: !process.env.CI,
     timeout: 120000,
   },
-};
-
-export default config;
+});

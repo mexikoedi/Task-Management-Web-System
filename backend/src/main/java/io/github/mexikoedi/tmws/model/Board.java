@@ -1,14 +1,18 @@
+/**
+ * Diese Klasse repräsentiert ein Projekttboard im TMWS.
+ */
 package io.github.mexikoedi.tmws.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "boards")
 public class Board {
@@ -16,84 +20,46 @@ public class Board {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(nullable = false)
-  private String title;
-
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "owner_id")
   @JsonIgnore
   private User owner;
 
-  @ManyToMany
-  @JoinTable(
-      name = "board_members",
-      joinColumns = @JoinColumn(name = "board_id"),
-      inverseJoinColumns = @JoinColumn(name = "user_id"))
-  @JsonIgnore
-  private Set<User> members = new HashSet<>();
+  @Column(nullable = false)
+  private String title;
+
+  private String background;
 
   @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
   @OrderBy("position asc")
   @JsonManagedReference
-  private List<BoardColumn> columns = new ArrayList<>();
+  private Set<BoardColumn> columns = new LinkedHashSet<>();
 
-  @Column(name = "background")
-  private String background;
+  @ManyToMany
+  @JoinTable(name = "board_members", joinColumns = @JoinColumn(name = "board_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+  @JsonIgnore
+  private Set<User> members = new HashSet<>();
 
   @Column(name = "created_at", nullable = false, updatable = false)
   private LocalDateTime createdAt;
 
+  @Column(name = "updated_at")
+  private LocalDateTime updatedAt;
+
+  /**
+   * Setzt die Erstellungs- und Aktualisierungszeitstempel, bevor das Board in die Datenbank eingefügt wird.
+   */
   @PrePersist
-  protected void onCreate() {
+  private void onCreate() {
     createdAt = LocalDateTime.now();
+    updatedAt = LocalDateTime.now();
   }
 
-  // getters / setters
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public User getOwner() {
-    return owner;
-  }
-
-  public void setOwner(User owner) {
-    this.owner = owner;
-  }
-
-  public Set<User> getMembers() {
-    return members;
-  }
-
-  public void setMembers(Set<User> members) {
-    this.members = members;
-  }
-
-  public List<BoardColumn> getColumns() {
-    return columns;
-  }
-
-  public void setColumns(List<BoardColumn> columns) {
-    this.columns = columns;
-  }
-
-  public String getBackground() {
-    return background;
-  }
-
-  public void setBackground(String background) {
-    this.background = background;
+  /**
+   * Aktualisiert den Aktualisierungszeitstempel, bevor das Board in der Datenbank aktualisiert wird.
+   */
+  @PreUpdate
+  private void onUpdate() {
+    updatedAt = LocalDateTime.now();
   }
 }

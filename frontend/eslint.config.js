@@ -1,15 +1,13 @@
-// ESLint configuration for an Angular project using TypeScript and Prettier.
-// This configuration extends recommended rules from ESLint, TypeScript ESLint, and Angular ESLint,
-// and also includes Prettier integration for code formatting. The configuration is set up to lint
-// both TypeScript files and HTML templates, ensuring that Angular-specific best practices are followed
-// while maintaining code style consistency with Prettier.
+/**
+ * @see https://eslint.org/docs/latest/use/configure
+ */
 import eslint from '@eslint/js';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 import angular from 'angular-eslint';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
-const config = defineConfig([
+export default defineConfig([
   globalIgnores(['**/index.html']),
   {
     files: ['**/*.ts'],
@@ -46,5 +44,3 @@ const config = defineConfig([
   },
   eslintPluginPrettierRecommended,
 ]);
-
-export default config;

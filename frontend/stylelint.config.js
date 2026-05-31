@@ -1,12 +1,9 @@
 /**
  * @see https://stylelint.io/user-guide/configure
- * @type {import('stylelint').Config}
  */
-const config = {
+export default {
   extends: ['stylelint-config-standard'],
   rules: {
     'block-no-empty': true,
   },
 };
-
-export default config;

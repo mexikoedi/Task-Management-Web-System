@@ -1,11 +1,19 @@
+/**
+ * Diese Klasse repräsentiert eine Statuskategorie im Projekttboard im TMWS.
+ */
 package io.github.mexikoedi.tmws.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "board_columns")
 public class BoardColumn {
@@ -24,49 +32,31 @@ public class BoardColumn {
   @JsonBackReference
   private Board board;
 
-  @OneToMany(mappedBy = "column", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "column", cascade = CascadeType.ALL, orphanRemoval = true)
   @OrderBy("position asc")
   @JsonManagedReference
-  private List<Task> tasks = new ArrayList<>();
+  private Set<Task> tasks = new LinkedHashSet<>();
 
-  // getters / setters
-  public Long getId() {
-    return id;
+  @Column(name = "created_at", nullable = false, updatable = false)
+  private LocalDateTime createdAt;
+
+  @Column(name = "updated_at")
+  private LocalDateTime updatedAt;
+
+  /**
+   * Setzt die Erstellungs- und Aktualisierungszeitstempel, bevor die Statuskategorie in die Datenbank eingefügt wird.
+   */
+  @PrePersist
+  private void onCreate() {
+    createdAt = LocalDateTime.now();
+    updatedAt = LocalDateTime.now();
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public Board getBoard() {
-    return board;
-  }
-
-  public void setBoard(Board board) {
-    this.board = board;
-  }
-
-  public List<Task> getTasks() {
-    return tasks;
-  }
-
-  public void setTasks(List<Task> tasks) {
-    this.tasks = tasks;
-  }
-
-  public int getPosition() {
-    return position;
-  }
-
-  public void setPosition(int position) {
-    this.position = position;
+  /**
+   * Aktualisiert den Aktualisierungszeitstempel, bevor die Statuskategorie in der Datenbank aktualisiert wird.
+   */
+  @PreUpdate
+  private void onUpdate() {
+    updatedAt = LocalDateTime.now();
   }
 }

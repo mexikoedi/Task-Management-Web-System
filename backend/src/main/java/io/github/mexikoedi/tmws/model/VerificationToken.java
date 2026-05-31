@@ -1,8 +1,15 @@
+/**
+ * Diese Klasse repräsentiert ein Verifizierungs-Token im TMWS.
+ */
 package io.github.mexikoedi.tmws.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import java.time.LocalDateTime;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "verification_tokens")
 public class VerificationToken {
@@ -13,7 +20,7 @@ public class VerificationToken {
   @Column(nullable = false, unique = true)
   private String token;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id", nullable = false)
   private User user;
 
@@ -26,61 +33,23 @@ public class VerificationToken {
   @Column(name = "created_at", nullable = false, updatable = false)
   private LocalDateTime createdAt;
 
+  @Column(name = "updated_at")
+  private LocalDateTime updatedAt;
+
+  /**
+   * Setzt die Erstellungs- und Aktualisierungszeitstempel, bevor das Verifizierungs-Token in die Datenbank eingefügt wird.
+   */
   @PrePersist
-  protected void onCreate() {
+  private void onCreate() {
     createdAt = LocalDateTime.now();
+    updatedAt = LocalDateTime.now();
   }
 
-  public boolean isExpired() {
-    return LocalDateTime.now().isAfter(expiryDate);
-  }
-
-  // Getters and Setters
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getToken() {
-    return token;
-  }
-
-  public void setToken(String token) {
-    this.token = token;
-  }
-
-  public User getUser() {
-    return user;
-  }
-
-  public void setUser(User user) {
-    this.user = user;
-  }
-
-  public LocalDateTime getExpiryDate() {
-    return expiryDate;
-  }
-
-  public void setExpiryDate(LocalDateTime expiryDate) {
-    this.expiryDate = expiryDate;
-  }
-
-  public boolean isUsed() {
-    return used;
-  }
-
-  public void setUsed(boolean used) {
-    this.used = used;
-  }
-
-  public LocalDateTime getCreatedAt() {
-    return createdAt;
-  }
-
-  public void setCreatedAt(LocalDateTime createdAt) {
-    this.createdAt = createdAt;
+  /**
+   * Aktualisiert den Aktualisierungszeitstempel, bevor das Verifizierungs-Token in der Datenbank aktualisiert wird.
+   */
+  @PreUpdate
+  private void onUpdate() {
+    updatedAt = LocalDateTime.now();
   }
 }

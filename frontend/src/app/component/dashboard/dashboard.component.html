@@ -1,0 +1,793 @@
+<!--
+    DashboardComponent mit Header, Body und Footer, welche die Hauptfunktionen der Projektboard-Anwendung bereitstellen.
+-->
+<div class="app-shell">
+  <!-- Header -->
+  <header class="app-header">
+    <div class="left">TMWS</div>
+
+    <form class="search-wrapper" [formGroup]="searchForm">
+      <ng-icon name="bootstrapSearch" class="search-icon"></ng-icon>
+      <input
+        id="taskSearch"
+        name="taskSearch"
+        type="search"
+        placeholder="Aufgaben finden"
+        formControlName="query"
+        (blur)="clearSearch()"
+        title="Gib einen Aufgabentitel ein, um Vorschläge zu sehen" />
+
+      @if (suggestions().length && searchQuery()) {
+        <ul class="suggestions">
+          @for (s of suggestions(); track $index) {
+            <li (mousedown)="openTaskDetail(s)">
+              {{ s.title }}
+            </li>
+          }
+        </ul>
+      }
+    </form>
+
+    <div class="right">
+      <button type="button" class="avatar" (click)="toggleProfile()" title="Account verwalten">
+        @if (profileImage) {
+          <img [src]="profileImage" alt="Profilbild" class="avatar-image" />
+        } @else {
+          <span>{{ getCurrentUserInitials() }}</span>
+        }
+      </button>
+    </div>
+  </header>
+
+  <!-- Profil-Popup -->
+  @if (profileOpen()) {
+    <div class="profile-popup">
+      <h3>Mein Konto</h3>
+
+      <!-- Profil-Info -->
+      @if (!profileEditMode()) {
+        <div class="profile-info">
+          <label for="editName"
+            >Name: <strong>{{ profileName || 'Unbekannt' }}</strong></label
+          >
+          <label for="editEmail"
+            >E-Mail: <strong>{{ profileEmail || authService.getEmailFromToken() }}</strong></label
+          >
+        </div>
+
+        <div class="profile-actions">
+          <button
+            [disabled]="isSaving()"
+            (click)="enterProfileEditMode()"
+            title="Profil bearbeiten"
+            class="button-fixed">
+            Profil bearbeiten
+          </button>
+
+          <button [disabled]="isSaving()" (click)="logout()" title="Abmelden">Abmelden</button>
+
+          <button
+            [disabled]="isSaving()"
+            (click)="deactivateAccount()"
+            title="Account deaktivieren"
+            class="button-danger">
+            Account deaktivieren
+          </button>
+
+          <button [disabled]="isSaving()" (click)="toggleProfile()" title="Schließen">Schließen</button>
+        </div>
+      } @else {
+        <!-- Profil-Edit -->
+        @if (profileGeneralError(); as msg) {
+          <div class="error-message">
+            {{ msg }}
+          </div>
+        }
+
+        <form [formGroup]="profileForm">
+          <div class="form-group">
+            <label for="editName">Name:</label>
+            <input
+              id="editName"
+              name="editName"
+              formControlName="name"
+              placeholder="Name"
+              autocomplete="name"
+              maxlength="30"
+              [class.error-input]="profileFieldErrors['name']"
+              (blur)="
+                formUtilsShared.updateFieldErrors(
+                  profileForm,
+                  'name',
+                  profileFieldErrors,
+                  formUtilsShared.getErrorMessage.bind(formUtilsShared)
+                )
+              " />
+
+            @if (profileFieldErrors['name']) {
+              @for (error of profileFieldErrors['name']; track $index) {
+                <span class="error-text">{{ error }}</span>
+              }
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="editEmail">E-Mail:</label>
+            <input
+              id="editEmail"
+              name="editEmail"
+              formControlName="email"
+              placeholder="E-Mail"
+              autocomplete="email"
+              maxlength="30"
+              [class.error-input]="profileFieldErrors['email']"
+              (blur)="
+                formUtilsShared.updateFieldErrors(
+                  profileForm,
+                  'email',
+                  profileFieldErrors,
+                  formUtilsShared.getErrorMessage.bind(formUtilsShared)
+                )
+              " />
+
+            @if (profileFieldErrors['email']) {
+              @for (error of profileFieldErrors['email']; track $index) {
+                <span class="error-text">{{ error }}</span>
+              }
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="editImage">Profilbild (URL):</label>
+            <input
+              id="editImage"
+              name="editImage"
+              maxlength="255"
+              formControlName="image"
+              placeholder="Profilbild-URL"
+              [class.error-input]="profileFieldErrors['image']"
+              (blur)="
+                formUtilsShared.updateFieldErrors(
+                  profileForm,
+                  'image',
+                  profileFieldErrors,
+                  formUtilsShared.getErrorMessage.bind(formUtilsShared)
+                )
+              " />
+
+            @if (profileFieldErrors['image']) {
+              @for (error of profileFieldErrors['image']; track $index) {
+                <span class="error-text">{{ error }}</span>
+              }
+            }
+          </div>
+
+          <br />
+          <h4>Passwort ändern</h4>
+          <br />
+
+          <div class="form-group">
+            <label for="currentPwd">Aktuelles Passwort:</label>
+            <input
+              id="currentPwd"
+              name="currentPwd"
+              [type]="showPassword() ? 'text' : 'password'"
+              formControlName="currentPassword"
+              placeholder="Aktuelles Passwort"
+              autocomplete="current-password"
+              [class.error-input]="profileFieldErrors['currentPassword']"
+              (blur)="
+                formUtilsShared.updateFieldErrors(
+                  profileForm,
+                  'currentPassword',
+                  profileFieldErrors,
+                  formUtilsShared.getErrorMessage.bind(formUtilsShared)
+                )
+              " />
+
+            <button
+              type="button"
+              class="password-toggle"
+              [disabled]="isSaving()"
+              (click)="togglePasswordVisibility()"
+              title="Passwort anzeigen/verbergen"
+              tabindex="-1">
+              @if (showPassword()) {
+                <ng-icon color="black" size="1.25em" name="bootstrapEye"></ng-icon>
+              } @else {
+                <ng-icon color="black" size="1.25em" name="bootstrapEyeSlash"></ng-icon>
+              }
+            </button>
+
+            @if (profileFieldErrors['currentPassword']) {
+              @for (error of profileFieldErrors['currentPassword']; track $index) {
+                <span class="error-text">{{ error }}</span>
+              }
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="newPwd">Neues Passwort:</label>
+            <input
+              id="newPwd"
+              name="newPwd"
+              [type]="showPasswordConfirm() ? 'text' : 'password'"
+              formControlName="newPassword"
+              placeholder="Neues Passwort"
+              autocomplete="new-password"
+              [class.error-input]="profileFieldErrors['newPassword']"
+              (blur)="
+                formUtilsShared.updateFieldErrors(
+                  profileForm,
+                  'newPassword',
+                  profileFieldErrors,
+                  formUtilsShared.getErrorMessage.bind(formUtilsShared)
+                )
+              " />
+
+            <button
+              type="button"
+              class="password-toggle"
+              [disabled]="isSaving()"
+              (click)="togglePasswordConfirmVisibility()"
+              title="Passwort anzeigen/verbergen"
+              tabindex="-1">
+              @if (showPasswordConfirm()) {
+                <ng-icon color="black" size="1.25em" name="bootstrapEye"></ng-icon>
+              } @else {
+                <ng-icon color="black" size="1.25em" name="bootstrapEyeSlash"></ng-icon>
+              }
+            </button>
+
+            @if (profileFieldErrors['newPassword']) {
+              @for (error of profileFieldErrors['newPassword']; track $index) {
+                <span class="error-text">{{ error }}</span>
+              }
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPwd">Passwort bestätigen:</label>
+            <input
+              id="confirmPwd"
+              name="confirmPwd"
+              [type]="showPasswordConfirm() ? 'text' : 'password'"
+              formControlName="confirmPassword"
+              placeholder="Passwort wiederholen"
+              autocomplete="new-password"
+              [class.error-input]="profileFieldErrors['confirmPassword']"
+              (blur)="
+                formUtilsShared.updateFieldErrors(
+                  profileForm,
+                  'confirmPassword',
+                  profileFieldErrors,
+                  formUtilsShared.getErrorMessage.bind(formUtilsShared)
+                )
+              " />
+
+            <button
+              type="button"
+              class="password-toggle"
+              [disabled]="isSaving()"
+              (click)="togglePasswordConfirmVisibility()"
+              title="Passwort anzeigen/verbergen"
+              tabindex="-1">
+              @if (showPasswordConfirm()) {
+                <ng-icon color="black" size="1.25em" name="bootstrapEye"></ng-icon>
+              } @else {
+                <ng-icon color="black" size="1.25em" name="bootstrapEyeSlash"></ng-icon>
+              }
+            </button>
+
+            @if (profileFieldErrors['confirmPassword']) {
+              @for (error of profileFieldErrors['confirmPassword']; track $index) {
+                <span class="error-text">{{ error }}</span>
+              }
+            }
+          </div>
+        </form>
+
+        <div class="password-requirements">
+          @for (
+            req of formUtilsShared.getPasswordRequirements(profileForm.get('newPassword')?.value ?? '');
+            track $index
+          ) {
+            <small [class.met]="req.met">
+              @if (req.met) {
+                <ng-icon color="green" size="1.125em" name="bootstrapCheckLg"></ng-icon>
+              } @else {
+                <ng-icon color="black" size="1.125em" name="bootstrapX"></ng-icon>
+              }
+              {{ req.text }}
+            </small>
+          }
+        </div>
+
+        <div class="profile-edit-actions">
+          <button [disabled]="isSaving()" (click)="updateProfile()" title="Profil speichern">Speichern</button>
+          <button [disabled]="isSaving()" (click)="cancelProfileEdit()" title="Abbrechen">Abbrechen</button>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Body/Projektboard -->
+  <main class="board-body" [style.background-image]="board?.background ? 'url(' + board?.background + ')' : 'none'">
+    <div class="board-header">
+      <div class="title">
+        @if (!editingTitle()) {
+          <h2>{{ board?.title || 'Neues Projektboard' }}</h2>
+
+          <button class="icon" title="Name bearbeiten" [disabled]="isSaving()" (click)="toggleEditTitle()">
+            <ng-icon color="black" size="1.25em" name="bootstrapPencil"></ng-icon>
+          </button>
+        } @else {
+          <form class="form-group title-group" [formGroup]="boardTitleForm">
+            <input
+              id="title"
+              name="title"
+              formControlName="title"
+              placeholder="Projektboard-Name"
+              maxlength="30"
+              [class.error-input]="boardTitleFieldErrors['title']"
+              (blur)="
+                formUtilsShared.updateFieldErrors(
+                  boardTitleForm,
+                  'title',
+                  boardTitleFieldErrors,
+                  formUtilsShared.getErrorMessage.bind(formUtilsShared)
+                )
+              " />
+
+            @if (boardTitleFieldErrors['title']) {
+              @for (error of boardTitleFieldErrors['title']; track $index) {
+                <span class="error-text">
+                  {{ error }}
+                </span>
+              }
+            }
+          </form>
+
+          <div class="form-buttons title-buttons-group">
+            <button [disabled]="isSaving()" (click)="saveTitle()" title="Projektboard-Titel speichern">
+              Speichern
+            </button>
+
+            <button [disabled]="isSaving()" (click)="toggleEditTitle()" title="Abbrechen">Abbrechen</button>
+          </div>
+        }
+      </div>
+
+      <div class="board-controls">
+        <div class="members">
+          @for (m of board?.members || []; track $index) {
+            <div class="member-avatar" [title]="m.name || m.email">
+              @if (m.image) {
+                <img [src]="m.image" alt="Profilbild" class="avatar-image" />
+              } @else {
+                <span>{{ getUserInitials(m) }}</span>
+              }
+            </div>
+          }
+        </div>
+
+        <button class="icon" [disabled]="isSaving()" (click)="toggleSettings()" title="Projektboard-Einstellungen">
+          <ng-icon size="1.5em" name="bootstrapGear"></ng-icon>
+        </button>
+      </div>
+    </div>
+
+    @if (settingsOpen()) {
+      <div class="board-settings">
+        <h4>Projektboard-Einstellungen</h4>
+        @if (backgroundGeneralError(); as msg) {
+          <div class="error-message">{{ msg }}</div>
+        }
+
+        <form class="form-group" [formGroup]="backgroundForm">
+          <label for="bgUrl">Hintergrundbild festlegen:</label>
+          <input
+            id="bgUrl"
+            name="bgUrl"
+            type="text"
+            formControlName="background"
+            [placeholder]="board?.background ? '' : 'Hintergrundbild-URL eingeben'"
+            maxlength="255"
+            [class.error-input]="backgroundFieldErrors['background']"
+            (blur)="
+              formUtilsShared.updateFieldErrors(
+                backgroundForm,
+                'background',
+                backgroundFieldErrors,
+                formUtilsShared.getErrorMessage.bind(formUtilsShared)
+              )
+            " />
+
+          @if (backgroundFieldErrors['background']) {
+            @for (error of backgroundFieldErrors['background']; track $index) {
+              <span class="error-text">{{ error }}</span>
+            }
+          }
+        </form>
+
+        <div class="form-buttons inline-actions">
+          <button [disabled]="isSaving()" (click)="updateBackground()" title="Hintergrundbild speichern">
+            Speichern
+          </button>
+        </div>
+
+        <hr class="section-divider" />
+
+        <form class="form-group" [formGroup]="inviteForm">
+          <label for="inviteEmail">Person einladen:</label>
+          <input
+            id="inviteEmail"
+            name="inviteEmail"
+            type="email"
+            placeholder="E-Mail eingeben"
+            maxlength="30"
+            formControlName="email"
+            [class.error-input]="inviteFieldErrors['email']"
+            (blur)="
+              formUtilsShared.updateFieldErrors(
+                inviteForm,
+                'email',
+                inviteFieldErrors,
+                formUtilsShared.getErrorMessage.bind(formUtilsShared)
+              )
+            " />
+
+          @if (inviteFieldErrors['email']) {
+            @for (error of inviteFieldErrors['email']; track $index) {
+              <span class="error-text">{{ error }}</span>
+            }
+          }
+        </form>
+
+        <div class="form-buttons inline-actions">
+          <button [disabled]="isSaving()" (click)="inviteMember()" title="Person einladen">Einladen</button>
+        </div>
+
+        <hr class="section-divider" />
+
+        <form class="form-group" [formGroup]="boardSwitchForm">
+          <label for="boardSelect">Projektboard auswählen:</label>
+          <ng-select
+            class="board-select"
+            id="boardSelect"
+            [items]="boards"
+            bindValue="id"
+            bindLabel="title"
+            formControlName="selectedBoardId"
+            placeholder=""
+            [searchable]="false"
+            [clearable]="false">
+            <ng-template ng-option-tmp let-item="item">
+              <div [title]="item.title + ' — ' + item.owner?.email">
+                {{ item.title }} — <small>{{ item.owner?.email }}</small>
+              </div>
+            </ng-template>
+          </ng-select>
+        </form>
+
+        <div class="form-buttons inline-actions board-switch-actions">
+          <button [disabled]="isSaving()" (click)="switchBoard()" title="Projektboard wechseln">Speichern</button>
+          <button [disabled]="isSaving()" (click)="toggleSettings()" title="Schließen">Schließen</button>
+        </div>
+      </div>
+    }
+
+    <!-- Statuskategorien -->
+    <div class="columns">
+      @for (col of board?.columns || []; track $index) {
+        <div class="column" (dragover)="onDragOver($event)" (drop)="onDrop($event, col.id)">
+          <div
+            class="column-header"
+            [draggable]="!isTaskDrag() && editingColumnId !== col.id"
+            (dragstart)="!isTaskDrag() && onColumnDragStart($event, $index)"
+            (dragover)="!isTaskDrag() && onColumnDragOver($event)"
+            (drop)="!isTaskDrag() && onColumnDrop($event, $index)">
+            <!-- Normaler Modus -->
+            @if (editingColumnId !== col.id) {
+              <h3>{{ col.title }}</h3>
+              <div class="column-actions">
+                <button
+                  class="edit-column"
+                  [disabled]="isSaving()"
+                  (click)="startEditColumn(col)"
+                  title="Statuskategorie umbenennen">
+                  <ng-icon size="1.25em" name="bootstrapPencil"></ng-icon>
+                </button>
+
+                <button
+                  class="delete-column"
+                  [disabled]="isSaving()"
+                  (click)="confirmDeleteColumn(col)"
+                  title="Statuskategorie löschen">
+                  <ng-icon size="1.25em" name="bootstrapTrash3"></ng-icon>
+                </button>
+              </div>
+            } @else {
+              <!-- Edit-Modus -->
+              <form class="column-edit-wrapper" [formGroup]="columnEditForm">
+                <input
+                  id="colTitle"
+                  name="colTitle"
+                  formControlName="title"
+                  placeholder="Statuskategorie-Titel"
+                  maxlength="25"
+                  [class.error-input]="columnEditFieldErrors['title']"
+                  (blur)="
+                    formUtilsShared.updateFieldErrors(
+                      columnEditForm,
+                      'title',
+                      columnEditFieldErrors,
+                      formUtilsShared.getErrorMessage.bind(formUtilsShared)
+                    )
+                  " />
+
+                <div class="column-edit-buttons">
+                  <button
+                    [disabled]="isSaving()"
+                    (click)="saveColumnTitle(col)"
+                    title="Statuskategorie-Namen speichern">
+                    Speichern
+                  </button>
+
+                  <button [disabled]="isSaving()" (click)="cancelEditColumn()" title="Abbrechen">Abbrechen</button>
+                </div>
+
+                @if (columnEditFieldErrors['title']) {
+                  @for (error of columnEditFieldErrors['title']; track $index) {
+                    <span class="error-text">
+                      {{ error }}
+                    </span>
+                  }
+                }
+              </form>
+            }
+          </div>
+
+          <div>
+            @for (t of col.tasks || []; track $index) {
+              <div
+                class="task task-clickable"
+                draggable="true"
+                tabindex="0"
+                role="button"
+                (dragstart)="onDragStart($event, t.id)"
+                (dragover)="onDragOver($event)"
+                (drop)="onDrop($event, col.id)"
+                (click)="openTaskDetail(t)"
+                (keyup.enter)="openTaskDetail(t)">
+                <h4>{{ t.title }}</h4>
+              </div>
+            }
+          </div>
+
+          <!-- Neue Aufgabe -->
+          @if (creatingTaskColumnId === col.id && col.id) {
+            <form class="new-task" [formGroup]="taskCreateForm">
+              @if (taskCreateGeneralError(); as msg) {
+                <div class="error-message">
+                  {{ msg }}
+                </div>
+              }
+
+              <div class="form-group">
+                <label for="newTaskTitle-{{ col.id }}">Titel:</label>
+                <input
+                  [id]="'newTaskTitle-' + col.id"
+                  [name]="'newTaskTitle-' + col.id"
+                  formControlName="title"
+                  placeholder="Aufgabentitel"
+                  maxlength="30"
+                  [class.error-input]="taskCreateFieldErrors['title']"
+                  (blur)="
+                    formUtilsShared.updateFieldErrors(
+                      taskCreateForm,
+                      'title',
+                      taskCreateFieldErrors,
+                      formUtilsShared.getErrorMessage.bind(formUtilsShared)
+                    )
+                  " />
+
+                @if (taskCreateFieldErrors['title']) {
+                  @for (error of taskCreateFieldErrors['title']; track $index) {
+                    <span class="error-text">{{ error }}</span>
+                  }
+                }
+              </div>
+
+              <div class="form-buttons inline-actions">
+                <button [disabled]="isSaving()" (click)="createTask()" title="Aufgabe erstellen">Erstellen</button>
+                <button [disabled]="isSaving()" (click)="cancelCreateTask()" title="Abbrechen">Abbrechen</button>
+              </div>
+            </form>
+          }
+
+          <button class="add-task" [disabled]="isSaving()" (click)="startCreateTask(col.id)" title="Aufgabe hinzufügen">
+            <ng-icon size="1.25em" name="bootstrapPlusSquare"></ng-icon>
+          </button>
+        </div>
+      }
+
+      <!-- Neue Spalte -->
+      <div class="add-column">
+        @if (!showAddColumn()) {
+          <div class="add-column-inner">
+            <button
+              class="add-statuscategory"
+              [disabled]="isSaving()"
+              (click)="showAddColumn.set(true)"
+              title="Statuskategorie hinzufügen">
+              <ng-icon size="1.5em" name="bootstrapPlusSquare"></ng-icon>
+            </button>
+          </div>
+        } @else {
+          <form [formGroup]="newColumnForm">
+            <div class="form-group">
+              <label for="newColTitle">Titel:</label>
+              <input
+                id="newColTitle"
+                name="newColTitle"
+                formControlName="title"
+                placeholder="Statuskategorie-Titel"
+                maxlength="25"
+                [class.error-input]="newColumnFieldErrors['title']"
+                (blur)="
+                  formUtilsShared.updateFieldErrors(
+                    newColumnForm,
+                    'title',
+                    newColumnFieldErrors,
+                    formUtilsShared.getErrorMessage.bind(formUtilsShared)
+                  )
+                " />
+
+              @if (newColumnFieldErrors['title']) {
+                @for (error of newColumnFieldErrors['title']; track $index) {
+                  <span class="error-text">{{ error }}</span>
+                }
+              }
+            </div>
+
+            <div class="form-buttons inline-actions">
+              <button [disabled]="isSaving()" (click)="addColumn()" title="Statuskategorie erstellen">Erstellen</button>
+              <button [disabled]="isSaving()" (click)="cancelAddColumn()" title="Abbrechen">Abbrechen</button>
+            </div>
+          </form>
+        }
+      </div>
+    </div>
+  </main>
+
+  <!-- Aufgabendetails -->
+  @if (taskDetailOpen()) {
+    <button type="button" class="task-modal-overlay" (click)="closeTaskDetail()">
+      <!-- Leerer Button -->
+    </button>
+
+    <form class="task-modal" [formGroup]="taskDetailForm">
+      <h3>Aufgaben-Details</h3>
+      @if (taskDetailGeneralError(); as msg) {
+        <div class="error-message">
+          {{ msg }}
+        </div>
+      }
+
+      <div class="form-group">
+        <label for="taskTitle">Titel:</label>
+        <input
+          id="taskTitle"
+          name="taskTitle"
+          formControlName="title"
+          placeholder="Aufgabentitel"
+          maxlength="30"
+          [class.error-input]="taskDetailFieldErrors['title']"
+          (blur)="
+            formUtilsShared.updateFieldErrors(
+              taskDetailForm,
+              'title',
+              taskDetailFieldErrors,
+              formUtilsShared.getErrorMessage.bind(formUtilsShared)
+            )
+          " />
+
+        @if (taskDetailFieldErrors['title']) {
+          @for (error of taskDetailFieldErrors['title']; track $index) {
+            <span class="error-text">{{ error }}</span>
+          }
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="taskDesc">Beschreibung:</label>
+        <textarea
+          id="taskDesc"
+          name="taskDesc"
+          formControlName="description"
+          placeholder="Aufgabenbeschreibung"
+          maxlength="1000"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="taskDeadline">Deadline:</label>
+        <ngxsmk-datepicker
+          id="taskDeadline"
+          name="taskDeadline"
+          [locale]="'de-DE'"
+          [minDate]="today"
+          [maxDate]="comingYear"
+          [yearRange]="1"
+          formControlName="deadline"
+          placeholder="Deadline festlegen">
+        </ngxsmk-datepicker>
+
+        @if (taskDetailFieldErrors['deadline']) {
+          @for (error of taskDetailFieldErrors['deadline']; track $index) {
+            <span class="error-text">{{ error }}</span>
+          }
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="taskLabels">Labels (komma-getrennt):</label>
+        <input
+          id="taskLabels"
+          name="taskLabels"
+          formControlName="labels"
+          maxlength="255"
+          placeholder="z.B. wichtig, bug, feature" />
+      </div>
+
+      <div class="form-group">
+        <label for="taskAttachments">Anhänge (komma-getrennt URLs):</label>
+        <input
+          id="taskAttachments"
+          name="taskAttachments"
+          formControlName="attachments"
+          placeholder="z.B. https://example.com/file.pdf"
+          maxlength="255" />
+      </div>
+
+      <div class="form-group floating-label-container">
+        <label for="taskAssignee" class="floating-label" [class.active]="taskDetailForm.controls.assigneeId.value">
+          Person zuweisen:
+        </label>
+
+        <ng-select
+          [items]="board?.members || []"
+          id="taskAssignee"
+          bindValue="id"
+          bindLabel="name"
+          formControlName="assigneeId"
+          placeholder=""
+          [searchable]="true"
+          [clearable]="true"
+          clearAllText="Löschen"
+          notFoundText="Keine Ergebnisse gefunden">
+          <ng-template ng-option-tmp let-item="item">
+            <div [title]="item.name + ' — ' + item.email">
+              {{ item.name }} — <small>{{ item.email }}</small>
+            </div>
+          </ng-template>
+        </ng-select>
+      </div>
+
+      <div class="task-modal-actions">
+        <button [disabled]="isSaving()" (click)="saveTaskDetails()" title="Aufgabe speichern">Speichern</button>
+
+        <button [disabled]="isSaving()" (click)="deleteSelectedTask()" title="Aufgabe löschen" class="button-danger">
+          Löschen
+        </button>
+
+        <button [disabled]="isSaving()" (click)="closeTaskDetail()" title="Abbrechen">Abbrechen</button>
+      </div>
+    </form>
+  }
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="title-text">© 2026-{{ currentYear }} mexikoedi</div>
+  </footer>
+</div>
