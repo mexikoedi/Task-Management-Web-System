@@ -55,7 +55,7 @@ class BoardServiceTest {
   }
 
   @Test
-  @DisplayName("listBoards() – Sollte die Boards des Benutzers zurückgeben.")
+  @DisplayName("listBoards() - Sollte die Boards des Benutzers zurückgeben.")
   void listBoards_success() {
     when(userRepository.findByEmail("test@example.com")).thenReturn(Optional.of(user));
     when(boardRepository.findBoardsForUserWithRelations(user)).thenReturn(List.of(board));
@@ -66,7 +66,7 @@ class BoardServiceTest {
 
   @Test
   @DisplayName(
-      "createBoard() – Sollte ein neues Board erstellen und die Standardspalten hinzufügen.")
+      "createBoard() - Sollte ein neues Board erstellen und die Standardspalten hinzufügen.")
   void createBoard_success() {
     when(userRepository.findByEmail("test@example.com")).thenReturn(Optional.of(user));
 
@@ -91,7 +91,7 @@ class BoardServiceTest {
 
   @Test
   @DisplayName(
-      "invite() – Sollte einen Benutzer zum Board einladen und eine Benachrichtigungs-E-Mail"
+      "invite() - Sollte einen Benutzer zum Board einladen und eine Benachrichtigungs-E-Mail"
           + " senden.")
   void invite_success() {
     User invited = new User();
@@ -110,7 +110,7 @@ class BoardServiceTest {
 
   @Test
   @DisplayName(
-      "addColumn() – Sollte eine neue Spalte zum Board hinzufügen und die Mitglieder"
+      "addColumn() - Sollte eine neue Spalte zum Board hinzufügen und die Mitglieder"
           + " benachrichtigen.")
   void addColumn_success() {
     when(boardRepository.findByIdWithRelations(10L)).thenReturn(Optional.of(board));
@@ -132,7 +132,7 @@ class BoardServiceTest {
 
   @Test
   @DisplayName(
-      "moveColumn() – Sollte die Spalte an die neue Position verschieben und die Positionen der"
+      "moveColumn() - Sollte die Spalte an die neue Position verschieben und die Positionen der"
           + " anderen Spalten entsprechend anpassen.")
   void moveColumn_success() {
     BoardColumn c1 = new BoardColumn();
@@ -156,7 +156,7 @@ class BoardServiceTest {
 
   @Test
   @DisplayName(
-      "deleteColumn() – Soll die Spalte löschen, alle darin enthaltenen Aufgaben entfernen und die"
+      "deleteColumn() - Soll die Spalte löschen, alle darin enthaltenen Aufgaben entfernen und die"
           + " Mitglieder benachrichtigen.")
   void deleteColumn_success() {
     BoardColumn col = new BoardColumn();
@@ -173,7 +173,7 @@ class BoardServiceTest {
 
   @Test
   @DisplayName(
-      "addTask() – Soll eine neue Aufgabe zur Spalte hinzufügen, die Mitglieder benachrichtigen und"
+      "addTask() - Soll eine neue Aufgabe zur Spalte hinzufügen, die Mitglieder benachrichtigen und"
           + " die Aufgabe zurückgeben.")
   void addTask_success() {
     BoardColumn col = new BoardColumn();
@@ -199,7 +199,7 @@ class BoardServiceTest {
 
   @Test
   @DisplayName(
-      "updateTask() – Soll die Aufgabe aktualisieren, die Mitglieder benachrichtigen und die"
+      "updateTask() - Soll die Aufgabe aktualisieren, die Mitglieder benachrichtigen und die"
           + " aktualisierte Aufgabe zurückgeben.")
   void updateTask_success() {
     BoardColumn col = new BoardColumn();
@@ -220,7 +220,7 @@ class BoardServiceTest {
 
   @Test
   @DisplayName(
-      "moveTask() – Soll die Aufgabe in die neue Spalte verschieben, die Positionen der anderen"
+      "moveTask() - Soll die Aufgabe in die neue Spalte verschieben, die Positionen der anderen"
           + " Aufgaben entsprechend anpassen, die Mitglieder benachrichtigen und die aktualisierte"
           + " Aufgabe zurückgeben.")
   void moveTask_success() {
@@ -252,7 +252,7 @@ class BoardServiceTest {
 
   @Test
   @DisplayName(
-      "deleteTask() – Soll die Aufgabe löschen, die Mitglieder benachrichtigen und sicherstellen,"
+      "deleteTask() - Soll die Aufgabe löschen, die Mitglieder benachrichtigen und sicherstellen,"
           + " dass die Aufgabe aus der Spalte entfernt wird.")
   void deleteTask_success() {
     BoardColumn col = new BoardColumn();

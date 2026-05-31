@@ -11,5 +11,5 @@ export default {
   trailingComma: 'es5',
   bracketSameLine: true,
   printWidth: 120,
-  endOfLine: 'crlf',
+  endOfLine: 'lf',
 };

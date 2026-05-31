@@ -42,6 +42,7 @@ class AuthServiceTest {
   @Mock private JwtProvider jwtProvider;
   @Mock private EmailService emailService;
   @Mock private WebSocketNotificationService websocket;
+  @Mock private BoardRepository boardRepository;
   @InjectMocks private AuthService authService;
   private User user;
 
@@ -58,7 +59,7 @@ class AuthServiceTest {
 
   @Test
   @DisplayName(
-      "login() – Sollte bei gültigen Anmeldedaten ein JWT zurückgeben und die Token-Version"
+      "login() - Sollte bei gültigen Anmeldedaten ein JWT zurückgeben und die Token-Version"
           + " erhöhen.")
   void login_success() {
     LoginRequest req = new LoginRequest("test@example.com", "123");
@@ -74,7 +75,7 @@ class AuthServiceTest {
 
   @Test
   @DisplayName(
-      "login() – Sollte eine ResourceNotFoundException werfen, wenn der Benutzer nicht gefunden"
+      "login() - Sollte eine ResourceNotFoundException werfen, wenn der Benutzer nicht gefunden"
           + " wird.")
   void login_userNotFound() {
     when(userRepository.findByEmail("x")).thenReturn(Optional.empty());
@@ -84,7 +85,7 @@ class AuthServiceTest {
 
   @Test
   @DisplayName(
-      "login() – Sollte eine InvalidPasswordException werfen, wenn das Passwort ungültig ist.")
+      "login() - Sollte eine InvalidPasswordException werfen, wenn das Passwort ungültig ist.")
   void login_invalidPassword() {
     when(userRepository.findByEmail("test@example.com")).thenReturn(Optional.of(user));
     when(passwordEncoder.matches(any(), any())).thenReturn(false);
@@ -95,7 +96,7 @@ class AuthServiceTest {
 
   @Test
   @DisplayName(
-      "login() – Sollte eine UserDeactivatedException werfen, wenn der Benutzer deaktiviert ist.")
+      "login() - Sollte eine UserDeactivatedException werfen, wenn der Benutzer deaktiviert ist.")
   void login_userDisabled() {
     user.setEnabled(false);
     when(userRepository.findByEmail("test@example.com")).thenReturn(Optional.of(user));
@@ -107,7 +108,7 @@ class AuthServiceTest {
 
   @Test
   @DisplayName(
-      "register() – Sollte einen neuen Benutzer registrieren, einen Verifizierungs-Token erstellen"
+      "register() - Sollte einen neuen Benutzer registrieren, einen Verifizierungs-Token erstellen"
           + " und eine E-Mail senden.")
   void register_success() {
     RegisterRequest req = new RegisterRequest("User", "new@example.com", "123");
@@ -122,7 +123,7 @@ class AuthServiceTest {
 
   @Test
   @DisplayName(
-      "register() – Sollte eine EmailAlreadyExistsException werfen, wenn die E-Mail bereits"
+      "register() - Sollte eine EmailAlreadyExistsException werfen, wenn die E-Mail bereits"
           + " existiert.")
   void register_emailExists() {
     when(userRepository.existsByEmail(anyString())).thenReturn(true);
@@ -133,7 +134,7 @@ class AuthServiceTest {
 
   @Test
   @DisplayName(
-      "requestPasswordReset() – Sollte einen Passwort-Zurücksetzen-Token erstellen und eine E-Mail"
+      "requestPasswordReset() - Sollte einen Passwort-Zurücksetzen-Token erstellen und eine E-Mail"
           + " senden, wenn die E-Mail existiert und der Benutzer aktiviert ist.")
   void requestPasswordReset_success() {
     PasswordResetInquiryRequest req = new PasswordResetInquiryRequest("test@example.com");
@@ -146,7 +147,7 @@ class AuthServiceTest {
 
   @Test
   @DisplayName(
-      "requestPasswordReset() – Sollte eine UserDeactivatedException werfen, wenn der Benutzer"
+      "requestPasswordReset() - Sollte eine UserDeactivatedException werfen, wenn der Benutzer"
           + " deaktiviert ist.")
   void requestPasswordReset_userDisabled() {
     user.setEnabled(false);
@@ -159,7 +160,7 @@ class AuthServiceTest {
 
   @Test
   @DisplayName(
-      "verifyEmail() – Sollte die E-Mail-Adresse verifizieren, den Benutzer aktivieren und den"
+      "verifyEmail() - Sollte die E-Mail-Adresse verifizieren, den Benutzer aktivieren und den"
           + " Token als verwendet markieren, wenn der Token gültig ist.")
   void verifyEmail_success() {
     VerificationToken token = new VerificationToken();
@@ -167,6 +168,7 @@ class AuthServiceTest {
     token.setExpiryDate(LocalDateTime.now().plusHours(1));
     token.setUsed(false);
     when(verificationTokenRepository.findByToken("abc")).thenReturn(Optional.of(token));
+    when(boardRepository.findBoardsForUserWithRelations(user)).thenReturn(Collections.emptyList());
     authService.verifyEmail("abc");
     assertTrue(user.isEnabled());
     assertTrue(user.isEmailVerified());
@@ -177,7 +179,7 @@ class AuthServiceTest {
 
   @Test
   @DisplayName(
-      "verifyEmail() – Sollte eine VerificationTokenExpiredException werfen, wenn der Token"
+      "verifyEmail() - Sollte eine VerificationTokenExpiredException werfen, wenn der Token"
           + " abgelaufen ist.")
   void verifyEmail_expired() {
     VerificationToken token = new VerificationToken();
@@ -188,7 +190,7 @@ class AuthServiceTest {
 
   @Test
   @DisplayName(
-      "verifyEmail() – Sollte eine VerificationTokenAlreadyUsedException werfen, wenn der Token"
+      "verifyEmail() - Sollte eine VerificationTokenAlreadyUsedException werfen, wenn der Token"
           + " bereits verwendet wurde.")
   void verifyEmail_alreadyUsed() {
     VerificationToken token = new VerificationToken();
@@ -200,7 +202,7 @@ class AuthServiceTest {
 
   @Test
   @DisplayName(
-      "resetPassword() – Sollte das Passwort zurücksetzen, wenn der Token gültig ist, und den Token"
+      "resetPassword() - Sollte das Passwort zurücksetzen, wenn der Token gültig ist, und den Token"
           + " als verwendet markieren.")
   void resetPassword_success() {
     PasswordResetToken token = new PasswordResetToken();
@@ -218,7 +220,7 @@ class AuthServiceTest {
 
   @Test
   @DisplayName(
-      "resetPassword() – Sollte eine PasswordResetTokenExpiredException werfen, wenn der Token"
+      "resetPassword() - Sollte eine PasswordResetTokenExpiredException werfen, wenn der Token"
           + " abgelaufen ist.")
   void resetPassword_expired() {
     PasswordResetToken token = new PasswordResetToken();
@@ -231,7 +233,7 @@ class AuthServiceTest {
 
   @Test
   @DisplayName(
-      "resetPassword() – Sollte eine PasswordResetTokenAlreadyUsedException werfen, wenn der Token"
+      "resetPassword() - Sollte eine PasswordResetTokenAlreadyUsedException werfen, wenn der Token"
           + " bereits verwendet wurde.")
   void resetPassword_used() {
     PasswordResetToken token = new PasswordResetToken();
@@ -245,7 +247,7 @@ class AuthServiceTest {
 
   @Test
   @DisplayName(
-      "getCurrentUser() – Sollte die Benutzerdaten zurückgeben, wenn der Benutzer gefunden und"
+      "getCurrentUser() - Sollte die Benutzerdaten zurückgeben, wenn der Benutzer gefunden und"
           + " aktiviert ist.")
   void getCurrentUser_success() {
     when(userRepository.findByEmail("test@example.com")).thenReturn(Optional.of(user));
@@ -255,7 +257,7 @@ class AuthServiceTest {
 
   @Test
   @DisplayName(
-      "getCurrentUser() – Sollte eine UserDeactivatedException werfen, wenn der Benutzer"
+      "getCurrentUser() - Sollte eine UserDeactivatedException werfen, wenn der Benutzer"
           + " deaktiviert ist.")
   void getCurrentUser_disabled() {
     user.setEnabled(false);
@@ -266,7 +268,7 @@ class AuthServiceTest {
 
   @Test
   @DisplayName(
-      "getCurrentUser() – Sollte eine ResourceNotFoundException werfen, wenn der Benutzer nicht"
+      "getCurrentUser() - Sollte eine ResourceNotFoundException werfen, wenn der Benutzer nicht"
           + " gefunden wird.")
   void getCurrentUser_notFound() {
     when(userRepository.findByEmail("x")).thenReturn(Optional.empty());

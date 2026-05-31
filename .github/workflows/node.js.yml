@@ -45,11 +45,11 @@ jobs:
 
     - name: Build
       working-directory: ./frontend
-      run: pnpm run build
+      run: pnpm build
 
     - name: Lint
       working-directory: ./frontend
-      run: pnpm run lint
+      run: pnpm lint
 
     - name: Test
       working-directory: ./frontend
