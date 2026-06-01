@@ -195,7 +195,7 @@ Nach Registrierung und E-Mail-Verifikation mit Folgendem anmelden:
 Im Backend Ornder unter den jeweiligen Konfigurationsdateien einsehbar. <br>
 Zum Beispiel `backend/src/main/resources/application.properties`.
 
-**Wichtig:**
+**Wichtig:** <br>
 Unter `backend/src/main/resources` muss vor dem Start eine `application.local.properties` erstellt werden. <br>
 Diese enthält sensible Informationen wie Benutzernamen, Passwörter und den JWT-Secret-Key:
 ```
@@ -224,11 +224,14 @@ Zum Beispiel `frontend/angular.json`.
 Das Backend läuft auf Java Spring Boot mit einem klassischen MVC-Pattern, während das Frontend mit Angular als Single
 Page Application aufgebaut ist. <br>
 Die Kommunikation zwischen beiden erfolgt über REST und WebSockets für Echtzeit-Updates. <br>
-Dazu wird H2 als die Datenbank und Mailpit als der Fake-SMTP-Server für E-Mails verwendet, um einige Features zu ermöglichen. <br>
-Außerdem ist die Ordner-Struktur klar unterteilt, um eine saubere, moderne Trennung der Verantwortlichkeiten zu gewährleisten. <br>
+Dazu werden H2 als die Datenbank und Mailpit als der Fake-SMTP-Server für E-Mails verwendet, um einige Features zu ermöglichen. <br>
+Außerdem wurde pnpm anstatt npm eingesetzt, da pnpm deutlich performanter und platzsparender ist. <br>
+Zudem wurden Vitest für die Unit-Tests und Playwright für die E2E-Tests verwendet, damit die Testumgebung ebenfalls modernen Standards entspricht. <br>
+Darüber hinaus wurden stets die neuesten Versionen der Komponenten/Tools verwendet, um zum Beispiel die Sicherheit zu gewährleisten und Fehler zu beheben. <br>
+Zusätzlich ist die Ordner-Struktur klar unterteilt, um eine saubere, moderne Trennung der Verantwortlichkeiten zu gewährleisten. <br>
 Die Webanwendung funktioniert ohne Probleme für Test- und Entwicklungszwecke. <br>
 Dennoch muss angemerkt werden, dass diese Anwendung **nicht produktionsreif** ist. <br>
-Zum Beispiel müsste die Datenbank und der E-Mail-Server in einem echten Produktionsbetrieb ausgetauscht werden.
+Zum Beispiel müssten die Datenbank und der E-Mail-Server in einem echten Produktionsbetrieb ausgetauscht werden.
 
 ---
 
@@ -297,7 +300,7 @@ pnpm stylelint                                  # Stylelint mit Auto-Fix
 ## Datenbankzugriff
 
 ### H2 Console
-Nach dem Backend-Start kannst du die Datenbank über die H2 Web Console ansehen: <br>
+Nach dem Start des Backends kannst du die Datenbank über die H2 Web Console ansehen: <br>
 http://localhost:8080/api/h2-console
 
 **Verbindung:**
@@ -415,10 +418,10 @@ pnpm install
 ### Verbindungsprobleme
 
 **Frontend kann Backend nicht erreichen:**
-- Überprüfe CORS-Konfiguration
-- Läuft Backend auf http://localhost:8080?
-- Läuft Frontend auf http://localhost:4200?
-- Überprüfe Frontend, Backend und Browser-Konsole auf Fehler
+- Überprüfe die CORS-Konfiguration
+- Läuft das Backend auf http://localhost:8080?
+- Läuft das Frontend auf http://localhost:4200?
+- Überprüfe das Frontend, das Backend und die Browser-Konsole auf Fehler
 
 ---
 
