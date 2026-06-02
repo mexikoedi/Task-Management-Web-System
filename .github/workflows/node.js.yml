@@ -47,18 +47,22 @@ jobs:
       working-directory: ./frontend
       run: pnpm build
 
-    - name: Lint
+    - name: ESLint for everything except CSS
       working-directory: ./frontend
-      run: pnpm lint
+      run: pnpm eslint
 
-    - name: Test
+    - name: Stylelint for CSS
       working-directory: ./frontend
-      run: pnpm test
+      run: pnpm stylelint
 
-    - name: Install Playwright browsers and dependencies
+    - name: Tests and coverage with Vitest
+      working-directory: ./frontend
+      run: pnpm test:coverage
+
+    - name: Install Playwright chromium (Browser) and dependencies
       working-directory: ./frontend
       run: pnpm e2e:install
 
-    - name: E2E
+    - name: E2E-Tests with Playwright
       working-directory: ./frontend
       run: pnpm e2e

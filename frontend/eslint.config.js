@@ -8,7 +8,18 @@ import angular from 'angular-eslint';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
 export default defineConfig([
-  globalIgnores(['**/index.html']),
+  globalIgnores([
+    '**/node_modules/**',
+    '**/.angular/**',
+    '**/dist/**',
+    '**/playwright-report/**',
+    '**/test-results/**',
+    '**/coverage/**',
+    '**/coverage-report/**',
+    '**/pnpm-lock.yaml',
+    '**/index.html',
+    '**/*.ico',
+  ]),
   {
     files: ['**/*.ts'],
     extends: [

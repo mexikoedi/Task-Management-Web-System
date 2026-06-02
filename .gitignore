@@ -64,6 +64,7 @@ hs_err_pid*
 /out-tsc/
 /tmp/
 /coverage/
+/coverage-report/
 /e2e/test-output/
 /.angular/
 .angular/

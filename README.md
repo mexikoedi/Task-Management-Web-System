@@ -51,66 +51,70 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 ## Technologie-Stack
 
 ### Backend
-| Komponente                       | Version |
-|----------------------------------|---------|
-| **Gradle**                       | 9.5.1   |
-| **Java**                         | 26.0.1  |
-| **Spring Boot**                  | 4.0.6   |
-| **Dependency Management Plugin** | 1.1.7   |
-| **FreeFair Lombok**              | 9.5.0   |
-| **Spring Starter Web MVC**       | 4.0.6   |
-| **Spring Starter WebSocket**     | 4.0.6   |
-| **Spring Starter Data JPA**      | 4.0.6   |
-| **Spring H2console**             | 4.0.6   |
-| **H2 Database Engine**           | 2.4.240 |
-| **Spring Starter Validation**    | 4.0.6   |
-| **Spring Starter Mail**          | 4.0.6   |
-| **Spring Starter Security**      | 4.0.6   |
-| **JJWT API**                     | 0.13.0  |
-| **JJWT Impl**                    | 0.13.0  |
-| **JJWT Jackson**                 | 0.13.0  |
-| **JJWT Jackson**                 | 0.13.0  |
-| **Spring Boot Starter Test**     | 4.0.6   |
+| Komponente                         | Version   |
+|------------------------------------|-----------|
+| **Gradle**                         | 9.5.1     |
+| **Java**                           | 26.0.1    |
+| **Spring Boot**                    | 4.0.6     |
+| **Dependency Management Plugin**   | 1.1.7     |
+| **FreeFair Lombok**                | 9.5.0     |
+| **Spring Starter Web MVC**         | 4.0.6     |
+| **Spring Starter WebSocket**       | 4.0.6     |
+| **Spring Starter Data JPA**        | 4.0.6     |
+| **Spring H2console**               | 4.0.6     |
+| **H2 Database Engine**             | 2.4.240   |
+| **Spring Starter Validation**      | 4.0.6     |
+| **Spring Starter Mail**            | 4.0.6     |
+| **Spring Starter Security**        | 4.0.6     |
+| **JJWT API**                       | 0.13.0    |
+| **JJWT Impl**                      | 0.13.0    |
+| **JJWT Jackson**                   | 0.13.0    |
+| **JJWT Jackson**                   | 0.13.0    |
+| **Spring Boot Starter Test**       | 4.0.6     |
 
 ### Frontend
-| Komponente (Normale)            | Version    |
-|---------------------------------|------------|
-| **Node.js**                     | 26.2.0     |
-| **pnpm**                        | 11.5.0     |
-| **@angular/common**             | 21.2.15    |
-| **@angular/compiler**           | 21.2.15    |
-| **@angular/core**               | 21.2.15    |
-| **@angular/forms**              | 21.2.15    |
-| **@angular/platform-browser**   | 21.2.15    |
-| **@angular/router**             | 21.2.15    |
-| **@ng-icons/core**              | 33.2.3     |
-| **@ng-icons/bootstrap-icons**   | 33.2.3     |
-| **@ng-select/ng-select**        | 21.8.2     |
-| **ngxsmk-datepicker**           | 2.2.15     |
-| **@stomp/stompjs**              | 7.3.0      |
-| **rxjs**                        | 7.8.2      |
-| **sweetalert2**                 | 11.26.25   |
-| **tslib**                       | 2.8.1      |
+| Komponente (Normale)               | Version   |
+|------------------------------------|-----------|
+| **Node.js**                        | 26.3.0    |
+| **pnpm**                           | 11.5.1    |
+| **@angular/common**                | 21.2.15   |
+| **@angular/compiler**              | 21.2.15   |
+| **@angular/core**                  | 21.2.15   |
+| **@angular/forms**                 | 21.2.15   |
+| **@angular/platform-browser**      | 21.2.15   |
+| **@angular/router**                | 21.2.15   |
+| **@ng-icons/bootstrap-icons**      | 33.2.3    |
+| **@ng-icons/core**                 | 33.2.3    |
+| **@ng-select/ng-select**           | 21.8.2    |
+| **@stomp/stompjs**                 | 7.3.0     |
+| **ngxsmk-datepicker**              | 2.2.15    |
+| **rxjs**                           | 7.8.2     |
+| **sweetalert2**                    | 11.26.25  |
+| **tslib**                          | 2.8.1     |
 
-| Komponente (Dev)              | Version    |
-|-------------------------------|------------|
-| **@angular/build**            | 21.2.13    |
-| **@angular/cli**              | 21.2.13    |
-| **@angular/compiler-cli**     | 21.2.15    |
-| **angular-eslint**            | 21.4.0     |
-| **@angular-eslint/builder**   | 21.4.0     |
-| **eslint**                    | 10.4.1     |
-| **@eslint/js**                | 10.0.1     |
-| **eslint-config-prettier**    | 10.1.8     |
-| **eslint-plugin-prettier**    | 5.5.6      |
-| **prettier**                  | 3.8.3      |
-| **stylelint**                 | 17.12.0    |
-| **stylelint-config-standard** | 40.0.0     |
-| **typescript**                | 6.0.3      |
-| **typescript-eslint**         | 8.60.0     |
-| **vitest**                    | 4.1.7      |
-| **@playwright/test**          | 1.60.0     |
-| **happy-dom**                 | 20.9.0     |
+| Komponente (Dev)                   | Version   |
+|------------------------------------|-----------|
+| **@angular-eslint/builder**        | 21.4.0    |
+| **@angular/build**                 | 21.2.13   |
+| **@angular/cli**                   | 21.2.13   |
+| **@angular/compiler-cli**          | 21.2.15   |
+| **@eslint/js**                     | 10.0.1    |
+| **@playwright/test**               | 1.60.0    |
+| **@vitest/coverage-v8**            | 4.1.8     |
+| **@vitest/ui**                     | 4.1.8     |
+| **angular-eslint**                 | 21.4.0    |
+| **eslint**                         | 10.4.1    |
+| **eslint-config-prettier**         | 10.1.8    |
+| **eslint-plugin-prettier**         | 5.5.6     |
+| **happy-dom**                      | 20.9.0    |
+| **playwright-coverage-reporterm**  | 3.1.23    |
+| **prettier**                       | 3.8.3     |
+| **stylelint**                      | 17.12.0   |
+| **stylelint-config-standard**      | 40.0.0    |
+| **stylelint-prettier**             | 5.0.3     |
+| **typescript**                     | 6.0.3     |
+| **typescript-eslint**              | 8.60.1    |
+| **vitest**                         | 4.1.8     |
 
 ### Zusätzliche Tools
 - **IntelliJ IDEA** - IDE für Entwicklung
@@ -126,13 +130,13 @@ Stelle sicher, dass folgende Software installiert ist:
 IntelliJ IDEA (oder andere IDE für Java und Angular)
 Mailpit (für E-Mail-Testing)
 Java 26.0.1 oder höher
-Node.js 26.2.0 oder höher
-pnpm 11.5.0 oder höher
+Node.js 26.3.0 oder höher
+pnpm 11.5.1 oder höher
 ```
 
 Installation überprüfen:
 ```
-java -version
+java --version
 node --version
 pnpm --version
 ```
@@ -192,12 +196,12 @@ Nach Registrierung und E-Mail-Verifikation mit Folgendem anmelden:
 ## Konfiguration
 
 ### Backend-Konfiguration
-Im Backend Ornder unter den jeweiligen Konfigurationsdateien einsehbar. <br>
+Im Backend Ordner unter den jeweiligen Konfigurationsdateien einsehbar. <br>
 Zum Beispiel `backend/src/main/resources/application.properties`.
 
 **Wichtig:** <br>
 Unter `backend/src/main/resources` muss vor dem Start eine `application.local.properties` erstellt werden. <br>
-Diese enthält sensible Informationen wie Benutzernamen, Passwörter und den JWT-Secret-Key:
+Diese enthält sensible Informationen wie Benutzernamen, Passwörter, den JWT-Secret-Key und die JWT-Expiration-Zeit: <br>
 ```
 ## Benutzernamen und Passwörter für die Datenbank, Spring Security und E-Mail-Konfiguration
 DATASOURCE_USERNAME=YOUR_DB_USERNAME
@@ -256,19 +260,19 @@ Die H2 In-Memory Datenbank wird automatisch beim Start initialisiert mit:
 ```
 cd backend
 
-# Build & Test
-./gradlew build                                 # Clean build + tests
+# Bauen und Testen
+./gradlew build                                 # Sauberer-Build und Tests
 ./gradlew assemble                              # Nur assemblieren (ohne Tests)
 ./gradlew test                                  # Nur Tests ausführen
 ./gradlew clean                                 # Aufräumen
 
-# Execution
+# Ausführung
 ./gradlew bootRun                               # Anwendung starten
 ./gradlew bootRun --args='--server.port=8081'   # Mit anderem Port
 
-# Information
-./gradlew tasks                                 # Alle verfügbaren Tasks anzeigen
-./gradlew dependencies                          # Dependencies auflisten
+# Informationen
+./gradlew tasks                                 # Alle verfügbaren Aufgaben anzeigen
+./gradlew dependencies                          # Abhängigkeiten auflisten
 ./gradlew check --warning-mode all              # Mit allen Warnungen
 ```
 
@@ -277,22 +281,23 @@ cd backend
 cd frontend
 
 # Entwicklung
-pnpm start                                      # Dev-Server starten
-pnpm build                                      # Production Build
-pnpm build --configuration production           # Mit Optimierungen
-
-# Testen
-pnpm test                                       # Unit Tests
-pnpm test -- --code-coverage                    # Mit Coverage-Report
-pnpm e2e                                        # E2E Tests
-pnpm e2e:ui                                     # E2E Tests mit UI-Feedback
-pnpm e2e:install                                # Playwright-Browser und Abhängigkeiten installieren
+pnpm build                                      # Produktions-Build
+pnpm start                                      # Entwicklungsserver starten
 
 # Code Qualität und Formatierung
-pnpm lint                                       # ESLint ausführen
-pnpm lintFix                                    # ESLint mit Auto-Fix
-pnpm prettier                                   # Prettier ausführen
-pnpm stylelint                                  # Stylelint mit Auto-Fix
+pnpm eslint                                     # ESLint ausführen (mit Prettier-Integration)
+pnpm eslint:fix                                 # ESLint mit Auto-Fix (mit Prettier-Integration)
+pnpm stylelint                                  # Stylelint ausführen (mit Prettier-Integration)
+pnpm stylelint:fix                              # Stylelint mit Auto-Fix (mit Prettier-Integration)
+
+# Testen
+pnpm test                                       # Unit Tests über Vitest
+pnpm test:coverage                              # Unit Tests mit Coverage-Report über Vitest
+pnpm test:ui                                    # Unit Tests mit UI-Feedback über Vitest
+pnpm test:ui:coverage                           # Unit Tests mit UI-Feedback und Coverage-Report über Vitest
+pnpm e2e                                        # E2E Tests mit Coverage-Report über Playwright
+pnpm e2e:ui                                     # E2E Tests mit UI-Feedback und Coverage-Report über Playwright
+pnpm e2e:install                                # Playwright-Chromium-Browser und Abhängigkeiten installieren
 ```
 
 ---
@@ -400,7 +405,7 @@ GET     /api/health                             # Health Check
 
 **JWT-Fehler:**
 - Überprüfe `jwt.secret` in `application.local.properties`
-- Muss mindestens 32 Zeichen lang sein für HS256
+- Muss mindestens 32 Zeichen lang sein für HS256 Algorithmus
 
 ### Frontend-Probleme
 
@@ -411,7 +416,7 @@ pnpm start -- --port 4300
 
 **Abhängigkeiten nicht installiert:**
 ```
-rm -rf node_modules pnpm-lock.yaml
+pnpm clean --lockfile
 pnpm install
 ```
 

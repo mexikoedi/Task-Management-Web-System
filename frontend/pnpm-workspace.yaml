@@ -1,7 +1,10 @@
 # Diese Datei wird verwendet, um den pnpm-Arbeitsbereich für das Frontend-Projekt zu konfigurieren.
 # Sie gibt an, welche Pakete im Arbeitsbereich enthalten sind und welche gebaut werden dürfen.
+# Und definiert die minimale Veröffentlichungszeit für Pakete, bevor sie als veraltet gelten.
 allowBuilds:
   '@parcel/watcher': true
   esbuild: true
   lmdb: true
   msgpackr-extract: true
+  playwright-coverage-reporter: true
+minimumReleaseAge: 0
