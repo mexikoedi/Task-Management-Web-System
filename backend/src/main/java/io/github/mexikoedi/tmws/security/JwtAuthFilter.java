@@ -52,8 +52,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
    *     gefunden wird.
    * @throws ServletException Wenn ein Fehler bei der Verarbeitung der Anfrage auftritt.
    * @throws IOException Wenn ein Fehler bei der Ein- oder Ausgabe auftritt.
-   * @throws ResourceNotFoundException Wenn der Benutzer, der im Token angegeben ist, nicht gefunden wird.
-   * @throws UserDeactivatedException Wenn der Benutzer, der im Token angegeben ist, deaktiviert ist.
+   * @throws ResourceNotFoundException Wenn der Benutzer, der im Token angegeben ist, nicht gefunden
+   *     wird.
+   * @throws UserDeactivatedException Wenn der Benutzer, der im Token angegeben ist, deaktiviert
+   *     ist.
    * @throws InvalidTokenException Wenn das Token ungültig ist.
    */
   @Override
@@ -86,11 +88,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             new UsernamePasswordAuthenticationToken(email, null, List.of());
         SecurityContextHolder.getContext().setAuthentication(auth);
       } catch (ResourceNotFoundException
-               | UserDeactivatedException
-               | InvalidTokenException
-               | JwtExpiredException
-               | JwtMalformedException
-               | JwtInvalidException _) {
+          | UserDeactivatedException
+          | InvalidTokenException
+          | JwtExpiredException
+          | JwtMalformedException
+          | JwtInvalidException _) {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
         return;

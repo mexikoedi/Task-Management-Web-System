@@ -1,10 +1,10 @@
 /** Diese Klasse ist verantwortlich für die Erstellung und Validierung von JWTs in der Anwendung. */
 package io.github.mexikoedi.tmws.security;
 
+import io.github.mexikoedi.tmws.model.User;
 import io.github.mexikoedi.tmws.security.exception.JwtExpiredException;
 import io.github.mexikoedi.tmws.security.exception.JwtInvalidException;
 import io.github.mexikoedi.tmws.security.exception.JwtMalformedException;
-import io.github.mexikoedi.tmws.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;

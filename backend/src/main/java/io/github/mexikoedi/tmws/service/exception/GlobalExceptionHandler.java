@@ -1,11 +1,11 @@
 /** Diese Klasse ist ein globaler Exception-Handler für die gesamte Anwendung. */
 package io.github.mexikoedi.tmws.service.exception;
 
-import io.github.mexikoedi.tmws.service.dto.ErrorResponse;
 import io.github.mexikoedi.tmws.security.exception.InvalidTokenException;
 import io.github.mexikoedi.tmws.security.exception.JwtExpiredException;
 import io.github.mexikoedi.tmws.security.exception.JwtInvalidException;
 import io.github.mexikoedi.tmws.security.exception.JwtMalformedException;
+import io.github.mexikoedi.tmws.service.dto.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
