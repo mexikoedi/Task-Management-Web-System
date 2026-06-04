@@ -49,8 +49,8 @@ bin/
 *~
 
 # Gradle specific
-/.gradle/
-/build/
+.gradle/
+build/
 gradle-app.setting
 
 # Ignore local configuration file (sdk path, etc)
@@ -60,27 +60,23 @@ application-local.properties
 hs_err_pid*
 
 # Angular specific
-/dist/
-/out-tsc/
-/tmp/
-/coverage/
-/coverage-report/
-/e2e/test-output/
-/.angular/
+tmp/
+dist/
+coverage/
+coverage-report/
 .angular/
-/playwright-report/
-/test-results/
+playwright-report/
+test-results/
 
-# Node modules and dependency files
-/node_modules/
-/yarn.lock
+# Node modules
+node_modules/
 
 # Environment files
-/.env
+.env
 
 # Angular CLI and build artefacts
-/.angular-cli.json
-/.ng/
+.angular-cli.json
+.ng/
 
 # TypeScript cache
 *.tsbuildinfo
