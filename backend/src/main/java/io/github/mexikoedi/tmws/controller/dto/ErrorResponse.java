@@ -1,7 +1,7 @@
 /**
  * Diese Klasse repräsentiert die Struktur einer Fehlerantwort, die von der API zurückgegeben wird.
  */
-package io.github.mexikoedi.tmws.service.dto;
+package io.github.mexikoedi.tmws.controller.dto;
 
 import java.time.LocalDateTime;
 import lombok.*;

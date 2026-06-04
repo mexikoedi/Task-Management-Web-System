@@ -77,17 +77,17 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 |------------------------------------|-----------|
 | **Node.js**                        | 26.3.0    |
 | **pnpm**                           | 11.5.1    |
-| **@angular/common**                | 21.2.15   |
-| **@angular/compiler**              | 21.2.15   |
-| **@angular/core**                  | 21.2.15   |
-| **@angular/forms**                 | 21.2.15   |
-| **@angular/platform-browser**      | 21.2.15   |
-| **@angular/router**                | 21.2.15   |
+| **@angular/common**                | 22.0.0    |
+| **@angular/compiler**              | 22.0.0    |
+| **@angular/core**                  | 22.0.0    |
+| **@angular/forms**                 | 22.0.0    |
+| **@angular/platform-browser**      | 22.0.0    |
+| **@angular/router**                | 22.0.0    |
 | **@ng-icons/bootstrap-icons**      | 33.2.3    |
 | **@ng-icons/core**                 | 33.2.3    |
-| **@ng-select/ng-select**           | 21.8.2    |
+| **@ng-select/ng-select**           | 23.0.0    |
 | **@stomp/stompjs**                 | 7.3.0     |
-| **ngxsmk-datepicker**              | 2.2.15    |
+| **ngxsmk-datepicker**              | 2.3.1     |
 | **rxjs**                           | 7.8.2     |
 | **sweetalert2**                    | 11.26.25  |
 | **tslib**                          | 2.8.1     |
@@ -95,9 +95,9 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Dev)                   | Version   |
 |------------------------------------|-----------|
 | **@angular-eslint/builder**        | 21.4.0    |
-| **@angular/build**                 | 21.2.13   |
-| **@angular/cli**                   | 21.2.13   |
-| **@angular/compiler-cli**          | 21.2.15   |
+| **@angular/build**                 | 22.0.0    |
+| **@angular/cli**                   | 22.0.0    |
+| **@angular/compiler-cli**          | 22.0.0    |
 | **@eslint/js**                     | 10.0.1    |
 | **@playwright/test**               | 1.60.0    |
 | **@vitest/coverage-v8**            | 4.1.8     |
@@ -106,7 +106,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **eslint**                         | 10.4.1    |
 | **eslint-config-prettier**         | 10.1.8    |
 | **eslint-plugin-prettier**         | 5.5.6     |
-| **happy-dom**                      | 20.9.0    |
+| **happy-dom**                      | 20.10.1   |
 | **playwright-coverage-reporter**   | 3.1.23    |
 | **prettier**                       | 3.8.3     |
 | **stylelint**                      | 17.12.0   |
