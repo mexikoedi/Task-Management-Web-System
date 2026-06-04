@@ -4,9 +4,12 @@
  */
 package io.github.mexikoedi.tmws.controller;
 
-import io.github.mexikoedi.tmws.dto.*;
+import io.github.mexikoedi.tmws.controller.dto.ApiResponse;
+import io.github.mexikoedi.tmws.controller.dto.UpdatePasswordRequest;
+import io.github.mexikoedi.tmws.controller.dto.UpdateProfileRequest;
 import io.github.mexikoedi.tmws.model.User;
 import io.github.mexikoedi.tmws.service.AuthService;
+import io.github.mexikoedi.tmws.service.dto.*;
 import jakarta.validation.Valid;
 import java.util.Objects;
 import org.springframework.http.HttpStatus;

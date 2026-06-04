@@ -13,12 +13,10 @@ package io.github.mexikoedi.tmws.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-
-import io.github.mexikoedi.tmws.dto.*;
-import io.github.mexikoedi.tmws.exception.*;
 import io.github.mexikoedi.tmws.model.*;
 import io.github.mexikoedi.tmws.repository.*;
 import java.util.*;
+import io.github.mexikoedi.tmws.service.dto.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

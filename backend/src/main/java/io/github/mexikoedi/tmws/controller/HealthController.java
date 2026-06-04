@@ -1,7 +1,7 @@
 /** Diese Klasse ist ein REST-Controller, der den Gesundheitsstatus der Anwendung bereitstellt. */
 package io.github.mexikoedi.tmws.controller;
 
-import io.github.mexikoedi.tmws.dto.HealthResponse;
+import io.github.mexikoedi.tmws.controller.dto.HealthResponse;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

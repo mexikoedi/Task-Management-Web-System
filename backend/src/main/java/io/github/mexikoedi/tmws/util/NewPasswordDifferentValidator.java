@@ -4,7 +4,7 @@
  */
 package io.github.mexikoedi.tmws.util;
 
-import io.github.mexikoedi.tmws.dto.UpdatePasswordRequest;
+import io.github.mexikoedi.tmws.controller.dto.UpdatePasswordRequest;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

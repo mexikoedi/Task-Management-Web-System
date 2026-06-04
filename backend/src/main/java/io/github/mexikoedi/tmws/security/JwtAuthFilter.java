@@ -4,9 +4,14 @@
  */
 package io.github.mexikoedi.tmws.security;
 
-import io.github.mexikoedi.tmws.exception.*;
 import io.github.mexikoedi.tmws.model.User;
 import io.github.mexikoedi.tmws.repository.UserRepository;
+import io.github.mexikoedi.tmws.security.exception.InvalidTokenException;
+import io.github.mexikoedi.tmws.security.exception.JwtExpiredException;
+import io.github.mexikoedi.tmws.security.exception.JwtInvalidException;
+import io.github.mexikoedi.tmws.security.exception.JwtMalformedException;
+import io.github.mexikoedi.tmws.service.exception.ResourceNotFoundException;
+import io.github.mexikoedi.tmws.service.exception.UserDeactivatedException;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -47,6 +52,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
    *     gefunden wird.
    * @throws ServletException Wenn ein Fehler bei der Verarbeitung der Anfrage auftritt.
    * @throws IOException Wenn ein Fehler bei der Ein- oder Ausgabe auftritt.
+   * @throws ResourceNotFoundException Wenn der Benutzer, der im Token angegeben ist, nicht gefunden wird.
+   * @throws UserDeactivatedException Wenn der Benutzer, der im Token angegeben ist, deaktiviert ist.
+   * @throws InvalidTokenException Wenn das Token ungültig ist.
    */
   @Override
   protected void doFilterInternal(
@@ -78,11 +86,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             new UsernamePasswordAuthenticationToken(email, null, List.of());
         SecurityContextHolder.getContext().setAuthentication(auth);
       } catch (ResourceNotFoundException
-          | UserDeactivatedException
-          | InvalidTokenException
-          | JwtExpiredException
-          | JwtMalformedException
-          | JwtInvalidException _) {
+               | UserDeactivatedException
+               | InvalidTokenException
+               | JwtExpiredException
+               | JwtMalformedException
+               | JwtInvalidException _) {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
         return;

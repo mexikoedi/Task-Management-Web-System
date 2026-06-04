@@ -1,10 +1,10 @@
 /** Diese Klasse ist der REST-Controller für die Board-bezogenen Endpunkte der TMWS-Anwendung. */
 package io.github.mexikoedi.tmws.controller;
 
-import io.github.mexikoedi.tmws.dto.*;
 import io.github.mexikoedi.tmws.model.Board;
 import io.github.mexikoedi.tmws.model.Task;
 import io.github.mexikoedi.tmws.service.BoardService;
+import io.github.mexikoedi.tmws.service.dto.*;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Objects;

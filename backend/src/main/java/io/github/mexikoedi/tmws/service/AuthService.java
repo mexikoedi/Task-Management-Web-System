@@ -1,14 +1,14 @@
 /** Diese Klasse bietet Authentifizierungs- und Benutzerverwaltungsdienste für TMWS. */
 package io.github.mexikoedi.tmws.service;
 
-import io.github.mexikoedi.tmws.dto.*;
-import io.github.mexikoedi.tmws.exception.*;
 import io.github.mexikoedi.tmws.model.*;
 import io.github.mexikoedi.tmws.repository.*;
 import io.github.mexikoedi.tmws.security.JwtProvider;
 import io.github.mexikoedi.tmws.security.TokenGenerator;
 import java.time.LocalDateTime;
 import java.util.List;
+import io.github.mexikoedi.tmws.service.dto.*;
+import io.github.mexikoedi.tmws.service.exception.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

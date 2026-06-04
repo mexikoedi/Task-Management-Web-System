@@ -4,8 +4,6 @@
  */
 package io.github.mexikoedi.tmws.service;
 
-import io.github.mexikoedi.tmws.dto.*;
-import io.github.mexikoedi.tmws.exception.*;
 import io.github.mexikoedi.tmws.model.Board;
 import io.github.mexikoedi.tmws.model.BoardColumn;
 import io.github.mexikoedi.tmws.model.Task;
@@ -16,6 +14,8 @@ import io.github.mexikoedi.tmws.repository.TaskRepository;
 import io.github.mexikoedi.tmws.repository.UserRepository;
 import java.util.*;
 import java.util.stream.Collectors;
+import io.github.mexikoedi.tmws.service.dto.*;
+import io.github.mexikoedi.tmws.service.exception.*;
 import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
