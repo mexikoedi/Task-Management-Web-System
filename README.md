@@ -76,7 +76,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Normale)               | Version   |
 |------------------------------------|-----------|
 | **Node.js**                        | 26.3.0    |
-| **pnpm**                           | 11.5.1    |
+| **pnpm**                           | 11.5.2    |
 | **@angular/common**                | 22.0.0    |
 | **@angular/compiler**              | 22.0.0    |
 | **@angular/core**                  | 22.0.0    |
@@ -94,7 +94,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 
 | Komponente (Dev)                   | Version   |
 |------------------------------------|-----------|
-| **@angular-eslint/builder**        | 21.4.0    |
+| **@angular-eslint/builder**        | 22.0.0    |
 | **@angular/build**                 | 22.0.0    |
 | **@angular/cli**                   | 22.0.0    |
 | **@angular/compiler-cli**          | 22.0.0    |
@@ -102,14 +102,14 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **@playwright/test**               | 1.60.0    |
 | **@vitest/coverage-v8**            | 4.1.8     |
 | **@vitest/ui**                     | 4.1.8     |
-| **angular-eslint**                 | 21.4.0    |
+| **angular-eslint**                 | 22.0.0    |
 | **eslint**                         | 10.4.1    |
 | **eslint-config-prettier**         | 10.1.8    |
 | **eslint-plugin-prettier**         | 5.5.6     |
-| **happy-dom**                      | 20.10.1   |
+| **happy-dom**                      | 20.10.2   |
 | **playwright-coverage-reporter**   | 3.1.23    |
 | **prettier**                       | 3.8.3     |
-| **stylelint**                      | 17.12.0   |
+| **stylelint**                      | 17.13.0   |
 | **stylelint-config-standard**      | 40.0.0    |
 | **stylelint-prettier**             | 5.0.3     |
 | **typescript**                     | 6.0.3     |
@@ -131,7 +131,7 @@ IntelliJ IDEA (oder andere IDE für Java und Angular)
 Mailpit (für E-Mail-Testing)
 Java 26.0.1 oder höher
 Node.js 26.3.0 oder höher
-pnpm 11.5.1 oder höher
+pnpm 11.5.2 oder höher
 ```
 
 Installation überprüfen:
