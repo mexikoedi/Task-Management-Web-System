@@ -73,7 +73,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **Spring Boot Starter Test**       | 4.0.6     |
 
 ### Frontend
-| Komponente (Normale)               | Version   |
+| Komponente (Normal)                | Version   |
 |------------------------------------|-----------|
 | **Node.js**                        | 26.3.0    |
 | **pnpm**                           | 11.5.2    |
@@ -85,7 +85,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **@angular/router**                | 22.0.0    |
 | **@ng-icons/bootstrap-icons**      | 33.2.3    |
 | **@ng-icons/core**                 | 33.2.3    |
-| **@ng-select/ng-select**           | 23.0.0    |
+| **@ng-select/ng-select**           | 23.0.1    |
 | **@stomp/stompjs**                 | 7.3.0     |
 | **ngxsmk-datepicker**              | 2.3.1     |
 | **rxjs**                           | 7.8.2     |
@@ -113,7 +113,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **stylelint-config-standard**      | 40.0.0    |
 | **stylelint-prettier**             | 5.0.3     |
 | **typescript**                     | 6.0.3     |
-| **typescript-eslint**              | 8.60.1    |
+| **typescript-eslint**              | 8.61.0    |
 | **vitest**                         | 4.1.8     |
 
 ### Zusätzliche Tools
