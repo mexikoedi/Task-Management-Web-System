@@ -1,21 +1,24 @@
-/** Diese Annotation wird verwendet, um sicherzustellen, dass die Passwörter übereinstimmen. */
-package io.github.mexikoedi.tmws.util;
+/**
+ * Diese Annotation wird verwendet, um sicherzustellen, dass das neue Passwort eines Benutzers sich
+ * vom aktuellen Passwort unterscheidet.
+ */
+package io.github.mexikoedi.tmws.controller.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import java.lang.annotation.*;
 
-@Target({ElementType.TYPE})
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = PasswordMatchesValidator.class)
+@Constraint(validatedBy = NewPasswordDifferentValidator.class)
 @Documented
-public @interface PasswordMatches {
+public @interface NewPasswordDifferent {
   /**
    * Fehlermeldung, die zurückgegeben wird, wenn die Validierung fehlschlägt.
    *
    * @return Die Fehlermeldung.
    */
-  String message() default "Passwörter stimmen nicht überein.";
+  String message() default "Neues Passwort muss sich vom aktuellen unterscheiden.";
 
   /**
    * Gibt die Gruppen an, zu denen diese Validierung gehört.

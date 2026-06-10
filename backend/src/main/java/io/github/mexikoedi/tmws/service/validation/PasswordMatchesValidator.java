@@ -1,4 +1,4 @@
-package io.github.mexikoedi.tmws.util;
+package io.github.mexikoedi.tmws.service.validation;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

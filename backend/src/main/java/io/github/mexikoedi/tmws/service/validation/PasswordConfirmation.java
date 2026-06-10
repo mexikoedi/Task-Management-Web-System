@@ -2,7 +2,7 @@
  * Dieses Interface definiert die Methoden, die von Klassen implementiert werden müssen, die eine
  * Passwortbestätigung benötigen.
  */
-package io.github.mexikoedi.tmws.util;
+package io.github.mexikoedi.tmws.service.validation;
 
 public interface PasswordConfirmation {
   /**

@@ -4,9 +4,9 @@
  */
 package io.github.mexikoedi.tmws.service.dto;
 
-import io.github.mexikoedi.tmws.util.PasswordConfirmation;
-import io.github.mexikoedi.tmws.util.PasswordMatches;
-import io.github.mexikoedi.tmws.util.ValidEmail;
+import io.github.mexikoedi.tmws.service.validation.PasswordConfirmation;
+import io.github.mexikoedi.tmws.service.validation.PasswordMatches;
+import io.github.mexikoedi.tmws.service.validation.ValidEmail;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;

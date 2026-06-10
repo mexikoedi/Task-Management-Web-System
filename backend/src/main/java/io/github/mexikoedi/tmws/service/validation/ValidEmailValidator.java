@@ -2,7 +2,7 @@
  * Diese Klasse implementiert die Validierung, um sicherzustellen, dass eine E-Mail-Adresse gültig
  * ist.
  */
-package io.github.mexikoedi.tmws.util;
+package io.github.mexikoedi.tmws.service.validation;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

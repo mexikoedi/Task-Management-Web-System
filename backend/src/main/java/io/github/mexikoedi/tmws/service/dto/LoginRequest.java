@@ -1,7 +1,7 @@
 /** Diese Klasse repräsentiert die Daten, die für eine Login-Anfrage benötigt werden. */
 package io.github.mexikoedi.tmws.service.dto;
 
-import io.github.mexikoedi.tmws.util.ValidEmail;
+import io.github.mexikoedi.tmws.service.validation.ValidEmail;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;

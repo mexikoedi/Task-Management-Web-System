@@ -1,5 +1,5 @@
 /** Diese Annotation wird verwendet, um sicherzustellen, dass eine E-Mail-Adresse gültig ist. */
-package io.github.mexikoedi.tmws.util;
+package io.github.mexikoedi.tmws.service.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

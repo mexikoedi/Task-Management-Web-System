@@ -1,7 +1,7 @@
 /** Diese Klasse repräsentiert die Anforderung zum Einladen eines Benutzers zu einem Board. */
 package io.github.mexikoedi.tmws.service.dto;
 
-import io.github.mexikoedi.tmws.util.ValidEmail;
+import io.github.mexikoedi.tmws.service.validation.ValidEmail;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;

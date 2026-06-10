@@ -1,9 +1,9 @@
 /** Dise Klasse repräsentiert die Anforderung zum Aktualisieren des Passworts eines Benutzers. */
 package io.github.mexikoedi.tmws.controller.dto;
 
-import io.github.mexikoedi.tmws.util.NewPasswordDifferent;
-import io.github.mexikoedi.tmws.util.PasswordConfirmation;
-import io.github.mexikoedi.tmws.util.PasswordMatches;
+import io.github.mexikoedi.tmws.controller.validation.NewPasswordDifferent;
+import io.github.mexikoedi.tmws.service.validation.PasswordConfirmation;
+import io.github.mexikoedi.tmws.service.validation.PasswordMatches;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;

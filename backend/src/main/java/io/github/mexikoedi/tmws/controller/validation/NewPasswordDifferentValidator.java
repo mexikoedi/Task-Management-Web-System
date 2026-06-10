@@ -2,7 +2,7 @@
  * Diese Klasse implementiert die Validierung, um sicherzustellen, dass das neue Passwort eines
  * Benutzers sich vom aktuellen Passwort unterscheidet.
  */
-package io.github.mexikoedi.tmws.util;
+package io.github.mexikoedi.tmws.controller.validation;
 
 import io.github.mexikoedi.tmws.controller.dto.UpdatePasswordRequest;
 import jakarta.validation.ConstraintValidator;

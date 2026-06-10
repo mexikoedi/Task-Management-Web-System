@@ -1,5 +1,5 @@
 /** Diese Klasse ist ein globaler Exception-Handler für die gesamte Anwendung. */
-package io.github.mexikoedi.tmws.controller.exception;
+package io.github.mexikoedi.tmws.controller;
 
 import io.github.mexikoedi.tmws.controller.dto.ErrorResponse;
 import io.github.mexikoedi.tmws.security.exception.InvalidTokenException;
