@@ -1,7 +1,7 @@
 /**
  * ResetPasswordComponent ist eine Angular-Komponente, die es Benutzern ermöglicht, ihr Passwort zurückzusetzen.
  */
-import { Component, OnInit, inject, WritableSignal, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, inject, WritableSignal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -20,7 +20,6 @@ interface ResetFormControls {
   imports: [CommonModule, ReactiveFormsModule, NgIcon],
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResetPasswordComponent implements OnInit {
   fb: FormBuilder = inject(FormBuilder);

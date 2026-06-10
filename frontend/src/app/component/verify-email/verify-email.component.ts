@@ -1,7 +1,7 @@
 /**
  * Diese Komponente ist für die Verifikation der E-Mail-Adresse eines Benutzers zuständig.
  */
-import { Component, OnInit, inject, ChangeDetectionStrategy, signal, WritableSignal } from '@angular/core';
+import { Component, OnInit, inject, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
@@ -14,7 +14,6 @@ import { HttpErrorResponse } from '@angular/common/http';
   imports: [CommonModule, NgIcon],
   templateUrl: './verify-email.component.html',
   styleUrl: './verify-email.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VerifyEmailComponent implements OnInit {
   isLoading: WritableSignal<boolean> = signal(false);

@@ -2,7 +2,7 @@
  * Diese Klasse repräsentiert die Dashboard-Komponente der Anwendung, die als zentrale Anlaufstelle für Benutzer
  * dient, um ihre Projektboards zu verwalten.
  */
-import { ChangeDetectionStrategy, Component, effect, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   AbstractControl,
@@ -92,7 +92,6 @@ interface TaskDetailFormControls {
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnInit {
   formUtilsShared: FormUtilsShared = inject(FormUtilsShared);

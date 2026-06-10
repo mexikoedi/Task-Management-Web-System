@@ -1,7 +1,7 @@
 /**
  * Diese Komponente bietet eine Benutzeroberfläche für die Anmeldung, Registrierung und Passwortzurücksetzung.
  */
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -33,7 +33,6 @@ interface ResetFormControls {
   imports: [CommonModule, ReactiveFormsModule, NgIcon],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnInit {
   formUtilsShared: FormUtilsShared = inject(FormUtilsShared);
