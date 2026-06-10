@@ -58,6 +58,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **Spring Boot**                    | 4.0.6     |
 | **Dependency Management Plugin**   | 1.1.7     |
 | **FreeFair Lombok**                | 9.5.0     |
+| **Spring Boot Starter Actuator**   | 4.0.6     |
 | **Spring Starter Web MVC**         | 4.0.6     |
 | **Spring Starter WebSocket**       | 4.0.6     |
 | **Spring Starter Data JPA**        | 4.0.6     |
@@ -327,9 +328,12 @@ SELECT * FROM tasks WHERE column_id = 1 ORDER BY position_index;
 
 ---
 
-## Server-Health-Check
-Um die Erreichbarkeit des Backends zu überprüfen, kannst du den folgenden Endpoint aufrufen: <br>
+## Server-Health- und Server-Info-Check
+Um die Erreichbarkeit des Backends zu überprüfen, kannst du die folgende URL aufrufen: <br>
 http://localhost:8080/api/health
+
+Um mehr Informationen über das Backend zu erhalten, kannst du die folgende URL aufrufen: <br>
+http://localhost:8080/api/info
 
 ---
 
@@ -379,12 +383,6 @@ DELETE  /api/boards/tasks/{taskId}              # Aufgabe löschen
 ### Projektboard Mitglieder
 ```
 POST    /api/boards/{id}/invite                 # Benutzer zu Projektboard einladen
-```
-
-### Sonstiges
-
-```
-GET     /api/health                             # Health Check
 ```
 
 ---

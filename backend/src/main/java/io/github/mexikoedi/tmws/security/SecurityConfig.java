@@ -61,6 +61,7 @@ public class SecurityConfig {
                         "/api/auth/password-reset",
                         "/api/auth/reset-password",
                         "/api/health",
+                        "/api/info",
                         "/api/h2-console/**",
                         "/api/ws/**")
                     .permitAll()
