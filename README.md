@@ -108,7 +108,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **eslint-plugin-prettier**         | 5.5.6     |
 | **happy-dom**                      | 20.10.2   |
 | **playwright-coverage-reporter**   | 3.1.23    |
-| **prettier**                       | 3.8.3     |
+| **prettier**                       | 3.8.4     |
 | **stylelint**                      | 17.13.0   |
 | **stylelint-config-standard**      | 40.0.0    |
 | **stylelint-prettier**             | 5.0.3     |
