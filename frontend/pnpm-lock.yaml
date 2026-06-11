@@ -24,8 +24,8 @@ importers:
         specifier: ^22.0.0
         version: 22.0.0(@angular/common@22.0.0(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2))
       '@angular/router':
-        specifier: ^22.0.0
-        version: 22.0.0(@angular/common@22.0.0(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2))(@angular/platform-browser@22.0.0(@angular/common@22.0.0(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2)))(rxjs@7.8.2)
+        specifier: ^22.0.1
+        version: 22.0.1(@angular/common@22.0.0(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2))(@angular/platform-browser@22.0.0(@angular/common@22.0.0(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2)))(rxjs@7.8.2)
       '@ng-icons/bootstrap-icons':
         specifier: ^33.2.3
         version: 33.2.3
@@ -348,13 +348,13 @@ packages:
       '@angular/animations':
         optional: true
 
-  '@angular/router@22.0.0':
-    resolution: {integrity: sha512-CCtonkDVkkfKLtuKol8rC1zmWI4QX7w3uUtdlOoz6K9HXAhpZYGcSq5RyloA767QLj36u7108K9xHBs2abOajQ==}
+  '@angular/router@22.0.1':
+    resolution: {integrity: sha512-NHMkRAgBMKrE7g5lSe1H/espe0NX8axVBy6TtzEh/l7yxTnZiqUIjmRnIDb+LFGPRQVgDu3FxR/fvwQaosOn0w==}
     engines: {node: ^22.22.3 || ^24.15.0 || >=26.0.0}
     peerDependencies:
-      '@angular/common': 22.0.0
-      '@angular/core': 22.0.0
-      '@angular/platform-browser': 22.0.0
+      '@angular/common': 22.0.1
+      '@angular/core': 22.0.1
+      '@angular/platform-browser': 22.0.1
       rxjs: ^6.5.3 || ^7.4.0
 
   '@babel/code-frame@7.29.7':
@@ -3943,7 +3943,7 @@ snapshots:
       '@angular/core': 22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2)
       tslib: 2.8.1
 
-  '@angular/router@22.0.0(@angular/common@22.0.0(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2))(@angular/platform-browser@22.0.0(@angular/common@22.0.0(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2)))(rxjs@7.8.2)':
+  '@angular/router@22.0.1(@angular/common@22.0.0(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2))(@angular/platform-browser@22.0.0(@angular/common@22.0.0(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2)))(rxjs@7.8.2)':
     dependencies:
       '@angular/common': 22.0.0(@angular/core@22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2))(rxjs@7.8.2)
       '@angular/core': 22.0.1(@angular/compiler@22.0.0)(rxjs@7.8.2)
