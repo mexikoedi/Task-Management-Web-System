@@ -58,7 +58,13 @@ public class AuthController {
   public ResponseEntity<ApiResponse> register(@Valid @RequestBody RegisterRequest request) {
     authService.register(request);
 
-    return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse(null, "Registrierung erfolgreich. Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu verifizieren.", true));
+    return ResponseEntity.status(HttpStatus.CREATED)
+        .body(
+            new ApiResponse(
+                null,
+                "Registrierung erfolgreich. Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu"
+                    + " verifizieren.",
+                true));
   }
 
   /**
@@ -75,7 +81,9 @@ public class AuthController {
       @Valid @RequestBody PasswordResetInquiryRequest request) {
     authService.requestPasswordReset(request);
 
-    return ResponseEntity.ok(new ApiResponse(null, "Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail gesendet.", true));
+    return ResponseEntity.ok(
+        new ApiResponse(
+            null, "Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail gesendet.", true));
   }
 
   /**
