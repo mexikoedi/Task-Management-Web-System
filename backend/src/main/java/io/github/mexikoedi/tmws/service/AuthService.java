@@ -102,10 +102,8 @@ public class AuthService {
    *     neuen Benutzers enthält.
    * @throws EmailAlreadyExistsException Wenn die angegebene E-Mail-Adresse bereits von einem
    *     anderen Benutzer verwendet wird.
-   * @return Eine Erfolgsmeldung, die den Benutzer auffordert, seine E-Mail-Adresse zu überprüfen,
-   *     um das Konto zu verifizieren.
    */
-  public String register(RegisterRequest request) {
+  public void register(RegisterRequest request) {
     if (userRepository.existsByEmail(request.getEmail())) {
       throw new EmailAlreadyExistsException("E-Mail ist bereits registriert.");
     }
@@ -125,9 +123,6 @@ public class AuthService {
     verificationTokenRepository.save(verificationToken);
     String verificationLink = "http://localhost:4200/verify-email?token=" + token;
     emailService.sendRegistrationEmail(request.getEmail(), verificationLink);
-
-    return "Registrierung erfolgreich. Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu"
-        + " verifizieren.";
   }
 
   /**
@@ -140,10 +135,8 @@ public class AuthService {
    * @throws ResourceNotFoundException Wenn kein Benutzer mit der angegebenen E-Mail-Adresse
    *     gefunden wird.
    * @throws UserDeactivatedException Wenn der Benutzer deaktiviert ist.
-   * @return Eine Erfolgsmeldung, die den Benutzer darüber informiert, dass ein Link zum
-   *     Zurücksetzen des Passworts an seine E-Mail-Adresse gesendet wurde.
    */
-  public String requestPasswordReset(PasswordResetInquiryRequest request) {
+  public void requestPasswordReset(PasswordResetInquiryRequest request) {
     User user =
         userRepository
             .findByEmail(request.getEmail())
@@ -161,8 +154,6 @@ public class AuthService {
     passwordResetTokenRepository.save(resetToken);
     String resetLink = "http://localhost:4200/reset-password?token=" + token;
     emailService.sendPasswordResetEmail(request.getEmail(), resetLink);
-
-    return "Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail gesendet.";
   }
 
   /**

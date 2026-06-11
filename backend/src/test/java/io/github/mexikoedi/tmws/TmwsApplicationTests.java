@@ -10,7 +10,7 @@ package io.github.mexikoedi.tmws;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(classes = TmwsApplication.class)
 class TmwsApplicationTests {
   @Test
   void contextLoads() {}

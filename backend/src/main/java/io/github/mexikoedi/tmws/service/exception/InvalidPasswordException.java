@@ -1,5 +1,5 @@
 /**
- * Diese Klasse definiert eine benutzerzdefinierte Ausnahme, die ausgelöst wird, wenn ein ungültiges
+ * Diese Klasse definiert eine benutzerdefinierte Ausnahme, die ausgelöst wird, wenn ein ungültiges
  * Passwort eingegeben wird.
  */
 package io.github.mexikoedi.tmws.service.exception;

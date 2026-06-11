@@ -337,7 +337,7 @@ public class EmailService {
         + "\n\n"
         + "Diese Aufgabe ist unter der Statuskategorie "
         + statusCategory
-        + " bei dem Projekboard "
+        + " bei dem Projektboard "
         + projectBoard
         + " zu finden.\n\n"
         + "Mit freundlichen Grüßen,\n"

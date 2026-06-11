@@ -1,4 +1,4 @@
-/** Diese Klasse repräsentiert eine Statuskategorie im Projekttboard im TMWS. */
+/** Diese Klasse repräsentiert eine Statuskategorie im Projektboard im TMWS. */
 package io.github.mexikoedi.tmws.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;

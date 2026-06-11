@@ -114,11 +114,10 @@ class AuthServiceTest {
     RegisterRequest req = new RegisterRequest("User", "new@example.com", "123");
     when(userRepository.existsByEmail("new@example.com")).thenReturn(false);
     when(passwordEncoder.encode("123")).thenReturn("ENC");
-    String msg = authService.register(req);
+    authService.register(req);
     verify(userRepository).save(any(User.class));
     verify(verificationTokenRepository).save(any(VerificationToken.class));
     verify(emailService).sendRegistrationEmail(eq("new@example.com"), contains("verify-email"));
-    assertTrue(msg.contains("Registrierung erfolgreich"));
   }
 
   @Test
@@ -139,10 +138,9 @@ class AuthServiceTest {
   void requestPasswordReset_success() {
     PasswordResetInquiryRequest req = new PasswordResetInquiryRequest("test@example.com");
     when(userRepository.findByEmail("test@example.com")).thenReturn(Optional.of(user));
-    String msg = authService.requestPasswordReset(req);
+    authService.requestPasswordReset(req);
     verify(passwordResetTokenRepository).save(any());
     verify(emailService).sendPasswordResetEmail(eq("test@example.com"), contains("reset-password"));
-    assertTrue(msg.contains("Link zum Zurücksetzen"));
   }
 
   @Test

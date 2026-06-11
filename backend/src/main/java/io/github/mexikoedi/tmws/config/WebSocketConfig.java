@@ -28,7 +28,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
   }
 
   /**
-   * Konfiguriert den Message Broker für die WebSocket-Verbindung. Der Broker ermöglicht die
+   * Konfiguriert den MessageBroker für die WebSocket-Verbindung. Der Broker ermöglicht die
    * Kommunikation zwischen dem Server und den Clients über das STOMP-Protokoll.
    *
    * @param registry Der MessageBrokerRegistry, um den Broker zu konfigurieren.
@@ -43,7 +43,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
   }
 
   /**
-   * Erstellt einen TaskScheduler für die Herzschlag-Funktion des Message Brokers.
+   * Erstellt einen TaskScheduler für die Herzschlag-Funktion des MessageBrokers.
    *
    * @return Ein TaskScheduler-Bean, der für die Herzschlag-Funktion verwendet wird.
    */

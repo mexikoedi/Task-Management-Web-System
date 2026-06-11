@@ -24,9 +24,9 @@ export default defineConfig([
     files: ['**/*.ts'],
     extends: [
       eslint.configs.recommended,
-      tseslint.configs.recommended,
-      tseslint.configs.stylistic,
-      angular.configs.tsRecommended,
+      ...tseslint.configs.recommended,
+      ...tseslint.configs.stylistic,
+      ...angular.configs.tsRecommended,
     ],
     processor: angular.processInlineTemplates,
     rules: {
@@ -50,7 +50,7 @@ export default defineConfig([
   },
   {
     files: ['**/*.html'],
-    extends: [angular.configs.templateRecommended, angular.configs.templateAccessibility],
+    extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
     rules: {},
   },
   eslintPluginPrettierRecommended,

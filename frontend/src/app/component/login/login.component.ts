@@ -262,7 +262,7 @@ export class LoginComponent implements OnInit {
    *
    * @returns true, wenn das Formular zum Zurücksetzen des Passworts gültig ist, andernfalls false.
    */
-  isResetFormVaild(): boolean {
+  isResetFormValid(): boolean {
     return this.passwordResetForm.valid;
   }
 

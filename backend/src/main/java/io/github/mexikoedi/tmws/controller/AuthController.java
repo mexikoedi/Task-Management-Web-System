@@ -56,9 +56,9 @@ public class AuthController {
    */
   @PostMapping("/register")
   public ResponseEntity<ApiResponse> register(@Valid @RequestBody RegisterRequest request) {
-    String message = authService.register(request);
+    authService.register(request);
 
-    return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse(null, message, true));
+    return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse(null, "Registrierung erfolgreich. Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu verifizieren.", true));
   }
 
   /**
@@ -73,9 +73,9 @@ public class AuthController {
   @PostMapping("/password-reset")
   public ResponseEntity<ApiResponse> requestPasswordReset(
       @Valid @RequestBody PasswordResetInquiryRequest request) {
-    String message = authService.requestPasswordReset(request);
+    authService.requestPasswordReset(request);
 
-    return ResponseEntity.ok(new ApiResponse(null, message, true));
+    return ResponseEntity.ok(new ApiResponse(null, "Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail gesendet.", true));
   }
 
   /**

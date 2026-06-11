@@ -34,7 +34,7 @@ public class SecurityConfig {
   /**
    * Konfiguriert die Sicherheitsfilterkette, um die Authentifizierungs- und Autorisierungsregeln
    * festzulegen. Es werden bestimmte Endpunkte für die öffentliche Nutzung freigegeben, während
-   * alle anderen Endpunkte eine Authentifizierung erfordern. Außerdem wird die CSRF-Schutz
+   * alle anderen Endpunkte eine Authentifizierung erfordern. Außerdem wird der CSRF-Schutz
    * deaktiviert, CORS aktiviert und die Session-Management-Strategie auf stateless gesetzt, um die
    * Verwendung von JWTs zu unterstützen. Der JwtAuthFilter wird vor dem
    * UsernamePasswordAuthenticationFilter hinzugefügt, um die JWT-Authentifizierung zu ermöglichen

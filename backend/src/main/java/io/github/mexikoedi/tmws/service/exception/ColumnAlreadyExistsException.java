@@ -1,6 +1,6 @@
 /**
- * Diese KLasse reprsentiert eine benutzerdefinierte Ausnahme, die ausgelöst wird, wenn versucht
- * wird, eine Spalte hinzuzufgen, die bereits existiert.
+ * Diese KLasse repräsentiert eine benutzerdefinierte Ausnahme, die ausgelöst wird, wenn versucht
+ * wird, eine Spalte hinzuzufügen, die bereits existiert.
  */
 package io.github.mexikoedi.tmws.service.exception;
 

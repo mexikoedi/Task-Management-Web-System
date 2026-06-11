@@ -1,4 +1,4 @@
-/** Dise Klasse repräsentiert die Anforderung zum Aktualisieren des Passworts eines Benutzers. */
+/** Diese Klasse repräsentiert die Anforderung zum Aktualisieren des Passworts eines Benutzers. */
 package io.github.mexikoedi.tmws.controller.dto;
 
 import io.github.mexikoedi.tmws.controller.validation.NewPasswordDifferent;

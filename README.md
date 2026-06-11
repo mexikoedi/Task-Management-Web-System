@@ -11,11 +11,11 @@ Es ist im Rahmen meiner Bachelor-Thesis unter dem Titel "Unterstützung der Soft
 - Benutzerregistrierung mit E-Mail-Verifikation
 - Login mit JWT-basierter Authentifizierung
 - Passwort-Zurücksetzung via E-Mail
-- Sichere Passwort-Speicherung (BCrypt)
+- Sichere Passwort-Speicherung (Bcrypt)
 
 ### Kanban-Projektboard
 - Mehrere Statuskategorien im klassischen Kanban-Format
-- Standard 3-Statuskategorien-Layout (Demnächst, In Bearbeitung, Fertig) - erweiterbar
+- Standard 3-Statuskategorien-Layout ("Demnächst", "In Bearbeitung", "Fertig") - erweiterbar
 - Aufgaben erstellen, umbenennen, bearbeiten, löschen
 - Titel, Beschreibung, Deadline (Datepicker), Labels, Anhänge und Zuweisung an Benutzer pro Aufgabe
 - Aufgaben in andere Statuskategorien durch Drag & Drop verschiebbar
@@ -55,35 +55,35 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 |------------------------------------|-----------|
 | **Gradle**                         | 9.5.1     |
 | **Java**                           | 26.0.1    |
-| **Spring Boot**                    | 4.0.6     |
+| **Spring Boot**                    | 4.1.0     |
 | **Dependency Management Plugin**   | 1.1.7     |
 | **FreeFair Lombok**                | 9.5.0     |
-| **Spring Boot Starter Actuator**   | 4.0.6     |
-| **Spring Starter Web MVC**         | 4.0.6     |
-| **Spring Starter WebSocket**       | 4.0.6     |
-| **Spring Starter Data JPA**        | 4.0.6     |
-| **Spring H2console**               | 4.0.6     |
+| **Spring Boot Starter Actuator**   | 4.1.0     |
+| **Spring Starter Web MVC**         | 4.1.0     |
+| **Spring Starter WebSocket**       | 4.1.0     |
+| **Spring Starter Data JPA**        | 4.1.0     |
+| **Spring H2console**               | 4.1.0     |
 | **H2 Database Engine**             | 2.4.240   |
-| **Spring Starter Validation**      | 4.0.6     |
-| **Spring Starter Mail**            | 4.0.6     |
-| **Spring Starter Security**        | 4.0.6     |
+| **Spring Starter Validation**      | 4.1.0     |
+| **Spring Starter Mail**            | 4.1.0     |
+| **Spring Starter Security**        | 4.1.0     |
 | **JJWT API**                       | 0.13.0    |
 | **JJWT Impl**                      | 0.13.0    |
 | **JJWT Jackson**                   | 0.13.0    |
 | **JJWT Jackson**                   | 0.13.0    |
-| **Spring Boot Starter Test**       | 4.0.6     |
+| **Spring Boot Starter Test**       | 4.1.0     |
 
 ### Frontend
 | Komponente (Normal)                | Version   |
 |------------------------------------|-----------|
 | **Node.js**                        | 26.3.0    |
-| **pnpm**                           | 11.5.2    |
-| **@angular/common**                | 22.0.0    |
-| **@angular/compiler**              | 22.0.0    |
-| **@angular/core**                  | 22.0.0    |
-| **@angular/forms**                 | 22.0.0    |
-| **@angular/platform-browser**      | 22.0.0    |
-| **@angular/router**                | 22.0.0    |
+| **pnpm**                           | 11.5.3    |
+| **@angular/common**                | 22.0.1    |
+| **@angular/compiler**              | 22.0.1    |
+| **@angular/core**                  | 22.0.1    |
+| **@angular/forms**                 | 22.0.1    |
+| **@angular/platform-browser**      | 22.0.1    |
+| **@angular/router**                | 22.0.1    |
 | **@ng-icons/bootstrap-icons**      | 33.2.3    |
 | **@ng-icons/core**                 | 33.2.3    |
 | **@ng-select/ng-select**           | 23.0.1    |
@@ -96,9 +96,9 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Dev)                   | Version   |
 |------------------------------------|-----------|
 | **@angular-eslint/builder**        | 22.0.0    |
-| **@angular/build**                 | 22.0.0    |
-| **@angular/cli**                   | 22.0.0    |
-| **@angular/compiler-cli**          | 22.0.0    |
+| **@angular/build**                 | 22.0.1    |
+| **@angular/cli**                   | 22.0.1    |
+| **@angular/compiler-cli**          | 22.0.1    |
 | **@eslint/js**                     | 10.0.1    |
 | **@playwright/test**               | 1.60.0    |
 | **@vitest/coverage-v8**            | 4.1.8     |
@@ -132,7 +132,7 @@ IntelliJ IDEA (oder andere IDE für Java und Angular)
 Mailpit (für E-Mail-Testing)
 Java 26.0.1 oder höher
 Node.js 26.3.0 oder höher
-pnpm 11.5.2 oder höher
+pnpm 11.5.3 oder höher
 ```
 
 Installation überprüfen:

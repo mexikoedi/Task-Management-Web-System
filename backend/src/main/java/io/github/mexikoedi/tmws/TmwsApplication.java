@@ -11,7 +11,7 @@ public class TmwsApplication {
    *
    * @param args die Kommandozeilenargumente, die an die Anwendung übergeben werden können.
    */
-  public static void main(String[] args) {
+  static void main(String[] args) {
     SpringApplication.run(TmwsApplication.class, args);
   }
 }

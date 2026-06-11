@@ -1,4 +1,4 @@
-/** Diese Klasse repräsentiert ein Projekttboard im TMWS. */
+/** Diese Klasse repräsentiert ein Projektboard im TMWS. */
 package io.github.mexikoedi.tmws.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

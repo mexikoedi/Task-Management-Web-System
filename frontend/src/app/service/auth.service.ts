@@ -1,6 +1,6 @@
 /**
  * Diese Service-Klasse bietet Methoden für die Authentifizierung und Benutzerverwaltung in der Angular-Anwendung.
- * Sie kommuniziert mit einem Backend-API, um Aktionen wie Login, Registrierung, Passwort-Reset, E-Mail-Verifizierung,
+ * Sie kommuniziert mit einer Backend-API, um Aktionen wie Login, Registrierung, Passwort-Reset, E-Mail-Verifizierung,
  * Profilaktualisierung und Kontodeaktivierung durchzuführen.
  * Die Methoden verwenden HTTP-Anfragen, um die entsprechenden Aktionen auf dem Server auszuführen und verwalten den
  * aktuellen Benutzerstatus in der Anwendung.
@@ -26,7 +26,7 @@ export class AuthService {
   private readonly router: Router = inject(Router);
 
   /**
-   * Diese Methode sendet eine POST-Anfrage an das Backend-API, um einen Benutzer mit der angegebenen E-Mail und
+   * Diese Methode sendet eine POST-Anfrage an die Backend-API, um einen Benutzer mit der angegebenen E-Mail und
    * Passwort zu authentifizieren.
    *
    * @param email Die E-Mail-Adresse des Benutzers, der sich anmelden möchte.
@@ -45,7 +45,7 @@ export class AuthService {
   }
 
   /**
-   * Diese Methode sendet eine POST-Anfrage an das Backend-API, um einen neuen Benutzer mit den angegebenen
+   * Diese Methode sendet eine POST-Anfrage an die Backend-API, um einen neuen Benutzer mit den angegebenen
    * Informationen zu registrieren.
    *
    * @param name Der Name des Benutzers, der sich registrieren möchte.
@@ -64,7 +64,7 @@ export class AuthService {
   }
 
   /**
-   * Diese Methode sendet eine POST-Anfrage an das Backend-API, um einen Passwort-Reset für die angegebene
+   * Diese Methode sendet eine POST-Anfrage an die Backend-API, um einen Passwort-Reset für die angegebene
    * E-Mail-Adresse anzufordern.
    *
    * @param email Die E-Mail-Adresse des Benutzers, für den der Passwort-Reset angefordert wird.
@@ -75,7 +75,7 @@ export class AuthService {
   }
 
   /**
-   * Diese Methode sendet eine GET-Anfrage an das Backend-API, um die E-Mail-Adresse eines Benutzers zu verifizieren,
+   * Diese Methode sendet eine GET-Anfrage an die Backend-API, um die E-Mail-Adresse eines Benutzers zu verifizieren,
    * indem ein Token übergeben wird.
    *
    * @param token Das Token, das zur Verifizierung der E-Mail-Adresse verwendet wird.
@@ -86,7 +86,7 @@ export class AuthService {
   }
 
   /**
-   * Diese Methode sendet eine PUT-Anfrage an das Backend-API, um das Passwort eines Benutzers zurückzusetzen,
+   * Diese Methode sendet eine PUT-Anfrage an die Backend-API, um das Passwort eines Benutzers zurückzusetzen,
    * indem ein Token und das neue Passwort übergeben werden.
    *
    * @param token Das Token, das zur Authentifizierung des Passwort-Reset-Vorgangs verwendet wird.
@@ -98,7 +98,7 @@ export class AuthService {
   }
 
   /**
-   * Diese Methode sendet eine PUT-Anfrage an das Backend-API, um das Profil eines Benutzers zu aktualisieren,
+   * Diese Methode sendet eine PUT-Anfrage an die Backend-API, um das Profil eines Benutzers zu aktualisieren,
    * indem der Name, die neue E-Mail-Adresse und das Profilbild übergeben werden.
    *
    * @param name Der neue Name des Benutzers, der aktualisiert werden soll.
@@ -121,7 +121,7 @@ export class AuthService {
   }
 
   /**
-   * Diese Methode sendet eine PUT-Anfrage an das Backend-API, um das Passwort eines Benutzers zu ändern,
+   * Diese Methode sendet eine PUT-Anfrage an die Backend-API, um das Passwort eines Benutzers zu ändern,
    * indem das aktuelle Passwort, das neue Passwort und die Bestätigung des neuen Passworts übergeben werden.
    *
    * @param currentPassword Das aktuelle Passwort des Benutzers.
@@ -138,7 +138,7 @@ export class AuthService {
   }
 
   /**
-   * Diese Methode sendet eine DELETE-Anfrage an das Backend-API, um das Konto eines Benutzers zu deaktivieren,
+   * Diese Methode sendet eine DELETE-Anfrage an die Backend-API, um das Konto eines Benutzers zu deaktivieren,
    *
    * @param email Die E-Mail-Adresse des Benutzers, dessen Konto deaktiviert werden soll.
    * @returns Ein Observable, das die Antwort der Kontodeaktivierung enthält.
@@ -148,7 +148,7 @@ export class AuthService {
   }
 
   /**
-   * Diese Methode sendet eine GET-Anfrage an das Backend-API, um die Daten des aktuell authentifizierten
+   * Diese Methode sendet eine GET-Anfrage an die Backend-API, um die Daten des aktuell authentifizierten
    * Benutzers abzurufen.
    *
    * @returns Ein Observable, das die Daten des aktuellen Benutzers enthält.
@@ -171,7 +171,7 @@ export class AuthService {
   }
 
   /**
-   * Diese Methode entfernt das Authentifizierungs-Token aus dem Session Storage und setzt den aktuellen Benutzer
+   * Diese Methode entfernt das Authentifizierungs-Token aus dem SessionStorage und setzt den aktuellen Benutzer
    * und das Token auf null.
    * Dadurch wird der Benutzer ausgeloggt und alle Authentifizierungsinformationen werden gelöscht.
    */
@@ -192,7 +192,7 @@ export class AuthService {
   }
 
   /**
-   * Diese Methode ruft das Authentifizierungs-Token aus dem Session Storage ab, indem sie den Schlüssel 'token' verwendet.
+   * Diese Methode ruft das Authentifizierungs-Token aus dem SessionStorage ab, indem sie den Schlüssel 'token' verwendet.
    *
    * @returns Das Authentifizierungs-Token als string, wenn es vorhanden ist, oder null, wenn kein Token gefunden wird.
    */
