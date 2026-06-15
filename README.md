@@ -77,15 +77,15 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Normal)                | Version   |
 |------------------------------------|-----------|
 | **Node.js**                        | 26.3.0    |
-| **pnpm**                           | 11.6.0    |
+| **pnpm**                           | 11.7.0    |
 | **@angular/common**                | 22.0.1    |
 | **@angular/compiler**              | 22.0.1    |
 | **@angular/core**                  | 22.0.1    |
 | **@angular/forms**                 | 22.0.1    |
 | **@angular/platform-browser**      | 22.0.1    |
 | **@angular/router**                | 22.0.1    |
-| **@ng-icons/bootstrap-icons**      | 33.2.3    |
-| **@ng-icons/core**                 | 33.2.3    |
+| **@ng-icons/bootstrap-icons**      | 33.2.4    |
+| **@ng-icons/core**                 | 33.2.4    |
 | **@ng-select/ng-select**           | 23.0.1    |
 | **@stomp/stompjs**                 | 7.3.0     |
 | **ngxsmk-datepicker**              | 2.3.1     |
@@ -104,10 +104,10 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **@vitest/coverage-v8**            | 4.1.8     |
 | **@vitest/ui**                     | 4.1.8     |
 | **angular-eslint**                 | 22.0.0    |
-| **eslint**                         | 10.4.1    |
+| **eslint**                         | 10.5.0    |
 | **eslint-config-prettier**         | 10.1.8    |
 | **eslint-plugin-prettier**         | 5.5.6     |
-| **happy-dom**                      | 20.10.2   |
+| **happy-dom**                      | 20.10.3   |
 | **playwright-coverage-reporter**   | 3.1.23    |
 | **prettier**                       | 3.8.4     |
 | **stylelint**                      | 17.13.0   |
@@ -132,7 +132,7 @@ IntelliJ IDEA (oder andere IDE für Java und Angular)
 Mailpit (für E-Mail-Testing)
 Java 26.0.1 oder höher
 Node.js 26.3.0 oder höher
-pnpm 11.6.0 oder höher
+pnpm 11.7.0 oder höher
 ```
 
 Installation überprüfen:
