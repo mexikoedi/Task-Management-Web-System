@@ -107,14 +107,14 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **eslint**                         | 10.5.0    |
 | **eslint-config-prettier**         | 10.1.8    |
 | **eslint-plugin-prettier**         | 5.5.6     |
-| **happy-dom**                      | 20.10.3   |
+| **happy-dom**                      | 20.10.4   |
 | **playwright-coverage-reporter**   | 3.1.23    |
 | **prettier**                       | 3.8.4     |
 | **stylelint**                      | 17.13.0   |
 | **stylelint-config-standard**      | 40.0.0    |
 | **stylelint-prettier**             | 5.0.3     |
 | **typescript**                     | 6.0.3     |
-| **typescript-eslint**              | 8.61.0    |
+| **typescript-eslint**              | 8.61.1    |
 | **vitest**                         | 4.1.8     |
 
 ### Zusätzliche Tools
