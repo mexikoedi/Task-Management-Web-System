@@ -76,14 +76,14 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 ### Frontend
 | Komponente (Normal)                | Version   |
 |------------------------------------|-----------|
-| **Node.js**                        | 26.3.0    |
-| **pnpm**                           | 11.7.0    |
-| **@angular/common**                | 22.0.1    |
-| **@angular/compiler**              | 22.0.1    |
-| **@angular/core**                  | 22.0.1    |
-| **@angular/forms**                 | 22.0.1    |
-| **@angular/platform-browser**      | 22.0.1    |
-| **@angular/router**                | 22.0.1    |
+| **Node.js**                        | 26.3.1    |
+| **pnpm**                           | 11.8.0    |
+| **@angular/common**                | 22.0.2    |
+| **@angular/compiler**              | 22.0.2    |
+| **@angular/core**                  | 22.0.2    |
+| **@angular/forms**                 | 22.0.2    |
+| **@angular/platform-browser**      | 22.0.2    |
+| **@angular/router**                | 22.0.2    |
 | **@ng-icons/bootstrap-icons**      | 33.2.4    |
 | **@ng-icons/core**                 | 33.2.4    |
 | **@ng-select/ng-select**           | 23.0.1    |
@@ -96,18 +96,18 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Dev)                   | Version   |
 |------------------------------------|-----------|
 | **@angular-eslint/builder**        | 22.0.0    |
-| **@angular/build**                 | 22.0.1    |
-| **@angular/cli**                   | 22.0.1    |
-| **@angular/compiler-cli**          | 22.0.1    |
+| **@angular/build**                 | 22.0.2    |
+| **@angular/cli**                   | 22.0.2    |
+| **@angular/compiler-cli**          | 22.0.2    |
 | **@eslint/js**                     | 10.0.1    |
-| **@playwright/test**               | 1.60.0    |
-| **@vitest/coverage-v8**            | 4.1.8     |
-| **@vitest/ui**                     | 4.1.8     |
+| **@playwright/test**               | 1.61.0    |
+| **@vitest/coverage-v8**            | 4.1.9     |
+| **@vitest/ui**                     | 4.1.9     |
 | **angular-eslint**                 | 22.0.0    |
 | **eslint**                         | 10.5.0    |
 | **eslint-config-prettier**         | 10.1.8    |
 | **eslint-plugin-prettier**         | 5.5.6     |
-| **happy-dom**                      | 20.10.5   |
+| **happy-dom**                      | 20.10.6   |
 | **playwright-coverage-reporter**   | 3.1.23    |
 | **prettier**                       | 3.8.4     |
 | **stylelint**                      | 17.13.0   |
@@ -115,7 +115,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **stylelint-prettier**             | 5.0.3     |
 | **typescript**                     | 6.0.3     |
 | **typescript-eslint**              | 8.61.1    |
-| **vitest**                         | 4.1.8     |
+| **vitest**                         | 4.1.9     |
 
 ### Zusätzliche Tools
 - **IntelliJ IDEA** - IDE für Entwicklung
@@ -131,8 +131,8 @@ Stelle sicher, dass folgende Software installiert ist:
 IntelliJ IDEA (oder andere IDE für Java und Angular)
 Mailpit (für E-Mail-Testing)
 Java 26.0.1 oder höher
-Node.js 26.3.0 oder höher
-pnpm 11.7.0 oder höher
+Node.js 26.3.1 oder höher
+pnpm 11.8.0 oder höher
 ```
 
 Installation überprüfen:
