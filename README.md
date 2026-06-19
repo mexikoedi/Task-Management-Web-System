@@ -53,7 +53,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 ### Backend
 | Komponente                         | Version   |
 |------------------------------------|-----------|
-| **Gradle**                         | 9.5.1     |
+| **Gradle**                         | 9.6.0     |
 | **Java**                           | 26.0.1    |
 | **Spring Boot**                    | 4.1.0     |
 | **Dependency Management Plugin**   | 1.1.7     |
@@ -96,8 +96,8 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Dev)                   | Version   |
 |------------------------------------|-----------|
 | **@angular-eslint/builder**        | 22.0.0    |
-| **@angular/build**                 | 22.0.2    |
-| **@angular/cli**                   | 22.0.2    |
+| **@angular/build**                 | 22.0.3    |
+| **@angular/cli**                   | 22.0.3    |
 | **@angular/compiler-cli**          | 22.0.2    |
 | **@eslint/js**                     | 10.0.1    |
 | **@playwright/test**               | 1.61.0    |
