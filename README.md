@@ -84,8 +84,8 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **@angular/forms**                 | 22.0.2    |
 | **@angular/platform-browser**      | 22.0.2    |
 | **@angular/router**                | 22.0.2    |
-| **@ng-icons/bootstrap-icons**      | 33.2.4    |
-| **@ng-icons/core**                 | 33.2.4    |
+| **@ng-icons/bootstrap-icons**      | 33.3.0    |
+| **@ng-icons/core**                 | 33.3.0    |
 | **@ng-select/ng-select**           | 23.0.1    |
 | **@stomp/stompjs**                 | 7.3.0     |
 | **ngxsmk-datepicker**              | 2.3.1     |
