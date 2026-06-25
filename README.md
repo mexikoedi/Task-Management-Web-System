@@ -76,8 +76,8 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 ### Frontend
 | Komponente (Normal)                | Version   |
 |------------------------------------|-----------|
-| **Node.js**                        | 26.3.1    |
-| **pnpm**                           | 11.8.0    |
+| **Node.js**                        | 26.4.0    |
+| **pnpm**                           | 11.9.0    |
 | **@angular/common**                | 22.0.2    |
 | **@angular/compiler**              | 22.0.2    |
 | **@angular/core**                  | 22.0.2    |
@@ -96,11 +96,11 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Dev)                   | Version   |
 |------------------------------------|-----------|
 | **@angular-eslint/builder**        | 22.0.0    |
-| **@angular/build**                 | 22.0.3    |
-| **@angular/cli**                   | 22.0.3    |
+| **@angular/build**                 | 22.0.4    |
+| **@angular/cli**                   | 22.0.4    |
 | **@angular/compiler-cli**          | 22.0.2    |
 | **@eslint/js**                     | 10.0.1    |
-| **@playwright/test**               | 1.61.0    |
+| **@playwright/test**               | 1.61.1    |
 | **@vitest/coverage-v8**            | 4.1.9     |
 | **@vitest/ui**                     | 4.1.9     |
 | **angular-eslint**                 | 22.0.0    |
@@ -114,7 +114,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **stylelint-config-standard**      | 40.0.0    |
 | **stylelint-prettier**             | 5.0.3     |
 | **typescript**                     | 6.0.3     |
-| **typescript-eslint**              | 8.61.1    |
+| **typescript-eslint**              | 8.62.0    |
 | **vitest**                         | 4.1.9     |
 
 ### Zusätzliche Tools
@@ -131,8 +131,8 @@ Stelle sicher, dass folgende Software installiert ist:
 IntelliJ IDEA (oder andere IDE für Java und Angular)
 Mailpit (für E-Mail-Testing)
 Java 26.0.1 oder höher
-Node.js 26.3.1 oder höher
-pnpm 11.8.0 oder höher
+Node.js 26.4.0 oder höher
+pnpm 11.9.0 oder höher
 ```
 
 Installation überprüfen:
