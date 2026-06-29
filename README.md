@@ -53,7 +53,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 ### Backend
 | Komponente                         | Version   |
 |------------------------------------|-----------|
-| **Gradle**                         | 9.6.0     |
+| **Gradle**                         | 9.6.1     |
 | **Java**                           | 26.0.1    |
 | **Spring Boot**                    | 4.1.0     |
 | **Dependency Management Plugin**   | 1.1.7     |
@@ -78,15 +78,15 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 |------------------------------------|-----------|
 | **Node.js**                        | 26.4.0    |
 | **pnpm**                           | 11.9.0    |
-| **@angular/common**                | 22.0.2    |
-| **@angular/compiler**              | 22.0.2    |
-| **@angular/core**                  | 22.0.2    |
-| **@angular/forms**                 | 22.0.2    |
-| **@angular/platform-browser**      | 22.0.2    |
-| **@angular/router**                | 22.0.2    |
+| **@angular/common**                | 22.0.4    |
+| **@angular/compiler**              | 22.0.4    |
+| **@angular/core**                  | 22.0.4    |
+| **@angular/forms**                 | 22.0.4    |
+| **@angular/platform-browser**      | 22.0.4    |
+| **@angular/router**                | 22.0.4    |
 | **@ng-icons/bootstrap-icons**      | 33.3.0    |
 | **@ng-icons/core**                 | 33.3.0    |
-| **@ng-select/ng-select**           | 23.0.1    |
+| **@ng-select/ng-select**           | 23.2.0    |
 | **@stomp/stompjs**                 | 7.3.0     |
 | **ngxsmk-datepicker**              | 2.3.1     |
 | **rxjs**                           | 7.8.2     |
@@ -98,19 +98,19 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **@angular-eslint/builder**        | 22.0.0    |
 | **@angular/build**                 | 22.0.4    |
 | **@angular/cli**                   | 22.0.4    |
-| **@angular/compiler-cli**          | 22.0.2    |
+| **@angular/compiler-cli**          | 22.0.4    |
 | **@eslint/js**                     | 10.0.1    |
 | **@playwright/test**               | 1.61.1    |
 | **@vitest/coverage-v8**            | 4.1.9     |
 | **@vitest/ui**                     | 4.1.9     |
 | **angular-eslint**                 | 22.0.0    |
-| **eslint**                         | 10.5.0    |
+| **eslint**                         | 10.6.0    |
 | **eslint-config-prettier**         | 10.1.8    |
 | **eslint-plugin-prettier**         | 5.5.6     |
 | **happy-dom**                      | 20.10.6   |
 | **playwright-coverage-reporter**   | 3.1.23    |
-| **prettier**                       | 3.8.4     |
-| **stylelint**                      | 17.13.0   |
+| **prettier**                       | 3.9.3     |
+| **stylelint**                      | 17.14.0   |
 | **stylelint-config-standard**      | 40.0.0    |
 | **stylelint-prettier**             | 5.0.3     |
 | **typescript**                     | 6.0.3     |
