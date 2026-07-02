@@ -78,12 +78,12 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 |------------------------------------|-----------|
 | **Node.js**                        | 26.4.0    |
 | **pnpm**                           | 11.9.0    |
-| **@angular/common**                | 22.0.4    |
-| **@angular/compiler**              | 22.0.4    |
-| **@angular/core**                  | 22.0.4    |
-| **@angular/forms**                 | 22.0.4    |
-| **@angular/platform-browser**      | 22.0.4    |
-| **@angular/router**                | 22.0.4    |
+| **@angular/common**                | 22.0.5    |
+| **@angular/compiler**              | 22.0.5    |
+| **@angular/core**                  | 22.0.5    |
+| **@angular/forms**                 | 22.0.5    |
+| **@angular/platform-browser**      | 22.0.5    |
+| **@angular/router**                | 22.0.5    |
 | **@ng-icons/bootstrap-icons**      | 33.3.0    |
 | **@ng-icons/core**                 | 33.3.0    |
 | **@ng-select/ng-select**           | 23.2.0    |
@@ -96,9 +96,9 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Dev)                   | Version   |
 |------------------------------------|-----------|
 | **@angular-eslint/builder**        | 22.0.0    |
-| **@angular/build**                 | 22.0.4    |
-| **@angular/cli**                   | 22.0.4    |
-| **@angular/compiler-cli**          | 22.0.4    |
+| **@angular/build**                 | 22.0.5    |
+| **@angular/cli**                   | 22.0.5    |
+| **@angular/compiler-cli**          | 22.0.5    |
 | **@eslint/js**                     | 10.0.1    |
 | **@playwright/test**               | 1.61.1    |
 | **@vitest/coverage-v8**            | 4.1.9     |
