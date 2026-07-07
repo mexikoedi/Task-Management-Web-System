@@ -77,15 +77,15 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Normal)                | Version   |
 |------------------------------------|-----------|
 | **Node.js**                        | 26.4.0    |
-| **pnpm**                           | 11.9.0    |
+| **pnpm**                           | 11.10.0   |
 | **@angular/common**                | 22.0.5    |
 | **@angular/compiler**              | 22.0.5    |
 | **@angular/core**                  | 22.0.5    |
 | **@angular/forms**                 | 22.0.5    |
 | **@angular/platform-browser**      | 22.0.5    |
 | **@angular/router**                | 22.0.5    |
-| **@ng-icons/bootstrap-icons**      | 33.3.0    |
-| **@ng-icons/core**                 | 33.3.0    |
+| **@ng-icons/bootstrap-icons**      | 33.4.0    |
+| **@ng-icons/core**                 | 33.4.0    |
 | **@ng-select/ng-select**           | 23.2.0    |
 | **@stomp/stompjs**                 | 7.3.0     |
 | **ngxsmk-datepicker**              | 2.3.1     |
@@ -101,8 +101,8 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **@angular/compiler-cli**          | 22.0.5    |
 | **@eslint/js**                     | 10.0.1    |
 | **@playwright/test**               | 1.61.1    |
-| **@vitest/coverage-v8**            | 4.1.9     |
-| **@vitest/ui**                     | 4.1.9     |
+| **@vitest/coverage-v8**            | 4.1.10    |
+| **@vitest/ui**                     | 4.1.10    |
 | **angular-eslint**                 | 22.0.0    |
 | **eslint**                         | 10.6.0    |
 | **eslint-config-prettier**         | 10.1.8    |
@@ -114,8 +114,8 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **stylelint-config-standard**      | 40.0.0    |
 | **stylelint-prettier**             | 5.0.3     |
 | **typescript**                     | 6.0.3     |
-| **typescript-eslint**              | 8.62.1    |
-| **vitest**                         | 4.1.9     |
+| **typescript-eslint**              | 8.63.0    |
+| **vitest**                         | 4.1.10    |
 
 ### Zusätzliche Tools
 - **IntelliJ IDEA** - IDE für Entwicklung
@@ -132,7 +132,7 @@ IntelliJ IDEA (oder andere IDE für Java und Angular)
 Mailpit (für E-Mail-Testing)
 Java 26.0.1 oder höher
 Node.js 26.4.0 oder höher
-pnpm 11.9.0 oder höher
+pnpm 11.10.0 oder höher
 ```
 
 Installation überprüfen:
