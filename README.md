@@ -76,14 +76,14 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 ### Frontend
 | Komponente (Normal)                | Version   |
 |------------------------------------|-----------|
-| **Node.js**                        | 26.4.0    |
+| **Node.js**                        | 26.5.0    |
 | **pnpm**                           | 11.10.0   |
-| **@angular/common**                | 22.0.5    |
-| **@angular/compiler**              | 22.0.5    |
-| **@angular/core**                  | 22.0.5    |
-| **@angular/forms**                 | 22.0.5    |
-| **@angular/platform-browser**      | 22.0.5    |
-| **@angular/router**                | 22.0.5    |
+| **@angular/common**                | 22.0.6    |
+| **@angular/compiler**              | 22.0.6    |
+| **@angular/core**                  | 22.0.6    |
+| **@angular/forms**                 | 22.0.6    |
+| **@angular/platform-browser**      | 22.0.6    |
+| **@angular/router**                | 22.0.6    |
 | **@ng-icons/bootstrap-icons**      | 33.4.0    |
 | **@ng-icons/core**                 | 33.4.0    |
 | **@ng-select/ng-select**           | 23.2.0    |
@@ -96,9 +96,9 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Dev)                   | Version   |
 |------------------------------------|-----------|
 | **@angular-eslint/builder**        | 22.0.0    |
-| **@angular/build**                 | 22.0.5    |
-| **@angular/cli**                   | 22.0.5    |
-| **@angular/compiler-cli**          | 22.0.5    |
+| **@angular/build**                 | 22.0.6    |
+| **@angular/cli**                   | 22.0.6    |
+| **@angular/compiler-cli**          | 22.0.6    |
 | **@eslint/js**                     | 10.0.1    |
 | **@playwright/test**               | 1.61.1    |
 | **@vitest/coverage-v8**            | 4.1.10    |
@@ -131,7 +131,7 @@ Stelle sicher, dass folgende Software installiert ist:
 IntelliJ IDEA (oder andere IDE für Java und Angular)
 Mailpit (für E-Mail-Testing)
 Java 26.0.1 oder höher
-Node.js 26.4.0 oder höher
+Node.js 26.5.0 oder höher
 pnpm 11.10.0 oder höher
 ```
 
