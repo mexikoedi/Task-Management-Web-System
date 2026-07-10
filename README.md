@@ -77,15 +77,15 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Normal)                | Version   |
 |------------------------------------|-----------|
 | **Node.js**                        | 26.5.0    |
-| **pnpm**                           | 11.10.0   |
+| **pnpm**                           | 11.11.0   |
 | **@angular/common**                | 22.0.6    |
 | **@angular/compiler**              | 22.0.6    |
 | **@angular/core**                  | 22.0.6    |
 | **@angular/forms**                 | 22.0.6    |
 | **@angular/platform-browser**      | 22.0.6    |
 | **@angular/router**                | 22.0.6    |
-| **@ng-icons/bootstrap-icons**      | 33.4.0    |
-| **@ng-icons/core**                 | 33.4.0    |
+| **@ng-icons/bootstrap-icons**      | 34.0.0    |
+| **@ng-icons/core**                 | 34.0.0    |
 | **@ng-select/ng-select**           | 23.2.0    |
 | **@stomp/stompjs**                 | 7.3.0     |
 | **ngxsmk-datepicker**              | 2.3.1     |
@@ -109,7 +109,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **eslint-plugin-prettier**         | 5.5.6     |
 | **happy-dom**                      | 20.10.6   |
 | **playwright-coverage-reporter**   | 3.1.23    |
-| **prettier**                       | 3.9.4     |
+| **prettier**                       | 3.9.5     |
 | **stylelint**                      | 17.14.0   |
 | **stylelint-config-standard**      | 40.0.0    |
 | **stylelint-prettier**             | 5.0.3     |
@@ -132,7 +132,7 @@ IntelliJ IDEA (oder andere IDE für Java und Angular)
 Mailpit (für E-Mail-Testing)
 Java 26.0.1 oder höher
 Node.js 26.5.0 oder höher
-pnpm 11.10.0 oder höher
+pnpm 11.11.0 oder höher
 ```
 
 Installation überprüfen:
