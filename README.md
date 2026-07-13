@@ -77,7 +77,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Normal)                | Version   |
 |------------------------------------|-----------|
 | **Node.js**                        | 26.5.0    |
-| **pnpm**                           | 11.11.0   |
+| **pnpm**                           | 11.12.0   |
 | **@angular/common**                | 22.0.6    |
 | **@angular/compiler**              | 22.0.6    |
 | **@angular/core**                  | 22.0.6    |
@@ -95,7 +95,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 
 | Komponente (Dev)                   | Version   |
 |------------------------------------|-----------|
-| **@angular-eslint/builder**        | 22.0.0    |
+| **@angular-eslint/builder**        | 22.1.0    |
 | **@angular/build**                 | 22.0.6    |
 | **@angular/cli**                   | 22.0.6    |
 | **@angular/compiler-cli**          | 22.0.6    |
@@ -103,8 +103,8 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **@playwright/test**               | 1.61.1    |
 | **@vitest/coverage-v8**            | 4.1.10    |
 | **@vitest/ui**                     | 4.1.10    |
-| **angular-eslint**                 | 22.0.0    |
-| **eslint**                         | 10.6.0    |
+| **angular-eslint**                 | 22.1.0    |
+| **eslint**                         | 10.7.0    |
 | **eslint-config-prettier**         | 10.1.8    |
 | **eslint-plugin-prettier**         | 5.5.6     |
 | **happy-dom**                      | 20.10.6   |
@@ -132,7 +132,7 @@ IntelliJ IDEA (oder andere IDE für Java und Angular)
 Mailpit (für E-Mail-Testing)
 Java 26.0.1 oder höher
 Node.js 26.5.0 oder höher
-pnpm 11.11.0 oder höher
+pnpm 11.12.0 oder höher
 ```
 
 Installation überprüfen:
