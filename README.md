@@ -77,7 +77,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Normal)                | Version   |
 |------------------------------------|-----------|
 | **Node.js**                        | 26.5.0    |
-| **pnpm**                           | 11.12.0   |
+| **pnpm**                           | 11.13.0   |
 | **@angular/common**                | 22.0.6    |
 | **@angular/compiler**              | 22.0.6    |
 | **@angular/core**                  | 22.0.6    |
@@ -114,7 +114,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **stylelint-config-standard**      | 40.0.0    |
 | **stylelint-prettier**             | 5.0.3     |
 | **typescript**                     | 6.0.3     |
-| **typescript-eslint**              | 8.63.0    |
+| **typescript-eslint**              | 8.64.0    |
 | **vitest**                         | 4.1.10    |
 
 ### Zusätzliche Tools
