@@ -77,13 +77,13 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Normal)                | Version   |
 |------------------------------------|-----------|
 | **Node.js**                        | 26.5.0    |
-| **pnpm**                           | 11.13.0   |
-| **@angular/common**                | 22.0.6    |
-| **@angular/compiler**              | 22.0.6    |
-| **@angular/core**                  | 22.0.6    |
-| **@angular/forms**                 | 22.0.6    |
-| **@angular/platform-browser**      | 22.0.6    |
-| **@angular/router**                | 22.0.6    |
+| **pnpm**                           | 11.13.1   |
+| **@angular/common**                | 22.0.7    |
+| **@angular/compiler**              | 22.0.7    |
+| **@angular/core**                  | 22.0.7    |
+| **@angular/forms**                 | 22.0.7    |
+| **@angular/platform-browser**      | 22.0.7    |
+| **@angular/router**                | 22.0.7    |
 | **@ng-icons/bootstrap-icons**      | 34.0.0    |
 | **@ng-icons/core**                 | 34.0.0    |
 | **@ng-select/ng-select**           | 23.2.0    |
@@ -96,9 +96,9 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Dev)                   | Version   |
 |------------------------------------|-----------|
 | **@angular-eslint/builder**        | 22.1.0    |
-| **@angular/build**                 | 22.0.6    |
-| **@angular/cli**                   | 22.0.6    |
-| **@angular/compiler-cli**          | 22.0.6    |
+| **@angular/build**                 | 22.0.7    |
+| **@angular/cli**                   | 22.0.7    |
+| **@angular/compiler-cli**          | 22.0.7    |
 | **@eslint/js**                     | 10.0.1    |
 | **@playwright/test**               | 1.61.1    |
 | **@vitest/coverage-v8**            | 4.1.10    |
@@ -132,7 +132,7 @@ IntelliJ IDEA (oder andere IDE für Java und Angular)
 Mailpit (für E-Mail-Testing)
 Java 26.0.1 oder höher
 Node.js 26.5.0 oder höher
-pnpm 11.12.0 oder höher
+pnpm 11.13.1 oder höher
 ```
 
 Installation überprüfen:
