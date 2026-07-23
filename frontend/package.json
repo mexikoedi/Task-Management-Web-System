@@ -33,7 +33,7 @@
     "@angular/core": "^22.0.7",
     "@angular/forms": "^22.0.7",
     "@angular/platform-browser": "^22.0.7",
-    "@angular/router": "^22.0.7",
+    "@angular/router": "^22.0.8",
     "@ng-icons/bootstrap-icons": "^34.0.0",
     "@ng-icons/core": "^34.0.0",
     "@ng-select/ng-select": "^23.4.0",
