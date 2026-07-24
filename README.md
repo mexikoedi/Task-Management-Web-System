@@ -77,7 +77,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Normal)                | Version   |
 |------------------------------------|-----------|
 | **Node.js**                        | 26.5.0    |
-| **pnpm**                           | 11.16.0   |
+| **pnpm**                           | 11.17.0   |
 | **@angular/common**                | 22.0.8    |
 | **@angular/compiler**              | 22.0.8    |
 | **@angular/core**                  | 22.0.8    |
@@ -96,8 +96,8 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Dev)                   | Version   |
 |------------------------------------|-----------|
 | **@angular-eslint/builder**        | 22.1.0    |
-| **@angular/build**                 | 22.0.7    |
-| **@angular/cli**                   | 22.0.7    |
+| **@angular/build**                 | 22.0.8    |
+| **@angular/cli**                   | 22.0.8    |
 | **@angular/compiler-cli**          | 22.0.8    |
 | **@eslint/js**                     | 10.0.1    |
 | **@playwright/test**               | 1.61.1    |
@@ -132,7 +132,7 @@ IntelliJ IDEA (oder andere IDE für Java und Angular)
 Mailpit (für E-Mail-Testing)
 Java 26.0.2 oder höher
 Node.js 26.5.0 oder höher
-pnpm 11.16.0 oder höher
+pnpm 11.17.0 oder höher
 ```
 
 Installation überprüfen:
