@@ -33,8 +33,8 @@ importers:
         specifier: ^34.0.0
         version: 34.0.0(@angular-devkit/schematics@22.0.8(chokidar@5.0.0))(@angular/common@22.0.8(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(@schematics/angular@22.0.8(chokidar@5.0.0))(rxjs@7.8.2)
       '@ng-select/ng-select':
-        specifier: ^23.5.0
-        version: 23.5.0(@angular/common@22.0.8(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(@angular/forms@22.0.8(@angular/common@22.0.8(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(@angular/platform-browser@22.0.8(@angular/common@22.0.8(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2)))(rxjs@7.8.2))
+        specifier: ^23.5.1
+        version: 23.5.1(@angular/common@22.0.8(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(@angular/forms@22.0.8(@angular/common@22.0.8(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(@angular/platform-browser@22.0.8(@angular/common@22.0.8(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2)))(rxjs@7.8.2))
       '@stomp/stompjs':
         specifier: ^7.3.0
         version: 7.3.0
@@ -1093,8 +1093,8 @@ packages:
       '@schematics/angular': '>=21.0.0'
       rxjs: ^6.5.3 || ^7.4.0
 
-  '@ng-select/ng-select@23.5.0':
-    resolution: {integrity: sha512-ApaKm5KeU5ynH7Du5/t/PR1VUmUJZOs9muzEQrPrj5OBIOvJp1vX88n9JosSjp/7B6v8ImsdCpL4BcnU7Byk9Q==}
+  '@ng-select/ng-select@23.5.1':
+    resolution: {integrity: sha512-gYnZNpSBPy4ZzYShx1CyvZ31dkc8t7KI7OZEfXWCw1pHrWbe/H1OKIguX6JEJjnOu2WH7toCvycA1Dtjp7Gnvg==}
     engines: {node: ^22.12.0 || ^24.0.0 || ^26.0.0}
     peerDependencies:
       '@angular/common': ^22.0.0
@@ -4490,7 +4490,7 @@ snapshots:
       rxjs: 7.8.2
       tslib: 2.8.1
 
-  '@ng-select/ng-select@23.5.0(@angular/common@22.0.8(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(@angular/forms@22.0.8(@angular/common@22.0.8(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(@angular/platform-browser@22.0.8(@angular/common@22.0.8(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2)))(rxjs@7.8.2))':
+  '@ng-select/ng-select@23.5.1(@angular/common@22.0.8(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(@angular/forms@22.0.8(@angular/common@22.0.8(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(@angular/platform-browser@22.0.8(@angular/common@22.0.8(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2)))(rxjs@7.8.2))':
     dependencies:
       '@angular/common': 22.0.8(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(rxjs@7.8.2)
       '@angular/core': 22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2)
