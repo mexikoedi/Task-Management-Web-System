@@ -76,19 +76,19 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 ### Frontend
 | Komponente (Normal)                | Version   |
 |------------------------------------|-----------|
-| **Node.js**                        | 26.5.0    |
-| **pnpm**                           | 11.17.0   |
-| **@angular/common**                | 22.0.8    |
-| **@angular/compiler**              | 22.0.8    |
-| **@angular/core**                  | 22.0.8    |
-| **@angular/forms**                 | 22.0.8    |
-| **@angular/platform-browser**      | 22.0.8    |
-| **@angular/router**                | 22.0.8    |
+| **Node.js**                        | 26.5.1    |
+| **pnpm**                           | 11.18.0   |
+| **@angular/common**                | 22.1.0    |
+| **@angular/compiler**              | 22.1.0    |
+| **@angular/core**                  | 22.1.0    |
+| **@angular/forms**                 | 22.1.0    |
+| **@angular/platform-browser**      | 22.1.0    |
+| **@angular/router**                | 22.1.0    |
 | **@ng-icons/bootstrap-icons**      | 34.0.0    |
 | **@ng-icons/core**                 | 34.0.0    |
 | **@ng-select/ng-select**           | 23.5.1    |
 | **@stomp/stompjs**                 | 7.3.0     |
-| **ngxsmk-datepicker**              | 3.0.2     |
+| **ngxsmk-datepicker**              | 3.0.3     |
 | **rxjs**                           | 7.8.2     |
 | **sweetalert2**                    | 11.26.25  |
 | **tslib**                          | 2.8.1     |
@@ -96,9 +96,9 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Dev)                   | Version   |
 |------------------------------------|-----------|
 | **@angular-eslint/builder**        | 22.1.0    |
-| **@angular/build**                 | 22.0.8    |
-| **@angular/cli**                   | 22.0.8    |
-| **@angular/compiler-cli**          | 22.0.8    |
+| **@angular/build**                 | 22.1.1    |
+| **@angular/cli**                   | 22.1.1    |
+| **@angular/compiler-cli**          | 22.1.0    |
 | **@eslint/js**                     | 10.0.1    |
 | **@playwright/test**               | 1.62.0    |
 | **@vitest/coverage-v8**            | 4.1.10    |
@@ -131,8 +131,8 @@ Stelle sicher, dass folgende Software installiert ist:
 IntelliJ IDEA (oder andere IDE für Java und Angular)
 Mailpit (für E-Mail-Testing)
 Java 26.0.2 oder höher
-Node.js 26.5.0 oder höher
-pnpm 11.17.0 oder höher
+Node.js 26.5.1 oder höher
+pnpm 11.18.0 oder höher
 ```
 
 Installation überprüfen:
