@@ -35,7 +35,7 @@
     "@angular/platform-browser": "^22.1.0",
     "@angular/router": "^22.1.0",
     "@ng-icons/bootstrap-icons": "^34.0.0",
-    "@ng-icons/core": "^34.0.0",
+    "@ng-icons/core": "^35.0.1",
     "@ng-select/ng-select": "^23.5.1",
     "@stomp/stompjs": "^7.3.0",
     "ngxsmk-datepicker": "^3.0.3",
