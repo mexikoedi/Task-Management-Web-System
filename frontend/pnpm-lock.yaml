@@ -39,8 +39,8 @@ importers:
         specifier: ^7.3.0
         version: 7.3.0
       ngxsmk-datepicker:
-        specifier: ^3.0.3
-        version: 3.0.3(@angular/cdk@22.1.2(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(@angular/platform-browser@22.1.2(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2)))(rxjs@7.8.2))(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(@angular/forms@22.1.2(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(@angular/platform-browser@22.1.2(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2)))(rxjs@7.8.2))(luxon@3.7.2)
+        specifier: ^3.0.4
+        version: 3.0.4(@angular/cdk@22.1.2(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(@angular/platform-browser@22.1.2(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2)))(rxjs@7.8.2))(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(@angular/forms@22.1.2(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(@angular/platform-browser@22.1.2(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2)))(rxjs@7.8.2))(luxon@3.7.2)
       rxjs:
         specifier: ^7.8.2
         version: 7.8.2
@@ -2672,8 +2672,8 @@ packages:
     resolution: {integrity: sha512-8Ofs/AUQh8MaEcrlq5xOX0CQ9ypTF5dl78mjlMNfOK08fzpgTHQRQPBxcPlEtIw0yRpws+Zo/3r+5WRby7u3Gg==}
     engines: {node: '>= 0.6'}
 
-  ngxsmk-datepicker@3.0.3:
-    resolution: {integrity: sha512-pqDUTkIFQPC4Z6gbpblrnNHMvV2nuxPHoniyuS4x8ywHEBGvp3h0i9UaaE4nUY7T/0BzX/85UnRk+kel1+xb0g==}
+  ngxsmk-datepicker@3.0.4:
+    resolution: {integrity: sha512-qCCwpEfzAj1NCr1OyuI83mQOQKUP6wOLnAkT+ZvkY989qZQq6zw62V+R7eHIvAhZL5uZ+5SndjL3/2YqSAmVyA==}
     engines: {node: '>=20.19.0 || >=22.12.0', npm: '>=10.0.0'}
     peerDependencies:
       '@angular/cdk': '*'
@@ -5704,7 +5704,7 @@ snapshots:
 
   negotiator@1.0.0: {}
 
-  ngxsmk-datepicker@3.0.3(@angular/cdk@22.1.2(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(@angular/platform-browser@22.1.2(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2)))(rxjs@7.8.2))(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(@angular/forms@22.1.2(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(@angular/platform-browser@22.1.2(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2)))(rxjs@7.8.2))(luxon@3.7.2):
+  ngxsmk-datepicker@3.0.4(@angular/cdk@22.1.2(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(@angular/platform-browser@22.1.2(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2)))(rxjs@7.8.2))(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(@angular/forms@22.1.2(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(@angular/platform-browser@22.1.2(@angular/common@22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2)))(rxjs@7.8.2))(luxon@3.7.2):
     dependencies:
       '@angular/common': 22.1.2(@angular/core@22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2))(rxjs@7.8.2)
       '@angular/core': 22.1.2(@angular/compiler@22.1.2)(rxjs@7.8.2)
