@@ -36,7 +36,7 @@
     "@angular/router": "^22.1.4",
     "@ng-icons/bootstrap-icons": "^35.1.0",
     "@ng-icons/core": "^35.1.0",
-    "@ng-select/ng-select": "^24.0.2",
+    "@ng-select/ng-select": "^24.0.3",
     "@stomp/stompjs": "^7.3.0",
     "ngxsmk-datepicker": "^3.0.5",
     "rxjs": "^7.8.2",
