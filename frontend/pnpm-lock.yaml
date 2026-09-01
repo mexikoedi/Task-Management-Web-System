@@ -88,8 +88,8 @@ importers:
         specifier: ^5.5.6
         version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.9.1(supports-color@10.2.2)))(eslint@10.9.1(supports-color@10.2.2))(prettier@3.9.6)
       happy-dom:
-        specifier: ^20.11.12
-        version: 20.11.12
+        specifier: ^20.11.15
+        version: 20.11.15
       playwright-coverage-reporter:
         specifier: ^3.1.23
         version: 3.1.23(@playwright/test@1.62.1)
@@ -113,7 +113,7 @@ importers:
         version: 8.68.0(eslint@10.9.1(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       vitest:
         specifier: ^4.1.11
-        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(@vitest/ui@4.1.11)(happy-dom@20.11.12)(vite@8.1.5(@types/node@26.4.0)(esbuild@0.28.2)(sass@1.101.0))
+        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(@vitest/ui@4.1.11)(happy-dom@20.11.15)(vite@8.1.5(@types/node@26.4.0)(esbuild@0.28.2)(sass@1.101.0))
 
 packages:
 
@@ -2279,8 +2279,8 @@ packages:
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
 
-  happy-dom@20.11.12:
-    resolution: {integrity: sha512-7+mrTTD+6fOG3dx0URrDLrCX8QDTE+YujSOQD4VPZcYze/yJ0vVhRKaIBTjqlk+R4NetxVz21odnevHYIjIJ+g==}
+  happy-dom@20.11.15:
+    resolution: {integrity: sha512-bj2gQIKzOYB6GAAJ/jrN/IFHQe79MhEOiMAspRRWiKebRoegvGDv2B6eUt8KiZMTEDvx6ri0fAF7Xh/umAUUZA==}
     engines: {node: '>=20.0.0'}
 
   has-flag@4.0.0:
@@ -3538,7 +3538,7 @@ snapshots:
       '@angular/platform-browser': 22.1.4(@angular/common@22.1.4(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))
       lmdb: 3.5.6
       postcss: 8.5.26
-      vitest: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(@vitest/ui@4.1.11)(happy-dom@20.11.12)(vite@8.1.5(@types/node@26.4.0)(esbuild@0.28.2)(sass@1.101.0))
+      vitest: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(@vitest/ui@4.1.11)(happy-dom@20.11.15)(vite@8.1.5(@types/node@26.4.0)(esbuild@0.28.2)(sass@1.101.0))
     transitivePeerDependencies:
       - '@types/node'
       - '@vitejs/devtools'
@@ -4688,7 +4688,7 @@ snapshots:
       obug: 2.1.4
       std-env: 4.2.0
       tinyrainbow: 3.1.1
-      vitest: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(@vitest/ui@4.1.11)(happy-dom@20.11.12)(vite@8.1.5(@types/node@26.4.0)(esbuild@0.28.2)(sass@1.101.0))
+      vitest: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(@vitest/ui@4.1.11)(happy-dom@20.11.15)(vite@8.1.5(@types/node@26.4.0)(esbuild@0.28.2)(sass@1.101.0))
 
   '@vitest/expect@4.1.11':
     dependencies:
@@ -4734,7 +4734,7 @@ snapshots:
       sirv: 3.0.2
       tinyglobby: 0.2.17
       tinyrainbow: 3.1.1
-      vitest: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(@vitest/ui@4.1.11)(happy-dom@20.11.12)(vite@8.1.5(@types/node@26.4.0)(esbuild@0.28.2)(sass@1.101.0))
+      vitest: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(@vitest/ui@4.1.11)(happy-dom@20.11.15)(vite@8.1.5(@types/node@26.4.0)(esbuild@0.28.2)(sass@1.101.0))
 
   '@vitest/utils@4.1.11':
     dependencies:
@@ -5380,7 +5380,7 @@ snapshots:
 
   graceful-fs@4.2.11: {}
 
-  happy-dom@20.11.12:
+  happy-dom@20.11.15:
     dependencies:
       '@types/node': 26.4.0
       '@types/whatwg-mimetype': 3.0.2
@@ -6350,7 +6350,7 @@ snapshots:
       fsevents: 2.3.3
       sass: 1.101.0
 
-  vitest@4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(@vitest/ui@4.1.11)(happy-dom@20.11.12)(vite@8.1.5(@types/node@26.4.0)(esbuild@0.28.2)(sass@1.101.0)):
+  vitest@4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(@vitest/ui@4.1.11)(happy-dom@20.11.15)(vite@8.1.5(@types/node@26.4.0)(esbuild@0.28.2)(sass@1.101.0)):
     dependencies:
       '@vitest/expect': 4.1.11
       '@vitest/mocker': 4.1.11(vite@8.1.5(@types/node@26.4.0)(esbuild@0.28.2)(sass@1.101.0))
@@ -6376,7 +6376,7 @@ snapshots:
       '@types/node': 26.4.0
       '@vitest/coverage-v8': 4.1.11(vitest@4.1.11)
       '@vitest/ui': 4.1.11(vitest@4.1.11)
-      happy-dom: 20.11.12
+      happy-dom: 20.11.15
     transitivePeerDependencies:
       - msw
 
