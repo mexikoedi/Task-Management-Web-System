@@ -95,7 +95,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 
 | Komponente (Dev)                   | Version   |
 |------------------------------------|-----------|
-| **@angular-eslint/builder**        | 22.1.0    |
+| **@angular-eslint/builder**        | 22.2.0    |
 | **@angular/build**                 | 22.1.6    |
 | **@angular/cli**                   | 22.1.6    |
 | **@angular/compiler-cli**          | 22.1.4    |
@@ -103,7 +103,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **@playwright/test**               | 1.62.1    |
 | **@vitest/coverage-v8**            | 4.1.11    |
 | **@vitest/ui**                     | 4.1.11    |
-| **angular-eslint**                 | 22.1.0    |
+| **angular-eslint**                 | 22.2.0    |
 | **eslint**                         | 10.9.1    |
 | **eslint-config-prettier**         | 10.1.8    |
 | **eslint-plugin-prettier**         | 5.5.6     |
