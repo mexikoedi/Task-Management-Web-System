@@ -114,7 +114,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **stylelint-config-standard**      | 40.0.0    |
 | **stylelint-prettier**             | 5.0.3     |
 | **typescript**                     | 6.0.3     |
-| **typescript-eslint**              | 8.68.0    |
+| **typescript-eslint**              | 8.69.0    |
 | **vitest**                         | 4.1.11    |
 
 ### Zusätzliche Tools
