@@ -30,8 +30,8 @@ importers:
         specifier: ^35.1.0
         version: 35.1.0
       '@ng-icons/core':
-        specifier: ^35.1.0
-        version: 35.1.0(@angular-devkit/schematics@22.1.6(chokidar@5.0.0))(@angular/common@22.1.4(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(@schematics/angular@22.1.6(chokidar@5.0.0))(rxjs@7.8.2)
+        specifier: ^36.0.0
+        version: 36.0.0(@angular-devkit/schematics@22.1.6(chokidar@5.0.0))(@angular/common@22.1.4(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(@schematics/angular@22.1.6(chokidar@5.0.0))(rxjs@7.8.2)
       '@ng-select/ng-select':
         specifier: ^24.0.4
         version: 24.0.4(@angular/cdk@22.1.4(@angular/common@22.1.4(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(@angular/platform-browser@22.1.4(@angular/common@22.1.4(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2)))(rxjs@7.8.2))(@angular/common@22.1.4(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(@angular/forms@22.1.4(@angular/common@22.1.4(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(@angular/platform-browser@22.1.4(@angular/common@22.1.4(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2)))(rxjs@7.8.2))
@@ -1067,8 +1067,8 @@ packages:
   '@ng-icons/bootstrap-icons@35.1.0':
     resolution: {integrity: sha512-1pEa859DEQWAnBx1xv8FnHJs1t4yFY/a+Dw/UVb34GC233x+/s2ZKtAbgThH8lCtr4rn0uSaf9iq7XXKhqye4A==}
 
-  '@ng-icons/core@35.1.0':
-    resolution: {integrity: sha512-GfJXjJx4PRSf6hWTcCWrrqwVDQmAc5KGIbk2eAekebDt0ZcJbCLMhax6u3UoEzHViYMyDtXo3a+t489FvO3WwA==}
+  '@ng-icons/core@36.0.0':
+    resolution: {integrity: sha512-u4BxD2MTeZNbugAHQcUrG2lhOFDmfbiZwqvxA2uABHrYQmTG1xjnTe7kivJJ/Cl2MfTy8U8aIL3u0eryaPavCA==}
     peerDependencies:
       '@angular-devkit/schematics': '>=22.0.0'
       '@angular/common': '>=22.0.0'
@@ -4297,7 +4297,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@ng-icons/core@35.1.0(@angular-devkit/schematics@22.1.6(chokidar@5.0.0))(@angular/common@22.1.4(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(@schematics/angular@22.1.6(chokidar@5.0.0))(rxjs@7.8.2)':
+  '@ng-icons/core@36.0.0(@angular-devkit/schematics@22.1.6(chokidar@5.0.0))(@angular/common@22.1.4(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(@schematics/angular@22.1.6(chokidar@5.0.0))(rxjs@7.8.2)':
     dependencies:
       '@angular-devkit/schematics': 22.1.6(chokidar@5.0.0)
       '@angular/common': 22.1.4(@angular/core@22.1.4(@angular/compiler@22.1.4)(rxjs@7.8.2))(rxjs@7.8.2)
