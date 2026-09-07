@@ -9,7 +9,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html', 'json', 'lcov'],
-      exclude: ['src/app/service/**', 'src/app/shared/**', '*.html'],
+      exclude: ['src/app/service/**', 'src/app/shared/**', 'src/**/*.html'],
     },
   },
 });
