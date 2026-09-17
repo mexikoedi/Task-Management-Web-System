@@ -85,7 +85,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **@angular/router**                   | 22.1.5    |
 | **@ng-icons/bootstrap-icons**         | 36.0.0    |
 | **@ng-icons/core**                    | 36.0.0    |
-| **@ng-select/ng-select**              | 24.1.1    |
+| **@ng-select/ng-select**              | 24.1.2    |
 | **@stomp/stompjs**                    | 7.3.0     |
 | **ngxsmk-datepicker**                 | 3.0.5     |
 | **rxjs**                              | 7.8.2     |
@@ -95,8 +95,8 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Dev)                      | Version   |
 |---------------------------------------|-----------|
 | **@angular-eslint/builder**           | 22.4.0    |
-| **@angular/build**                    | 22.1.7    |
-| **@angular/cli**                      | 22.1.7    |
+| **@angular/build**                    | 22.1.8    |
+| **@angular/cli**                      | 22.1.8    |
 | **@angular/compiler-cli**             | 22.1.5    |
 | **@eslint/js**                        | 10.0.1    |
 | **@playwright/test**                  | 1.63.0    |
@@ -107,7 +107,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **eslint**                            | 10.10.0   |
 | **eslint-config-prettier**            | 10.1.8    |
 | **eslint-plugin-prettier**            | 5.5.6     |
-| **happy-dom**                         | 20.14.0   |
+| **happy-dom**                         | 20.14.5   |
 | **monocart-coverage-reports**         | 2.13.0    |
 | **prettier**                          | 3.9.6     |
 | **stylelint**                         | 17.15.0   |
