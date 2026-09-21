@@ -54,7 +54,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente                            | Version   |
 |---------------------------------------|-----------|
 | **Gradle**                            | 9.7.1     |
-| **Java**                              | 26.0.2.1  |
+| **Java**                              | 27.0.0.0  |
 | **Spring Boot**                       | 4.1.1     |
 | **Dependency Management Plugin**      | 1.1.7     |
 | **FreeFair Lombok**                   | 9.5.0     |
@@ -75,14 +75,14 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 ### Frontend
 | Komponente (Normal)                   | Version   |
 |---------------------------------------|-----------|
-| **Node.js**                           | 26.8.1    |
-| **pnpm**                              | 12.3.4    |
-| **@angular/common**                   | 22.1.5    |
-| **@angular/compiler**                 | 22.1.5    |
-| **@angular/core**                     | 22.1.5    |
-| **@angular/forms**                    | 22.1.5    |
-| **@angular/platform-browser**         | 22.1.5    |
-| **@angular/router**                   | 22.1.5    |
+| **Node.js**                           | 26.9.0    |
+| **pnpm**                              | 12.5.1    |
+| **@angular/common**                   | 22.1.7    |
+| **@angular/compiler**                 | 22.1.7    |
+| **@angular/core**                     | 22.1.7    |
+| **@angular/forms**                    | 22.1.7    |
+| **@angular/platform-browser**         | 22.1.7    |
+| **@angular/router**                   | 22.1.7    |
 | **@ng-icons/bootstrap-icons**         | 36.0.0    |
 | **@ng-icons/core**                    | 36.0.0    |
 | **@ng-select/ng-select**              | 24.1.2    |
@@ -94,28 +94,28 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 
 | Komponente (Dev)                      | Version   |
 |---------------------------------------|-----------|
-| **@angular-eslint/builder**           | 22.4.0    |
+| **@angular-eslint/builder**           | 22.5.0    |
 | **@angular/build**                    | 22.1.8    |
 | **@angular/cli**                      | 22.1.8    |
-| **@angular/compiler-cli**             | 22.1.5    |
+| **@angular/compiler-cli**             | 22.1.7    |
 | **@eslint/js**                        | 10.0.1    |
 | **@playwright/test**                  | 1.63.0    |
 | **@soroush.tech/playwright-coverage** | 3.1.2     |
-| **@vitest/coverage-v8**               | 5.0.0     |
-| **@vitest/ui**                        | 5.0.0     |
-| **angular-eslint**                    | 22.4.0    |
-| **eslint**                            | 10.10.0   |
+| **@vitest/coverage-v8**               | 5.0.1     |
+| **@vitest/ui**                        | 5.0.1     |
+| **angular-eslint**                    | 22.5.0    |
+| **eslint**                            | 10.11.0   |
 | **eslint-config-prettier**            | 10.1.8    |
 | **eslint-plugin-prettier**            | 5.5.6     |
 | **happy-dom**                         | 20.14.5   |
 | **monocart-coverage-reports**         | 2.13.0    |
-| **prettier**                          | 3.9.6     |
+| **prettier**                          | 3.9.8     |
 | **stylelint**                         | 17.15.0   |
 | **stylelint-config-standard**         | 40.0.0    |
 | **stylelint-prettier**                | 5.0.3     |
 | **typescript**                        | 6.0.3     |
-| **typescript-eslint**                 | 8.69.0    |
-| **vitest**                            | 5.0.0     |
+| **typescript-eslint**                 | 8.70.0    |
+| **vitest**                            | 5.0.1     |
 
 ### Zusätzliche Tools
 - **IntelliJ IDEA** - IDE für Entwicklung
@@ -130,9 +130,9 @@ Stelle sicher, dass folgende Software installiert ist:
 ```
 IntelliJ IDEA (oder andere IDE für Java und Angular)
 Mailpit (für E-Mail-Testing)
-Java 26.0.2.1 oder höher
-Node.js 26.8.1 oder höher
-pnpm 12.3.4 oder höher
+Java 27.0.0.0 oder höher
+Node.js 26.9.0 oder höher
+pnpm 12.5.1 oder höher
 ```
 
 Installation überprüfen:
