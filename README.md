@@ -57,7 +57,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **Java**                              | 27.0.0.0  |
 | **Spring Boot**                       | 4.1.1     |
 | **Dependency Management Plugin**      | 1.1.7     |
-| **FreeFair Lombok**                   | 9.5.0     |
+| **FreeFair Lombok**                   | 9.7.0     |
 | **Spring Boot Starter Actuator**      | 4.1.1     |
 | **Spring Starter Web MVC**            | 4.1.1     |
 | **Spring Starter WebSocket**          | 4.1.1     |
@@ -114,7 +114,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **stylelint-config-standard**         | 40.0.0    |
 | **stylelint-prettier**                | 5.0.3     |
 | **typescript**                        | 6.0.3     |
-| **typescript-eslint**                 | 8.70.0    |
+| **typescript-eslint**                 | 8.70.1    |
 | **vitest**                            | 5.0.1     |
 
 ### Zusätzliche Tools
