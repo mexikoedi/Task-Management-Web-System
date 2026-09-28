@@ -28,15 +28,15 @@
     "Firefox ESR"
   ],
   "dependencies": {
-    "@angular/common": "^22.1.7",
-    "@angular/compiler": "^22.1.7",
-    "@angular/core": "^22.1.7",
-    "@angular/forms": "^22.1.7",
-    "@angular/platform-browser": "^22.1.7",
-    "@angular/router": "^22.1.7",
-    "@ng-icons/bootstrap-icons": "^36.0.0",
-    "@ng-icons/core": "^36.0.0",
-    "@ng-select/ng-select": "^24.1.2",
+    "@angular/common": "^22.2.0",
+    "@angular/compiler": "^22.2.0",
+    "@angular/core": "^22.2.0",
+    "@angular/forms": "^22.2.0",
+    "@angular/platform-browser": "^22.2.0",
+    "@angular/router": "^22.2.0",
+    "@ng-icons/bootstrap-icons": "^36.1.0",
+    "@ng-icons/core": "^36.1.0",
+    "@ng-select/ng-select": "^24.2.0",
     "@stomp/stompjs": "^7.3.0",
     "ngxsmk-datepicker": "^3.0.6",
     "rxjs": "^7.8.2",
@@ -47,11 +47,11 @@
     "@angular-eslint/builder": "^22.5.0",
     "@angular/build": "^22.2.0",
     "@angular/cli": "^22.2.0",
-    "@angular/compiler-cli": "^22.1.7",
+    "@angular/compiler-cli": "^22.2.0",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.63.0",
     "@soroush.tech/playwright-coverage": "^3.1.2",
-    "@vitest/coverage-v8": "^5.0.1",
+    "@vitest/coverage-v8": "^5.0.2",
     "@vitest/ui": "^5.0.1",
     "angular-eslint": "^22.5.0",
     "eslint": "^10.11.0",
@@ -64,8 +64,8 @@
     "stylelint-config-standard": "^40.0.0",
     "stylelint-prettier": "^5.0.3",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.70.1",
-    "vitest": "^5.0.1"
+    "typescript-eslint": "^8.71.0",
+    "vitest": "^5.0.2"
   },
-  "packageManager": "pnpm@12.5.1+sha512.e3f305bc784a2bc89f5ad3b6138889470fae8d2af5f36b61216ec91c2c3d64089775f9de38aac331044ea40f245cb0d5666392dfdf65824e1907ef6a2c62de5f"
+  "packageManager": "pnpm@12.6.0+sha512.3ef68f951cb111ac204b4a5a16f0b2ddf0da56a96e0413e81d855d9f0b55ef926714709028e1cd00c405c2c5fb7b9e8ec4dc46777c805d0373c2f2ff00fd20ec"
 }
