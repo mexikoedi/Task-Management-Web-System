@@ -197,8 +197,8 @@ importers:
         specifier: ^7.3.0
         version: 7.3.0
       ngxsmk-datepicker:
-        specifier: ^3.0.5
-        version: 3.0.5(283f12fd891b8f21d7eb3f6ac3e3559a)
+        specifier: ^3.0.6
+        version: 3.0.6(283f12fd891b8f21d7eb3f6ac3e3559a)
       rxjs:
         specifier: ^7.8.2
         version: 7.8.2
@@ -2909,8 +2909,8 @@ packages:
     resolution: {integrity: sha512-NMPBRMJgiQHjbd8phG3Vebdx4kZ1H121rbl5IkMqeOsahptB9BKo/d7oJ3zTXqTgagn2bWlNSXkh0QUGM31RYg==}
     engines: {node: '>=18'}
 
-  ngxsmk-datepicker@3.0.5:
-    resolution: {integrity: sha512-xZ/3Ij1dSpjVog/+JZNdkqIU/KS5aPYRMpoP6hFcQEtAv0dLkqlPBvmmTGbU0uERuM01L1+ivY2L4esgccfVpg==}
+  ngxsmk-datepicker@3.0.6:
+    resolution: {integrity: sha512-gtakNv7FGhpZzw/dFY4DgkL0HS+6Sldc8oN7nswbP2R8s7CHg58Xt5r7uwDj5EgUsfYpc+p7nzTLPPNxzwW+sA==}
     engines: {node: '>=20.19.0 || >=22.12.0', npm: '>=10.0.0'}
     peerDependencies:
       '@angular/cdk': '*'
@@ -6023,7 +6023,7 @@ snapshots:
     dependencies:
       content-type: 2.1.0
 
-  ngxsmk-datepicker@3.0.5(283f12fd891b8f21d7eb3f6ac3e3559a):
+  ngxsmk-datepicker@3.0.6(283f12fd891b8f21d7eb3f6ac3e3559a):
     dependencies:
       '@angular/common': 22.1.7(@angular/core@22.1.7(@angular/compiler@22.1.7)(rxjs@7.8.2))(rxjs@7.8.2)
       '@angular/core': 22.1.7(@angular/compiler@22.1.7)(rxjs@7.8.2)
