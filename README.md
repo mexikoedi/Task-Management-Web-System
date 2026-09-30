@@ -63,7 +63,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **Spring Starter WebSocket**          | 4.1.1     |
 | **Spring Starter Data JPA**           | 4.1.1     |
 | **Spring H2console**                  | 4.1.1     |
-| **H2 Database Engine**                | 2.5.250   |
+| **H2 Database Engine**                | 2.5.252   |
 | **Spring Starter Validation**         | 4.1.1     |
 | **Spring Starter Mail**               | 4.1.1     |
 | **Spring Starter Security**           | 4.1.1     |
