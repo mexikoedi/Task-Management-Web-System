@@ -53,7 +53,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 ### Backend
 | Komponente                            | Version   |
 |---------------------------------------|-----------|
-| **Gradle**                            | 9.8.0     |
+| **Gradle**                            | 9.8.1     |
 | **Java**                              | 27.0.0.0  |
 | **Spring Boot**                       | 4.1.1     |
 | **Dependency Management Plugin**      | 1.1.7     |
@@ -75,18 +75,18 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 ### Frontend
 | Komponente (Normal)                   | Version   |
 |---------------------------------------|-----------|
-| **Node.js**                           | 26.10.0   |
-| **pnpm**                              | 12.9.1    |
-| **@angular/common**                   | 22.2.1    |
-| **@angular/compiler**                 | 22.2.1    |
-| **@angular/core**                     | 22.2.1    |
-| **@angular/forms**                    | 22.2.1    |
-| **@angular/platform-browser**         | 22.2.1    |
-| **@angular/router**                   | 22.2.1    |
+| **Node.js**                           | 26.11.1   |
+| **pnpm**                              | 12.11.2   |
+| **@angular/common**                   | 22.2.2    |
+| **@angular/compiler**                 | 22.2.2    |
+| **@angular/core**                     | 22.2.2    |
+| **@angular/forms**                    | 22.2.2    |
+| **@angular/platform-browser**         | 22.2.2    |
+| **@angular/router**                   | 22.2.2    |
 | **@ng-icons/bootstrap-icons**         | 36.1.0    |
 | **@ng-icons/core**                    | 36.1.0    |
-| **@ng-select/ng-select**              | 24.2.0    |
-| **@stomp/stompjs**                    | 7.3.0     |
+| **@ng-select/ng-select**              | 24.2.1    |
+| **@stomp/stompjs**                    | 7.4.0     |
 | **ngxsmk-datepicker**                 | 3.0.6     |
 | **rxjs**                              | 7.8.2     |
 | **sweetalert2**                       | 11.26.25  |
@@ -94,28 +94,28 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 
 | Komponente (Dev)                      | Version   |
 |---------------------------------------|-----------|
-| **@angular-eslint/builder**           | 22.5.0    |
-| **@angular/build**                    | 22.2.1    |
-| **@angular/cli**                      | 22.2.1    |
-| **@angular/compiler-cli**             | 22.2.1    |
+| **@angular-eslint/builder**           | 22.6.0    |
+| **@angular/build**                    | 22.2.2    |
+| **@angular/cli**                      | 22.2.2    |
+| **@angular/compiler-cli**             | 22.2.2    |
 | **@eslint/js**                        | 10.0.1    |
-| **@playwright/test**                  | 1.63.0    |
+| **@playwright/test**                  | 1.64.0    |
 | **@soroush.tech/playwright-coverage** | 3.1.2     |
-| **@vitest/coverage-v8**               | 5.0.3     |
-| **@vitest/ui**                        | 5.0.3     |
-| **angular-eslint**                    | 22.5.0    |
+| **@vitest/coverage-v8**               | 5.0.4     |
+| **@vitest/ui**                        | 5.0.4     |
+| **angular-eslint**                    | 22.6.0    |
 | **eslint**                            | 10.12.0   |
 | **eslint-config-prettier**            | 10.1.8    |
-| **eslint-plugin-prettier**            | 5.5.6     |
-| **happy-dom**                         | 20.14.5   |
-| **monocart-coverage-reports**         | 2.13.0    |
-| **prettier**                          | 3.9.9     |
+| **eslint-plugin-prettier**            | 5.5.7     |
+| **happy-dom**                         | 21.0.1    |
+| **monocart-coverage-reports**         | 2.13.2    |
+| **prettier**                          | 3.9.10    |
 | **stylelint**                         | 17.16.0   |
 | **stylelint-config-standard**         | 40.0.0    |
 | **stylelint-prettier**                | 5.0.3     |
 | **typescript**                        | 6.0.3     |
-| **typescript-eslint**                 | 8.71.0    |
-| **vitest**                            | 5.0.3     |
+| **typescript-eslint**                 | 8.71.2    |
+| **vitest**                            | 5.0.4     |
 
 ### Zusätzliche Tools
 - **IntelliJ IDEA** - IDE für Entwicklung
@@ -131,8 +131,8 @@ Stelle sicher, dass folgende Software installiert ist:
 IntelliJ IDEA (oder andere IDE für Java und Angular)
 Mailpit (für E-Mail-Testing)
 Java 27.0.0.0 oder höher
-Node.js 26.10.0 oder höher
-pnpm 12.9.1 oder höher
+Node.js 26.11.1 oder höher
+pnpm 12.11.2 oder höher
 ```
 
 Installation überprüfen:
