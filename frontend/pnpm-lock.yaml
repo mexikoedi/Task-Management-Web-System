@@ -194,8 +194,8 @@ importers:
         specifier: ^24.2.1
         version: 24.2.1(c16a4205ea3b15ef29cd8e705c42dd79)
       '@stomp/stompjs':
-        specifier: ^7.4.0
-        version: 7.4.0
+        specifier: ^7.5.0
+        version: 7.5.0
       ngxsmk-datepicker:
         specifier: ^3.0.6
         version: 3.0.6(e458387b688e3082ec55da661d844148)
@@ -1574,8 +1574,8 @@ packages:
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
-  '@stomp/stompjs@7.4.0':
-    resolution: {integrity: sha512-JSyT230gT3g8v9MPLb/OukN46M+omkUR79ixg6L31em41RaHud6DqBTiooeP7rpcKyzKkpgZ72HDUjFqGKYJvg==}
+  '@stomp/stompjs@7.5.0':
+    resolution: {integrity: sha512-xh3sdzEYH8M+krQGBOgj+U0BLBHd7ccTj8YM3mVxaULMTW/wx2QBWf448pilRiWZKjglhDmNILxM3W+j/Ch9uw==}
 
   '@types/chai@5.2.3':
     resolution: {integrity: sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA==}
@@ -4329,7 +4329,7 @@ snapshots:
 
   '@standard-schema/spec@1.1.0': {}
 
-  '@stomp/stompjs@7.4.0': {}
+  '@stomp/stompjs@7.5.0': {}
 
   '@types/chai@5.2.3':
     dependencies:
