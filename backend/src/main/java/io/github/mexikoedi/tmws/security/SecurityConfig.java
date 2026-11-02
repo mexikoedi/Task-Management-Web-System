@@ -52,23 +52,22 @@ public class SecurityConfig {
     http.csrf(AbstractHttpConfigurer::disable)
         .cors(Customizer.withDefaults())
         .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        .authorizeHttpRequests(
-            auth ->
-                auth.requestMatchers(
-                        "/api/auth/login",
-                        "/api/auth/register",
-                        "/api/auth/verify-email",
-                        "/api/auth/password-reset",
-                        "/api/auth/reset-password",
-                        "/api/health",
-                        "/api/info",
-                        "/api/h2-console/**",
-                        "/api/ws/**")
-                    .permitAll()
-                    .requestMatchers(HttpMethod.OPTIONS, "/**")
-                    .permitAll()
-                    .anyRequest()
-                    .authenticated())
+        .authorizeHttpRequests(auth ->
+            auth.requestMatchers(
+                    "/api/auth/login",
+                    "/api/auth/register",
+                    "/api/auth/verify-email",
+                    "/api/auth/password-reset",
+                    "/api/auth/reset-password",
+                    "/api/health",
+                    "/api/info",
+                    "/api/h2-console/**",
+                    "/api/ws/**")
+                .permitAll()
+                .requestMatchers(HttpMethod.OPTIONS, "/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated())
         .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
         .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
         .formLogin(AbstractHttpConfigurer::disable)

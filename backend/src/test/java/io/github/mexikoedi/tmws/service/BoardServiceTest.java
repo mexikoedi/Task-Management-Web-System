@@ -70,13 +70,12 @@ class BoardServiceTest {
     when(userRepository.findByEmail("test@example.com")).thenReturn(Optional.of(user));
 
     when(boardRepository.save(any(Board.class)))
-        .thenAnswer(
-            inv -> {
-              Board b = inv.getArgument(0);
-              b.setId(99L);
+        .thenAnswer(inv -> {
+          Board b = inv.getArgument(0);
+          b.setId(99L);
 
-              return b;
-            });
+          return b;
+        });
 
     Board newBoard = new Board();
     newBoard.setTitle("Neues Projektboard");
@@ -115,13 +114,12 @@ class BoardServiceTest {
     when(boardRepository.findByIdWithRelations(10L)).thenReturn(Optional.of(board));
 
     when(columnRepository.save(any(BoardColumn.class)))
-        .thenAnswer(
-            inv -> {
-              BoardColumn c = inv.getArgument(0);
-              c.setId(5L);
+        .thenAnswer(inv -> {
+          BoardColumn c = inv.getArgument(0);
+          c.setId(5L);
 
-              return c;
-            });
+          return c;
+        });
 
     UpdateBoardColumnRequest req = new UpdateBoardColumnRequest("Neue Spalte");
     BoardColumnResponse response = boardService.addColumn(10L, req);
@@ -182,13 +180,12 @@ class BoardServiceTest {
     when(columnRepository.findByIdWithRelations(5L)).thenReturn(Optional.of(col));
 
     when(taskRepository.save(any(Task.class)))
-        .thenAnswer(
-            inv -> {
-              Task t = inv.getArgument(0);
-              t.setId(100L);
+        .thenAnswer(inv -> {
+          Task t = inv.getArgument(0);
+          t.setId(100L);
 
-              return t;
-            });
+          return t;
+        });
 
     UpdateTaskRequest req = new UpdateTaskRequest("Aufgabe 1", null, null, null, null, null);
     TaskResponse res = boardService.addTask(5L, req);

@@ -249,10 +249,8 @@ public class BoardService {
     if (request.getTitle() != null && !request.getTitle().isBlank()) {
       boolean exists =
           board.getColumns().stream()
-              .anyMatch(
-                  c ->
-                      c.getTitle().equalsIgnoreCase(request.getTitle())
-                          && !c.getId().equals(columnId));
+              .anyMatch(c ->
+                  c.getTitle().equalsIgnoreCase(request.getTitle()) && !c.getId().equals(columnId));
 
       if (exists) {
         throw new ColumnAlreadyExistsException(
@@ -388,9 +386,8 @@ public class BoardService {
     boolean exists =
         board.getColumns().stream()
             .flatMap(c -> c.getTasks().stream())
-            .anyMatch(
-                t ->
-                    t.getTitle().equalsIgnoreCase(request.getTitle()) && !t.getId().equals(taskId));
+            .anyMatch(t ->
+                t.getTitle().equalsIgnoreCase(request.getTitle()) && !t.getId().equals(taskId));
 
     if (exists) {
       throw new TaskAlreadyExistsException("Aufgabe mit diesem Namen existiert bereits.");
