@@ -229,7 +229,7 @@ importers:
         version: 1.64.1
       '@soroush.tech/playwright-coverage':
         specifier: ^3.1.2
-        version: 3.1.2(@playwright/test@1.64.1)(monocart-coverage-reports@3.1.0)
+        version: 3.1.2(@playwright/test@1.64.1)(monocart-coverage-reports@3.2.0)
       '@vitest/coverage-v8':
         specifier: ^5.0.5
         version: 5.0.5(vitest@5.0.5)
@@ -252,8 +252,8 @@ importers:
         specifier: ^21.0.4
         version: 21.0.4
       monocart-coverage-reports:
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.2.0
+        version: 3.2.0
       prettier:
         specifier: ^3.9.10
         version: 3.9.10
@@ -2552,8 +2552,8 @@ packages:
     resolution: {integrity: sha512-vpLQEs+VLCr1nU0BXS07maYoFwlDAH0gngQuuttxIwutDFEMHq2blX+8vpgxDdK3J1PwjCJiep77OitTZ4Ll1A==}
     engines: {node: 18 || 20 || >=22}
 
-  monocart-coverage-reports@3.1.0:
-    resolution: {integrity: sha512-FsS3MNxmrOzPaNu5HoXA6Yk5d8Cn6PiAKmiZmFRwguYKNZiMrrtp09vAFXvgTjE1SEfTI9N1APUzhwwclQSkeg==}
+  monocart-coverage-reports@3.2.0:
+    resolution: {integrity: sha512-hF8GxLozQGJ9P2FDjTrGfo/IAvHSlPdmYiBE3qkfbWUc9Zc+I+mrShta9+cJxmZfC5d6FiaEyrhjzCNrpAflog==}
     engines: {node: '>=22.15.0'}
     hasBin: true
 
@@ -4396,10 +4396,10 @@ snapshots:
 
   '@sindresorhus/merge-streams@4.0.0': {}
 
-  '@soroush.tech/playwright-coverage@3.1.2(@playwright/test@1.64.1)(monocart-coverage-reports@3.1.0)':
+  '@soroush.tech/playwright-coverage@3.1.2(@playwright/test@1.64.1)(monocart-coverage-reports@3.2.0)':
     dependencies:
       '@playwright/test': 1.64.1
-      monocart-coverage-reports: 3.1.0
+      monocart-coverage-reports: 3.2.0
       picomatch: 4.0.7
 
   '@standard-schema/spec@1.1.0': {}
@@ -5374,7 +5374,7 @@ snapshots:
     dependencies:
       brace-expansion: 5.0.12
 
-  monocart-coverage-reports@3.1.0:
+  monocart-coverage-reports@3.2.0:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.6.0
       acorn: 8.19.0
