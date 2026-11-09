@@ -53,7 +53,7 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 ### Backend
 | Komponente                            | Version    |
 |---------------------------------------|------------|
-| **Gradle**                            | 9.8.1      |
+| **Gradle**                            | 9.9.0      |
 | **Java**                              | 27.0.1.0.3 |
 | **Spring Boot**                       | 4.1.2      |
 | **Dependency Management Plugin**      | 1.1.7      |
@@ -76,13 +76,13 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Normal)                   | Version    |
 |---------------------------------------|------------|
 | **Node.js**                           | 26.13.0    |
-| **pnpm**                              | 12.16.1    |
-| **@angular/common**                   | 22.2.4     |
-| **@angular/compiler**                 | 22.2.4     |
-| **@angular/core**                     | 22.2.4     |
-| **@angular/forms**                    | 22.2.4     |
-| **@angular/platform-browser**         | 22.2.4     |
-| **@angular/router**                   | 22.2.4     |
+| **pnpm**                              | 12.18.0    |
+| **@angular/common**                   | 22.2.5     |
+| **@angular/compiler**                 | 22.2.5     |
+| **@angular/core**                     | 22.2.5     |
+| **@angular/forms**                    | 22.2.5     |
+| **@angular/platform-browser**         | 22.2.5     |
+| **@angular/router**                   | 22.2.5     |
 | **@ng-icons/bootstrap-icons**         | 36.1.0     |
 | **@ng-icons/core**                    | 36.1.0     |
 | **@ng-select/ng-select**              | 24.2.1     |
@@ -95,11 +95,11 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | Komponente (Dev)                      | Version    |
 |---------------------------------------|------------|
 | **@angular-eslint/builder**           | 22.6.0     |
-| **@angular/build**                    | 22.2.5     |
-| **@angular/cli**                      | 22.2.5     |
-| **@angular/compiler-cli**             | 22.2.4     |
+| **@angular/build**                    | 22.2.6     |
+| **@angular/cli**                      | 22.2.6     |
+| **@angular/compiler-cli**             | 22.2.5     |
 | **@eslint/js**                        | 10.0.1     |
-| **@playwright/test**                  | 1.64.1     |
+| **@playwright/test**                  | 1.65.0     |
 | **@soroush.tech/playwright-coverage** | 3.1.2      |
 | **@vitest/coverage-v8**               | 5.1.0      |
 | **@vitest/ui**                        | 5.1.0      |
@@ -108,13 +108,13 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 | **eslint-config-prettier**            | 10.1.8     |
 | **eslint-plugin-prettier**            | 5.5.7      |
 | **happy-dom**                         | 21.0.4     |
-| **monocart-coverage-reports**         | 3.2.0      |
+| **monocart-coverage-reports**         | 3.2.1      |
 | **prettier**                          | 3.9.10     |
-| **stylelint**                         | 17.16.0    |
-| **stylelint-config-standard**         | 40.0.0     |
-| **stylelint-prettier**                | 5.0.3      |
+| **stylelint**                         | 18.0.0    |
+| **stylelint-config-standard**         | 41.0.0     |
+| **stylelint-prettier**                | 5.1.0      |
 | **typescript**                        | 6.0.3      |
-| **typescript-eslint**                 | 8.72.1     |
+| **typescript-eslint**                 | 8.72.2     |
 | **vitest**                            | 5.1.0      |
 
 ### Zusätzliche Tools
@@ -132,7 +132,7 @@ IntelliJ IDEA (oder andere IDE für Java und Angular)
 Mailpit (für E-Mail-Testing)
 Java 27.0.1.0.3 oder höher
 Node.js 26.13.0 oder höher
-pnpm 12.16.1 oder höher
+pnpm 12.18.0 oder höher
 ```
 
 Installation überprüfen:
