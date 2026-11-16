@@ -38,7 +38,7 @@
     "@ng-icons/core": "^36.1.0",
     "@ng-select/ng-select": "^24.2.1",
     "@stomp/stompjs": "^7.5.0",
-    "ngxsmk-datepicker": "^3.0.6",
+    "ngxsmk-datepicker": "^3.0.7",
     "rxjs": "^7.8.2",
     "sweetalert2": "^11.26.25",
     "tslib": "^2.9.1"
