@@ -51,71 +51,71 @@ Und hier kann man den Hauptbereich mit dem Projektboard, nach der erfolgreichen 
 ## Technologie-Stack
 
 ### Backend
-| Komponente                            | Version    |
-|---------------------------------------|------------|
-| **Gradle**                            | 9.9.2      |
-| **Java**                              | 27.0.1.1 |
-| **Spring Boot**                       | 4.2.0      |
-| **Dependency Management Plugin**      | 1.1.7      |
-| **FreeFair Lombok**                   | 9.8.3      |
-| **Spring Boot Starter Actuator**      | 4.2.0      |
-| **Spring Starter Web MVC**            | 4.2.0      |
-| **Spring Starter WebSocket**          | 4.2.0      |
-| **Spring Starter Data JPA**           | 4.2.0      |
-| **Spring H2console**                  | 4.2.0      |
-| **H2 Database Engine**                | 2.5.252    |
-| **Spring Starter Validation**         | 4.2.0      |
-| **Spring Starter Mail**               | 4.2.0      |
-| **Spring Starter Security**           | 4.2.0      |
-| **JJWT API**                          | 0.13.0     |
-| **JJWT Impl**                         | 0.13.0     |
-| **JJWT Jackson**                      | 0.13.0     |
-| **Spring Boot Starter Test**          | 4.2.0      |
+| Komponente| Version|
+|:--------------------------------------|:---------|
+| **Gradle**| 9.9.2|
+| **Java**| 27.0.1.1|
+| **Spring Boot**| 4.2.0|
+| **Dependency Management Plugin**| 1.1.7|
+| **FreeFair Lombok**| 9.8.3|
+| **Spring Boot Starter Actuator**| 4.2.0|
+| **Spring Starter Web MVC**| 4.2.0|
+| **Spring Starter WebSocket**| 4.2.0|
+| **Spring Starter Data JPA**| 4.2.0|
+| **Spring H2console**| 4.2.0|
+| **H2 Database Engine**| 2.5.252|
+| **Spring Starter Validation**| 4.2.0|
+| **Spring Starter Mail**| 4.2.0|
+| **Spring Starter Security**| 4.2.0|
+| **JJWT API**| 0.13.0|
+| **JJWT Impl**| 0.13.0|
+| **JJWT Jackson**| 0.13.0|
+| **Spring Boot Starter Test**| 4.2.0|
 
 ### Frontend
-| Komponente (Normal)                   | Version    |
-|---------------------------------------|------------|
-| **Node.js**                           | 26.13.1    |
-| **pnpm**                              | 12.23.0    |
-| **@angular/common**                   | 22.3.0     |
-| **@angular/compiler**                 | 22.3.0     |
-| **@angular/core**                     | 22.3.0     |
-| **@angular/forms**                    | 22.3.0     |
-| **@angular/platform-browser**         | 22.3.0     |
-| **@angular/router**                   | 22.3.0     |
-| **@ng-icons/bootstrap-icons**         | 36.1.0     |
-| **@ng-icons/core**                    | 36.1.0     |
-| **@ng-select/ng-select**              | 24.2.1     |
-| **@stomp/stompjs**                    | 7.5.0      |
-| **ngxsmk-datepicker**                 | 3.0.7      |
-| **rxjs**                              | 7.8.2      |
-| **sweetalert2**                       | 11.26.25   |
-| **tslib**                             | 2.9.1      |
+| Komponente (Normal)| Version|
+|:--------------------------------------|:---------|
+| **Node.js**| 26.13.1|
+| **pnpm**| 12.23.0|
+| **@angular/common**| 22.3.0|
+| **@angular/compiler**| 22.3.0|
+| **@angular/core**| 22.3.0|
+| **@angular/forms**| 22.3.0|
+| **@angular/platform-browser**| 22.3.0|
+| **@angular/router**| 22.3.0|
+| **@ng-icons/bootstrap-icons**| 36.1.0|
+| **@ng-icons/core**| 36.1.0|
+| **@ng-select/ng-select**| 24.2.1|
+| **@stomp/stompjs**| 7.5.0|
+| **ngxsmk-datepicker**| 3.0.7|
+| **rxjs**| 7.8.2|
+| **sweetalert2**| 11.26.25|
+| **tslib**| 2.9.1|
 
-| Komponente (Dev)                      | Version    |
-|---------------------------------------|------------|
-| **@angular-eslint/builder**           | 22.8.0     |
-| **@angular/build**                    | 22.3.0     |
-| **@angular/cli**                      | 22.3.0     |
-| **@angular/compiler-cli**             | 22.3.0     |
-| **@eslint/js**                        | 10.0.1     |
-| **@playwright/test**                  | 1.65.1     |
-| **@soroush.tech/playwright-coverage** | 3.1.2      |
-| **@vitest/coverage-v8**               | 5.1.1      |
-| **@vitest/ui**                        | 5.1.1      |
-| **angular-eslint**                    | 22.8.0     |
-| **eslint**                            | 10.15.0    |
-| **eslint-config-prettier**            | 10.1.8     |
-| **eslint-plugin-prettier**            | 5.5.7      |
-| **happy-dom**                         | 21.0.4     |
-| **monocart-coverage-reports**         | 3.2.1      |
-| **prettier**                          | 3.10.1     |
-| **stylelint**                         | 18.1.0    |
-| **stylelint-config-standard**         | 41.1.0     |
-| **stylelint-prettier**                | 5.1.0      |
-| **typescript**                        | 6.0.3      |
-| **typescript-eslint**                 | 8.74.0     |
-| **vitest**                            | 5.1.1      |
+| Komponente (Dev)| Version|
+|:--------------------------------------|:--------|
+| **@angular-eslint/builder**| 22.8.0|
+| **@angular/build**| 22.3.0|
+| **@angular/cli**| 22.3.0|
+| **@angular/compiler-cli**| 22.3.0|
+| **@eslint/js**| 10.0.1|
+| **@playwright/test**| 1.65.1|
+| **@soroush.tech/playwright-coverage**| 3.1.2|
+| **@vitest/coverage-v8**| 5.1.1|
+| **@vitest/ui**| 5.1.1|
+| **angular-eslint**| 22.8.0|
+| **eslint**| 10.15.0|
+| **eslint-config-prettier**| 10.1.8|
+| **eslint-plugin-prettier**| 5.5.7|
+| **happy-dom**| 21.0.4|
+| **monocart-coverage-reports**| 3.2.1|
+| **prettier**| 3.10.1|
+| **stylelint**| 18.1.0|
+| **stylelint-config-standard**| 41.1.0|
+| **stylelint-prettier**| 5.1.0|
+| **typescript**| 6.0.3|
+| **typescript-eslint**| 8.74.0|
+| **vitest**| 5.1.1|
 
 ### Zusätzliche Tools
 - **IntelliJ IDEA** - IDE für Entwicklung
