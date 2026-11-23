@@ -53,7 +53,7 @@
     "@soroush.tech/playwright-coverage": "^3.1.2",
     "@vitest/coverage-v8": "^5.1.0",
     "@vitest/ui": "^5.1.0",
-    "angular-eslint": "^22.7.0",
+    "angular-eslint": "^22.8.0",
     "eslint": "^10.15.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.7",
